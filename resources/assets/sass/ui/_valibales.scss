@@ -1,0 +1,90 @@
+// Path fonts
+$font-path: 'ui/fonts/';
+$icon-path: 'ui/iconfont/';
+
+// Wight
+$wMain: 1200px;
+
+// Colors
+$colorWite: #ffffff;
+$colorBlack: #000000;
+$colorBlue: #337ab7;
+$colorBlueDark: #286090;
+$colorGreen: #26B99A;
+$colorGreenDark: #169F85;
+$colorCyan: #5bc0de;
+$colorCyanDark: #31b0d5;
+$colorRed: #d9534f;
+$colorRedDark: #c9302c;
+$colorYellow: #f0ad4e;
+$colorYellowDark: #ec971f;
+$colorOrange: #FF9800;
+$colorOrangeDark: #E65100;
+$colorGrey:#9E9E9E;
+$colorGreyDark: #616161;
+$colorGreyBlue: #4B5F71;
+$colorGreyBlueDark: #394D5F;
+$colorGrey_050: #FAFAFA;
+$colorGrey_100: #F5F5F5;
+$colorGrey_200: #EEEEEE;
+$colorGrey_300: #E0E0E0;
+$colorGreyBlue_050: #ECEFF1;
+$colorGreyBlue_100: #CFD8DC;
+$colorGreyBlue_200: #B0BEC5;
+$colorGreyBlue_300: #90A4AE;
+
+// Fonts
+$fontThin: 'Roboto Thin';
+$fontLight: 'Roboto Light';
+$fontRegular: 'Roboto Regular';
+$fontMedium: 'Roboto Medium';
+$fontBold: 'Roboto Bold';
+$fontIcon: 'Material Icons';
+
+// Font size
+$fontSize_0: 12px;
+$fontSize_1: 14px;
+$fontSize_2: 16px;
+$fontSize_3: 18px;
+$fontSize_4: 20px;
+$fontSize_5: 22px;
+$fontSize_6: 28px;
+$fontSize_7: 40px;
+$fontSize_8: 60px;
+
+// Padding && margin
+$size_1: 5px;
+$size_2: $size_1 * 2;
+$size_3: $size_1 * 3;
+$size_4: $size_1 * 4;
+$size_5: $size_1 * 5;
+$size_6: $size_1 * 6;
+
+$sizes: (
+        1: $size_1,
+        2: $size_2,
+        3: $size_3,
+        4: $size_4,
+        5: $size_5,
+        6: $size_6,
+);
+
+$distance: (
+        ui-m: margin,
+        ui-mt: margin-top,
+        ui-mr: margin-right,
+        ui-mb: margin-bottom,
+        ui-ml: margin-left,
+        ui-p: padding,
+        ui-pt: padding-top,
+        ui-pr: padding-right,
+        ui-pb: padding-bottom,
+        ui-pl: padding-left
+);
+@each $class, $value in $distance {
+  @each $id, $size in $sizes {
+    .#{$class}-#{$id} {
+      #{$value}: $size
+    }
+  }
+}

@@ -1,0 +1,490 @@
+@mixin ShadowBottom {
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, .22), 0 2px 1px -1px rgba(0, 0, 0, .05);
+}
+
+@mixin Gradient {
+  background: linear-gradient(rgba(0, 0, 0, .5), transparent) repeat-x;
+}
+
+@mixin BlockShadow {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .05), 0 2px 5px 0 rgba(0, 0, 0, .25);
+}
+
+// mixin background
+@mixin Background {
+  &.bg-wite {
+    background: $colorWite;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorWite;
+      }
+    }
+  }
+  &.bg-blue {
+    background: $colorBlue;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorBlueDark;
+      }
+    }
+  }
+  &.bg-green {
+    background: $colorGreen;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGreenDark;
+      }
+    }
+  }
+  &.bg-cyan {
+    background: $colorCyan;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorCyanDark;
+      }
+    }
+  }
+  &.bg-red {
+    background: $colorRed;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorRedDark;
+      }
+    }
+  }
+  &.bg-yellow {
+    background: $colorYellow;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorYellowDark;
+      }
+    }
+  }
+  &.bg-orange {
+    background: $colorOrange;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorOrangeDark;
+      }
+    }
+  }
+  &.bg-grey {
+    background: $colorGrey;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGreyDark;
+      }
+    }
+  }
+  &.bg-greyBlue {
+    background: $colorGreyBlue;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGreyBlueDark;
+      }
+    }
+  }
+  &.bg-greyLL {
+    background: $colorGrey_050;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGrey_100;
+      }
+    }
+  }
+  &.bg-greyL {
+    background: $colorGrey_200;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGrey_300;
+      }
+    }
+  }
+  &.bg-greyBlueLL {
+    background: $colorGreyBlue_050;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGreyBlue_100;
+      }
+    }
+  }
+  &.bg-greyBlueL {
+    background: $colorGreyBlue_200;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        background: $colorGreyBlue_300;
+      }
+    }
+  }
+}
+
+// mixin colors
+@mixin Colors {
+  &.col-wite {
+    color: $colorWite;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGrey_050;
+      }
+    }
+  }
+  &.col-black {
+    color: $colorBlack;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorBlack;
+      }
+    }
+  }
+  &.col-blue {
+    color: $colorBlue;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorBlueDark;
+      }
+    }
+  }
+  &.col-green {
+    color: $colorGreen;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGreenDark;
+      }
+    }
+  }
+  &.col-cyan {
+    color: $colorCyan;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorCyanDark;
+      }
+    }
+  }
+  &.col-red {
+    color: $colorRed;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorRedDark;
+      }
+    }
+  }
+  &.col-yellow {
+    color: $colorYellow;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorYellowDark;
+      }
+    }
+  }
+  &.col-orange {
+    color: $colorOrange;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorOrangeDark;
+      }
+    }
+  }
+  &.col-grey {
+    color: $colorGrey;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGreyDark;
+      }
+    }
+  }
+  &.col-greyBlue {
+    color: $colorGreyBlue;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGreyBlueDark;
+      }
+    }
+  }
+  &.col-greyLL {
+    color: $colorGrey_050;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGrey_100;
+      }
+    }
+  }
+  &.col-greyL {
+    color: $colorGrey_200;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGrey_300;
+      }
+    }
+  }
+  &.col-greyBlueLL {
+    color: $colorGreyBlue_050;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGreyBlue_100;
+      }
+    }
+  }
+  &.col-greyBlueL {
+    color: $colorGreyBlue_200;
+    &.hover {
+      cursor: pointer;
+      &:hover {
+        color: $colorGreyBlue_300;
+      }
+    }
+  }
+}
+
+@mixin Border {
+  &.wite {
+    border: 1px solid $colorWite;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorWite;
+      }
+    }
+  }
+  &.blue {
+    border: 1px solid $colorBlue;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorBlueDark;
+      }
+    }
+  }
+  &.green {
+    border: 1px solid $colorGreen;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorGreenDark;
+      }
+    }
+  }
+  &.cyan {
+    border: 1px solid $colorCyan;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorCyanDark;
+      }
+    }
+  }
+  &.red {
+    border: 1px solid $colorRed;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorRedDark;
+      }
+    }
+  }
+  &.yellow {
+    border: 1px solid $colorYellow;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorYellowDark;
+      }
+    }
+  }
+  &.orange {
+    border: 1px solid $colorOrange;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorOrangeDark;
+      }
+    }
+  }
+  &.grey {
+    border: 1px solid $colorGrey;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorGreyDark;
+      }
+    }
+  }
+  &.greyBlue {
+    border: 1px solid $colorGreyBlue;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorGreyBlueDark;
+      }
+    }
+  }
+  &.greyL {
+    border: 1px solid $colorGrey_300;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorGrey_300;
+      }
+    }
+  }
+  &.greyBlueL {
+    border: 1px solid $colorGreyBlue_300;
+    &.focus {
+      &:focus {
+        border: 1px solid $colorGreyBlue_300;
+      }
+    }
+  }
+}
+
+@mixin BorderBottom {
+  &.wite {
+    border-bottom: 1px solid $colorWite;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorWite;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.blue {
+    border-bottom: 1px solid $colorBlue;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorBlueDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.green {
+    border-bottom: 1px solid $colorGreen;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorGreenDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.cyan {
+    border-bottom: 1px solid $colorCyan;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorCyanDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.red {
+    border-bottom: 1px solid $colorRed;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorRedDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.yellow {
+    border-bottom: 1px solid $colorYellow;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorYellowDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.orange {
+    border-bottom: 1px solid $colorOrange;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorOrangeDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.grey {
+    border-bottom: 1px solid $colorGrey;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorGreyDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.greyBlue {
+    border-bottom: 1px solid $colorGreyBlue;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorGreyBlueDark;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.greyL {
+    border-bottom: 1px solid $colorGrey_300;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorGrey_300;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+  &.greyBlueL {
+    border-bottom: 1px solid $colorGreyBlue_300;
+    &.focus {
+      &:focus {
+        border-bottom: 2px solid $colorGreyBlue_300;
+        padding-bottom: 9px;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+}
+
+// mixin for grid
+@mixin UiAlign {
+  &.center {
+    text-align: center;
+  }
+  &.left {
+    text-align: left;
+  }
+  &.right {
+    text-align: right;
+  }
+}

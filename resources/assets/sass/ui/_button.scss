@@ -1,0 +1,11 @@
+// button
+.ui-button {
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0px;
+
+  @include Colors;
+  @include Background;
+}
