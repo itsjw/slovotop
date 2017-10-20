@@ -1,5 +1,9 @@
 @extends('admin.layout.master')
 
-@section('wrap')
-    Hello Admin
+@section('content')
+
+    <div class="ui-grid-block ui-bg bg-wite">
+        Hello content
+    </div>
+
 @endsection()

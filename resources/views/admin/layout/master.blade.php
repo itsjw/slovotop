@@ -15,7 +15,37 @@
 <body>
 
 <div id="app">
-    @yield('wrap')
+
+    <div class="admin-wrap">
+
+        <div class="admin-left">
+
+            @include('admin.menu.menu')
+
+        </div>
+
+        <div class="admin-content-wrap">
+
+            <div class="admin-head">
+
+                @include('admin.head.head')
+
+            </div>
+            <div class="admin-content ui-p-5">
+
+                @yield('content')
+
+            </div>
+            <div class="admin-footer">
+
+                @include('admin.footer.footer')
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 @yield('script')

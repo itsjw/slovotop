@@ -1,0 +1,36 @@
+html{
+  height: 100vh;
+}
+#app{
+  height: inherit;
+}
+.admin-wrap{
+  height: inherit;
+  display: flex;
+
+  & .admin-left{
+    width: 80px;
+    background: $colorGreyBlueDark;
+  }
+
+  & .admin-content-wrap{
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    background: $colorGreyBlue_050;
+
+    & .admin-head{
+      height: 30px;
+      background: $colorGrey_300;
+    }
+
+    & .admin-content{
+      flex: 1 auto;
+    }
+
+    & .admin-footer{
+      height: 30px;
+      background: $colorGrey_300;
+    }
+  }
+}
