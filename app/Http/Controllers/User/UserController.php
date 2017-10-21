@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 
 /**
- * Class AdminController
+ * Class UserController
  *
  * @package App\Http\Controllers\Admin
  */
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
-     * Main admin
+     * User main
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

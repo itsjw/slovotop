@@ -26,7 +26,7 @@
 
         <div class="admin-content-wrap">
 
-            <div class="admin-head">
+            <div class="admin-head ui-pt-2 ui-pb-2">
 
                 @include('admin.head.head')
 
