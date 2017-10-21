@@ -9,7 +9,7 @@ html{
   display: flex;
 
   & .admin-left{
-    width: 80px;
+    width: 90px;
     background: $colorGreyBlueDark;
   }
 
@@ -33,4 +33,18 @@ html{
       background: $colorGrey_300;
     }
   }
+}
+
+.admin-menu{
+  display: block;
+  text-align: center;
+  word-wrap: break-word;
+
+  &.active {
+    color: $colorOrange;
+  }
+  & .ui-icon{
+    font-size: 35px;
+  }
+
 }

@@ -2558,7 +2558,7 @@ html {
 }
 
 .admin-wrap .admin-left {
-  width: 80px;
+  width: 90px;
   background: #394D5F;
 }
 
@@ -2590,5 +2590,19 @@ html {
 .admin-wrap .admin-content-wrap .admin-footer {
   height: 30px;
   background: #E0E0E0;
+}
+
+.admin-menu {
+  display: block;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.admin-menu.active {
+  color: #FF9800;
+}
+
+.admin-menu .ui-icon {
+  font-size: 35px;
 }
 

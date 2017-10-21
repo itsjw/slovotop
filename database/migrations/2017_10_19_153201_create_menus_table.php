@@ -20,7 +20,7 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('icon')->nullable();
             $table->integer('role_id')->default(1);
             $table->integer('parent_id')->default(0);

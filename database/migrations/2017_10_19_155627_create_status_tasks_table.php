@@ -31,6 +31,6 @@ class CreateStatusTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staus_tasks');
+        Schema::dropIfExists('status_tasks');
     }
 }
