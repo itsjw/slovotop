@@ -1693,6 +1693,10 @@ table tbody tr:last-child td.right {
   text-align: right;
 }
 
+form {
+  width: 100%;
+}
+
 input[type=text],
 input[type=email],
 input[type=password],

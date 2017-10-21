@@ -9,8 +9,9 @@ use Illuminate\Routing\Router;
 
 $router->group(['namespace' => 'Site'], function (Router $router) {
 
-    $router->get('/', 'HomeController@index');
+    $router->get('/', 'HomeController@index')->name('home');
 
 });
 
 require __DIR__.'/web.admin.php';
+require __DIR__.'/web.auth.php';

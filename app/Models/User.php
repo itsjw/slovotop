@@ -35,4 +35,24 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * User Roles
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function roles()
+    {
+        return $this->hasMany(UserRole::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get Roles
+     *
+     * @return mixed
+     */
+    public function getRoles()
+    {
+        return UserRole::where('user_id', $this->id)->pluck('role_id')->toArray();
+    }
 }

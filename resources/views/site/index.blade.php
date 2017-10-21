@@ -1,7 +1,9 @@
 @extends('site.layout.master')
 
 @section('wrap')
-    <div class="ui-center">
-        Hello main page
-    </div>
+
+    @include('site.head.head')
+
+    @yield('content')
+
 @endsection()
