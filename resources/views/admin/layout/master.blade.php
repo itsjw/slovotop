@@ -10,7 +10,7 @@
     <style>
         {!! file_get_contents(asset('css/app.css')) !!}
     </style>
-    <title>@yield('title')</title>
+    <title>Admin Panel - @yield('title')</title>
 </head>
 <body>
 

@@ -34,6 +34,7 @@ html{
   }
 }
 
+// menu
 .admin-menu{
   display: block;
   text-align: center;
@@ -45,5 +46,9 @@ html{
   & .ui-icon{
     font-size: 35px;
   }
+}
 
+// title block
+.admin-title-block{
+  border-bottom: 2px solid $colorGrey_300;
 }

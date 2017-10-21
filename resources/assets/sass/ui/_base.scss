@@ -19,6 +19,9 @@
 .ui-border {
   @include Border;
 }
+.ui-border-bottom{
+  @include BorderBottom;
+}
 
 // fonts
 .ui-fnt {
