@@ -21,6 +21,6 @@ class Menu extends Model
      */
     public function scopeAdmin($query)
     {
-        return $query->where('role_id', 1);
+        return $query->where('role_id', 1)->get();
     }
 }

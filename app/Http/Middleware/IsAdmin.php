@@ -23,7 +23,7 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ( ! in_array(1, Auth::user()->getRoles(), true)) {
+        if ( ! Auth::user()->hasRole(1)) {
             return redirect()->route('home');
         }
 

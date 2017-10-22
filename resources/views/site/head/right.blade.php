@@ -10,7 +10,7 @@
 @auth
     <div class="ui-grid-block">
         <div class="ui-grid-6">
-            <a href="@if(in_array(1,Auth::user()->getRoles(),true)) {{ route('adminHome') }} @else {{ route('userHome') }} @endif"
+            <a href="@if(Auth::user()->hasRole(1)) {{ route('adminHome') }} @else {{ route('userHome') }} @endif"
                class="ui-color col-greyBlueLL hover ui-grid-block right">
                 <div class="ui-fnt light ui-mr-2">
                     {{ Auth::user()->name }}

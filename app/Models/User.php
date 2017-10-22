@@ -41,7 +41,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function roles()
+    public function role()
     {
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
@@ -49,10 +49,24 @@ class User extends Authenticatable
     /**
      * Get Roles
      *
-     * @return mixed
+     * @param $id
+     *
+     * @return boolean
      */
-    public function getRoles()
+    public function hasRole($id): bool
     {
-        return UserRole::where('user_id', $this->id)->pluck('role_id')->toArray();
+        foreach ($this->roles()->get() as $role) {
+            if (is_array($id)) {
+                if (in_array($role->role_id, $id, true)) {
+                    return true;
+                }
+            } else {
+                if ($role->role_id == $id) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
