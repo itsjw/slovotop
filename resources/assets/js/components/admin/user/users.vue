@@ -61,6 +61,7 @@
              * get all users
              */
             getUsers() {
+                this.selectUser = [];
                 gql.getItem('v1', 'UserQuery', false, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
@@ -68,7 +69,7 @@
             },
 
             /**
-             * slect users
+             * select users
              * @param id
              */
             selectUsers(id) {

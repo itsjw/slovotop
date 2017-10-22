@@ -30163,6 +30163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
+            this.selectUser = [];
             gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
@@ -30170,7 +30171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * slect users
+         * select users
          * @param id
          */
         selectUsers: function selectUsers(id) {
