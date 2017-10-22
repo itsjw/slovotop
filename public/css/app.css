@@ -1782,6 +1782,10 @@ table thead tr th.right {
   text-align: right;
 }
 
+table tbody tr {
+  background: #ffffff;
+}
+
 table tbody tr.hover {
   cursor: pointer;
 }

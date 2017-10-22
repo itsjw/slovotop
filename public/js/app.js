@@ -30255,8 +30255,7 @@ var render = function() {
           return _c(
             "tr",
             {
-              staticClass:
-                "ui-bg bg-greyBlueLL hover ui-fnt light size-1 ui-color col-black",
+              staticClass: "hover ui-fnt light size-1 ui-color col-black",
               on: {
                 click: function($event) {
                   _vm.selectUsers(val.id)

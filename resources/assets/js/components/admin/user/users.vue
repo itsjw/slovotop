@@ -19,7 +19,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="ui-bg bg-greyBlueLL hover ui-fnt light size-1 ui-color col-black"
+            <tr class="hover ui-fnt light size-1 ui-color col-black"
                 v-for="(val,key) in users"
                 @click="selectUsers(val.id)">
                 <td>
