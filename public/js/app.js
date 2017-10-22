@@ -11320,17 +11320,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getUsers();
+    },
 
     props: [],
     data: function data() {
-        return {};
+        return {
+            users: {}
+        };
     },
 
-    methods: {}
+    methods: {
+        /**
+         * get all users
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
+                _this.users = response.data.data.UserQuery;
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -11341,7 +11386,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Hello Users\n")])
+  return _c("div", [
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userSurname")))
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userEmail")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userConfirm")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "20%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userRole")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userCreated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.userUpdated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.users, function(val, key) {
+          return _c(
+            "tr",
+            {
+              staticClass:
+                "ui-bg bg-greyBlueLL hover ui-fnt light size-1 ui-color col-black"
+            },
+            [
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.surname))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.email))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    val.confirm == 1
+                      ? _vm.trans("data.yes")
+                      : _vm.trans("data.no")
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                _vm._l(val.roles, function(item, k) {
+                  return _c("span", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(item.role[0].name) +
+                        "\n                "
+                    )
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.id))])
+            ]
+          )
+        })
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12962,7 +13100,7 @@ var Query = function () {
         this.v2 = '/apps/v2';
 
         this.id = 'id';
-        this.user = 'id,name,surname,email,role{id,name},confirm,created_at';
+        this.user = 'id,name,surname,email,roles{id,role{id,name}},confirm,created_at,updated_at';
         this.role = 'id,name';
     }
 

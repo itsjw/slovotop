@@ -10,6 +10,13 @@ table {
         border-bottom: 2px solid $colorGreyBlue_300;
         text-align: center;
         padding: 5px;
+
+        &.left {
+          text-align: left;
+        }
+        &.right {
+          text-align: right;
+        }
       }
     }
   }

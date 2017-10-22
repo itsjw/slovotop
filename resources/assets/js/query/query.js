@@ -10,7 +10,7 @@ export default class Query {
         this.v2 = '/apps/v2';
 
         this.id = `id`;
-        this.user = `id,name,surname,email,role{id,name},confirm,created_at`;
+        this.user = `id,name,surname,email,roles{id,role{id,name}},confirm,created_at,updated_at`;
         this.role = `id,name`;
 
     }

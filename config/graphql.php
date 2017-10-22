@@ -7,14 +7,16 @@ return [
     'middleware'      => [],
     'schemas'         => [
         'v1' => [
-            'query'      => [],
+            'query'      => [
+                'UserQuery' => App\GraphQL\Query\UserQuery::class,
+            ],
             'mutation'   => [],
-            'middleware' => ['auth', 'isAdmin'],
+            'middleware' => ['web','isAdmin'],
         ],
         'v2' => [
             'query'      => [],
             'mutation'   => [],
-            'middleware' => ['auth'],
+            'middleware' => ['web'],
         ],
     ],
     'types'           => [
