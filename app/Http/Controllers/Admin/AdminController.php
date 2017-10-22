@@ -21,4 +21,14 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+
+    /**
+     * Users admin
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function users()
+    {
+        return view('admin.user.users');
+    }
 }

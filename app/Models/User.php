@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function hasRole($id): bool
     {
-        foreach ($this->roles()->get() as $role) {
+        foreach ($this->role()->get() as $role) {
             if (is_array($id)) {
                 if (in_array($role->role_id, $id, true)) {
                     return true;

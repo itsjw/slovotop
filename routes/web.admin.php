@@ -12,7 +12,7 @@ $router->group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['a
 
         $router->get('home', 'AdminController@index')->name('adminHome');
         $router->get('settings', 'AdminController@index')->name('adminSettings');
-        $router->get('users', 'AdminController@index')->name('adminUsers');
+        $router->get('users', 'AdminController@users')->name('adminUsers');
         $router->get('projects', 'AdminController@index')->name('adminProjects');
         $router->get('tasks', 'AdminController@index')->name('adminTasks');
 
