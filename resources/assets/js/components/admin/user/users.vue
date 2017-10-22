@@ -3,7 +3,11 @@
         <table>
             <thead>
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="5%">№</th>
+                <th width="1%">
+                    <i class="ui-icon ui-color col-green hover"
+                       @click="getUsers()">autorenew</i>
+                </th>
+                <th width="4%">№</th>
                 <th width="10%" class="left">{{ trans('data.userName') }}</th>
                 <th width="15%" class="left">{{ trans('data.userSurname') }}</th>
                 <th width="15%" class="left">{{ trans('data.userEmail') }}</th>
@@ -15,8 +19,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="ui-bg bg-greyBlueLL hover ui-fnt light size-1 ui-color col-black" v-for="(val,key) in users">
-                <td>{{ key+1 }}</td>
+            <tr class="ui-bg bg-greyBlueLL hover ui-fnt light size-1 ui-color col-black"
+                v-for="(val,key) in users"
+                @click="selectUsers(val.id)">
+                <td>
+                    <input type="checkbox" :id="key" :value="val.id" v-model="selectUser"/>
+                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                </td>
+                <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
                 <td class="left">{{ val.surname }}</td>
                 <td class="left">{{ val.email }}</td>
@@ -42,7 +52,8 @@
         props: [],
         data() {
             return {
-                users: {}
+                users: {},
+                selectUser: []
             }
         },
         methods: {
@@ -50,11 +61,23 @@
              * get all users
              */
             getUsers() {
-                gql.getItem('v1','UserQuery', false, 'user')
+                gql.getItem('v1', 'UserQuery', false, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
                     })
-            }
+            },
+
+            /**
+             * slect users
+             * @param id
+             */
+            selectUsers(id) {
+                if (this.selectUser.indexOf(id) == -1) {
+                    this.selectUser.push(id);
+                } else {
+                    this.selectUser.splice(this.selectUser.indexOf(id), 1);
+                }
+            },
         }
     }
 </script>

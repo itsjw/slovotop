@@ -11,7 +11,7 @@ return [
                 'UserQuery' => App\GraphQL\Query\UserQuery::class,
             ],
             'mutation'   => [],
-            'middleware' => ['web','isAdmin'],
+            'middleware' => ['web', 'isAdmin'],
         ],
         'v2' => [
             'query'      => [],
