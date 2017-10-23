@@ -30142,21 +30142,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+Vue.component('addUser', __webpack_require__(63));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getUsers();
     },
 
+
     props: [],
+
     data: function data() {
         return {
+            showAddUser: false,
             users: {},
             selectUser: []
         };
     },
 
+
     methods: {
+        /**
+         * close popup
+         */
+        closePopUp: function closePopUp() {
+            this.showAddUser = false;
+            this.getUsers();
+        },
+
+
         /**
          * get all users
          */
@@ -30180,6 +30221,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 this.selectUser.splice(this.selectUser.indexOf(id), 1);
             }
+        },
+
+
+        /**
+         * add user
+         */
+        addUser: function addUser() {
+            this.selectUser = [];
+            this.showAddUser = true;
         }
     }
 });
@@ -30192,165 +30242,252 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("table", [
-      _c("thead", [
-        _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "1%" } }, [
-              _c(
-                "i",
-                {
-                  staticClass: "ui-icon ui-color col-green hover",
-                  on: {
-                    click: function($event) {
-                      _vm.getUsers()
-                    }
-                  }
-                },
-                [_vm._v("autorenew")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userName")))
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userSurname")))
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userEmail")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userConfirm")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "20%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userRole")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userCreated_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.userUpdated_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.users, function(val, key) {
-          return _c(
-            "tr",
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
+        _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+          _c(
+            "div",
             {
-              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
               on: {
                 click: function($event) {
-                  _vm.selectUsers(val.id)
+                  _vm.addUser()
                 }
               }
             },
             [
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.selectUser,
-                      expression: "selectUser"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: key },
-                  domProps: {
-                    value: val.id,
-                    checked: Array.isArray(_vm.selectUser)
-                      ? _vm._i(_vm.selectUser, val.id) > -1
-                      : _vm.selectUser
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.selectUser,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = val.id,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.selectUser = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.selectUser = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.selectUser = $$c
+              _c("i", { staticClass: "ui-icon" }, [_vm._v("person_add")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.add")))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+            },
+            [
+              _c("i", { staticClass: "ui-icon" }, [_vm._v("edit")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.edit")))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+            },
+            [
+              _c("i", { staticClass: "ui-icon" }, [_vm._v("touch_app")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.approve")))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+            },
+            [
+              _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.delete")))
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-6" })
+      ]),
+      _vm._v(" "),
+      _c("table", [
+        _c("thead", [
+          _c(
+            "tr",
+            { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+            [
+              _c("th", { attrs: { width: "1%" } }, [
+                _c(
+                  "i",
+                  {
+                    staticClass: "ui-icon ui-color col-green hover",
+                    on: {
+                      click: function($event) {
+                        _vm.getUsers()
                       }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", {
-                  staticClass: "ui-checkbox ui-color col-green hover",
-                  attrs: { for: key }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.surname))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.email))]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    val.confirm == 1
-                      ? _vm.trans("data.yes")
-                      : _vm.trans("data.no")
-                  )
+                  },
+                  [_vm._v("autorenew")]
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "td",
-                _vm._l(val.roles, function(item, k) {
-                  return _c("span", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(item.role[0].name) +
-                        "\n                "
-                    )
-                  ])
-                })
-              ),
+              _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _c("th", { staticClass: "left", attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userName")))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userSurname")))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.id))])
+              _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userEmail")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userConfirm")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "20%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userRole")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userCreated_at")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userUpdated_at")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
             ]
           )
-        })
-      )
-    ])
-  ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.users, function(val, key) {
+            return _c(
+              "tr",
+              {
+                staticClass: "hover ui-fnt light size-1 ui-color col-black",
+                on: {
+                  click: function($event) {
+                    _vm.selectUsers(val.id)
+                  }
+                }
+              },
+              [
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectUser,
+                        expression: "selectUser"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: key },
+                    domProps: {
+                      value: val.id,
+                      checked: Array.isArray(_vm.selectUser)
+                        ? _vm._i(_vm.selectUser, val.id) > -1
+                        : _vm.selectUser
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.selectUser,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = val.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.selectUser = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.selectUser = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.selectUser = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "ui-checkbox ui-color col-green hover",
+                    attrs: { for: key }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(key + 1))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [
+                  _vm._v(_vm._s(val.surname))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.email))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      val.confirm == 1
+                        ? _vm.trans("data.yes")
+                        : _vm.trans("data.no")
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(val.roles, function(item, k) {
+                    return _c("span", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item.role[0].name) +
+                          "\n                "
+                      )
+                    ])
+                  })
+                ),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.created_at))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.updated_at))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.id))])
+              ]
+            )
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _vm.showAddUser
+        ? _c("add-user", {
+            on: {
+              close: function($event) {
+                _vm.closePopUp()
+              }
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -30367,6 +30504,379 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(39)
+/* script */
+var __vue_script__ = __webpack_require__(64)
+/* template */
+var __vue_template__ = __webpack_require__(65)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/user/addUser.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c56af9b", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c56af9b", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+
+    props: [],
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "ui-popup animated fadeIn ui-bg bg-wite w20" }, [
+      _c(
+        "div",
+        {
+          staticClass: "ui-popup-close col-red hover ui-icon",
+          on: {
+            click: function($event) {
+              _vm.$emit("close")
+            }
+          }
+        },
+        [_vm._v("close")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-p-3" }, [
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userName")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "ui-input green focus ui-fnt light size-1",
+            attrs: { type: "text" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userSurname")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "ui-input green focus ui-fnt light size-1",
+            attrs: { type: "text" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userEmail")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "ui-input green focus ui-fnt light size-1",
+            attrs: { type: "email" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userPassword")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "ui-input green focus ui-fnt light size-1",
+            attrs: { type: "password" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userConfirm")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "checkbox", id: "conf" } }),
+          _vm._v(" "),
+          _c("label", {
+            staticClass: "ui-checkbox ui-color col-green hover",
+            attrs: { for: "conf" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userRole")) +
+                  "\n                "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.userRole")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-mt-5" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+              attrs: { type: "button" }
+            },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.save")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+              attrs: { type: "button" }
+            },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.cancel")) +
+                  "\n                "
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { staticClass: "ui-input green focus" }, [
+      _c("option"),
+      _vm._v(" "),
+      _c("option", [_vm._v("dasdasdas")]),
+      _vm._v(" "),
+      _c("option", [_vm._v("dasdasdas")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5c56af9b", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,28 @@
 <template>
     <div>
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1">
+            <div class="ui-grid-6 ui-grid-block">
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                     @click="addUser()">
+                    <i class="ui-icon">person_add</i>
+                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.add') }}</span>
+                </div>
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
+                    <i class="ui-icon">edit</i>
+                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.edit') }}</span>
+                </div>
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
+                    <i class="ui-icon">touch_app</i>
+                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.approve') }}</span>
+                </div>
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
+                    <i class="ui-icon">delete</i>
+                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.delete') }}</span>
+                </div>
+            </div>
+            <div class="ui-grid-6"></div>
+        </div>
+
         <table>
             <thead>
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
@@ -42,21 +65,39 @@
             </tr>
             </tbody>
         </table>
+
+        <add-user v-if="showAddUser"
+                  v-on:close="closePopUp()"></add-user>
     </div>
 </template>
 <script>
+    Vue.component('addUser', require('./addUser.vue'));
+
     export default {
+
         mounted() {
             this.getUsers();
         },
+
         props: [],
+
         data() {
             return {
+                showAddUser: false,
                 users: {},
                 selectUser: []
             }
         },
+
         methods: {
+            /**
+             * close popup
+             */
+            closePopUp() {
+                this.showAddUser = false;
+                this.getUsers();
+            },
+
             /**
              * get all users
              */
@@ -78,6 +119,14 @@
                 } else {
                     this.selectUser.splice(this.selectUser.indexOf(id), 1);
                 }
+            },
+
+            /**
+             * add user
+             */
+            addUser() {
+                this.selectUser = [];
+                this.showAddUser = true;
             },
         }
     }

@@ -9,11 +9,12 @@ input[type=checkbox],
 input[type=radio],
 textarea, select {
   outline: none;
+  background: none;
 }
 
 // input default
 .ui-input {
-  padding: 5px;
+  padding: 10px;
   border-radius: 0px;
   width: 100%;
 

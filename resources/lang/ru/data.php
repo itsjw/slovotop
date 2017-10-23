@@ -8,24 +8,25 @@ return [
     'no'             => 'Нет',
     'save'           => 'Сохранить',
     'cancel'         => 'Отменить',
+    'add'            => 'Добавить',
+    'edit'           => 'Редактировать',
+    'approve'        => 'Подтвердить',
+    'delete'         => 'Удалить',
 
-    // login
+    // User
     'userLogin'      => 'Логин',
     'userEmail'      => 'Почта',
     'userPassword'   => 'Пароль',
     'userRemember'   => 'Запомнить',
+    'userName'       => 'Имя',
+    'userSurname'    => 'Фамилия',
+    'userConfirm'    => 'Подтверждён',
+    'userRole'       => 'Роль',
+    'userCreated_at' => 'Создан',
+    'userUpdated_at' => 'Обновлен',
 
     // admin
     'users'          => 'Пользователи',
     'projects'       => 'Проекты',
     'tasks'          => 'Задачи',
-
-    // admin user
-    'userName'       => 'Имя',
-    'userSurname'    => 'Фамилия',
-    'userEmail'      => 'Почта',
-    'userConfirm'    => 'Подтверждён',
-    'userRole'       => 'Роль',
-    'userCreated_at' => 'Создан',
-    'userUpdated_at' => 'Обновлен',
 ];
