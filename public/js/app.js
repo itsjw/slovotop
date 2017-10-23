@@ -30744,6 +30744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31151,6 +31152,17 @@ var render = function() {
                 _c("span", { staticClass: "ui-pl-2" }, [
                   _vm._v(_vm._s(_vm.trans("data.userRole")))
                 ]),
+                _vm._v(" "),
+                _vm.showRoles
+                  ? _c("div", {
+                      staticClass: "ui-popup-bg",
+                      on: {
+                        click: function($event) {
+                          _vm.showRoles = false
+                        }
+                      }
+                    })
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm.showRoles
                   ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [

@@ -60,11 +60,11 @@ class ApproveUserMutation extends Mutation
 
         foreach ($items as $key) {
             $user = User::findOrfail($key);
-            if ( ! $user->hasRole(1)) {
-                $user->confirm     = 1;
-                $user->confirm_key = null;
-                $user->save();
-            }
+
+            $user->confirm     = 1;
+            $user->confirm_key = null;
+            $user->save();
+
         }
 
         return UserSerialize::serialize($user);

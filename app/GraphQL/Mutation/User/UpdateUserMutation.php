@@ -89,7 +89,7 @@ class UpdateUserMutation extends Mutation
         $user->name    = $args['name'];
         $user->surname = $args['surname'] ?? '';
         $user->email   = $this->validMail($args);
-        $user->confirm = $args['confirm'];
+        $user->confirm = $user->hasRole(1) ? 1 : $args['confirm'];
 
         if ($args['password']) {
             $user->password = bcrypt($args['password']);

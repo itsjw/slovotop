@@ -52,6 +52,7 @@
                            @click="getRoles()">add_circle</i>
                         <span class="ui-pl-2">{{ trans('data.userRole') }}</span>
 
+                        <div class="ui-popup-bg" @click="showRoles=false" v-if="showRoles"></div>
                         <div class="ui-popup ui-bg bg-wite" v-if="showRoles">
                             <table>
                                 <tbody>
