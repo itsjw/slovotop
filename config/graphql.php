@@ -8,9 +8,12 @@ return [
     'schemas'         => [
         'v1' => [
             'query'      => [
-                'UserQuery' => App\GraphQL\Query\UserQuery::class,
+                'UserQuery' => App\GraphQL\Query\User\UserQuery::class,
+                'RoleQuery' => App\GraphQL\Query\Role\RoleQuery::class,
             ],
-            'mutation'   => [],
+            'mutation'   => [
+                'AddUser' => App\GraphQL\Mutation\User\AddUserMutation::class,
+            ],
             'middleware' => ['isAdmin'],
         ],
         'v2' => [

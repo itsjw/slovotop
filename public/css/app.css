@@ -529,8 +529,7 @@ template {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
-  /* Preferred icon size */
+  font-size: inherit;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -547,6 +546,42 @@ template {
   /* Support for IE. */
   -webkit-font-feature-settings: 'liga';
           font-feature-settings: 'liga';
+}
+
+.ui-icon.size-0 {
+  font-size: 12px;
+}
+
+.ui-icon.size-1 {
+  font-size: 14px;
+}
+
+.ui-icon.size-2 {
+  font-size: 16px;
+}
+
+.ui-icon.size-3 {
+  font-size: 18px;
+}
+
+.ui-icon.size-4 {
+  font-size: 20px;
+}
+
+.ui-icon.size-5 {
+  font-size: 22px;
+}
+
+.ui-icon.size-6 {
+  font-size: 28px;
+}
+
+.ui-icon.size-7 {
+  font-size: 40px;
+}
+
+.ui-icon.size-8 {
+  font-size: 60px;
 }
 
 @font-face {
@@ -2480,8 +2515,10 @@ input[type=radio]:checked + label.ui-radio:before {
           box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   padding: 20px;
-  top: 10%;
-  left: 50%;
+}
+
+.ui-popup.top {
+  top: 5%;
 }
 
 .ui-popup.hide {
@@ -2666,26 +2703,55 @@ input[type=radio]:checked + label.ui-radio:before {
 
 .ui-popup.w10 {
   width: 10%;
+}
+
+.ui-popup.w10.left {
+  left: 50%;
   margin-left: -5%;
 }
 
 .ui-popup.w20 {
   width: 20%;
+}
+
+.ui-popup.w20.left {
+  left: 50%;
   margin-left: -10%;
+}
+
+.ui-popup.w25 {
+  width: 25%;
+}
+
+.ui-popup.w25.left {
+  left: 50%;
+  margin-left: -12.5%;
 }
 
 .ui-popup.w30 {
   width: 30%;
+}
+
+.ui-popup.w30.left {
+  left: 50%;
   margin-left: -15%;
 }
 
 .ui-popup.w40 {
   width: 40%;
+}
+
+.ui-popup.w40.left {
+  left: 50%;
   margin-left: -20%;
 }
 
 .ui-popup.w50 {
   width: 50%;
+}
+
+.ui-popup.w50.left {
+  left: 50%;
   margin-left: -25%;
 }
 
@@ -2696,6 +2762,169 @@ input[type=radio]:checked + label.ui-radio:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.ui-tag {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.ui-tag.bg-wite {
+  background: #ffffff;
+}
+
+.ui-tag.bg-wite.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-wite.hover:hover {
+  background: #ffffff;
+}
+
+.ui-tag.bg-blue {
+  background: #337ab7;
+}
+
+.ui-tag.bg-blue.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-blue.hover:hover {
+  background: #286090;
+}
+
+.ui-tag.bg-green {
+  background: #26B99A;
+}
+
+.ui-tag.bg-green.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-green.hover:hover {
+  background: #169F85;
+}
+
+.ui-tag.bg-cyan {
+  background: #5bc0de;
+}
+
+.ui-tag.bg-cyan.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-cyan.hover:hover {
+  background: #31b0d5;
+}
+
+.ui-tag.bg-red {
+  background: #d9534f;
+}
+
+.ui-tag.bg-red.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-red.hover:hover {
+  background: #c9302c;
+}
+
+.ui-tag.bg-yellow {
+  background: #f0ad4e;
+}
+
+.ui-tag.bg-yellow.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-yellow.hover:hover {
+  background: #ec971f;
+}
+
+.ui-tag.bg-orange {
+  background: #FF9800;
+}
+
+.ui-tag.bg-orange.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-orange.hover:hover {
+  background: #E65100;
+}
+
+.ui-tag.bg-grey {
+  background: #9E9E9E;
+}
+
+.ui-tag.bg-grey.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-grey.hover:hover {
+  background: #616161;
+}
+
+.ui-tag.bg-greyBlue {
+  background: #4B5F71;
+}
+
+.ui-tag.bg-greyBlue.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-greyBlue.hover:hover {
+  background: #394D5F;
+}
+
+.ui-tag.bg-greyLL {
+  background: #FAFAFA;
+}
+
+.ui-tag.bg-greyLL.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-greyLL.hover:hover {
+  background: #F5F5F5;
+}
+
+.ui-tag.bg-greyL {
+  background: #EEEEEE;
+}
+
+.ui-tag.bg-greyL.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-greyL.hover:hover {
+  background: #E0E0E0;
+}
+
+.ui-tag.bg-greyBlueLL {
+  background: #ECEFF1;
+}
+
+.ui-tag.bg-greyBlueLL.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-greyBlueLL.hover:hover {
+  background: #CFD8DC;
+}
+
+.ui-tag.bg-greyBlueL {
+  background: #B0BEC5;
+}
+
+.ui-tag.bg-greyBlueL.hover {
+  cursor: pointer;
+}
+
+.ui-tag.bg-greyBlueL.hover:hover {
+  background: #90A4AE;
 }
 
 [v-cloak]::before {

@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserRole extends Model
 {
     /**
+     * @var array
+     */
+    protected $fillable = ['role_id'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function user()

@@ -4,15 +4,16 @@
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addUser()">
-                    <i class="ui-icon">person_add</i>
+                    <i class="ui-icon size-4">person_add</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.add') }}</span>
                 </div>
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
-                    <i class="ui-icon">edit</i>
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                     @click="editUser()">
+                    <i class="ui-icon size-4">edit</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.edit') }}</span>
                 </div>
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
-                    <i class="ui-icon">touch_app</i>
+                    <i class="ui-icon size-4">touch_app</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.approve') }}</span>
                 </div>
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
@@ -27,7 +28,7 @@
             <thead>
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
                 <th width="1%">
-                    <i class="ui-icon ui-color col-green hover"
+                    <i class="ui-icon size-3 ui-color col-green hover"
                        @click="getUsers()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
@@ -67,6 +68,7 @@
         </table>
 
         <add-user v-if="showAddUser"
+                  :user_id = "selectUser[0]"
                   v-on:close="closePopUp()"></add-user>
     </div>
 </template>
@@ -128,6 +130,15 @@
                 this.selectUser = [];
                 this.showAddUser = true;
             },
+
+            /**
+             * edit user
+             */
+            editUser() {
+                if (this.selectUser.length > 0) {
+                    this.showAddUser = true;
+                }
+            }
         }
     }
 </script>

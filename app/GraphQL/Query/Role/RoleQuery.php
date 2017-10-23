@@ -1,27 +1,27 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\Role;
 
-use App\GraphQL\Serialize\UserSerialize;
-use App\Models\User;
+use App\GraphQL\Serialize\RoleSerialize;
+use App\Models\Role;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
 /**
- * Class UserQuery
+ * Class RoleQuery
  *
- * @package App\GraphQL\Query
+ * @package App\GraphQL\Query\Role
  */
-class UserQuery extends Query
+class RoleQuery extends Query
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name' => 'UserQuery',
-        'description' => 'A UserQuery query'
+        'name'        => 'RoleQuery',
+        'description' => 'A query',
     ];
 
     /**
@@ -29,7 +29,7 @@ class UserQuery extends Query
      */
     public function type()
     {
-        return Type::listOf(\GraphQL::type('UserType'));
+        return Type::listOf(\GraphQL::type('RoleType'));
     }
 
     /**
@@ -55,12 +55,12 @@ class UserQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = User::query();
+        $query = Role::query();
 
-        if(isset($args['id'])){
-            $query->where('id',$args['id']);
+        if (isset($args['id'])) {
+            $query->where('id', $args['id']);
         }
 
-        return UserSerialize::collection($query->get());
+        return RoleSerialize::collection($query->get());
     }
 }

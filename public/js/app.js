@@ -29845,7 +29845,8 @@ var Query = function () {
         this.v2 = '/apps/v2';
 
         this.id = 'id';
-        this.user = 'id,name,surname,email,roles{id,role{id,name}},confirm,created_at,updated_at';
+        this.role = 'id,name';
+        this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
         this.role = 'id,name';
     }
 
@@ -30168,6 +30169,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 Vue.component('addUser', __webpack_require__(63));
 
@@ -30230,6 +30233,16 @@ Vue.component('addUser', __webpack_require__(63));
         addUser: function addUser() {
             this.selectUser = [];
             this.showAddUser = true;
+        },
+
+
+        /**
+         * edit user
+         */
+        editUser: function editUser() {
+            if (this.selectUser.length > 0) {
+                this.showAddUser = true;
+            }
         }
     }
 });
@@ -30259,7 +30272,9 @@ var render = function() {
               }
             },
             [
-              _c("i", { staticClass: "ui-icon" }, [_vm._v("person_add")]),
+              _c("i", { staticClass: "ui-icon size-4" }, [
+                _vm._v("person_add")
+              ]),
               _vm._v(" "),
               _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
                 _vm._v(_vm._s(_vm.trans("data.add")))
@@ -30271,10 +30286,15 @@ var render = function() {
             "div",
             {
               staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+              on: {
+                click: function($event) {
+                  _vm.editUser()
+                }
+              }
             },
             [
-              _c("i", { staticClass: "ui-icon" }, [_vm._v("edit")]),
+              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
               _vm._v(" "),
               _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
                 _vm._v(_vm._s(_vm.trans("data.edit")))
@@ -30289,7 +30309,7 @@ var render = function() {
                 "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
             },
             [
-              _c("i", { staticClass: "ui-icon" }, [_vm._v("touch_app")]),
+              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("touch_app")]),
               _vm._v(" "),
               _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
                 _vm._v(_vm._s(_vm.trans("data.approve")))
@@ -30326,7 +30346,7 @@ var render = function() {
                 _c(
                   "i",
                   {
-                    staticClass: "ui-icon ui-color col-green hover",
+                    staticClass: "ui-icon size-3 ui-color col-green hover",
                     on: {
                       click: function($event) {
                         _vm.getUsers()
@@ -30478,6 +30498,7 @@ var render = function() {
       _vm._v(" "),
       _vm.showAddUser
         ? _c("add-user", {
+            attrs: { user_id: _vm.selectUser[0] },
             on: {
               close: function($event) {
                 _vm.closePopUp()
@@ -30643,19 +30664,158 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
-
-
-    props: [],
-
-    data: function data() {
-        return {};
+    mounted: function mounted() {
+        if (this.user_id > 0) {
+            this.getUser(this.user_id);
+        }
     },
 
 
-    methods: {}
+    props: {
+        user_id: {
+            default: 0
+        }
+    },
+
+    data: function data() {
+        return {
+            showRoles: false,
+            user: {
+                confirm: 1,
+                roles: []
+            },
+            errors: {},
+            roles: [],
+            cleanRole: []
+        };
+    },
+
+
+    methods: {
+        /**
+         * get user
+         * @param id
+         */
+        getUser: function getUser(id) {
+            var _this = this;
+
+            gql.getItem('v1', 'UserQuery', ['id:' + id], 'user').then(function (response) {
+                _this.user = response.data.data.UserQuery[0];
+            });
+        },
+
+
+        /**
+         * get roles
+         */
+        getRoles: function getRoles() {
+            var _this2 = this;
+
+            gql.getItem('v1', 'RoleQuery', null, 'role').then(function (response) {
+                _this2.roles = response.data.data.RoleQuery;
+                _this2.showRoles = true;
+            });
+        },
+
+
+        /**
+         * select user role
+         * @param id
+         */
+        selectRole: function selectRole(id) {
+            this.showRoles = false;
+            this.user.roles.push({
+                'id': this.roles[id].id,
+                'role': [{
+                    'id': this.roles[id].id,
+                    'name': this.roles[id].name
+                }]
+            });
+            this.getCleanRole(this.user.roles);
+        },
+
+
+        /**
+         * save user
+         */
+        saveUser: function saveUser() {
+            var _this3 = this;
+
+            var point = 'AddUser';
+
+            if (this.user_id) {
+                point = 'UpdateUser';
+            }
+
+            gql.setItem('v1', point, this.getUserData(this.user)).then(function (response) {
+                if (response.data.errors) {
+                    _this3.errors = response.data.errors[0].validation;
+                } else {
+                    _this3.$emit('close');
+                }
+            });
+        },
+
+
+        /**
+         * get user data
+         * @param user
+         * @return {string}
+         */
+        getUserData: function getUserData(user) {
+
+            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                surname: "' + (user.surname || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + (user.confirm || 1) + ',\n                password: "' + (user.password || '') + '"';
+        },
+
+
+        /**
+         * get clean role
+         * @param role
+         */
+        getCleanRole: function getCleanRole(role) {
+            var _vm = this;
+            this.cleanRole = [];
+
+            _.forEach(role, function (value) {
+                _vm.cleanRole.push(value.id);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -30676,199 +30836,400 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "ui-popup animated fadeIn ui-bg bg-wite w20" }, [
-      _c(
-        "div",
-        {
-          staticClass: "ui-popup-close col-red hover ui-icon",
-          on: {
-            click: function($event) {
-              _vm.$emit("close")
+    _c(
+      "div",
+      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "ui-popup-close col-red hover ui-icon",
+            on: {
+              click: function($event) {
+                _vm.$emit("close")
+              }
             }
-          }
-        },
-        [_vm._v("close")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "ui-p-3" }, [
-        _c("div", { staticClass: "ui-mb-2" }, [
+          },
+          [_vm._v("close")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-p-3" }, [
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userName")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.name,
+                  expression: "user.name"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.user.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userSurname")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.surname,
+                  expression: "user.surname"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.user.surname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "surname", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userEmail")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.email,
+                  expression: "user.email"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "email" },
+              domProps: { value: _vm.user.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "email", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userPassword")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.password,
+                  expression: "user.password"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "password" },
+              domProps: { value: _vm.user.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "password", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2 ui-block-flex" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mr-2"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userConfirm")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.confirm,
+                  expression: "user.confirm"
+                }
+              ],
+              attrs: {
+                type: "checkbox",
+                id: "conf",
+                "true-value": 1,
+                "false-value": 0
+              },
+              domProps: {
+                checked: Array.isArray(_vm.user.confirm)
+                  ? _vm._i(_vm.user.confirm, null) > -1
+                  : _vm._q(_vm.user.confirm, 1)
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.user.confirm,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? 1 : 0
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.user.confirm = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.user.confirm = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.$set(_vm.user, "confirm", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", {
+              staticClass: "ui-checkbox ui-color col-green hover",
+              attrs: { for: "conf" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex"
+              },
+              [
+                _c(
+                  "i",
+                  {
+                    staticClass: "ui-icon size-5 ui-color col-green hover",
+                    on: {
+                      click: function($event) {
+                        _vm.getRoles()
+                      }
+                    }
+                  },
+                  [_vm._v("add_circle")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "ui-pl-2" }, [
+                  _vm._v(_vm._s(_vm.trans("data.userRole")))
+                ]),
+                _vm._v(" "),
+                _vm.showRoles
+                  ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [
+                      _c("table", [
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.roles, function(val, key) {
+                            return _c(
+                              "tr",
+                              {
+                                staticClass:
+                                  "hover ui-fnt regular size-1 ui-color col-blue"
+                              },
+                              [
+                                _c(
+                                  "td",
+                                  {
+                                    staticClass: "left",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.selectRole(key)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(val.name))]
+                                )
+                              ]
+                            )
+                          })
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "ui-block-flex" },
+              _vm._l(_vm.user.roles, function(item, k) {
+                return _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn"
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.role[0].name) +
+                        "\n                        "
+                    ),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon size-2 ui-ml-2 ui-color col-red hover"
+                      },
+                      [_vm._v("close")]
+                    )
+                  ]
+                )
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mt-5" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.saveUser()
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.save")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("close")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.cancel")) +
+                    "\n                "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userName")) +
-                  "\n                "
+            { staticClass: "ui-mt-3" },
+            _vm._l(_vm.errors, function(val, key) {
+              return _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val[0]) +
+                      "\n                "
+                  )
+                ]
               )
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "ui-input green focus ui-fnt light size-1",
-            attrs: { type: "text" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userSurname")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "ui-input green focus ui-fnt light size-1",
-            attrs: { type: "text" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userEmail")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "ui-input green focus ui-fnt light size-1",
-            attrs: { type: "email" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userPassword")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "ui-input green focus ui-fnt light size-1",
-            attrs: { type: "password" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userConfirm")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "checkbox", id: "conf" } }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "ui-checkbox ui-color col-green hover",
-            attrs: { for: "conf" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userRole")) +
-                  "\n                "
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mb-2" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.userRole")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _vm._m(0)
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-mt-5" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
-              attrs: { type: "button" }
-            },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.save")) +
-                  "\n                "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
-              attrs: { type: "button" }
-            },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.cancel")) +
-                  "\n                "
-              )
-            ]
+            })
           )
         ])
-      ])
-    ])
+      ]
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("select", { staticClass: "ui-input green focus" }, [
-      _c("option"),
-      _vm._v(" "),
-      _c("option", [_vm._v("dasdasdas")]),
-      _vm._v(" "),
-      _c("option", [_vm._v("dasdasdas")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
