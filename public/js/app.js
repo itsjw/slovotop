@@ -30697,6 +30697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30754,10 +30755,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * select user role
+         * add user role
          * @param id
          */
-        selectRole: function selectRole(id) {
+        addRole: function addRole(id) {
             this.showRoles = false;
             this.user.roles.push({
                 'id': this.roles[id].id,
@@ -30766,7 +30767,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'name': this.roles[id].name
                 }]
             });
-            this.getCleanRole(this.user.roles);
+        },
+
+
+        /**
+         * delete role
+         * @param id
+         */
+        deleteRole: function deleteRole(id) {
+            this.user.roles.splice(id, 1);
         },
 
 
@@ -30775,6 +30784,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         saveUser: function saveUser() {
             var _this3 = this;
+
+            this.getCleanRole(this.user.roles);
 
             var point = 'AddUser';
 
@@ -30812,7 +30823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.cleanRole = [];
 
             _.forEach(role, function (value) {
-                _vm.cleanRole.push(value.id);
+                _vm.cleanRole.push(value.role[0].id);
             });
         }
     }
@@ -31114,7 +31125,7 @@ var render = function() {
                                     staticClass: "left",
                                     on: {
                                       click: function($event) {
-                                        _vm.selectRole(key)
+                                        _vm.addRole(key)
                                       }
                                     }
                                   },
@@ -31150,7 +31161,12 @@ var render = function() {
                       "i",
                       {
                         staticClass:
-                          "ui-icon size-2 ui-ml-2 ui-color col-red hover"
+                          "ui-icon size-2 ui-ml-2 ui-color col-red hover",
+                        on: {
+                          click: function($event) {
+                            _vm.deleteRole(k)
+                          }
+                        }
                       },
                       [_vm._v("close")]
                     )

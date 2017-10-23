@@ -12,7 +12,8 @@ return [
                 'RoleQuery' => App\GraphQL\Query\Role\RoleQuery::class,
             ],
             'mutation'   => [
-                'AddUser' => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'AddUser'    => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUser' => App\GraphQL\Mutation\User\UpdateUserMutation::class,
             ],
             'middleware' => ['isAdmin'],
         ],

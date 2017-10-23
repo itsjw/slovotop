@@ -57,7 +57,7 @@
                                 <tbody>
                                 <tr v-for="(val,key) in roles"
                                     class="hover ui-fnt regular size-1 ui-color col-blue">
-                                    <td class="left" @click="selectRole(key)">{{ val.name }}</td>
+                                    <td class="left" @click="addRole(key)">{{ val.name }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -68,7 +68,8 @@
                         <div v-for="(item,k) in user.roles"
                              class="ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn">
                             {{ item.role[0].name }}
-                            <i class="ui-icon size-2 ui-ml-2 ui-color col-red hover">close</i>
+                            <i class="ui-icon size-2 ui-ml-2 ui-color col-red hover"
+                               @click="deleteRole(k)">close</i>
                         </div>
                     </div>
                 </div>
@@ -147,10 +148,10 @@
             },
 
             /**
-             * select user role
+             * add user role
              * @param id
              */
-            selectRole(id) {
+            addRole(id) {
                 this.showRoles = false;
                 this.user.roles.push({
                     'id': this.roles[id].id,
@@ -159,13 +160,22 @@
                         'name': this.roles[id].name
                     }]
                 });
-                this.getCleanRole(this.user.roles);
+            },
+
+            /**
+             * delete role
+             * @param id
+             */
+            deleteRole(id) {
+                this.user.roles.splice(id,1);
             },
 
             /**
              * save user
              */
             saveUser() {
+                this.getCleanRole(this.user.roles);
+
                 let point = 'AddUser';
 
                 if (this.user_id) {
@@ -208,7 +218,7 @@
                 this.cleanRole = [];
 
                 _.forEach(role, function (value) {
-                    _vm.cleanRole.push(value.id);
+                    _vm.cleanRole.push(value.role[0].id);
                 });
 
             }
