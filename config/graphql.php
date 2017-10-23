@@ -4,14 +4,14 @@ return [
     'prefix'          => 'apps',
     'routes'          => '{graphql_schema?}',
     'controllers'     => \Rebing\GraphQL\GraphQLController::class.'@query',
-    'middleware'      => [],
+    'middleware'      => ['web'],
     'schemas'         => [
         'v1' => [
             'query'      => [
                 'UserQuery' => App\GraphQL\Query\UserQuery::class,
             ],
             'mutation'   => [],
-            'middleware' => ['web', 'isAdmin'],
+            'middleware' => ['isAdmin'],
         ],
         'v2' => [
             'query'      => [],
