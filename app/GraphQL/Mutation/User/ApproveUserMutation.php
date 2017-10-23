@@ -11,17 +11,17 @@ use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
 /**
- * Class DeleteUserMutation
+ * Class ApproveUserMutation
  *
  * @package App\GraphQL\Mutation
  */
-class DeleteUserMutation extends Mutation
+class ApproveUserMutation extends Mutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteUser',
+        'name'        => 'ApproveUser',
         'description' => 'A mutation',
     ];
 
@@ -60,9 +60,10 @@ class DeleteUserMutation extends Mutation
 
         foreach ($items as $key) {
             $user = User::findOrfail($key);
-            if (!$user->hasRole(1)) {
-                $user->delete();
-                $user->roles()->delete();
+            if ( ! $user->hasRole(1)) {
+                $user->confirm     = 1;
+                $user->confirm_key = null;
+                $user->save();
             }
         }
 

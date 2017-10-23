@@ -12,9 +12,10 @@ return [
                 'RoleQuery' => App\GraphQL\Query\Role\RoleQuery::class,
             ],
             'mutation'   => [
-                'AddUser'    => App\GraphQL\Mutation\User\AddUserMutation::class,
-                'UpdateUser' => App\GraphQL\Mutation\User\UpdateUserMutation::class,
-                'DeleteUser' => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'AddUser'     => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUser'  => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUser'  => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUser' => App\GraphQL\Mutation\User\ApproveUserMutation::class,
             ],
             'middleware' => ['isAdmin'],
         ],

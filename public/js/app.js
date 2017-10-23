@@ -30172,6 +30172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('addUser', __webpack_require__(63));
 
@@ -30262,6 +30263,22 @@ Vue.component('addUser', __webpack_require__(63));
                     _this2.getUsers();
                 });
             }
+        },
+
+
+        /**
+         * approve user
+         */
+        approveUser: function approveUser() {
+            var _this3 = this;
+
+            var select = void 0;
+            if (this.selectUser.length > 0) {
+                select = ['items:"' + this.selectUser + '"'];
+                gql.setItem('v1', 'ApproveUser', select).then(function (response) {
+                    _this3.getUsers();
+                });
+            }
         }
     }
 });
@@ -30325,7 +30342,12 @@ var render = function() {
             "div",
             {
               staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+              on: {
+                click: function($event) {
+                  _vm.approveUser()
+                }
+              }
             },
             [
               _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("touch_app")]),
@@ -30834,7 +30856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         getUserData: function getUserData(user) {
 
-            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                surname: "' + (user.surname || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + (user.confirm || 1) + ',\n                password: "' + (user.password || '') + '"';
+            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                surname: "' + (user.surname || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
         },
 
 

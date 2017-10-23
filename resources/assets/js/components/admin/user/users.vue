@@ -12,7 +12,8 @@
                     <i class="ui-icon size-4">edit</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.edit') }}</span>
                 </div>
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                     @click="approveUser()">
                     <i class="ui-icon size-4">touch_app</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.approve') }}</span>
                 </div>
@@ -151,6 +152,20 @@
                         select = ['items:"' + this.selectUser + '"'];
                     }
                     gql.setItem('v1', 'DeleteUser', select)
+                        .then(response => {
+                            this.getUsers();
+                        })
+                }
+            },
+
+            /**
+             * approve user
+             */
+            approveUser() {
+                let select;
+                if (this.selectUser.length > 0) {
+                    select = ['items:"' + this.selectUser + '"'];
+                    gql.setItem('v1', 'ApproveUser', select)
                         .then(response => {
                             this.getUsers();
                         })

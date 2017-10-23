@@ -167,7 +167,7 @@
              * @param id
              */
             deleteRole(id) {
-                this.user.roles.splice(id,1);
+                this.user.roles.splice(id, 1);
             },
 
             /**
@@ -205,7 +205,7 @@
                     surname: "${user.surname || ''}",
                     email: "${user.email || ''}",
                     role: "${this.cleanRole || ''}",
-                    confirm: ${user.confirm || 1},
+                    confirm: ${parseInt(user.confirm)},
                     password: "${user.password || ''}"`;
             },
 
