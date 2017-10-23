@@ -16,7 +16,8 @@
                     <i class="ui-icon size-4">touch_app</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.approve') }}</span>
                 </div>
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover">
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                     @click="deleteUser()">
                     <i class="ui-icon">delete</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.delete') }}</span>
                 </div>
@@ -68,7 +69,7 @@
         </table>
 
         <add-user v-if="showAddUser"
-                  :user_id = "selectUser[0]"
+                  :user_id="selectUser[0]"
                   v-on:close="closePopUp()"></add-user>
     </div>
 </template>
@@ -137,6 +138,22 @@
             editUser() {
                 if (this.selectUser.length > 0) {
                     this.showAddUser = true;
+                }
+            },
+
+            /**
+             * delete user
+             */
+            deleteUser() {
+                let select;
+                if (this.selectUser.length > 0) {
+                    if (confirm('Удалить?')) {
+                        select = ['items:"' + this.selectUser + '"'];
+                    }
+                    gql.setItem('v1', 'DeleteUser', select)
+                        .then(response => {
+                            this.getUsers();
+                        })
                 }
             }
         }

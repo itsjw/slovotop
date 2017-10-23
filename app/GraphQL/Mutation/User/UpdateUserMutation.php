@@ -22,7 +22,7 @@ class UpdateUserMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'AddUser',
+        'name'        => 'UpdateUser',
         'description' => 'A mutation',
     ];
 

@@ -30171,6 +30171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('addUser', __webpack_require__(63));
 
@@ -30242,6 +30243,24 @@ Vue.component('addUser', __webpack_require__(63));
         editUser: function editUser() {
             if (this.selectUser.length > 0) {
                 this.showAddUser = true;
+            }
+        },
+
+
+        /**
+         * delete user
+         */
+        deleteUser: function deleteUser() {
+            var _this2 = this;
+
+            var select = void 0;
+            if (this.selectUser.length > 0) {
+                if (confirm('Удалить?')) {
+                    select = ['items:"' + this.selectUser + '"'];
+                }
+                gql.setItem('v1', 'DeleteUser', select).then(function (response) {
+                    _this2.getUsers();
+                });
             }
         }
     }
@@ -30321,7 +30340,12 @@ var render = function() {
             "div",
             {
               staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+              on: {
+                click: function($event) {
+                  _vm.deleteUser()
+                }
+              }
             },
             [
               _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),

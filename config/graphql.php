@@ -14,6 +14,7 @@ return [
             'mutation'   => [
                 'AddUser'    => App\GraphQL\Mutation\User\AddUserMutation::class,
                 'UpdateUser' => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUser' => App\GraphQL\Mutation\User\DeleteUserMutation::class,
             ],
             'middleware' => ['isAdmin'],
         ],
