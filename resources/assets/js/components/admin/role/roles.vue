@@ -59,9 +59,15 @@
             </tbody>
         </table>
 
+        <add-role :role_id="selectRole[0]"
+                  v-on:close="closePopUp()"
+                  v-if="showAddRole"></add-role>
+
     </div>
 </template>
 <script>
+    Vue.component('addRole', require('./addRole.vue'));
+
     export default {
 
         mounted() {
@@ -72,34 +78,76 @@
 
         data() {
             return {
+                showAddRole: false,
                 roles: {},
                 selectRole: []
             }
         },
 
         methods: {
+            /**
+             * close popup
+             */
+            closePopUp() {
+                this.showAddRole = false;
+                this.getRoles();
+            },
 
-            selectRoles() {
+            /**
+             * select roles
+             */
+            selectRoles(id) {
+                if (this.selectRole.indexOf(id) == -1) {
+                    this.selectRole.push(id);
+                } else {
+                    this.selectRole.splice(this.selectRole.indexOf(id), 1);
+                }
             },
 
             /**
              * get all roles
              */
             getRoles() {
-                this.selectProject = [];
+                this.selectRole = [];
                 gql.getItem('v1', 'RoleQuery', false, 'role')
                     .then(response => {
                         this.roles = response.data.data.RoleQuery;
                     })
             },
+
+            /**
+             * add role
+             */
             addRole() {
+                this.showAddRole = true;
             },
+
+            /**
+             * edit role
+             */
             editRole() {
+                if (this.selectRole.length > 0) {
+                    this.showAddRole = true;
+                }
+            },
+
+            /**
+             * delete role
+             */
+            deleteRole() {
+                let select;
+                if (this.selectRole.length > 0) {
+                    if (confirm('Удалить?')) {
+                        select = ['items:"' + this.selectRole + '"'];
+                    }
+                    gql.setItem('v1', 'DeleteRole', select)
+                        .then(response => {
+                            this.getRoles();
+                        })
+                }
             },
             editAccess() {
             },
-            deleteRole() {
-            }
         }
     }
 </script>

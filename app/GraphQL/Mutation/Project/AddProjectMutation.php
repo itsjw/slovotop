@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Project;
 
+use App\GraphQL\Serialize\ProjectSerialize;
 use App\Models\Project;
-use function foo\func;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Validation\Rule;
@@ -81,7 +81,7 @@ class AddProjectMutation extends Mutation
 
         $project->save();
 
-        return $project;
+        return ProjectSerialize::serialize($project);
 
     }
 

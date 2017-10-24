@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation\Project;
+namespace App\GraphQL\Mutation\Role;
 
-use App\GraphQL\Serialize\ProjectSerialize;
-use App\Models\Project;
+use App\GraphQL\Serialize\RoleSerialize;
+use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
 /**
- * Class DeletProjectMutation
+ * Class AddRoleMutation
  *
  * @package App\GraphQL\Mutation
  */
-class DeletProjectMutation extends Mutation
+class AddRoleMutation extends Mutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteProject',
+        'name'        => 'AddRole',
         'description' => 'A mutation',
     ];
 
@@ -30,7 +30,7 @@ class DeletProjectMutation extends Mutation
      */
     public function type()
     {
-        return \GraphQL::type('ProjectType');
+        return \GraphQL::type('RoleType');
     }
 
     /**
@@ -39,9 +39,14 @@ class DeletProjectMutation extends Mutation
     public function args()
     {
         return [
-            'items' => [
-                'name' => 'items',
-                'type' => Type::string(),
+            'id'   => [
+                'name' => 'id',
+                'type' => Type::ID(),
+            ],
+            'name' => [
+                'name'  => 'name',
+                'type'  => Type::string(),
+                'rules' => ['required'],
             ],
         ];
     }
@@ -56,15 +61,12 @@ class DeletProjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $items = explode(',', $args['items']);
+        $role = Role::findOrNew($args['id']);
 
-        foreach ($items as $key) {
-            $project = Project::findOrfail($key);
-            $project->delete();
-        }
+        $role->name = $args['name'];
+        $role->save();
 
-        return ProjectSerialize::serialize($project);
+        return RoleSerialize::serialize($role);
 
     }
-
 }

@@ -21,6 +21,9 @@ return [
                 'UpdateUser'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
                 'DeleteUser'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
                 'ApproveUser'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                // role
+                'AddRole'       => App\GraphQL\Mutation\Role\AddRoleMutation::class,
+                'DeleteRole'    => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
                 // project
                 'AddProject'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
                 'DeleteProject' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
