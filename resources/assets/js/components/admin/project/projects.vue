@@ -21,29 +21,126 @@
             <div class="ui-grid-6"></div>
         </div>
 
+        <table>
+            <thead>
+            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
+                <th width="1%">
+                    <i class="ui-icon size-3 ui-color col-green hover"
+                       @click="getProjects()">autorenew</i>
+                </th>
+                <th width="4%">№</th>
+                <th width="30%" class="left">{{ trans('data.projectName') }}</th>
+                <th width="20%" class="left">{{ trans('data.projectSite') }}</th>
+                <th width="20%" class="left">{{ trans('data.projectUser') }}</th>
+                <th width="10%">{{ trans('data.created_at') }}</th>
+                <th width="10%">{{ trans('data.updated_at') }}</th>
+                <th width="5%">ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="hover ui-fnt light size-1 ui-color col-black"
+                v-for="(val,key) in projects"
+                @click="selectProjects(val.id)">
+                <td>
+                    <input type="checkbox" :id="key" :value="val.id" v-model="selectProject"/>
+                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                </td>
+                <td>{{ key + 1 }}</td>
+                <td class="left">{{ val.name }}</td>
+                <td class="left">{{ val.site }}</td>
+                <td class="left">{{ val.user.name }}</td>
+                <td>{{ val.created_at }}</td>
+                <td>{{ val.updated_at }}</td>
+                <td>{{ val.id }}</td>
+            </tr>
+            </tbody>
+        </table>
 
 
 
     </div>
 </template>
 <script>
+
     export default {
 
         mounted() {
+            this.getProjects()
         },
 
         props: [],
 
         data() {
-            return {}
+            return {
+                showAddProject: false,
+                projects: {},
+                selectProject: []
+            }
         },
 
         methods: {
+            /**
+             * close popup
+             */
+            closePopUp() {
+                this.showAddProject = false;
+                this.getProjects();
+            },
+
+            /**
+             * get all projects
+             */
+            getProjects() {
+                this.selectProject = [];
+                gql.getItem('v1', 'ProjectQuery', false, 'project')
+                    .then(response => {
+                        this.projects = response.data.data.ProjectQuery;
+                    })
+            },
+
+            /**
+             * select users
+             * @param id
+             */
+            selectProjects(id) {
+                if (this.selectProject.indexOf(id) == -1) {
+                    this.selectProject.push(id);
+                } else {
+                    this.selectProject.splice(this.selectProject.indexOf(id), 1);
+                }
+            },
+
+            /**
+             * add project
+             */
             addProject() {
+                this.selectProject = [];
+                this.showAddProject = true;
             },
+
+            /**
+             * edit project
+             */
             editProject() {
+                if (this.selectProject.length > 0) {
+                    this.showAddProject = true;
+                }
             },
+
+            /**
+             * delete project
+             */
             deleteProject() {
+                let select;
+                if (this.selectProject.length > 0) {
+                    if (confirm('Удалить?')) {
+                        select = ['items:"' + this.selectProject + '"'];
+                    }
+                    gql.setItem('v1', 'DeleteProject', select)
+                        .then(response => {
+                            this.getProjects();
+                        })
+                }
             }
         }
     }

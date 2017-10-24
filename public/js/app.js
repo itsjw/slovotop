@@ -29956,7 +29956,7 @@ var Query = function () {
         this.id = 'id';
         this.role = 'id,name';
         this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
-        this.role = 'id,name';
+        this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
 
     /**
@@ -31151,11 +31151,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userCreated_at")))
+                _vm._v(_vm._s(_vm.trans("data.created_at")))
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userUpdated_at")))
+                _vm._v(_vm._s(_vm.trans("data.updated_at")))
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
@@ -31399,22 +31399,130 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getProjects();
+    },
 
 
     props: [],
 
     data: function data() {
-        return {};
+        return {
+            showAddProject: false,
+            projects: {},
+            selectProject: []
+        };
     },
 
 
     methods: {
-        addProject: function addProject() {},
-        editProject: function editProject() {},
-        deleteProject: function deleteProject() {}
+        /**
+         * close popup
+         */
+        closePopUp: function closePopUp() {
+            this.showAddProject = false;
+            this.getProjects();
+        },
+
+
+        /**
+         * get all projects
+         */
+        getProjects: function getProjects() {
+            var _this = this;
+
+            this.selectProject = [];
+            gql.getItem('v1', 'ProjectQuery', false, 'project').then(function (response) {
+                _this.projects = response.data.data.ProjectQuery;
+            });
+        },
+
+
+        /**
+         * select users
+         * @param id
+         */
+        selectProjects: function selectProjects(id) {
+            if (this.selectProject.indexOf(id) == -1) {
+                this.selectProject.push(id);
+            } else {
+                this.selectProject.splice(this.selectProject.indexOf(id), 1);
+            }
+        },
+
+
+        /**
+         * add project
+         */
+        addProject: function addProject() {
+            this.selectProject = [];
+            this.showAddProject = true;
+        },
+
+
+        /**
+         * edit project
+         */
+        editProject: function editProject() {
+            if (this.selectProject.length > 0) {
+                this.showAddProject = true;
+            }
+        },
+
+
+        /**
+         * delete project
+         */
+        deleteProject: function deleteProject() {
+            var _this2 = this;
+
+            var select = void 0;
+            if (this.selectProject.length > 0) {
+                if (confirm('Удалить?')) {
+                    select = ['items:"' + this.selectProject + '"'];
+                }
+                gql.setItem('v1', 'DeleteProject', select).then(function (response) {
+                    _this2.getProjects();
+                });
+            }
+        }
     }
 });
 
@@ -31491,6 +31599,135 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "ui-grid-6" })
+    ]),
+    _vm._v(" "),
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "1%" } }, [
+              _c(
+                "i",
+                {
+                  staticClass: "ui-icon size-3 ui-color col-green hover",
+                  on: {
+                    click: function($event) {
+                      _vm.getProjects()
+                    }
+                  }
+                },
+                [_vm._v("autorenew")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.projectName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.projectSite")))
+            ]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.projectUser")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.created_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.updated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.projects, function(val, key) {
+          return _c(
+            "tr",
+            {
+              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              on: {
+                click: function($event) {
+                  _vm.selectProjects(val.id)
+                }
+              }
+            },
+            [
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectProject,
+                      expression: "selectProject"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: key },
+                  domProps: {
+                    value: val.id,
+                    checked: Array.isArray(_vm.selectProject)
+                      ? _vm._i(_vm.selectProject, val.id) > -1
+                      : _vm.selectProject
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.selectProject,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = val.id,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.selectProject = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.selectProject = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.selectProject = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", {
+                  staticClass: "ui-checkbox ui-color col-green hover",
+                  attrs: { for: key }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.site))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [
+                _vm._v(_vm._s(val.user.name))
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.id))])
+            ]
+          )
+        })
+      )
     ])
   ])
 }

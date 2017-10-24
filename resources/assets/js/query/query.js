@@ -12,7 +12,7 @@ export default class Query {
         this.id = `id`;
         this.role = `id,name`;
         this.user = `id,name,surname,email,roles{id,role{${this.role}}},confirm,created_at,updated_at`;
-        this.role = `id,name`;
+        this.project = `id,name,site,user{${this.user}},created_at,updated_at`;
 
     }
 

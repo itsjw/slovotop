@@ -39,8 +39,8 @@
                 <th width="15%" class="left">{{ trans('data.userEmail') }}</th>
                 <th width="10%">{{ trans('data.userConfirm') }}</th>
                 <th width="20%">{{ trans('data.userRole') }}</th>
-                <th width="10%">{{ trans('data.userCreated_at') }}</th>
-                <th width="10%">{{ trans('data.userUpdated_at') }}</th>
+                <th width="10%">{{ trans('data.created_at') }}</th>
+                <th width="10%">{{ trans('data.updated_at') }}</th>
                 <th width="5%">ID</th>
             </tr>
             </thead>
