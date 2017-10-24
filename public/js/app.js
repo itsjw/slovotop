@@ -31433,7 +31433,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
+Vue.component('addProject', __webpack_require__(69));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31534,202 +31537,219 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
-      _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-            on: {
-              click: function($event) {
-                _vm.addProject()
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("person_add")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-              _vm._v(_vm._s(_vm.trans("data.add")))
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-            on: {
-              click: function($event) {
-                _vm.editProject()
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-              _vm._v(_vm._s(_vm.trans("data.edit")))
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-            on: {
-              click: function($event) {
-                _vm.deleteProject()
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-              _vm._v(_vm._s(_vm.trans("data.delete")))
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "ui-grid-6" })
-    ]),
-    _vm._v(" "),
-    _c("table", [
-      _c("thead", [
-        _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "1%" } }, [
-              _c(
-                "i",
-                {
-                  staticClass: "ui-icon size-3 ui-color col-green hover",
-                  on: {
-                    click: function($event) {
-                      _vm.getProjects()
-                    }
-                  }
-                },
-                [_vm._v("autorenew")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.projectName")))
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.projectSite")))
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.projectUser")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.created_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.updated_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.projects, function(val, key) {
-          return _c(
-            "tr",
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
+        _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+          _c(
+            "div",
             {
-              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
               on: {
                 click: function($event) {
-                  _vm.selectProjects(val.id)
+                  _vm.addProject()
                 }
               }
             },
             [
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.selectProject,
-                      expression: "selectProject"
-                    }
-                  ],
-                  attrs: { type: "checkbox", id: key },
-                  domProps: {
-                    value: val.id,
-                    checked: Array.isArray(_vm.selectProject)
-                      ? _vm._i(_vm.selectProject, val.id) > -1
-                      : _vm.selectProject
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.selectProject,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = val.id,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.selectProject = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.selectProject = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.selectProject = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", {
-                  staticClass: "ui-checkbox ui-color col-green hover",
-                  attrs: { for: key }
-                })
+              _c("i", { staticClass: "ui-icon size-4" }, [
+                _vm._v("person_add")
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.add")))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+              on: {
+                click: function($event) {
+                  _vm.editProject()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
               _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.edit")))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+              on: {
+                click: function($event) {
+                  _vm.deleteProject()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
               _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.site))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [
-                _vm._v(_vm._s(val.user.name))
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.created_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.updated_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.id))])
+              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                _vm._v(_vm._s(_vm.trans("data.delete")))
+              ])
             ]
           )
-        })
-      )
-    ])
-  ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-6" })
+      ]),
+      _vm._v(" "),
+      _c("table", [
+        _c("thead", [
+          _c(
+            "tr",
+            { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+            [
+              _c("th", { attrs: { width: "1%" } }, [
+                _c(
+                  "i",
+                  {
+                    staticClass: "ui-icon size-3 ui-color col-green hover",
+                    on: {
+                      click: function($event) {
+                        _vm.getProjects()
+                      }
+                    }
+                  },
+                  [_vm._v("autorenew")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+              _vm._v(" "),
+              _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.projectName")))
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.projectSite")))
+              ]),
+              _vm._v(" "),
+              _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.projectUser")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.created_at")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.updated_at")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.projects, function(val, key) {
+            return _c(
+              "tr",
+              {
+                staticClass: "hover ui-fnt light size-1 ui-color col-black",
+                on: {
+                  click: function($event) {
+                    _vm.selectProjects(val.id)
+                  }
+                }
+              },
+              [
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectProject,
+                        expression: "selectProject"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: key },
+                    domProps: {
+                      value: val.id,
+                      checked: Array.isArray(_vm.selectProject)
+                        ? _vm._i(_vm.selectProject, val.id) > -1
+                        : _vm.selectProject
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.selectProject,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = val.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.selectProject = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.selectProject = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.selectProject = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "ui-checkbox ui-color col-green hover",
+                    attrs: { for: key }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(key + 1))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.site))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [
+                  _vm._v(_vm._s(val.user.name))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.created_at))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.updated_at))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.id))])
+              ]
+            )
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _vm.showAddProject
+        ? _c("add-project", {
+            attrs: { project_id: _vm.selectProject[0] },
+            on: {
+              close: function($event) {
+                _vm.closePopUp()
+              }
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -31738,6 +31758,401 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-4cbbb303", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/admin/project/addProject.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-13573681", Component.options)
+  } else {
+    hotAPI.reload("data-v-13573681", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.getUsers();
+    },
+
+
+    props: {
+        project_id: {
+            default: 0
+        }
+    },
+
+    data: function data() {
+        return {
+            project: {},
+            errors: {},
+            users: []
+        };
+    },
+
+
+    methods: {
+
+        /**
+         * get all users
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            this.selectUser = [];
+            gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
+                _this.users = response.data.data.UserQuery;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "ui-popup-close col-red hover ui-icon",
+            on: {
+              click: function($event) {
+                _vm.$emit("close")
+              }
+            }
+          },
+          [_vm._v("close")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-p-3" }, [
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.projectName")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.project.name,
+                  expression: "project.name"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.project.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.project, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.projectSite")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.project.site,
+                  expression: "project.site"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.project.site },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.project, "site", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.projectUser")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.user,
+                    expression: "project.user"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.project,
+                      "user",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.users, function(val, key) {
+                return _c("option", { domProps: { value: val.id } }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(val.name) +
+                      "\n                    "
+                  )
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mt-5" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.saveProject()
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.save")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("close")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.cancel")) +
+                    "\n                "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ui-mt-3" },
+            _vm._l(_vm.errors, function(val, key) {
+              return _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val[0]) +
+                      "\n                "
+                  )
+                ]
+              )
+            })
+          )
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-13573681", module.exports)
   }
 }
 

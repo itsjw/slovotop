@@ -8,15 +8,21 @@ return [
     'schemas'         => [
         'v1' => [
             'query'      => [
+                // user
                 'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
                 'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
+                // project
                 'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
             ],
             'mutation'   => [
+                // user
                 'AddUser'     => App\GraphQL\Mutation\User\AddUserMutation::class,
                 'UpdateUser'  => App\GraphQL\Mutation\User\UpdateUserMutation::class,
                 'DeleteUser'  => App\GraphQL\Mutation\User\DeleteUserMutation::class,
                 'ApproveUser' => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                // project
+                'AddProject'  => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+
             ],
             'middleware' => ['isAdmin'],
         ],

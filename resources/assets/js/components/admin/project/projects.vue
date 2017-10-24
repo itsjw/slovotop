@@ -56,11 +56,14 @@
             </tbody>
         </table>
 
-
+        <add-project :project_id="selectProject[0]"
+                     v-if="showAddProject"
+                     v-on:close="closePopUp()"></add-project>
 
     </div>
 </template>
 <script>
+    Vue.component('addProject', require('./addProject.vue'));
 
     export default {
 
