@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+     // base
     'login'        => 'Вход',
     'logout'       => 'Выход',
     'yes'          => 'Да',
@@ -14,6 +14,9 @@ return [
     'delete'       => 'Удалить',
     'created_at'   => 'Создан',
     'updated_at'   => 'Обновлен',
+
+    // errers
+    'projNoAdmin' => 'Администратор не может быть владельцем проекта',
 
     // admin
     'users'        => 'Пользователи',

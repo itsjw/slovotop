@@ -85,7 +85,6 @@ class AddProjectMutation extends Mutation
 
     }
 
-
     /**
      * Validate admin
      *
@@ -100,7 +99,7 @@ class AddProjectMutation extends Mutation
             'user_id' => Rule::unique('user_roles')->where(function ($query) {
                 $query->where('role_id', 1);
             }),
-        ], ['Администратор не может быть владельцем проекта']);
+        ], [trans('data.projNoAdmin')]);
 
         if ($validator->fails()) {
             throw with(new ValidationError('validation'))->setValidator($validator);
