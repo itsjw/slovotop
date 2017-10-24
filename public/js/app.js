@@ -32374,6 +32374,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
@@ -32387,7 +32409,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {}
+    methods: {
+        addRole: function addRole() {},
+        editRole: function editRole() {},
+        deleteRole: function deleteRole() {}
+    }
 });
 
 /***/ }),
@@ -32398,7 +32424,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Hello")])
+  return _c("div", [
+    _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
+      _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.addRole()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("security")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.add")))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.editRole()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.edit")))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.deleteRole()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.delete")))
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-6" })
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
