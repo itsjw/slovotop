@@ -46,35 +46,5 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // admin menu
-        Menu::create([
-            'name'      => 'Главная',
-            'slug'      => 'home',
-            'icon'      => 'home',
-            'role_id'   => 1,
-        ]);
-        Menu::create([
-            'name'      => 'Настройки',
-            'slug'      => 'settings',
-            'icon'      => 'settings',
-            'role_id'   => 1,
-        ]);
-        Menu::create([
-            'name'      => 'Пользователи',
-            'slug'      => 'users',
-            'icon'      => 'group',
-            'role_id'   => 1,
-        ]);
-        Menu::create([
-            'name'      => 'Проекты',
-            'slug'      => 'projects',
-            'icon'      => 'view_carousel',
-            'role_id'   => 1,
-        ]);
-        Menu::create([
-            'name'      => 'Задачи',
-            'slug'      => 'tasks',
-            'icon'      => 'receipt',
-            'role_id'   => 1,
-        ]);
     }
 }

@@ -11,7 +11,8 @@ $router->group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['a
     function (Router $router) {
 
         $router->get('home', 'AdminController@index')->name('adminHome');
-        $router->get('settings', 'AdminController@index')->name('adminSettings');
+        $router->get('settings', 'AdminController@settings')->name('adminSettings');
+        $router->get('roles', 'AdminController@roles')->name('adminRoles');
         $router->get('users', 'AdminController@users')->name('adminUsers');
         $router->get('projects', 'AdminController@projects')->name('adminProjects');
         $router->get('tasks', 'AdminController@index')->name('adminTasks');

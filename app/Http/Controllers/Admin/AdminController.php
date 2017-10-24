@@ -23,13 +23,29 @@ class AdminController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function settings()
+    {
+        return view('admin.settings');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function roles()
+    {
+        return view('admin.roles');
+    }
+
+    /**
      * Users admin
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function users()
     {
-        return view('admin.user.users');
+        return view('admin.users');
     }
 
     /**
@@ -37,6 +53,6 @@ class AdminController extends Controller
      */
     public function projects()
     {
-        return view('admin.project.project');
+        return view('admin.project');
     }
 }

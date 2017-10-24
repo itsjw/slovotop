@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     /**
+     * @var array
+     */
+    protected $fillable = ['name', 'slug', 'icon', 'role_id'];
+
+    /**
      * Get admin menu
      *
      * @param $query
