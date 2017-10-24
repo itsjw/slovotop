@@ -13,6 +13,11 @@ return [
     'approve'        => 'Подтвердить',
     'delete'         => 'Удалить',
 
+    // admin title
+    'titleHome'      => 'Главная панель управления',
+    'titleUser'      => 'Управление пользователями',
+    'titleProject'   => 'Управление проектами',
+
     // User
     'userLogin'      => 'Логин',
     'userEmail'      => 'Почта',

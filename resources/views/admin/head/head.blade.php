@@ -1,5 +1,11 @@
 <div class="ui-grid-block">
-    <div class="ui-grid-10"></div>
+
+    <div class="ui-grid-10">
+        <div class="ui-ml-5">
+            @yield('HeadTitle')
+        </div>
+    </div>
+
     <div class="ui-grid-2">
 
         <a href="{{ route('logout') }}" class="ui-color col-greyBlue hover ui-grid-block right ui-pr-3">

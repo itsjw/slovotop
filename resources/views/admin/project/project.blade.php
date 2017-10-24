@@ -1,17 +1,17 @@
 @extends('admin.layout.master')
 
 @section('title')
-    Users
+    Projects
 @endsection()
 
 @section('HeadTitle')
     <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleUser')
+        @lang('data.titleProject')
     </div>
 @endsection()
 
 @section('content')
 
-    <admin-users v-cloak></admin-users>
+    <admin-projects></admin-projects>
 
 @endsection()

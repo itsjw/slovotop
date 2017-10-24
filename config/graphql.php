@@ -8,8 +8,9 @@ return [
     'schemas'         => [
         'v1' => [
             'query'      => [
-                'UserQuery' => App\GraphQL\Query\User\UserQuery::class,
-                'RoleQuery' => App\GraphQL\Query\Role\RoleQuery::class,
+                'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
+                'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
+                'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
             ],
             'mutation'   => [
                 'AddUser'     => App\GraphQL\Mutation\User\AddUserMutation::class,
@@ -29,6 +30,7 @@ return [
         'RoleType'     => App\GraphQL\Type\RoleType::class,
         'UserType'     => App\GraphQL\Type\UserType::class,
         'UserRoleType' => App\GraphQL\Type\UserRoleType::class,
+        'ProjectType'  => App\GraphQL\Type\ProjectType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

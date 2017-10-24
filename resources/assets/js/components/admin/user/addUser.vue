@@ -134,6 +134,7 @@
                 gql.getItem('v1', 'UserQuery', ['id:' + id], 'user')
                     .then(response => {
                         this.user = response.data.data.UserQuery[0];
+                        this.getCleanRole();
                     })
             },
 
@@ -154,13 +155,16 @@
              */
             addRole(id) {
                 this.showRoles = false;
-                this.user.roles.push({
-                    'id': this.roles[id].id,
-                    'role': [{
+                if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
+                    this.user.roles.push({
                         'id': this.roles[id].id,
-                        'name': this.roles[id].name
-                    }]
-                });
+                        'role': [{
+                            'id': this.roles[id].id,
+                            'name': this.roles[id].name
+                        }]
+                    });
+                }
+                this.getCleanRole();
             },
 
             /**
@@ -169,14 +173,13 @@
              */
             deleteRole(id) {
                 this.user.roles.splice(id, 1);
+                this.getCleanRole();
             },
 
             /**
              * save user
              */
             saveUser() {
-                this.getCleanRole(this.user.roles);
-
                 let point = 'AddUser';
 
                 if (this.user_id) {
@@ -214,11 +217,11 @@
              * get clean role
              * @param role
              */
-            getCleanRole(role) {
+            getCleanRole() {
                 let _vm = this;
                 this.cleanRole = [];
 
-                _.forEach(role, function (value) {
+                _.forEach(this.user.roles, function (value) {
                     _vm.cleanRole.push(value.role[0].id);
                 });
 

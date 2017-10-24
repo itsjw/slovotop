@@ -31,4 +31,12 @@ class AdminController extends Controller
     {
         return view('admin.user.users');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function projects()
+    {
+        return view('admin.project.project');
+    }
 }

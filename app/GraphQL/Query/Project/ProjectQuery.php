@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Query\Role;
+namespace App\GraphQL\Query\Project;
 
-use App\GraphQL\Serialize\RoleSerialize;
-use App\Models\Role;
+use App\GraphQL\Serialize\ProjectSerialize;
+use App\Models\Project;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
 /**
- * Class RoleQuery
+ * Class ProjectQuery
  *
- * @package App\GraphQL\Query\Role
+ * @package App\GraphQL\Query\Project
  */
-class RoleQuery extends Query
+class ProjectQuery extends Query
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'RoleQuery',
+        'name'        => 'ProjectQuery',
         'description' => 'A query',
     ];
 
@@ -30,7 +30,7 @@ class RoleQuery extends Query
      */
     public function type()
     {
-        return Type::listOf(\GraphQL::type('RoleType'));
+        return Type::listOf(\GraphQL::type('ProjectType'));
     }
 
     /**
@@ -56,12 +56,12 @@ class RoleQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Role::query();
+        $query = Project::query();
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
         }
 
-        return RoleSerialize::collection($query->get());
+        return ProjectSerialize::collection($query->get());
     }
 }

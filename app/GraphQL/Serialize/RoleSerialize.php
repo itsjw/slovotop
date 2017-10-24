@@ -13,17 +13,17 @@ use App\Models\Role;
 class RoleSerialize extends Serialize
 {
     /**
-     * @param Role $user
+     * @param Role $role
      *
      * @return array
      */
-    public function toArray($user): array
+    public function toArray($role): array
     {
         return [
-            'id'         => $user->id,
-            'name'       => $user->name,
-            'created_at' => $user->created_at->format('d-m-Y H:m:s'),
-            'updated_at' => $user->updated_at->format('d-m-Y H:m:s'),
+            'id'         => $role->id,
+            'name'       => $role->name,
+            'created_at' => $role->created_at->format('d-m-Y H:m:s'),
+            'updated_at' => $role->updated_at->format('d-m-Y H:m:s'),
         ];
     }
 }
