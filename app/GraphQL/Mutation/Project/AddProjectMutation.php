@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Project;
 
-use App\GraphQL\Serialize\ProjectSerialize;
 use App\Models\Project;
+use function foo\func;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Validation\Rule;
+use Rebing\GraphQL\Error\ValidationError;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
@@ -55,7 +57,7 @@ class AddProjectMutation extends Mutation
             ],
             'user_id' => [
                 'name'  => 'user_id',
-                'type'  => Type::string(),
+                'type'  => Type::int(),
                 'rules' => ['required'],
             ],
         ];
@@ -75,12 +77,35 @@ class AddProjectMutation extends Mutation
 
         $project->name    = $args['name'];
         $project->site    = $args['site'];
-        $project->user_id = $args['user_id'];
+        $project->user_id = $this->VaildNoAdmin($args);
 
         $project->save();
 
-        return ProjectSerialize::serialize($project->get());
+        return $project;
 
     }
 
+
+    /**
+     * Validate admin
+     *
+     * @param $args
+     *
+     * @return mixed
+     * @throws \Rebing\GraphQL\Error\ValidationError
+     */
+    public function VaildNoAdmin($args)
+    {
+        $validator = \Validator::make($args, [
+            'user_id' => Rule::unique('user_roles')->where(function ($query) {
+                $query->where('role_id', 1);
+            }),
+        ], ['Администратор не может быть владельцем проекта']);
+
+        if ($validator->fails()) {
+            throw with(new ValidationError('validation'))->setValidator($validator);
+        }
+
+        return $args['user_id'];
+    }
 }

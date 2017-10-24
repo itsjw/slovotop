@@ -4,7 +4,7 @@
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addProject()">
-                    <i class="ui-icon size-4">person_add</i>
+                    <i class="ui-icon size-4">note_add</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.add') }}</span>
                 </div>
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
@@ -47,7 +47,7 @@
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
-                <td class="left">{{ val.site }}</td>
+                <td class="left">{{ unescape(val.site) }}</td>
                 <td class="left">{{ val.user.name }}</td>
                 <td>{{ val.created_at }}</td>
                 <td>{{ val.updated_at }}</td>
@@ -82,6 +82,13 @@
         },
 
         methods: {
+            /**
+             * unescape data
+             */
+            unescape(data) {
+                return _.unescape(data);
+            },
+
             /**
              * close popup
              */

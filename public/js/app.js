@@ -31457,6 +31457,14 @@ Vue.component('addProject', __webpack_require__(69));
 
     methods: {
         /**
+         * unescape data
+         */
+        unescape: function unescape(data) {
+            return _.unescape(data);
+        },
+
+
+        /**
          * close popup
          */
         closePopUp: function closePopUp() {
@@ -31554,9 +31562,7 @@ var render = function() {
               }
             },
             [
-              _c("i", { staticClass: "ui-icon size-4" }, [
-                _vm._v("person_add")
-              ]),
+              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("note_add")]),
               _vm._v(" "),
               _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
                 _vm._v(_vm._s(_vm.trans("data.add")))
@@ -31720,7 +31726,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
                 _vm._v(" "),
-                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.site))]),
+                _c("td", { staticClass: "left" }, [
+                  _vm._v(_vm._s(_vm.unescape(val.site)))
+                ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "left" }, [
                   _vm._v(_vm._s(val.user.name))
@@ -31874,6 +31882,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getUsers();
+        if (this.project_id > 0) {
+            this.getProject(this.project_id);
+        }
     },
 
 
@@ -31885,7 +31896,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            project: {},
+            project: {
+                user: {}
+            },
             errors: {},
             users: []
         };
@@ -31893,19 +31906,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-
         /**
          * get all users
          */
         getUsers: function getUsers() {
             var _this = this;
 
-            this.selectUser = [];
             gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
+        },
+
+
+        /**
+         * get project
+         * @param id
+         */
+        getProject: function getProject(id) {
+            var _this2 = this;
+
+            gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
+                _this2.project = response.data.data.ProjectQuery[0];
+                _this2.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
+            });
+        },
+
+
+        /**
+         * save project
+         */
+        saveProject: function saveProject() {
+            var _this3 = this;
+
+            gql.setItem('v1', 'AddProject', this.getProjectData(this.project)).then(function (response) {
+                if (response.data.errors) {
+                    _this3.errors = response.data.errors[0].validation;
+                } else {
+                    _this3.$emit('close');
+                }
+            });
+        },
+
+
+        /**
+         * get project data
+         * @param project
+         * @return {string}
+         */
+        getProjectData: function getProjectData(project) {
+            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + (project.user.id || '');
         }
     }
+
 });
 
 /***/ }),
@@ -32042,8 +32094,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.project.user,
-                    expression: "project.user"
+                    value: _vm.project.user.id,
+                    expression: "project.user.id"
                   }
                 ],
                 staticClass: "ui-input green focus ui-fnt light size-1",
@@ -32058,8 +32110,8 @@ var render = function() {
                         return val
                       })
                     _vm.$set(
-                      _vm.project,
-                      "user",
+                      _vm.project.user,
+                      "id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   }

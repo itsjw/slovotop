@@ -24,7 +24,7 @@
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.projectUser') }}
                     </div>
-                    <select class="ui-input green focus ui-fnt light size-1" v-model="project.user">
+                    <select class="ui-input green focus ui-fnt light size-1" v-model="project.user.id">
                         <option v-for="(val,key) in users" :value="val.id">
                             {{ val.name }}
                         </option>
@@ -58,6 +58,9 @@
 
         mounted() {
             this.getUsers();
+            if (this.project_id > 0) {
+                this.getProject(this.project_id);
+            }
         },
 
         props: {
@@ -68,25 +71,64 @@
 
         data() {
             return {
-                project: {},
+                project: {
+                    user: {}
+                },
                 errors: {},
                 users: []
             }
         },
 
         methods: {
-
             /**
              * get all users
              */
             getUsers() {
-                this.selectUser = [];
                 gql.getItem('v1', 'UserQuery', false, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
-                    })
-            }
+                    });
+            },
 
+            /**
+             * get project
+             * @param id
+             */
+            getProject(id) {
+                gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project')
+                    .then(response => {
+                        this.project = response.data.data.ProjectQuery[0];
+                        this.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
+                    })
+            },
+
+            /**
+             * save project
+             */
+            saveProject() {
+                gql.setItem('v1', 'AddProject', this.getProjectData(this.project))
+                    .then(response => {
+                        if (response.data.errors) {
+                            this.errors = response.data.errors[0].validation;
+                        } else {
+                            this.$emit('close');
+                        }
+                    });
+            },
+
+            /**
+             * get project data
+             * @param project
+             * @return {string}
+             */
+            getProjectData(project) {
+                return `
+                    id: ${this.project_id == 0 ? this.project_id : project.id},
+                    name: "${project.name || ''}",
+                    site: "${_.escape(project.site) || ''}",
+                    user_id: ${project.user.id || ''}`;
+            },
         }
+
     }
 </script>

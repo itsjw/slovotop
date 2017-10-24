@@ -16,12 +16,13 @@ return [
             ],
             'mutation'   => [
                 // user
-                'AddUser'     => App\GraphQL\Mutation\User\AddUserMutation::class,
-                'UpdateUser'  => App\GraphQL\Mutation\User\UpdateUserMutation::class,
-                'DeleteUser'  => App\GraphQL\Mutation\User\DeleteUserMutation::class,
-                'ApproveUser' => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                'AddUser'       => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUser'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUser'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUser'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
                 // project
-                'AddProject'  => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'AddProject'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'DeleteProject' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
 
             ],
             'middleware' => ['isAdmin'],

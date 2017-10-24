@@ -1,27 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation\User;
+namespace App\GraphQL\Mutation\Project;
 
-use App\GraphQL\Serialize\UserSerialize;
-use App\Models\User;
+use App\Models\Project;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
 /**
- * Class DeleteUserMutation
+ * Class DeletProjectMutation
  *
  * @package App\GraphQL\Mutation
  */
-class DeleteUserMutation extends Mutation
+class DeletProjectMutation extends Mutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteUser',
+        'name'        => 'DeleteProject',
         'description' => 'A mutation',
     ];
 
@@ -30,7 +29,7 @@ class DeleteUserMutation extends Mutation
      */
     public function type()
     {
-        return \GraphQL::type('UserType');
+        return \GraphQL::type('ProjectType');
     }
 
     /**
@@ -59,13 +58,12 @@ class DeleteUserMutation extends Mutation
         $items = explode(',', $args['items']);
 
         foreach ($items as $key) {
-            $user = User::findOrfail($key);
-            if (!$user->hasRole(1)) {
-                $user->delete();
-                $user->roles()->delete();
-            }
+            $project = Project::findOrfail($key);
+            $project->delete();
         }
 
-        return UserSerialize::serialize($user->get());
+        return $project;
+
     }
+
 }
