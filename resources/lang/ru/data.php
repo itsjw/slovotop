@@ -12,6 +12,7 @@ return [
     'edit'          => 'Редактировать',
     'approve'       => 'Подтвердить',
     'delete'        => 'Удалить',
+    'access'        => 'Права доступа',
     'created_at'    => 'Создан',
     'updated_at'    => 'Обновлен',
 
@@ -29,6 +30,10 @@ return [
     'titleRoles'    => 'Роли и права',
     'titleUser'     => 'Управление пользователями',
     'titleProject'  => 'Управление проектами',
+
+    // roles
+    'roleName'      => 'Название роли',
+    'roleCount'     => 'Количество пользователей',
 
     // User
     'userLogin'     => 'Логин',

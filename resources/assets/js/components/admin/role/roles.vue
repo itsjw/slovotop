@@ -13,6 +13,11 @@
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.edit') }}</span>
                 </div>
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
+                     @click="editAccess()">
+                    <i class="ui-icon size-4">fingerprint</i>
+                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.access') }}</span>
+                </div>
+                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="deleteRole()">
                     <i class="ui-icon">delete</i>
                     <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.delete') }}</span>
@@ -21,27 +26,77 @@
             <div class="ui-grid-6"></div>
         </div>
 
+        <table>
+            <thead>
+            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
+                <th width="1%">
+                    <i class="ui-icon size-3 ui-color col-green hover"
+                       @click="getRoles()">autorenew</i>
+                </th>
+                <th width="4%">№</th>
+                <th width="30%" class="left">{{ trans('data.roleName') }}</th>
+                <th width="30%">{{ trans('data.roleCount') }}</th>
+                <th width="15%">{{ trans('data.created_at') }}</th>
+                <th width="15%">{{ trans('data.updated_at') }}</th>
+                <th width="5%">ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="hover ui-fnt light size-1 ui-color col-black"
+                v-for="(val,key) in roles"
+                @click="selectRoles(val.id)">
+                <td>
+                    <input type="checkbox" :id="key" :value="val.id" v-model="selectRole"/>
+                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                </td>
+                <td>{{ key + 1 }}</td>
+                <td class="left">{{ val.name }}</td>
+                <td>{{ val.count }}</td>
+                <td>{{ val.created_at }}</td>
+                <td>{{ val.updated_at }}</td>
+                <td>{{ val.id }}</td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 </template>
 <script>
     export default {
 
-        created() {
-        },
-
         mounted() {
+            this.getRoles();
         },
 
         props: [],
 
         data() {
-            return {}
+            return {
+                roles: {},
+                selectRole: []
+            }
         },
 
         methods: {
+
+            selectRoles() {
+            },
+
+            /**
+             * get all roles
+             */
+            getRoles() {
+                this.selectProject = [];
+                gql.getItem('v1', 'RoleQuery', false, 'role')
+                    .then(response => {
+                        this.roles = response.data.data.RoleQuery;
+                    })
+            },
             addRole() {
             },
             editRole() {
+            },
+            editAccess() {
             },
             deleteRole() {
             }

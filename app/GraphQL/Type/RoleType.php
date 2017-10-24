@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Type;
 
+use App\GraphQL\Privacy\AdminPrivacy;
+use App\Models\Role;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -31,7 +33,7 @@ class RoleType extends GraphQLType
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'RoleType ID',
             ],
-            'name'      => [
+            'name'       => [
                 'type'        => Type::string(),
                 'description' => 'RoleType name',
             ],
@@ -42,6 +44,11 @@ class RoleType extends GraphQLType
             'updated_at' => [
                 'type'        => Type::string(),
                 'description' => 'RoleType updated_at',
+            ],
+            'count'      => [
+                'type'        => Type::int(),
+                'description' => 'RoleType count users',
+                'privacy'     => AdminPrivacy::class,
             ],
         ];
     }

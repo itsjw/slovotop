@@ -29954,7 +29954,7 @@ var Query = function () {
         this.v2 = '/apps/v2';
 
         this.id = 'id';
-        this.role = 'id,name';
+        this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
@@ -31459,7 +31459,7 @@ Vue.component('addProject', __webpack_require__(69));
 
     methods: {
         /**
-         * unescape data
+         *
          */
         unescape: function unescape(data) {
             return _.unescape(data);
@@ -32396,22 +32396,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getRoles();
+    },
 
 
     props: [],
 
     data: function data() {
-        return {};
+        return {
+            roles: {},
+            selectRole: []
+        };
     },
 
 
     methods: {
+        selectRoles: function selectRoles() {},
+
+
+        /**
+         * get all roles
+         */
+        getRoles: function getRoles() {
+            var _this = this;
+
+            this.selectProject = [];
+            gql.getItem('v1', 'RoleQuery', false, 'role').then(function (response) {
+                _this.roles = response.data.data.RoleQuery;
+            });
+        },
         addRole: function addRole() {},
         editRole: function editRole() {},
+        editAccess: function editAccess() {},
         deleteRole: function deleteRole() {}
     }
 });
@@ -32474,6 +32531,26 @@ var render = function() {
               "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
             on: {
               click: function($event) {
+                _vm.editAccess()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("fingerprint")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.access")))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
                 _vm.deleteRole()
               }
             }
@@ -32489,6 +32566,127 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "ui-grid-6" })
+    ]),
+    _vm._v(" "),
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "1%" } }, [
+              _c(
+                "i",
+                {
+                  staticClass: "ui-icon size-3 ui-color col-green hover",
+                  on: {
+                    click: function($event) {
+                      _vm.getRoles()
+                    }
+                  }
+                },
+                [_vm._v("autorenew")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.roleName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "30%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.roleCount")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "15%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.created_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "15%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.updated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.roles, function(val, key) {
+          return _c(
+            "tr",
+            {
+              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              on: {
+                click: function($event) {
+                  _vm.selectRoles(val.id)
+                }
+              }
+            },
+            [
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectRole,
+                      expression: "selectRole"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: key },
+                  domProps: {
+                    value: val.id,
+                    checked: Array.isArray(_vm.selectRole)
+                      ? _vm._i(_vm.selectRole, val.id) > -1
+                      : _vm.selectRole
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.selectRole,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = val.id,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.selectRole = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.selectRole = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.selectRole = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", {
+                  staticClass: "ui-checkbox ui-color col-green hover",
+                  attrs: { for: key }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.count))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.id))])
+            ]
+          )
+        })
+      )
     ])
   ])
 }

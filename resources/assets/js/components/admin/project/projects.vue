@@ -83,7 +83,7 @@
 
         methods: {
             /**
-             * unescape data
+             *
              */
             unescape(data) {
                 return _.unescape(data);

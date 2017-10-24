@@ -10,6 +10,7 @@ return [
             'query'      => [
                 // user
                 'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
+                // role
                 'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
                 // project
                 'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,

@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\Models\UserRole;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -31,6 +30,13 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        User::create([
+            'name'     => 'Admin',
+            'email'    => 'admin@test.ru',
+            'password' => bcrypt('111'),
+            'confirm'  => true,
+        ]);
     }
 
     /**
