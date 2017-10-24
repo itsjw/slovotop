@@ -126,7 +126,7 @@
                     id: ${this.project_id == 0 ? this.project_id : project.id},
                     name: "${project.name || ''}",
                     site: "${_.escape(project.site) || ''}",
-                    user_id: ${project.user.id || ''}`;
+                    user_id: ${project.user.id || 0}`;
             },
         }
 

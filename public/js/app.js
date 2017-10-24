@@ -31954,7 +31954,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @return {string}
          */
         getProjectData: function getProjectData(project) {
-            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + (project.user.id || '');
+            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + (project.user.id || 0);
         }
     }
 
