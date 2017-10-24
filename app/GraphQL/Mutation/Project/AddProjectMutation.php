@@ -79,7 +79,7 @@ class AddProjectMutation extends Mutation
 
         $project->save();
 
-        return ProjectSerialize::collection($project->get());
+        return ProjectSerialize::serialize($project->get());
 
     }
 
