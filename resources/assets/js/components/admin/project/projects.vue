@@ -146,7 +146,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectProject + '"'];
                     }
-                    gql.setItem('v1', 'DeleteProject', select)
+                    gql.setItem('v1', 'DeleteProjectMutation', select)
                         .then(response => {
                             this.getProjects();
                         })

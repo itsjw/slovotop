@@ -21,7 +21,7 @@ class DeleteUserMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteUser',
+        'name'        => 'DeleteUserMutation',
         'description' => 'A mutation',
     ];
 
@@ -47,6 +47,16 @@ class DeleteUserMutation extends Mutation
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Mutation
+     * @apiPermission admin
+     * @api           {post} v1 DeleteUserMutation
+     * @apiName       DeleteUserMutation
+     * @apiParam {String{1,2,3...}} items items
+     * @apiParamExample {json} Request-Example:
+     * {"query":"mutation { DeleteUserMutation (items: "1,2,3") { id } }"}
+     * @apiSuccess {Object} user [User]
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

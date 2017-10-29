@@ -47,6 +47,22 @@ class RoleQuery extends Query
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Query
+     * @apiPermission admin
+     * @api           {post} v1 RoleQuery
+     * @apiName       RoleQuery
+     * @apiParam {Integer} id
+     * @apiParamExample {json} Request-Example:
+     * {"query":"{ RoleQuery ( id:1 ) { id,name...}"}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {Integer} count count
+     * @apiSuccess {Timestamp} created_at created_at
+     * @apiSuccess {Timestamp} updated_at updated_at
+     * @apiExample {json} Example usage:
+     * {"query":"{ RoleQuery { id,name,count,created_at,updated_at } }"}
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

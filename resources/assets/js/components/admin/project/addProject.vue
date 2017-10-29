@@ -106,7 +106,7 @@
              * save project
              */
             saveProject() {
-                gql.setItem('v1', 'AddProject', this.getProjectData(this.project))
+                gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project))
                     .then(response => {
                         if (response.data.errors) {
                             this.errors = response.data.errors[0].validation;

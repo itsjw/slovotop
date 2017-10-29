@@ -47,6 +47,23 @@ class ProjectQuery extends Query
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Query
+     * @apiPermission admin
+     * @api           {post} v1 ProjectQuery
+     * @apiName       ProjectQuery
+     * @apiParam {Integer} id
+     * @apiParamExample {json} Request-Example:
+     * {"query":"{ ProjectQuery ( id:1 ) { id,name...}"}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {String} site site
+     * @apiSuccess {Object} user [User]
+     * @apiSuccess {Timestamp} created_at created_at
+     * @apiSuccess {Timestamp} updated_at updated_at
+     * @apiExample {json} Example usage:
+     * {"query":"{ ProjectQuery { id,name,site,user{ia,name},created_at,updated_at } }"}
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

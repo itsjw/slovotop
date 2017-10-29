@@ -119,6 +119,7 @@
              * add role
              */
             addRole() {
+                this.selectRole = [];
                 this.showAddRole = true;
             },
 
@@ -140,7 +141,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectRole + '"'];
                     }
-                    gql.setItem('v1', 'DeleteRole', select)
+                    gql.setItem('v1', 'DeleteRoleMutation', select)
                         .then(response => {
                             this.getRoles();
                         })

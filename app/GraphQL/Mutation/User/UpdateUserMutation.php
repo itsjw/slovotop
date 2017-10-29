@@ -22,7 +22,7 @@ class UpdateUserMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'UpdateUser',
+        'name'        => 'UpdateUserMutation',
         'description' => 'A mutation',
     ];
 
@@ -75,6 +75,23 @@ class UpdateUserMutation extends Mutation
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Mutation
+     * @apiPermission admin
+     * @api           {post} v1 UpdateUserMutation
+     * @apiName       UpdateUserMutation
+     * @apiParam {Integer{required,1..}} id ID
+     * @apiParam {String{required}} name name
+     * @apiParam {String} surname surname
+     * @apiParam {String{required,email,unique}} email email
+     * @apiParam {String{required}} role role (1,2,3)
+     * @apiParam {String} password password
+     * @apiParam {String} confirm confirm
+     * @apiParamExample {json} Request-Example:
+     * {"query":"mutation { UpdateUserMutation (id: 1,name:"name",surname:"surname",email:"email",role: "1,2",confirm:
+     * 1,password: "password" ) { id } }"}
+     * @apiSuccess {Object} user [User]
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

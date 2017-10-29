@@ -151,7 +151,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectUser + '"'];
                     }
-                    gql.setItem('v1', 'DeleteUser', select)
+                    gql.setItem('v1', 'DeleteUserMutation', select)
                         .then(response => {
                             this.getUsers();
                         })
@@ -165,7 +165,7 @@
                 let select;
                 if (this.selectUser.length > 0) {
                     select = ['items:"' + this.selectUser + '"'];
-                    gql.setItem('v1', 'ApproveUser', select)
+                    gql.setItem('v1', 'ApproveUserMutation', select)
                         .then(response => {
                             this.getUsers();
                         })

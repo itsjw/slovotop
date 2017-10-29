@@ -180,10 +180,10 @@
              * save user
              */
             saveUser() {
-                let point = 'AddUser';
+                let point = 'AddUserMutation';
 
                 if (this.user_id) {
-                    point = 'UpdateUser';
+                    point = 'UpdateUserMutation';
                 }
 
                 gql.setItem('v1', point, this.getUserData(this.user))

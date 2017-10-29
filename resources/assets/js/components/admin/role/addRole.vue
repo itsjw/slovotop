@@ -75,7 +75,7 @@
              * save project
              */
             saveRole() {
-                gql.setItem('v1', 'AddRole', this.getRoleData(this.role))
+                gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role))
                     .then(response => {
                         if (response.data.errors) {
                             this.errors = response.data.errors[0].validation;

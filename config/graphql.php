@@ -17,16 +17,16 @@ return [
             ],
             'mutation'   => [
                 // user
-                'AddUser'       => App\GraphQL\Mutation\User\AddUserMutation::class,
-                'UpdateUser'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
-                'DeleteUser'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
-                'ApproveUser'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                'AddUserMutation'       => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUserMutation'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUserMutation'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUserMutation'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
                 // role
-                'AddRole'       => App\GraphQL\Mutation\Role\AddRoleMutation::class,
-                'DeleteRole'    => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
+                'AddRoleMutation'       => App\GraphQL\Mutation\Role\AddRoleMutation::class,
+                'DeleteRoleMutation'    => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
                 // project
-                'AddProject'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
-                'DeleteProject' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
+                'AddProjectMutation'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'DeleteProjectMutation' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
 
             ],
             'middleware' => ['isAdmin'],
