@@ -48,10 +48,10 @@ class ApproveUserMutation extends Mutation
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Mutation
+     * @apiGroup      User
      * @apiPermission admin
-     * @api           {post} v1 ApproveUserMutation
-     * @apiName       ApproveUserMutation
+     * @api           {post} v1 User-Approve
+     * @apiName       User-Approve
      * @apiParam {String{1,2,3...}} items items
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { ApproveUserMutation (items: "1,2,3") { id } }"}

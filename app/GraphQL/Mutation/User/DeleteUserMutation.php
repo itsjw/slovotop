@@ -48,10 +48,10 @@ class DeleteUserMutation extends Mutation
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Mutation
+     * @apiGroup      User
      * @apiPermission admin
-     * @api           {post} v1 DeleteUserMutation
-     * @apiName       DeleteUserMutation
+     * @api           {post} v1 User-Delete
+     * @apiName       User-Delete
      * @apiParam {String{1,2,3...}} items items
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { DeleteUserMutation (items: "1,2,3") { id } }"}

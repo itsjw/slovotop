@@ -21,7 +21,7 @@ class AddRoleMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'AddRole',
+        'name'        => 'AddRoleMutation',
         'description' => 'A mutation',
     ];
 
@@ -52,6 +52,17 @@ class AddRoleMutation extends Mutation
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Role
+     * @apiPermission admin
+     * @api           {post} v1 Role-Add/Update
+     * @apiName      Role-Add/Update
+     * @apiParam {Integer{required,0..}} id ID
+     * @apiParam {String{required}} name name
+     * @apiParamExample {json} Request-Example:
+     * {"query":"mutation { AddRoleMutation (id: 0,name:"name") { id } }"}
+     * @apiSuccess {Object} role [Role]
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

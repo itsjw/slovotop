@@ -76,10 +76,10 @@ class UpdateUserMutation extends Mutation
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Mutation
+     * @apiGroup      User
      * @apiPermission admin
-     * @api           {post} v1 UpdateUserMutation
-     * @apiName       UpdateUserMutation
+     * @api           {post} v1 User-Update
+     * @apiName       User-Update
      * @apiParam {Integer{required,1..}} id ID
      * @apiParam {String{required}} name name
      * @apiParam {String} surname surname

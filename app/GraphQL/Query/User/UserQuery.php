@@ -47,10 +47,10 @@ class UserQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Query
+     * @apiGroup      User
      * @apiPermission admin
-     * @api           {post} v1 UserQuery
-     * @apiName       UserQuery
+     * @api           {post} v1 User-query
+     * @apiName       User-query
      * @apiParam {Integer} id
      * @apiParamExample {json} Request-Example:
      * {"query":"{ UserQuery ( id:1 ) { id,name,surname,...}"}

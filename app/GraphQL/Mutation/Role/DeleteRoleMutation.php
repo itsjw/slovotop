@@ -21,7 +21,7 @@ class DeleteRoleMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteRole',
+        'name'        => 'DeleteRoleMutation',
         'description' => 'A mutation',
     ];
 
@@ -47,6 +47,16 @@ class DeleteRoleMutation extends Mutation
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Role
+     * @apiPermission admin
+     * @api           {post} v1 Role-Delete
+     * @apiName      Role-Delete
+     * @apiParam {String{1,2,3..}} items items
+     * @apiParamExample {json} Request-Example:
+     * {"query":"mutation { DeleteRoleMutation (items:"1,2,3") { id } }"}
+     * @apiSuccess {Object} role [Role]
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields

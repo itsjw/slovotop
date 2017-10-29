@@ -48,10 +48,10 @@ class RoleQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Query
+     * @apiGroup      Role
      * @apiPermission admin
-     * @api           {post} v1 RoleQuery
-     * @apiName       RoleQuery
+     * @api           {post} v1 Role-Query
+     * @apiName       Role-Query
      * @apiParam {Integer} id
      * @apiParamExample {json} Request-Example:
      * {"query":"{ RoleQuery ( id:1 ) { id,name...}"}

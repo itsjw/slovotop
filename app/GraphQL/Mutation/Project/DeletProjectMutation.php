@@ -21,7 +21,7 @@ class DeletProjectMutation extends Mutation
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteProject',
+        'name'        => 'DeleteProjectMutation',
         'description' => 'A mutation',
     ];
 

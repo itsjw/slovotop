@@ -48,10 +48,10 @@ class ProjectQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Query
+     * @apiGroup      Project
      * @apiPermission admin
-     * @api           {post} v1 ProjectQuery
-     * @apiName       ProjectQuery
+     * @api           {post} v1 Project-Query
+     * @apiName       Project-Query
      * @apiParam {Integer} id
      * @apiParamExample {json} Request-Example:
      * {"query":"{ ProjectQuery ( id:1 ) { id,name...}"}
