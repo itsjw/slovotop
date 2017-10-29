@@ -47,6 +47,16 @@ class DeletProjectMutation extends Mutation
     }
 
     /**
+     * @apiVersion    0.1.0
+     * @apiGroup      Project
+     * @apiPermission admin
+     * @api           {post} v1 Project-Delete
+     * @apiName       Project-Delete
+     * @apiParam {String{1,2,3..}} items items
+     * @apiParamExample {json} Request-Example:
+     * {"query":"mutation { DeleteProjectMutation (items:"1,2,3") { id } }"}
+     * @apiSuccess {Object} project [Project]
+     *
      * @param $root
      * @param $args
      * @param \Rebing\GraphQL\Support\SelectFields $fields
