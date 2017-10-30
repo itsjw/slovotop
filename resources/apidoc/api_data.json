@@ -715,6 +715,27 @@
             "optional": false,
             "field": "orderID",
             "description": "<p>order by ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>surname</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email</p>"
           }
         ]
       },
