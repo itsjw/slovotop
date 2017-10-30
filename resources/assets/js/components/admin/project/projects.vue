@@ -29,12 +29,75 @@
                        @click="getProjects()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="30%" class="left">{{ trans('data.projectName') }}</th>
-                <th width="20%" class="left">{{ trans('data.projectSite') }}</th>
-                <th width="20%" class="left">{{ trans('data.projectUser') }}</th>
+                <th width="30%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearchName"
+                            position="left"
+                            type="name"
+                            @submit="search"
+                            @close="closePopUp()"></search-pop>
+
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="showSearchName=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
+                        <span>{{ trans('data.projectName') }}</span>
+
+                    </div>
+                </th>
+                <th width="20%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearchSite"
+                            position="left"
+                            type="site"
+                            @submit="search"
+                            @close="closePopUp()"></search-pop>
+
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="showSearchName=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
+                        <span>{{ trans('data.projectSite') }}</span>
+
+                    </div>
+                </th>
+                <th width="20%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearchOwner"
+                            position="left"
+                            type="owner"
+                            @submit="search"
+                            @close="closePopUp()"></search-pop>
+
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="showSearchOwner=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
+                        <span>{{ trans('data.projectUser') }}</span>
+
+                    </div>
+                </th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="10%">{{ trans('data.updated_at') }}</th>
-                <th width="5%">ID</th>
+                <th width="5%">
+                    <div class="ui-grid-block center">
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
+                           @click="orderByID()">sort</i>
+                        <span>ID</span>
+                    </div>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -116,7 +179,7 @@
                     this.queryParams.splice(0, 1, 'orderID:"asc"');
                     this.order = 'asc';
                 }
-                this.getUsers();
+                this.getProjects();
             },
 
             /**

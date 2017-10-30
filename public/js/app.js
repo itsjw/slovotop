@@ -32568,6 +32568,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addProject', __webpack_require__(56));
 
@@ -32625,7 +32688,7 @@ Vue.component('addProject', __webpack_require__(56));
                 this.queryParams.splice(0, 1, 'orderID:"asc"');
                 this.order = 'asc';
             }
-            this.getUsers();
+            this.getProjects();
         },
 
 
@@ -33264,15 +33327,180 @@ var render = function() {
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.projectName")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearchName
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "name" },
+                          on: {
+                            submit: _vm.search,
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.showSearchName = true
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.projectName")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.projectSite")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearchSite
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "site" },
+                          on: {
+                            submit: _vm.search,
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.showSearchName = true
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.projectSite")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.projectUser")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearchOwner
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "owner" },
+                          on: {
+                            submit: _vm.search,
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.showSearchOwner = true
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.projectUser")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
@@ -33283,7 +33511,25 @@ var render = function() {
                 _vm._v(_vm._s(_vm.trans("data.updated_at")))
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+              _c("th", { attrs: { width: "5%" } }, [
+                _c("div", { staticClass: "ui-grid-block center" }, [
+                  _c(
+                    "i",
+                    {
+                      staticClass:
+                        "ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.orderByID()
+                        }
+                      }
+                    },
+                    [_vm._v("sort")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("ID")])
+                ])
+              ])
             ]
           )
         ]),
