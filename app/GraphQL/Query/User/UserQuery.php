@@ -46,6 +46,18 @@ class UserQuery extends Query
                 'name' => 'orderID',
                 'type' => Type::string(),
             ],
+            'name'    => [
+                'name' => 'name',
+                'type' => Type::string(),
+            ],
+            'surname' => [
+                'name' => 'surname',
+                'type' => Type::string(),
+            ],
+            'email'   => [
+                'name' => 'email',
+                'type' => Type::string(),
+            ],
         ];
     }
 
@@ -57,6 +69,9 @@ class UserQuery extends Query
      * @apiName       User-query
      * @apiParam {Integer} id id
      * @apiParam {String} orderID order by ID
+     * @apiParam {String} name name
+     * @apiParam {String} surname surname
+     * @apiParam {String} email email
      * @apiParamExample {json} Request-Example:
      * {"query":"{ UserQuery ( id:1,orderID:"asc" ) { id,name,surname,...}"}
      * @apiSuccess {Integer} id ID
@@ -83,6 +98,15 @@ class UserQuery extends Query
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
+        }
+        if (isset($args['name'])) {
+            $query->where('name', 'like', '%'.$args['name'].'%');
+        }
+        if (isset($args['surname'])) {
+            $query->where('surname', 'like', '%'.$args['surname'].'%');
+        }
+        if (isset($args['email'])) {
+            $query->where('email', 'like', '%'.$args['email'].'%');
         }
         if (isset($args['orderID'])) {
             $query->orderBy('id', $args['orderID']);

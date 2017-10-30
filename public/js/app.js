@@ -31100,6 +31100,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(50));
 
@@ -31118,7 +31130,9 @@ Vue.component('addUser', __webpack_require__(50));
             selectUser: [],
             order: 'asc',
             queryParams: ['orderID:"asc"'],
-            showSearch: [false, false, false]
+            showSearchName: false,
+            showSearchSurname: false,
+            showSearchEmail: false
         };
     },
 
@@ -31129,7 +31143,9 @@ Vue.component('addUser', __webpack_require__(50));
          */
         closePopUp: function closePopUp() {
             this.showAddUser = false;
-            this.showSearch = [false, false, false];
+            this.showSearchName = false;
+            this.showSearchSurname = false;
+            this.showSearchEmail = false;
             this.getUsers();
         },
 
@@ -31147,8 +31163,20 @@ Vue.component('addUser', __webpack_require__(50));
             }
             this.getUsers();
         },
-        search: function search(id) {
-            Vue.set(this.showSearch, id, true);
+
+
+        /**
+         * search my type and value
+         * @param value
+         * @param type
+         */
+        search: function search(value, type) {
+            this.queryParams.splice(1, 1);
+
+            if (value) {
+                this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+            }
+            this.closePopUp();
         },
 
 
@@ -32083,10 +32111,11 @@ var render = function() {
                   "div",
                   { staticClass: "ui-grid-block" },
                   [
-                    _vm.showSearch[0]
+                    _vm.showSearchName
                       ? _c("search-pop", {
                           attrs: { position: "left", type: "name" },
                           on: {
+                            submit: _vm.search,
                             close: function($event) {
                               _vm.closePopUp()
                             }
@@ -32101,11 +32130,33 @@ var render = function() {
                           "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
                         on: {
                           click: function($event) {
-                            _vm.search(0)
+                            _vm.showSearchName = true
                           }
                         }
                       },
                       [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
                     ),
                     _vm._v(" "),
                     _c("span", [_vm._v(_vm._s(_vm.trans("data.userName")))])
@@ -32119,10 +32170,11 @@ var render = function() {
                   "div",
                   { staticClass: "ui-grid-block" },
                   [
-                    _vm.showSearch[1]
+                    _vm.showSearchSurname
                       ? _c("search-pop", {
                           attrs: { position: "left", type: "surname" },
                           on: {
+                            submit: _vm.search,
                             close: function($event) {
                               _vm.closePopUp()
                             }
@@ -32137,11 +32189,33 @@ var render = function() {
                           "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
                         on: {
                           click: function($event) {
-                            _vm.search(1)
+                            _vm.showSearchSurname = true
                           }
                         }
                       },
                       [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
                     ),
                     _vm._v(" "),
                     _c("span", [_vm._v(_vm._s(_vm.trans("data.userSurname")))])
@@ -32155,10 +32229,11 @@ var render = function() {
                   "div",
                   { staticClass: "ui-grid-block" },
                   [
-                    _vm.showSearch[2]
+                    _vm.showSearchEmail
                       ? _c("search-pop", {
-                          attrs: { position: "left", type: "surname" },
+                          attrs: { position: "left", type: "email" },
                           on: {
+                            submit: _vm.search,
                             close: function($event) {
                               _vm.closePopUp()
                             }
@@ -32173,11 +32248,33 @@ var render = function() {
                           "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
                         on: {
                           click: function($event) {
-                            _vm.search(2)
+                            _vm.showSearchEmail = true
                           }
                         }
                       },
                       [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
+                          }
+                        ],
+                        staticClass:
+                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search()
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
                     ),
                     _vm._v(" "),
                     _c("span", [_vm._v(_vm._s(_vm.trans("data.userEmail")))])
@@ -33338,6 +33435,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -33351,7 +33449,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     data: function data() {
-        return {};
+        return {
+            search: ''
+        };
     },
 
 
@@ -33384,8 +33484,17 @@ var render = function() {
       },
       [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
           staticClass: "ui-input cyan",
           attrs: { type: "text", autofocus: "" },
+          domProps: { value: _vm.search },
           on: {
             keyup: [
               function($event) {
@@ -33395,7 +33504,7 @@ var render = function() {
                 ) {
                   return null
                 }
-                _vm.submit()
+                _vm.$emit("submit", _vm.search, _vm.type)
               },
               function($event) {
                 if (
@@ -33406,7 +33515,13 @@ var render = function() {
                 }
                 _vm.$emit("close")
               }
-            ]
+            ],
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
           }
         })
       ]

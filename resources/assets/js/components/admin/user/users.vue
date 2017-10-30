@@ -38,13 +38,17 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearch[0]"
+                            v-if="showSearchName"
                             position="left"
                             type="name"
+                            @submit="search"
                             @close="closePopUp()"></search-pop>
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="search(0)">search</i>
+                           @click="showSearchName=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
                         <span>{{ trans('data.userName') }}</span>
                     </div>
                 </th>
@@ -52,14 +56,18 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearch[1]"
+                            v-if="showSearchSurname"
                             position="left"
                             type="surname"
+                            @submit="search"
                             @close="closePopUp()"></search-pop>
 
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="search(1)">search</i>
+                           @click="showSearchSurname=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
                         <span>{{ trans('data.userSurname') }}</span>
                     </div>
                 </th>
@@ -67,13 +75,17 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearch[2]"
+                            v-if="showSearchEmail"
                             position="left"
-                            type="surname"
+                            type="email"
+                            @submit="search"
                             @close="closePopUp()"></search-pop>
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="search(2)">search</i>
+                           @click="showSearchEmail=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[1]"
+                           @click="search()">close</i>
                         <span>{{ trans('data.userEmail') }}</span>
                     </div>
                 </th>
@@ -138,7 +150,9 @@
                 selectUser: [],
                 order: 'asc',
                 queryParams: ['orderID:"asc"'],
-                showSearch: [false, false, false],
+                showSearchName: false,
+                showSearchSurname: false,
+                showSearchEmail: false,
             }
         },
 
@@ -148,7 +162,9 @@
              */
             closePopUp() {
                 this.showAddUser = false;
-                this.showSearch = [false, false, false];
+                this.showSearchName = false;
+                this.showSearchSurname = false;
+                this.showSearchEmail = false;
                 this.getUsers();
             },
 
@@ -166,8 +182,18 @@
                 this.getUsers();
             },
 
-            search(id) {
-                Vue.set(this.showSearch,id,true);
+            /**
+             * search my type and value
+             * @param value
+             * @param type
+             */
+            search(value, type) {
+                this.queryParams.splice(1, 1);
+
+                if (value) {
+                    this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+                }
+                this.closePopUp();
             },
 
             /**

@@ -5,8 +5,9 @@
         <div class="ui-popup-tip ui-bg bg-wite animated fadeIn" :class="this.position">
 
             <input type="text" class="ui-input cyan" autofocus
-                   @keyup.enter="submit()"
-                   @keyup.esc="$emit('close')"/>
+                   @keyup.enter="$emit('submit', search, type)"
+                   @keyup.esc="$emit('close')"
+                   v-model="search"/>
 
         </div>
 
@@ -26,9 +27,13 @@
         },
 
         data() {
-            return {}
+            return {
+                search: ''
+            }
         },
 
-        methods: {}
+        methods: {
+
+        }
     }
 </script>
