@@ -114,7 +114,7 @@
              * @param id
              */
             getProject(id) {
-                gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project')
+                gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project')
                     .then(response => {
                         this.project = response.data.data.ProjectQuery[0];
                         this.project.site = _.unescape(response.data.data.ProjectQuery[0].site);

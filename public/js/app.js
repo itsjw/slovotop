@@ -32951,7 +32951,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProject: function getProject(id) {
             var _this2 = this;
 
-            gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
+            gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
                 _this2.project = response.data.data.ProjectQuery[0];
                 _this2.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
             });
