@@ -1,15 +1,19 @@
-form{
+form {
   width: 100%;
 }
 
-input[type=text],
-input[type=email],
-input[type=password],
-input[type=checkbox],
-input[type=radio],
-textarea, select {
-  outline: none;
-  background: none;
+input, textarea, select {
+  &.ui-input {
+    outline: none;
+    background: none;
+  }
+}
+
+textarea {
+  &.ui-input {
+    resize: vertical;
+    height: 100px;
+  }
 }
 
 // input default

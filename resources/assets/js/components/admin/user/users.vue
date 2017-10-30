@@ -41,7 +41,13 @@
                 <th width="20%">{{ trans('data.userRole') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="10%">{{ trans('data.updated_at') }}</th>
-                <th width="5%">ID</th>
+                <th width="5%">
+                    <div class="ui-grid-block center">
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
+                           @click="orderByID()">sort</i>
+                        <span>ID</span>
+                    </div>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -89,7 +95,9 @@
             return {
                 showAddUser: false,
                 users: {},
-                selectUser: []
+                selectUser: [],
+                order: 'asc',
+                queryParams: ['orderID:"asc"'],
             }
         },
 
@@ -103,11 +111,25 @@
             },
 
             /**
+             * order by ID
+             */
+            orderByID() {
+                if (this.order === 'asc') {
+                    this.queryParams.splice(0, 1, 'orderID:"desc"');
+                    this.order = 'desc';
+                } else {
+                    this.queryParams.splice(0, 1, 'orderID:"asc"');
+                    this.order = 'asc';
+                }
+                this.getUsers();
+            },
+
+            /**
              * get all users
              */
             getUsers() {
                 this.selectUser = [];
-                gql.getItem('v1', 'UserQuery', false, 'user')
+                gql.getItem('v1', 'UserQuery', this.queryParams, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
                     })

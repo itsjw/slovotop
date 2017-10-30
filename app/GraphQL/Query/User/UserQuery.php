@@ -38,9 +38,13 @@ class UserQuery extends Query
     public function args()
     {
         return [
-            'id' => [
+            'id'      => [
                 'name' => 'id',
                 'type' => Type::id(),
+            ],
+            'orderID' => [
+                'name' => 'orderID',
+                'type' => Type::string(),
             ],
         ];
     }
@@ -51,9 +55,10 @@ class UserQuery extends Query
      * @apiPermission admin
      * @api           {post} v1 User-query
      * @apiName       User-query
-     * @apiParam {Integer} id
+     * @apiParam {Integer} id id
+     * @apiParam {String} orderID order by ID
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ UserQuery ( id:1 ) { id,name,surname,...}"}
+     * {"query":"{ UserQuery ( id:1,orderID:"asc" ) { id,name,surname,...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {String} surname surname
@@ -78,6 +83,9 @@ class UserQuery extends Query
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
+        }
+        if (isset($args['orderID'])) {
+            $query->orderBy('id', $args['orderID']);
         }
 
         return UserSerialize::collection($query->get());

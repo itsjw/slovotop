@@ -1865,15 +1865,16 @@ form {
   width: 100%;
 }
 
-input[type=text],
-input[type=email],
-input[type=password],
-input[type=checkbox],
-input[type=radio],
-textarea,
-select {
+input.ui-input,
+textarea.ui-input,
+select.ui-input {
   outline: none;
   background: none;
+}
+
+textarea.ui-input {
+  resize: vertical;
+  height: 100px;
 }
 
 .ui-input {
@@ -2753,6 +2754,15 @@ input[type=radio]:checked + label.ui-radio:before {
 .ui-popup.w50.left {
   left: 50%;
   margin-left: -25%;
+}
+
+.ui-popup-tip {
+  display: inline-block;
+  position: absolute;
+  z-index: 999;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  padding: 10px;
 }
 
 .ui-block-flex {

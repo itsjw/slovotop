@@ -85,3 +85,11 @@
     }
   }
 }
+
+.ui-popup-tip{
+  display: inline-block;
+  position: absolute;
+  z-index: 999;
+  @include BlockShadow;
+  padding: 10px;
+}

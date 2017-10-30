@@ -31051,6 +31051,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(50));
 
@@ -31066,7 +31072,9 @@ Vue.component('addUser', __webpack_require__(50));
         return {
             showAddUser: false,
             users: {},
-            selectUser: []
+            selectUser: [],
+            order: 'asc',
+            queryParams: ['orderID:"asc"']
         };
     },
 
@@ -31082,13 +31090,28 @@ Vue.component('addUser', __webpack_require__(50));
 
 
         /**
+         * order by ID
+         */
+        orderByID: function orderByID() {
+            if (this.order === 'asc') {
+                this.queryParams.splice(0, 1, 'orderID:"desc"');
+                this.order = 'desc';
+            } else {
+                this.queryParams.splice(0, 1, 'orderID:"asc"');
+                this.order = 'asc';
+            }
+            this.getUsers();
+        },
+
+
+        /**
          * get all users
          */
         getUsers: function getUsers() {
             var _this = this;
 
             this.selectUser = [];
-            gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
+            gql.getItem('v1', 'UserQuery', this.queryParams, 'user').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
         },
@@ -32035,7 +32058,25 @@ var render = function() {
                 _vm._v(_vm._s(_vm.trans("data.updated_at")))
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+              _c("th", { attrs: { width: "5%" } }, [
+                _c("div", { staticClass: "ui-grid-block center" }, [
+                  _c(
+                    "i",
+                    {
+                      staticClass:
+                        "ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.orderByID()
+                        }
+                      }
+                    },
+                    [_vm._v("sort")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("ID")])
+                ])
+              ])
             ]
           )
         ]),

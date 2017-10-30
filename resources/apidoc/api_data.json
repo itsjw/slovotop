@@ -707,14 +707,21 @@
             "type": "Integer",
             "optional": false,
             "field": "id",
-            "description": ""
+            "description": "<p>id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "orderID",
+            "description": "<p>order by ID</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ UserQuery ( id:1 ) { id,name,surname,...}\"}",
+          "content": "{\"query\":\"{ UserQuery ( id:1,orderID:\"asc\" ) { id,name,surname,...}\"}",
           "type": "json"
         }
       ]
