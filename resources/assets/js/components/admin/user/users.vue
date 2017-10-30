@@ -117,7 +117,7 @@
                 <td>{{ val.confirm == 1 ? trans('data.yes') : trans('data.no') }}</td>
                 <td>
                     <span v-for="(item,k) in val.roles">
-                        {{ item.role[0].name }}
+                        {{ item.role.name }}
                     </span>
                 </td>
                 <td>{{ val.created_at }}</td>

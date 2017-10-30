@@ -68,7 +68,7 @@
                     <div class="ui-block-flex">
                         <div v-for="(item,k) in user.roles"
                              class="ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn">
-                            {{ item.role[0].name }}
+                            {{ item.role.name }}
                             <i class="ui-icon size-2 ui-ml-2 ui-color col-red hover"
                                @click="deleteRole(k)">close</i>
                         </div>
@@ -158,10 +158,10 @@
                 if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
                     this.user.roles.push({
                         'id': this.roles[id].id,
-                        'role': [{
+                        'role': {
                             'id': this.roles[id].id,
                             'name': this.roles[id].name
-                        }]
+                        }
                     });
                 }
                 this.getCleanRole();
@@ -222,7 +222,7 @@
                 this.cleanRole = [];
 
                 _.forEach(this.user.roles, function (value) {
-                    _vm.cleanRole.push(value.role[0].id);
+                    _vm.cleanRole.push(value.role.id);
                 });
 
             }

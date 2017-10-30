@@ -77,13 +77,18 @@
             return {
                 showAddProject: false,
                 projects: {},
-                selectProject: []
+                selectProject: [],
+                showSearchName: false,
+                showSearchSite: false,
+                showSearchOwner: false,
+                order: 'asc',
+                queryParams: ['orderID:"asc"'],
             }
         },
 
         methods: {
             /**
-             *
+             * unescape data
              */
             unescape(data) {
                 return _.unescape(data);
@@ -94,7 +99,38 @@
              */
             closePopUp() {
                 this.showAddProject = false;
+                this.showSearchName = false;
+                this.showSearchSite = false;
+                this.showSearchOwner = false;
                 this.getProjects();
+            },
+
+            /**
+             * order by ID
+             */
+            orderByID() {
+                if (this.order === 'asc') {
+                    this.queryParams.splice(0, 1, 'orderID:"desc"');
+                    this.order = 'desc';
+                } else {
+                    this.queryParams.splice(0, 1, 'orderID:"asc"');
+                    this.order = 'asc';
+                }
+                this.getUsers();
+            },
+
+            /**
+             * search my type and value
+             * @param value
+             * @param type
+             */
+            search(value, type) {
+                this.queryParams.splice(1, 1);
+
+                if (value) {
+                    this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+                }
+                this.closePopUp();
             },
 
             /**
@@ -102,7 +138,7 @@
              */
             getProjects() {
                 this.selectProject = [];
-                gql.getItem('v1', 'ProjectQuery', false, 'project')
+                gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project')
                     .then(response => {
                         this.projects = response.data.data.ProjectQuery;
                     })

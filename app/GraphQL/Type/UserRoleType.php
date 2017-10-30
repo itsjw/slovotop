@@ -26,7 +26,7 @@ class UserRoleType extends GraphQLType
                 'description' => 'UserRoleType user',
             ],
             'role' => [
-                'type'        => Type::listOf(\GraphQL::type('RoleType')),
+                'type'        => \GraphQL::type('RoleType'),
                 'description' => 'UserRoleType role',
             ],
         ];

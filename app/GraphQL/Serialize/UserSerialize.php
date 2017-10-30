@@ -25,7 +25,7 @@ class UserSerialize extends Serialize
             'surname'    => $user->surname,
             'email'      => $user->email,
             'confirm'    => $user->confirm,
-            'roles'      => $user->roles,
+            'roles'      => UserRolesSerialize::collection($user->roles),
             'created_at' => $user->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $user->updated_at->format('d-m-Y H:m:s'),
         ];

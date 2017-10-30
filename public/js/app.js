@@ -31479,10 +31479,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
                 this.user.roles.push({
                     'id': this.roles[id].id,
-                    'role': [{
+                    'role': {
                         'id': this.roles[id].id,
                         'name': this.roles[id].name
-                    }]
+                    }
                 });
             }
             this.getCleanRole();
@@ -31541,7 +31541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.cleanRole = [];
 
             _.forEach(this.user.roles, function (value) {
-                _vm.cleanRole.push(value.role[0].id);
+                _vm.cleanRole.push(value.role.id);
             });
         }
     }
@@ -31883,7 +31883,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                        " +
-                        _vm._s(item.role[0].name) +
+                        _vm._s(item.role.name) +
                         "\n                        "
                     ),
                     _c(
@@ -32408,7 +32408,7 @@ var render = function() {
                     return _c("span", [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(item.role[0].name) +
+                          _vm._s(item.role.name) +
                           "\n                "
                       )
                     ])
@@ -32583,14 +32583,19 @@ Vue.component('addProject', __webpack_require__(56));
         return {
             showAddProject: false,
             projects: {},
-            selectProject: []
+            selectProject: [],
+            showSearchName: false,
+            showSearchSite: false,
+            showSearchOwner: false,
+            order: 'asc',
+            queryParams: ['orderID:"asc"']
         };
     },
 
 
     methods: {
         /**
-         *
+         * unescape data
          */
         unescape: function unescape(data) {
             return _.unescape(data);
@@ -32602,7 +32607,40 @@ Vue.component('addProject', __webpack_require__(56));
          */
         closePopUp: function closePopUp() {
             this.showAddProject = false;
+            this.showSearchName = false;
+            this.showSearchSite = false;
+            this.showSearchOwner = false;
             this.getProjects();
+        },
+
+
+        /**
+         * order by ID
+         */
+        orderByID: function orderByID() {
+            if (this.order === 'asc') {
+                this.queryParams.splice(0, 1, 'orderID:"desc"');
+                this.order = 'desc';
+            } else {
+                this.queryParams.splice(0, 1, 'orderID:"asc"');
+                this.order = 'asc';
+            }
+            this.getUsers();
+        },
+
+
+        /**
+         * search my type and value
+         * @param value
+         * @param type
+         */
+        search: function search(value, type) {
+            this.queryParams.splice(1, 1);
+
+            if (value) {
+                this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+            }
+            this.closePopUp();
         },
 
 
@@ -32613,7 +32651,7 @@ Vue.component('addProject', __webpack_require__(56));
             var _this = this;
 
             this.selectProject = [];
-            gql.getItem('v1', 'ProjectQuery', false, 'project').then(function (response) {
+            gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
                 _this.projects = response.data.data.ProjectQuery;
             });
         },

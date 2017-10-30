@@ -39,9 +39,25 @@ class ProjectQuery extends Query
     public function args()
     {
         return [
-            'id' => [
+            'id'      => [
                 'name' => 'id',
                 'type' => Type::id(),
+            ],
+            'orderID' => [
+                'name' => 'orderID',
+                'type' => Type::string(),
+            ],
+            'name'    => [
+                'name' => 'name',
+                'type' => Type::string(),
+            ],
+            'site'    => [
+                'name' => 'site',
+                'type' => Type::string(),
+            ],
+            'owner'   => [
+                'name' => 'owner',
+                'type' => Type::string(),
             ],
         ];
     }
@@ -53,8 +69,11 @@ class ProjectQuery extends Query
      * @api           {post} v1 Project-Query
      * @apiName       Project-Query
      * @apiParam {Integer} id
+     * @apiParam {String} name name
+     * @apiParam {String} site site
+     * @apiParam {String} owner owner
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ ProjectQuery ( id:1 ) { id,name...}"}
+     * {"query":"{ ProjectQuery ( id:1,owner:"owner" ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {String} site site
@@ -77,6 +96,18 @@ class ProjectQuery extends Query
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
+        }
+        if (isset($args['name'])) {
+            $query->where('name', 'like', '%'.$args['name'].'%');
+        }
+        if (isset($args['site'])) {
+            $query->where('site', 'like', '%'.$args['site'].'%');
+        }
+        if (isset($args['owner'])) {
+            $query->where('email', 'like', '%'.$args['owner'].'%');
+        }
+        if (isset($args['orderID'])) {
+            $query->orderBy('id', $args['orderID']);
         }
 
         return ProjectSerialize::collection($query->get());

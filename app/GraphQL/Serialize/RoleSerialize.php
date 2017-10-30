@@ -22,7 +22,7 @@ class RoleSerialize extends Serialize
         return [
             'id'         => $role->id,
             'name'       => $role->name,
-            'count'      => $role->users()->count(),
+            'count'      => $role->users->count(),
             'created_at' => $role->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $role->updated_at->format('d-m-Y H:m:s'),
         ];
