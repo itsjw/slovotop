@@ -32792,6 +32792,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         project_id: {
             default: 0
+        },
+        user_id: {
+            type: Number,
+            default: 0
         }
     },
 
@@ -32805,6 +32809,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+
+    computed: {
+        /**
+         * get user ID
+         */
+        getUser: function getUser() {
+            if (this.user_id === 0) {
+                return this.project.user.id || 0;
+            }
+            return this.user_id;
+        }
+    },
 
     methods: {
         /**
@@ -32855,7 +32871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @return {string}
          */
         getProjectData: function getProjectData(project) {
-            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + (project.user.id || 0);
+            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + this.getUser;
         }
     }
 

@@ -58,7 +58,7 @@ class AddProjectMutation extends Mutation
             'user_id' => [
                 'name'  => 'user_id',
                 'type'  => Type::int(),
-                'rules' => ['required'],
+                'rules' => ['required', 'not_in:0'],
             ],
         ];
     }
@@ -69,10 +69,10 @@ class AddProjectMutation extends Mutation
      * @apiPermission admin
      * @api           {post} v1 Project-Add/Update
      * @apiName       Project-Add/Update
-     * @apiParam {Integer{required,0..}} id ID
+     * @apiParam {Integer{required,>=0}} id ID
      * @apiParam {String{required}} name name
      * @apiParam {String{required}} site site
-     * @apiParam {Integer{required,1...}} user_id user_id
+     * @apiParam {Integer{required,>=1}} user_id user_id
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddProjectMutation (id: 0,name:"name",site:"site",user_id:1) { id } }"}
      * @apiSuccess {Object} project [Project]

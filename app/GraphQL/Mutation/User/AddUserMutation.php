@@ -80,7 +80,7 @@ class AddUserMutation extends Mutation
      * @apiPermission admin
      * @api           {post} v1 User-Add
      * @apiName       User-Add
-     * @apiParam {Integer{required,0..}} id ID
+     * @apiParam {Integer{required,>=0}} id ID
      * @apiParam {String{required}} name name
      * @apiParam {String} surname surname
      * @apiParam {String{required,email,unique}} email email

@@ -17,7 +17,7 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "Integer",
-            "size": "required,0..",
+            "size": "required,>=0",
             "optional": false,
             "field": "id",
             "description": "<p>ID</p>"
@@ -41,7 +41,7 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "Integer",
-            "size": "required,1...",
+            "size": "required,>=1",
             "optional": false,
             "field": "user_id",
             "description": "<p>user_id</p>"
@@ -418,7 +418,7 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "Integer",
-            "size": "required,0..",
+            "size": "required,>=0",
             "optional": false,
             "field": "id",
             "description": "<p>ID</p>"

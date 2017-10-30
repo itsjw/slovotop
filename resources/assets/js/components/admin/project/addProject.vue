@@ -66,6 +66,10 @@
         props: {
             project_id: {
                 default: 0
+            },
+            user_id: {
+                type: Number,
+                default: 0
             }
         },
 
@@ -76,6 +80,18 @@
                 },
                 errors: {},
                 users: []
+            }
+        },
+
+        computed: {
+            /**
+             * get user ID
+             */
+            getUser() {
+                if (this.user_id === 0) {
+                    return this.project.user.id || 0;
+                }
+                return this.user_id;
             }
         },
 
@@ -126,7 +142,7 @@
                     id: ${this.project_id == 0 ? this.project_id : project.id},
                     name: "${project.name || ''}",
                     site: "${_.escape(project.site) || ''}",
-                    user_id: ${project.user.id || 0}`;
+                    user_id: ${this.getUser}`;
             },
         }
 
