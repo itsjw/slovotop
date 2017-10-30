@@ -1866,8 +1866,11 @@ form {
 }
 
 input.ui-input,
+input.ui-input-line,
 textarea.ui-input,
-select.ui-input {
+textarea.ui-input-line,
+select.ui-input,
+select.ui-input-line {
   outline: none;
   background: none;
 }

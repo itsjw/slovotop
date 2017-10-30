@@ -3,7 +3,7 @@ form {
 }
 
 input, textarea, select {
-  &.ui-input {
+  &.ui-input, &.ui-input-line {
     outline: none;
     background: none;
   }
