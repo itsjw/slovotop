@@ -141,14 +141,35 @@
             "type": "Integer",
             "optional": false,
             "field": "id",
-            "description": ""
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "site",
+            "description": "<p>site</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "owner",
+            "description": "<p>owner</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ ProjectQuery ( id:1 ) { id,name...}\"}",
+          "content": "{\"query\":\"{ ProjectQuery ( id:1,owner:\"owner\" ) { id,name...}\"}",
           "type": "json"
         }
       ]

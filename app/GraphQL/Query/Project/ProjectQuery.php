@@ -68,7 +68,7 @@ class ProjectQuery extends Query
      * @apiPermission admin
      * @api           {post} v1 Project-Query
      * @apiName       Project-Query
-     * @apiParam {Integer} id
+     * @apiParam {Integer} id ID
      * @apiParam {String} name name
      * @apiParam {String} site site
      * @apiParam {String} owner owner
