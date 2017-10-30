@@ -1,17 +1,20 @@
-@extends('admin.layout.master')
+@extends('user.layout.master')
 
 @section('title')
-    Projects
-@endsection()
-
+    Home
+@endsection
 @section('HeadTitle')
     <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleProject')
+        @lang('data.titleHome')
     </div>
 @endsection()
 
 @section('content')
 
-    <admin-projects v-cloak></admin-projects>
+    <div class="ui-grid-block">
+
+
+
+    </div>
 
 @endsection()

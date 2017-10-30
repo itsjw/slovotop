@@ -49,8 +49,8 @@ class DeletProjectMutation extends Mutation
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Project
-     * @apiPermission admin
-     * @api           {post} v1 Project-Delete
+     * @apiPermission admin,user
+     * @api           {post} v2 Project-Delete
      * @apiName       Project-Delete
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:
@@ -69,7 +69,12 @@ class DeletProjectMutation extends Mutation
         $items = explode(',', $args['items']);
 
         foreach ($items as $key) {
-            $project = Project::findOrfail($key);
+            $project = Project::where('id', $key);
+
+            if ( ! \Auth::user()->hasRole(1)) {
+                $project->where('user_id', \Auth::id());
+            }
+
             $project->delete();
         }
 

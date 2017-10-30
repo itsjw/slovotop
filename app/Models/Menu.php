@@ -18,7 +18,7 @@ class Menu extends Model
     protected $fillable = ['name', 'slug', 'icon', 'role_id'];
 
     /**
-     * Get admin menu
+     * get admin menus
      *
      * @param $query
      *
@@ -27,5 +27,17 @@ class Menu extends Model
     public function scopeAdmin($query)
     {
         return $query->where('role_id', 1)->get();
+    }
+
+    /**
+     * get user menus
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeUser($query)
+    {
+        return $query->where('role_id', 2)->get();
     }
 }

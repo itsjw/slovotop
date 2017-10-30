@@ -24,7 +24,9 @@
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.projectUser') }}
                     </div>
-                    <select class="ui-input green focus ui-fnt light size-1" v-model="project.user.id">
+                    <select class="ui-input green focus ui-fnt light size-1"
+                            v-model="project.user.id"
+                            v-if="user_id == 0">
                         <option v-for="(val,key) in users" :value="val.id">
                             {{ val.name }}
                         </option>
@@ -57,9 +59,11 @@
     export default {
 
         mounted() {
-            this.getUsers();
             if (this.project_id > 0) {
                 this.getProject(this.project_id);
+            }
+            if(this.user_id == 0){
+                this.getUsers();
             }
         },
 
@@ -68,7 +72,6 @@
                 default: 0
             },
             user_id: {
-                type: Number,
                 default: 0
             }
         },
@@ -122,7 +125,7 @@
              * save project
              */
             saveProject() {
-                gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project))
+                gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project))
                     .then(response => {
                         if (response.data.errors) {
                             this.errors = response.data.errors[0].validation;

@@ -65,8 +65,8 @@ class ProjectQuery extends Query
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Project
-     * @apiPermission admin
-     * @api           {post} v1 Project-Query
+     * @apiPermission admin,user
+     * @api           {post} v2 Project-Query
      * @apiName       Project-Query
      * @apiParam {Integer} id ID
      * @apiParam {String} name name
@@ -97,6 +97,10 @@ class ProjectQuery extends Query
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
         }
+        if ( ! \Auth::user()->hasRole(1)) {
+            $query->where('user_id', \Auth::id());
+        }
+
         if (isset($args['name'])) {
             $query->where('name', 'like', '%'.$args['name'].'%');
         }

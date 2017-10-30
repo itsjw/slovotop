@@ -32631,6 +32631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 Vue.component('addProject', __webpack_require__(56));
 
@@ -32640,7 +32641,11 @@ Vue.component('addProject', __webpack_require__(56));
     },
 
 
-    props: [],
+    props: {
+        user_id: {
+            default: 0
+        }
+    },
 
     data: function data() {
         return {
@@ -32714,7 +32719,7 @@ Vue.component('addProject', __webpack_require__(56));
             var _this = this;
 
             this.selectProject = [];
-            gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
+            gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
                 _this.projects = response.data.data.ProjectQuery;
             });
         },
@@ -32763,7 +32768,7 @@ Vue.component('addProject', __webpack_require__(56));
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectProject + '"'];
                 }
-                gql.setItem('v1', 'DeleteProjectMutation', select).then(function (response) {
+                gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
                     _this2.getProjects();
                 });
             }
@@ -32880,12 +32885,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        this.getUsers();
         if (this.project_id > 0) {
             this.getProject(this.project_id);
+        }
+        if (this.user_id == 0) {
+            this.getUsers();
         }
     },
 
@@ -32895,7 +32904,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: 0
         },
         user_id: {
-            type: Number,
             default: 0
         }
     },
@@ -32956,7 +32964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveProject: function saveProject() {
             var _this3 = this;
 
-            gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
+            gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
                 if (response.data.errors) {
                     _this3.errors = response.data.errors[0].validation;
                 } else {
@@ -33105,46 +33113,50 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
+            _vm.user_id == 0
+              ? _c(
+                  "select",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.project.user.id,
-                    expression: "project.user.id"
-                  }
-                ],
-                staticClass: "ui-input green focus ui-fnt light size-1",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.project.user,
-                      "id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              _vm._l(_vm.users, function(val, key) {
-                return _c("option", { domProps: { value: val.id } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(val.name) +
-                      "\n                    "
-                  )
-                ])
-              })
-            )
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.project.user.id,
+                        expression: "project.user.id"
+                      }
+                    ],
+                    staticClass: "ui-input green focus ui-fnt light size-1",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.project.user,
+                          "id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  _vm._l(_vm.users, function(val, key) {
+                    return _c("option", { domProps: { value: val.id } }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(val.name) +
+                          "\n                    "
+                      )
+                    ])
+                  })
+                )
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "ui-mt-5" }, [
@@ -33409,7 +33421,7 @@ var render = function() {
                           "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
                         on: {
                           click: function($event) {
-                            _vm.showSearchName = true
+                            _vm.showSearchSite = true
                           }
                         }
                       },
@@ -33619,7 +33631,7 @@ var render = function() {
       _vm._v(" "),
       _vm.showAddProject
         ? _c("add-project", {
-            attrs: { project_id: _vm.selectProject[0] },
+            attrs: { project_id: _vm.selectProject[0], user_id: _vm.user_id },
             on: {
               close: function($event) {
                 _vm.closePopUp()

@@ -47,40 +47,60 @@ class CreateMenusTable extends Migration
     private function seedMenu()
     {
         Menu::create([
-            'name'      => 'Главная',
-            'slug'      => 'home',
-            'icon'      => 'home',
-            'role_id'   => 1,
+            'name'    => 'Главная',
+            'slug'    => 'home',
+            'icon'    => 'home',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'      => 'Настройки',
-            'slug'      => 'settings',
-            'icon'      => 'settings',
-            'role_id'   => 1,
+            'name'    => 'Настройки',
+            'slug'    => 'settings',
+            'icon'    => 'settings',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'      => 'Роли и права',
-            'slug'      => 'roles',
-            'icon'      => 'security',
-            'role_id'   => 1,
+            'name'    => 'Роли и права',
+            'slug'    => 'roles',
+            'icon'    => 'security',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'      => 'Пользователи',
-            'slug'      => 'users',
-            'icon'      => 'group',
-            'role_id'   => 1,
+            'name'    => 'Пользователи',
+            'slug'    => 'users',
+            'icon'    => 'group',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'      => 'Проекты',
-            'slug'      => 'projects',
-            'icon'      => 'view_carousel',
-            'role_id'   => 1,
+            'name'    => 'Проекты',
+            'slug'    => 'projects',
+            'icon'    => 'view_carousel',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'      => 'Задачи',
-            'slug'      => 'tasks',
-            'icon'      => 'receipt',
-            'role_id'   => 1,
+            'name'    => 'Задачи',
+            'slug'    => 'tasks',
+            'icon'    => 'receipt',
+            'role_id' => 1,
+        ]);
+
+        // user menu
+        Menu::create([
+            'name'    => 'Главная',
+            'slug'    => 'home',
+            'icon'    => 'home',
+            'role_id' => 2,
+        ]);
+        Menu::create([
+            'name'    => 'Настройки',
+            'slug'    => 'settings',
+            'icon'    => 'settings',
+            'role_id' => 2,
+        ]);
+        Menu::create([
+            'name'    => 'Проекты',
+            'slug'    => 'projects',
+            'icon'    => 'view_carousel',
+            'role_id' => 2,
         ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('admin.layout.master')
+@extends('user.layout.master')
 
 @section('title')
     Projects
@@ -12,6 +12,6 @@
 
 @section('content')
 
-    <admin-projects v-cloak></admin-projects>
+    <admin-projects user_id="{{ Auth::id() }}" v-cloak></admin-projects>
 
 @endsection()

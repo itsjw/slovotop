@@ -9,31 +9,32 @@ return [
         'v1' => [
             'query'      => [
                 // user
-                'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
+                'UserQuery' => App\GraphQL\Query\User\UserQuery::class,
                 // role
-                'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
-                // project
-                'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
+                'RoleQuery' => App\GraphQL\Query\Role\RoleQuery::class,
             ],
             'mutation'   => [
                 // user
-                'AddUserMutation'       => App\GraphQL\Mutation\User\AddUserMutation::class,
-                'UpdateUserMutation'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
-                'DeleteUserMutation'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
-                'ApproveUserMutation'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                'AddUserMutation'     => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUserMutation'  => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUserMutation'  => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUserMutation' => App\GraphQL\Mutation\User\ApproveUserMutation::class,
                 // role
-                'AddRoleMutation'       => App\GraphQL\Mutation\Role\AddRoleMutation::class,
-                'DeleteRoleMutation'    => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
-                // project
-                'AddProjectMutation'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
-                'DeleteProjectMutation' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
-
+                'AddRoleMutation'     => App\GraphQL\Mutation\Role\AddRoleMutation::class,
+                'DeleteRoleMutation'  => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
             ],
             'middleware' => ['isAdmin'],
         ],
         'v2' => [
-            'query'      => [],
-            'mutation'   => [],
+            'query'      => [
+                // project
+                'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
+            ],
+            'mutation'   => [
+                // project
+                'AddProjectMutation'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'DeleteProjectMutation' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
+            ],
             'middleware' => ['web'],
         ],
     ],

@@ -66,8 +66,8 @@ class AddProjectMutation extends Mutation
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Project
-     * @apiPermission admin
-     * @api           {post} v1 Project-Add/Update
+     * @apiPermission admin,user
+     * @api           {post} v2 Project-Add/Update
      * @apiName       Project-Add/Update
      * @apiParam {Integer{required,>=0}} id ID
      * @apiParam {String{required}} name name

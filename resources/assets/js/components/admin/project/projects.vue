@@ -61,7 +61,7 @@
 
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="showSearchName=true">search</i>
+                           @click="showSearchSite=true">search</i>
                         <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
                            v-show="queryParams[1]"
                            @click="search()">close</i>
@@ -120,6 +120,7 @@
         </table>
 
         <add-project :project_id="selectProject[0]"
+                     :user_id="user_id"
                      v-if="showAddProject"
                      v-on:close="closePopUp()"></add-project>
 
@@ -134,7 +135,11 @@
             this.getProjects()
         },
 
-        props: [],
+        props: {
+            user_id: {
+                default: 0
+            }
+        },
 
         data() {
             return {
@@ -201,7 +206,7 @@
              */
             getProjects() {
                 this.selectProject = [];
-                gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project')
+                gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project')
                     .then(response => {
                         this.projects = response.data.data.ProjectQuery;
                     })
@@ -245,7 +250,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectProject + '"'];
                     }
-                    gql.setItem('v1', 'DeleteProjectMutation', select)
+                    gql.setItem('v2', 'DeleteProjectMutation', select)
                         .then(response => {
                             this.getProjects();
                         })

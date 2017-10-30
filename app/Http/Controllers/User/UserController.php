@@ -19,6 +19,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('user.index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function settings()
+    {
+        return view('user.index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function projects()
+    {
+        return view('user.project');
     }
 }

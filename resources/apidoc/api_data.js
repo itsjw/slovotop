@@ -4,11 +4,11 @@ define({ "api": [
     "group": "Project",
     "permission": [
       {
-        "name": "admin"
+        "name": "admin,user"
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Project-Add/Update",
     "name": "Project_Add_Update",
     "parameter": {
@@ -77,11 +77,11 @@ define({ "api": [
     "group": "Project",
     "permission": [
       {
-        "name": "admin"
+        "name": "admin,user"
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Project-Delete",
     "name": "Project_Delete",
     "parameter": {
@@ -126,11 +126,11 @@ define({ "api": [
     "group": "Project",
     "permission": [
       {
-        "name": "admin"
+        "name": "admin,user"
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Project-Query",
     "name": "Project_Query",
     "parameter": {
