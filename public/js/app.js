@@ -30046,6 +30046,9 @@ Vue.component('adminRoles', __webpack_require__(42));
 Vue.component('adminUsers', __webpack_require__(48));
 Vue.component('adminProjects', __webpack_require__(54));
 
+// search tip pop
+Vue.component('searchPop', __webpack_require__(81));
+
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -31057,6 +31060,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(50));
 
@@ -31074,7 +31117,8 @@ Vue.component('addUser', __webpack_require__(50));
             users: {},
             selectUser: [],
             order: 'asc',
-            queryParams: ['orderID:"asc"']
+            queryParams: ['orderID:"asc"'],
+            showSearch: [false, false, false]
         };
     },
 
@@ -31085,6 +31129,7 @@ Vue.component('addUser', __webpack_require__(50));
          */
         closePopUp: function closePopUp() {
             this.showAddUser = false;
+            this.showSearch = [false, false, false];
             this.getUsers();
         },
 
@@ -31101,6 +31146,9 @@ Vue.component('addUser', __webpack_require__(50));
                 this.order = 'asc';
             }
             this.getUsers();
+        },
+        search: function search(id) {
+            Vue.set(this.showSearch, id, true);
         },
 
 
@@ -32031,15 +32079,111 @@ var render = function() {
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userName")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearch[0]
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "name" },
+                          on: {
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search(0)
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.userName")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userSurname")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearch[1]
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "surname" },
+                          on: {
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search(1)
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.userSurname")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userEmail")))
+                _c(
+                  "div",
+                  { staticClass: "ui-grid-block" },
+                  [
+                    _vm.showSearch[2]
+                      ? _c("search-pop", {
+                          attrs: { position: "left", type: "surname" },
+                          on: {
+                            close: function($event) {
+                              _vm.closePopUp()
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                        on: {
+                          click: function($event) {
+                            _vm.search(2)
+                          }
+                        }
+                      },
+                      [_vm._v("search")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.userEmail")))])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
@@ -33105,6 +33249,179 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(82)
+/* template */
+var __vue_template__ = __webpack_require__(83)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/searchPop.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7c193274", Component.options)
+  } else {
+    hotAPI.reload("data-v-7c193274", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+
+    props: {
+        type: {},
+        position: {
+            default: 'left'
+        }
+    },
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "ui-popup-tip ui-bg bg-wite animated fadeIn",
+        class: this.position
+      },
+      [
+        _c("input", {
+          staticClass: "ui-input cyan",
+          attrs: { type: "text", autofocus: "" },
+          on: {
+            keyup: [
+              function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key)
+                ) {
+                  return null
+                }
+                _vm.submit()
+              },
+              function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "esc", 27, $event.key)
+                ) {
+                  return null
+                }
+                _vm.$emit("close")
+              }
+            ]
+          }
+        })
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7c193274", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

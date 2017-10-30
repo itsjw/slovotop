@@ -39,7 +39,7 @@
   &.w10 {
     width: 10%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -5%;
     }
@@ -47,7 +47,7 @@
   &.w20 {
     width: 20%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -10%;
     }
@@ -55,7 +55,7 @@
   &.w25 {
     width: 25%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -12.5%;
     }
@@ -63,7 +63,7 @@
   &.w30 {
     width: 30%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -15%;
     }
@@ -71,7 +71,7 @@
   &.w40 {
     width: 40%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -20%;
     }
@@ -79,17 +79,61 @@
   &.w50 {
     width: 50%;
 
-    &.left{
+    &.left {
       left: 50%;
       margin-left: -25%;
     }
   }
 }
 
-.ui-popup-tip{
+.ui-popup-tip {
   display: inline-block;
   position: absolute;
   z-index: 999;
   @include BlockShadow;
   padding: 10px;
+  width: 250px;
+
+  &.left {
+    left: 0;
+    top: 30px;
+
+    &:after, :before {
+      bottom: 100%;
+      left: 10%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:after {
+      border-color: rgba(136, 183, 213, 0);
+      border-bottom-color: $colorWite;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+  }
+  &.right {
+    right: 0;
+    top: 30px;
+
+    &:after, :before {
+      bottom: 100%;
+      left: 90%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:after {
+      border-color: rgba(136, 183, 213, 0);
+      border-bottom-color: $colorWite;
+      border-width: 10px;
+      margin-left: -10px;
+    }
+  }
 }

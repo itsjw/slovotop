@@ -34,9 +34,49 @@
                        @click="getUsers()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="10%" class="left">{{ trans('data.userName') }}</th>
-                <th width="15%" class="left">{{ trans('data.userSurname') }}</th>
-                <th width="15%" class="left">{{ trans('data.userEmail') }}</th>
+                <th width="10%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearch[0]"
+                            position="left"
+                            type="name"
+                            @close="closePopUp()"></search-pop>
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="search(0)">search</i>
+                        <span>{{ trans('data.userName') }}</span>
+                    </div>
+                </th>
+                <th width="15%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearch[1]"
+                            position="left"
+                            type="surname"
+                            @close="closePopUp()"></search-pop>
+
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="search(1)">search</i>
+                        <span>{{ trans('data.userSurname') }}</span>
+                    </div>
+                </th>
+                <th width="15%" class="left">
+                    <div class="ui-grid-block">
+
+                        <search-pop
+                            v-if="showSearch[2]"
+                            position="left"
+                            type="surname"
+                            @close="closePopUp()"></search-pop>
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="search(2)">search</i>
+                        <span>{{ trans('data.userEmail') }}</span>
+                    </div>
+                </th>
                 <th width="10%">{{ trans('data.userConfirm') }}</th>
                 <th width="20%">{{ trans('data.userRole') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
@@ -98,6 +138,7 @@
                 selectUser: [],
                 order: 'asc',
                 queryParams: ['orderID:"asc"'],
+                showSearch: [false, false, false],
             }
         },
 
@@ -107,6 +148,7 @@
              */
             closePopUp() {
                 this.showAddUser = false;
+                this.showSearch = [false, false, false];
                 this.getUsers();
             },
 
@@ -122,6 +164,10 @@
                     this.order = 'asc';
                 }
                 this.getUsers();
+            },
+
+            search(id) {
+                Vue.set(this.showSearch,id,true);
             },
 
             /**

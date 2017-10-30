@@ -2763,6 +2763,55 @@ input[type=radio]:checked + label.ui-radio:before {
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
           box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   padding: 10px;
+  width: 250px;
+}
+
+.ui-popup-tip.left {
+  left: 0;
+  top: 30px;
+}
+
+.ui-popup-tip.left:after,
+.ui-popup-tip.left :before {
+  bottom: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ui-popup-tip.left:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.ui-popup-tip.right {
+  right: 0;
+  top: 30px;
+}
+
+.ui-popup-tip.right:after,
+.ui-popup-tip.right :before {
+  bottom: 100%;
+  left: 90%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ui-popup-tip.right:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  margin-left: -10px;
 }
 
 .ui-block-flex {
