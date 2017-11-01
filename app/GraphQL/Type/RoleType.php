@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Type;
 
+use App\Models\Role;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -19,6 +20,7 @@ class RoleType extends GraphQLType
     protected $attributes = [
         'name'        => 'RoleType',
         'description' => 'A type',
+        'model'       => Role::class,
     ];
 
     /**
@@ -46,6 +48,10 @@ class RoleType extends GraphQLType
             'count'      => [
                 'type'        => Type::int(),
                 'description' => 'RoleType count users',
+            ],
+            'accessMenu' => [
+                'type'        => Type::listOf(\GraphQL::type('AccessMenuType')),
+                'description' => 'RoleType menus',
             ],
         ];
     }

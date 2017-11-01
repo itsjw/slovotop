@@ -29954,7 +29954,7 @@ var Query = function () {
 
         this.id = 'id';
         this.menu = 'id,name,slug,refer';
-        this.role = 'id,name,created_at,updated_at,count';
+        this.role = 'id,name,created_at,updated_at,count,accessMenu{menu_id,access,role_id}';
         this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
@@ -30485,6 +30485,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30505,7 +30508,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             role: {},
             errors: {},
-            menus: {}
+            menus: {},
+            selectMenu: []
         };
     },
 
@@ -30673,7 +30677,42 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "ui-grid-2" }, [
                   _c("input", {
-                    attrs: { type: "checkbox", id: "menu" + key }
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectMenu,
+                        expression: "selectMenu"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "menu" + key },
+                    domProps: {
+                      value: val.id,
+                      checked: Array.isArray(_vm.selectMenu)
+                        ? _vm._i(_vm.selectMenu, val.id) > -1
+                        : _vm.selectMenu
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.selectMenu,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = val.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.selectMenu = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.selectMenu = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.selectMenu = $$c
+                        }
+                      }
+                    }
                   }),
                   _vm._v(" "),
                   _c("label", {

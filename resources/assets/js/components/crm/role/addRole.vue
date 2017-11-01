@@ -21,14 +21,17 @@
                 </div>
 
                 <div class="ui-mb-2 ui-grid-block"
-                v-for="(val,key) in menus">
+                     v-for="(val,key) in menus">
                     <div class="ui-grid-10">
                         <div class="ui-fnt regular size-2 ui-color col-green">
                             {{ val.name }}
                         </div>
                     </div>
                     <div class="ui-grid-2">
-                        <input type="checkbox" :id="'menu'+key"/>
+                        <input type="checkbox"
+                               :id="'menu'+key"
+                               v-model="selectMenu"
+                               :value="val.id"/>
                         <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
                     </div>
                 </div>
@@ -78,7 +81,8 @@
             return {
                 role: {},
                 errors: {},
-                menus: {}
+                menus: {},
+                selectMenu: []
             }
         },
 

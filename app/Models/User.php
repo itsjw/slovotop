@@ -78,4 +78,18 @@ class User extends Authenticatable
 
         return false;
     }
+
+    /**
+     * get user roles
+     *
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        foreach ($this->roles()->get() as $key) {
+            $roles[] = $key->role_id;
+        }
+
+        return $roles;
+    }
 }
