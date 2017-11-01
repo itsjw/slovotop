@@ -1,4 +1,4 @@
-@foreach(App\Models\Menu::admin() as $menu)
+@foreach(App\Models\Menu::crm() as $menu)
 
     <a href="@if ($menu->slug) /crm/{{$menu->slug}} @else  /  @endif"
        title="{{ $menu->name }}"

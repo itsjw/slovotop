@@ -55,4 +55,27 @@ class User extends Authenticatable
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
 
+    /**
+     * get has Roles
+     *
+     * @param $id
+     *
+     * @return boolean
+     */
+    public function hasRole($id): bool
+    {
+        foreach ($this->roles()->get() as $role) {
+            if (is_array($id)) {
+                if (in_array($role->role_id, $id, true)) {
+                    return true;
+                }
+            } else {
+                if ($role->role_id == $id) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }

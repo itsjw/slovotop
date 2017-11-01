@@ -23,7 +23,7 @@ class CreateMenusTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('icon')->nullable();
-            $table->integer('role_id')->default(1);
+            $table->integer('refer')->default(1);
             $table->integer('parent_id')->default(0);
             $table->timestamps();
         });
@@ -50,49 +50,41 @@ class CreateMenusTable extends Migration
             'name'    => 'Главная',
             'slug'    => 'home',
             'icon'    => 'home',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Настройки',
             'slug'    => 'settings',
             'icon'    => 'settings',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Роли и права',
             'slug'    => 'roles',
             'icon'    => 'security',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Пользователи',
             'slug'    => 'users',
             'icon'    => 'group',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Проекты',
             'slug'    => 'projects',
             'icon'    => 'view_carousel',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Задачи',
             'slug'    => 'tasks',
             'icon'    => 'receipt',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Документация',
             'slug'    => 'docs',
             'icon'    => 'insert_drive_file',
-            'role_id' => 1,
         ]);
         Menu::create([
             'name'    => 'Отчеты',
             'slug'    => 'reports',
             'icon'    => 'view_list',
-            'role_id' => 1,
         ]);
     }
 }

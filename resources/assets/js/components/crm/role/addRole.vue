@@ -5,6 +5,7 @@
         <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
             <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
             <div class="ui-p-3">
+
                 <div class="ui-mb-2">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.roleName') }}
@@ -13,7 +14,79 @@
                            type="text"
                            v-model="role.name">
                 </div>
-                <div class="ui-mt-5">
+                <div class="ui-mb-2">
+                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                        {{ trans('data.roleAccess') }}
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleRoles') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_1"/>
+                        <label for="ch_1" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleUser') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_2"/>
+                        <label for="ch_2" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleTasks') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_3"/>
+                        <label for="ch_3" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleProject') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_4"/>
+                        <label for="ch_4" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleDoc') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_5"/>
+                        <label for="ch_5" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+                <div class="ui-mb-2 ui-grid-block">
+                    <div class="ui-grid-6">
+                        <div class="ui-fnt regular size-2 ui-color col-green">
+                            {{ trans('data.titleReports') }}
+                        </div>
+                    </div>
+                    <div class="ui-grid-6">
+                        <input type="checkbox" id="ch_6"/>
+                        <label for="ch_6" class="ui-checkbox ui-color col-green"></label>
+                    </div>
+                </div>
+
+                <div class="ui-mt-6">
                     <button type="button"
                             class="ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2"
                             @click="saveRole()">

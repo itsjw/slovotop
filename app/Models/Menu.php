@@ -18,26 +18,29 @@ class Menu extends Model
     protected $fillable = ['name', 'slug', 'icon', 'role_id'];
 
     /**
-     * get admin menus
-     *
-     * @param $query
-     *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function scopeAdmin($query)
+    public function menuAccess()
     {
-        return $query->where('role_id', 1)->get();
+        return $this->hasOne(AccessMenu::class, 'menu_id', 'id');
     }
 
     /**
-     * get user menus
+     * get crm menu by role_id
      *
      * @param $query
      *
      * @return mixed
      */
-    public function scopeUser($query)
+    public function scopeCrm($query)
     {
-        return $query->where('role_id', 2)->get();
+        if ( ! \Auth::user()->hasRole(1)) {
+            $query->whereHas('menuAccess', function ($request) {
+                $request->where('access', 1)->whereIn('role_id', \Auth::user()->roles);
+            });
+        }
+
+        return $query->where('refer', 1)->get();
     }
+
 }

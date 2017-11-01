@@ -1279,7 +1279,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -1774,16 +1774,16 @@
         },
         {
             "name": "rebing/graphql-laravel",
-            "version": "v1.7.2",
+            "version": "v1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rebing/graphql-laravel.git",
-                "reference": "c621e9d2c8455f696623256dd08dc37f3c618eab"
+                "reference": "d2d93c0746caa870b04b12752798d0dacb44655a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rebing/graphql-laravel/zipball/c621e9d2c8455f696623256dd08dc37f3c618eab",
-                "reference": "c621e9d2c8455f696623256dd08dc37f3c618eab",
+                "url": "https://api.github.com/repos/rebing/graphql-laravel/zipball/d2d93c0746caa870b04b12752798d0dacb44655a",
+                "reference": "d2d93c0746caa870b04b12752798d0dacb44655a",
                 "shasum": ""
             },
             "require": {
@@ -1845,7 +1845,7 @@
                 "laravel",
                 "react"
             ],
-            "time": "2017-10-19T17:34:47+00:00"
+            "time": "2017-10-31T08:06:33+00:00"
         },
         {
             "name": "renatomarinho/laravel-page-speed",

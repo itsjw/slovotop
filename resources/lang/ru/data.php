@@ -29,14 +29,15 @@ return [
     'titleSettings' => 'Настройки',
     'titleRoles'    => 'Роли и права',
     'titleUser'     => 'Пользователи',
-    'titleProject'  => 'Проекты',
     'titleTasks'    => 'Задачи',
+    'titleProject'  => 'Проекты',
     'titleDoc'      => 'Документация',
     'titleReports'  => 'Отчёты',
 
     // roles
     'roleName'      => 'Название роли',
     'roleCount'     => 'Количество пользователей',
+    'roleAccess'    => 'Доступ к разделам',
 
     // User
     'userLogin'     => 'Логин',

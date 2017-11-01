@@ -1,14 +1,10 @@
 <?php
-declare(strict_types=1);
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/**
- * Class CreateRoleMatricesTable
- */
-class CreateRoleMatricesTable extends Migration
+class CreateAccessMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +13,9 @@ class CreateRoleMatricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_matrices', function (Blueprint $table) {
+        Schema::create('access_menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('model');
-            $table->string('field');
+            $table->integer('menu_id');
             $table->integer('access');
             $table->integer('role_id');
             $table->timestamps();
@@ -34,6 +29,6 @@ class CreateRoleMatricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_matrices');
+        Schema::dropIfExists('access_menus');
     }
 }
