@@ -58,6 +58,16 @@
                     access = this.menus[key].accessMenu.access;
 
                 console.log(id, access);
+            },
+
+            // TODO
+            getDatat() {
+                return `
+                    id: ${accessMenu.id},
+                    access: ${}
+                    menu: ${}
+                    role: ${}
+                `;
             }
         }
     }
