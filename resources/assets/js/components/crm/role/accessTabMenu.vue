@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyBlueLL">
+    <div class="ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL">
 
             <div class="ui-grid-block"
                  v-for="(val,key) in menus">

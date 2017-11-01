@@ -34016,16 +34016,19 @@ Vue.component('accessTabMenu', __webpack_require__(87));
 
     data: function data() {
         return {
-            tabs: ['active']
+            tabs: ['active', '', '', '', '']
         };
     },
 
 
     methods: {
+        /**
+         * select tabs
+         * @param key
+         */
         selectTab: function selectTab(key) {
-            //this.tabs = [];
-            this.tabs.splice(parseInt(key), 0, 'active');
-            console.log(key);
+            this.tabs = ['', '', '', '', ''];
+            this.tabs.splice(key, 0, 'active');
         }
     }
 });
@@ -34314,7 +34317,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyBlueLL" },
+    { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL" },
     _vm._l(_vm.menus, function(val, key) {
       return _c("div", { staticClass: "ui-grid-block" }, [
         _c("div", { staticClass: "ui-grid-10" }, [

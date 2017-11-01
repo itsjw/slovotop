@@ -56,15 +56,18 @@
 
         data() {
             return {
-                tabs: ['active']
+                tabs: ['active', '', '', '', '']
             }
         },
 
         methods: {
+            /**
+             * select tabs
+             * @param key
+             */
             selectTab(key) {
-               //this.tabs = [];
-               this.tabs.splice(parseInt(key),0,'active');
-               console.log(key);
+                this.tabs = ['', '', '', '', ''];
+                this.tabs.splice(key, 0, 'active');
             }
         }
     }
