@@ -63,10 +63,15 @@
                   v-on:close="closePopUp()"
                   v-if="showAddRole"></add-role>
 
+        <access-role :role_id="selectRole[0]"
+                     v-on:close="closePopUp()"
+                     v-if="showAccessRole"></access-role>
+
     </div>
 </template>
 <script>
     Vue.component('addRole', require('./addRole.vue'));
+    Vue.component('accessRole', require('./accessRole.vue'));
 
     export default {
 
@@ -79,6 +84,7 @@
         data() {
             return {
                 showAddRole: false,
+                showAccessRole: false,
                 roles: {},
                 selectRole: []
             }
@@ -89,6 +95,7 @@
              * close popup
              */
             closePopUp() {
+                this.showAccessRole = false;
                 this.showAddRole = false;
                 this.getRoles();
             },
@@ -147,7 +154,14 @@
                         })
                 }
             },
+
+            /**
+             * edit access role
+             */
             editAccess() {
+                if (this.selectRole.length > 0) {
+                    this.showAccessRole = true;
+                }
             },
         }
     }

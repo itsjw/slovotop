@@ -30277,8 +30277,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 Vue.component('addRole', __webpack_require__(44));
+Vue.component('accessRole', __webpack_require__(84));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30291,6 +30296,7 @@ Vue.component('addRole', __webpack_require__(44));
     data: function data() {
         return {
             showAddRole: false,
+            showAccessRole: false,
             roles: {},
             selectRole: []
         };
@@ -30302,6 +30308,7 @@ Vue.component('addRole', __webpack_require__(44));
          * close popup
          */
         closePopUp: function closePopUp() {
+            this.showAccessRole = false;
             this.showAddRole = false;
             this.getRoles();
         },
@@ -30367,7 +30374,16 @@ Vue.component('addRole', __webpack_require__(44));
                 });
             }
         },
-        editAccess: function editAccess() {}
+
+
+        /**
+         * edit access role
+         */
+        editAccess: function editAccess() {
+            if (this.selectRole.length > 0) {
+                this.showAccessRole = true;
+            }
+        }
     }
 });
 
@@ -30471,30 +30487,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.role_id > 0) {
             this.getRole(this.role_id);
         }
-        this.getMenus();
+        console.log(this.errors.length);
     },
 
 
@@ -30507,9 +30506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             role: {},
-            errors: {},
-            menus: {},
-            selectMenu: []
+            errors: ''
         };
     },
 
@@ -30529,28 +30526,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * get menus
-         */
-        getMenus: function getMenus() {
-            var _this2 = this;
-
-            gql.getItem('v1', 'MenuQuery', false, 'menu').then(function (response) {
-                _this2.menus = response.data.data.MenuQuery;
-            });
-        },
-
-
-        /**
          * save project
          */
         saveRole: function saveRole() {
-            var _this3 = this;
+            var _this2 = this;
 
             gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
                 if (response.data.errors) {
-                    _this3.errors = response.data.errors[0].validation;
+                    _this2.errors = response.data.errors[0].validation;
                 } else {
-                    _this3.$emit('close');
+                    _this2.$emit('close');
                 }
             });
         },
@@ -30601,195 +30586,128 @@ var render = function() {
           [_vm._v("close")]
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "ui-p-3" },
-          [
-            _c("div", { staticClass: "ui-mb-2" }, [
-              _c(
-                "div",
+        _c("div", { staticClass: "ui-p-3" }, [
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.roleName")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
                 {
-                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.roleName")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.role.name,
-                    expression: "role.name"
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.role.name,
+                  expression: "role.name"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.role.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                ],
-                staticClass: "ui-input green focus ui-fnt light size-1",
-                attrs: { type: "text" },
-                domProps: { value: _vm.role.name },
+                  _vm.$set(_vm.role, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.roleAccess")) +
+                    "\n                "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mt-5" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.role, "name", $event.target.value)
+                  click: function($event) {
+                    _vm.saveRole()
                   }
                 }
-              })
-            ]),
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.save")) +
+                    "\n                "
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "ui-mb-2" }, [
-              _c(
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("close")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.cancel")) +
+                    "\n                "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.errors
+            ? _c(
                 "div",
-                {
-                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.roleAccess")) +
-                      "\n                "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.menus, function(val, key) {
-              return _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-                _c("div", { staticClass: "ui-grid-10" }, [
-                  _c(
+                { staticClass: "ui-mt-3" },
+                _vm._l(_vm.errors, function(val, key) {
+                  return _c(
                     "div",
-                    { staticClass: "ui-fnt regular size-2 ui-color col-green" },
+                    {
+                      staticClass:
+                        "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                    },
                     [
                       _vm._v(
-                        "\n                        " +
-                          _vm._s(val.name) +
-                          "\n                    "
+                        "\n                    " +
+                          _vm._s(val[0]) +
+                          "\n                "
                       )
                     ]
                   )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui-grid-2" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.selectMenu,
-                        expression: "selectMenu"
-                      }
-                    ],
-                    attrs: { type: "checkbox", id: "menu" + key },
-                    domProps: {
-                      value: val.id,
-                      checked: Array.isArray(_vm.selectMenu)
-                        ? _vm._i(_vm.selectMenu, val.id) > -1
-                        : _vm.selectMenu
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.selectMenu,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = val.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.selectMenu = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.selectMenu = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.selectMenu = $$c
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "ui-checkbox ui-color col-green",
-                    attrs: { for: "menu" + key }
-                  })
-                ])
-              ])
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui-mt-6" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.saveRole()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.save")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.$emit("close")
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.cancel")) +
-                      "\n                "
-                  )
-                ]
+                })
               )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "ui-mt-3" },
-              _vm._l(_vm.errors, function(val, key) {
-                return _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(val[0]) +
-                        "\n                "
-                    )
-                  ]
-                )
-              })
-            )
-          ],
-          2
-        )
+            : _vm._e()
+        ])
       ]
     )
   ])
@@ -31026,6 +30944,17 @@ var render = function() {
       _vm._v(" "),
       _vm.showAddRole
         ? _c("add-role", {
+            attrs: { role_id: _vm.selectRole[0] },
+            on: {
+              close: function($event) {
+                _vm.closePopUp()
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showAccessRole
+        ? _c("access-role", {
             attrs: { role_id: _vm.selectRole[0] },
             on: {
               close: function($event) {
@@ -31559,7 +31488,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 confirm: 1,
                 roles: []
             },
-            errors: {},
+            errors: '',
             roles: [],
             cleanRole: []
         };
@@ -32073,26 +32002,28 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui-mt-3" },
-            _vm._l(_vm.errors, function(val, key) {
-              return _c(
+          _vm.errors
+            ? _c(
                 "div",
-                {
-                  staticClass:
-                    "ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(val[0]) +
-                      "\n                "
+                { staticClass: "ui-mt-3" },
+                _vm._l(_vm.errors, function(val, key) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass:
+                        "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(val[0]) +
+                          "\n                "
+                      )
+                    ]
                   )
-                ]
+                })
               )
-            })
-          )
+            : _vm._e()
         ])
       ]
     )
@@ -33953,6 +33884,356 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(85)
+/* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/crm/role/accessRole.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4b8d297f", Component.options)
+  } else {
+    hotAPI.reload("data-v-4b8d297f", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+Vue.component('accessTabMenu', __webpack_require__(87));
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+
+    props: {
+        role_id: {}
+    },
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "ui-popup-close col-red hover ui-icon",
+            on: {
+              click: function($event) {
+                _vm.$emit("close")
+              }
+            }
+          },
+          [_vm._v("close")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-p-3" },
+          [_c("access-tab-menu", { attrs: { role: _vm.role_id } })],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4b8d297f", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(88)
+/* template */
+var __vue_template__ = __webpack_require__(89)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/crm/role/accessTabMenu.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d43547ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-d43547ca", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.getMenus();
+    },
+
+
+    props: {
+        role: {}
+    },
+
+    data: function data() {
+        return {
+            menus: {},
+            selectMenu: []
+        };
+    },
+
+
+    methods: {
+        /**
+         * get menus
+         */
+        getMenus: function getMenus() {
+            var _this = this;
+
+            gql.getItem('v1', 'MenuQuery', false, 'menu').then(function (response) {
+                _this.menus = response.data.data.MenuQuery;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.menus, function(val, key) {
+      return _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
+        _c("div", { staticClass: "ui-grid-10" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-green" },
+            [_vm._v("\n                " + _vm._s(val.name) + "\n            ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-2" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectMenu,
+                expression: "selectMenu"
+              }
+            ],
+            attrs: { type: "checkbox", id: "menu" + key },
+            domProps: {
+              value: val.id,
+              checked: Array.isArray(_vm.selectMenu)
+                ? _vm._i(_vm.selectMenu, val.id) > -1
+                : _vm.selectMenu
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.selectMenu,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = val.id,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.selectMenu = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.selectMenu = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.selectMenu = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", {
+            staticClass: "ui-checkbox ui-color col-green",
+            attrs: { for: "menu" + key }
+          })
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d43547ca", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

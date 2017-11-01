@@ -20,24 +20,7 @@
                     </div>
                 </div>
 
-                <div class="ui-mb-2 ui-grid-block"
-                     v-for="(val,key) in menus">
-                    <div class="ui-grid-10">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ val.name }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-2">
-                        <input type="checkbox"
-                               :id="'menu'+key"
-                               v-model="selectMenu"
-                               :value="val.id"/>
-                        <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
-
-
-                <div class="ui-mt-6">
+                <div class="ui-mt-5">
                     <button type="button"
                             class="ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2"
                             @click="saveRole()">
@@ -50,7 +33,7 @@
                     </button>
                 </div>
 
-                <div class="ui-mt-3">
+                <div class="ui-mt-3" v-if="errors">
                     <div class="ui-color col-red ui-fnt bold size-1 animated fadeIn"
                          v-for="(val,key) in errors">
                         {{ val[0] }}
@@ -68,7 +51,7 @@
             if (this.role_id > 0) {
                 this.getRole(this.role_id);
             }
-            this.getMenus();
+            console.log(this.errors.length);
         },
 
         props: {
@@ -80,9 +63,7 @@
         data() {
             return {
                 role: {},
-                errors: {},
-                menus: {},
-                selectMenu: []
+                errors: '',
             }
         },
 
@@ -95,16 +76,6 @@
                 gql.getItem('v1', 'RoleQuery', ['id:' + id], 'role')
                     .then(response => {
                         this.role = response.data.data.RoleQuery[0];
-                    })
-            },
-
-            /**
-             * get menus
-             */
-            getMenus() {
-                gql.getItem('v1', 'MenuQuery', false, 'menu')
-                    .then(response => {
-                        this.menus = response.data.data.MenuQuery;
                     })
             },
 

@@ -87,7 +87,7 @@
                     </button>
                 </div>
 
-                <div class="ui-mt-3">
+                <div class="ui-mt-3" v-if="errors">
                     <div class="ui-color col-red ui-fnt bold size-1 animated fadeIn"
                          v-for="(val,key) in errors">
                         {{ val[0] }}
@@ -119,7 +119,7 @@
                     confirm: 1,
                     roles: []
                 },
-                errors: {},
+                errors: '',
                 roles: [],
                 cleanRole: []
             }
