@@ -58,7 +58,7 @@ class MenuType extends GraphQLType
                 'description' => 'Menu updated_at',
             ],
             'accessMenu' => [
-                'type'        => Type::listOf(\GraphQL::type('AccessMenuType')),
+                'type'        => \GraphQL::type('AccessMenuType'),
                 'description' => 'Menu accessMenu',
             ],
         ];

@@ -22,7 +22,7 @@ class Menu extends Model
      */
     public function accessMenu()
     {
-        return $this->hasMany(AccessMenu::class, 'menu_id', 'id');
+        return $this->hasOne(AccessMenu::class, 'menu_id', 'id');
     }
 
     /**

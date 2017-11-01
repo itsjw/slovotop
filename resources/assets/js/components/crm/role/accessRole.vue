@@ -2,7 +2,7 @@
     <div>
 
         <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w40 left animated fadeIn ui-bg bg-wite">
+        <div class="ui-popup top w50 left animated fadeIn ui-bg bg-wite">
             <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
             <div class="ui-p-3">
 

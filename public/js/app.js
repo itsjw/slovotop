@@ -29953,7 +29953,7 @@ var Query = function () {
         this.v1 = '/apps/v1';
 
         this.id = 'id';
-        this.menu = 'id,name,slug,refer,accessMenu{menu_id,access,role_id}';
+        this.menu = 'id,name,slug,refer,accessMenu{id,menu_id,access,role_id}';
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
@@ -34053,7 +34053,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "ui-popup top w40 left animated fadeIn ui-bg bg-wite" },
+      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
       [
         _c(
           "div",
@@ -34274,6 +34274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34287,7 +34288,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            menus: {},
+            menus: [{
+                accessMenu: {
+                    access: 0
+                }
+            }],
             selectMenu: []
         };
     },
@@ -34340,35 +34345,39 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.selectMenu,
-                expression: "selectMenu"
+                value: val.accessMenu.access,
+                expression: "val.accessMenu.access"
               }
             ],
-            attrs: { type: "checkbox", id: "menu" + key },
+            attrs: {
+              type: "checkbox",
+              id: "menu" + key,
+              "true-value": 1,
+              "false-value": 0
+            },
             domProps: {
-              value: val.id,
-              checked: Array.isArray(_vm.selectMenu)
-                ? _vm._i(_vm.selectMenu, val.id) > -1
-                : _vm.selectMenu
+              checked: Array.isArray(val.accessMenu.access)
+                ? _vm._i(val.accessMenu.access, null) > -1
+                : _vm._q(val.accessMenu.access, 1)
             },
             on: {
               change: function($event) {
-                var $$a = _vm.selectMenu,
+                var $$a = val.accessMenu.access,
                   $$el = $event.target,
-                  $$c = $$el.checked ? true : false
+                  $$c = $$el.checked ? 1 : 0
                 if (Array.isArray($$a)) {
-                  var $$v = val.id,
+                  var $$v = null,
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
-                    $$i < 0 && (_vm.selectMenu = $$a.concat([$$v]))
+                    $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
-                      (_vm.selectMenu = $$a
+                      (val.accessMenu.access = $$a
                         .slice(0, $$i)
                         .concat($$a.slice($$i + 1)))
                   }
                 } else {
-                  _vm.selectMenu = $$c
+                  _vm.$set(val.accessMenu, "access", $$c)
                 }
               }
             }

@@ -11,8 +11,9 @@
                 <div class="ui-grid-2 center">
                     <input type="checkbox"
                            :id="'menu'+key"
-                           v-model="selectMenu"
-                           :value="val.id"/>
+                           v-model="val.accessMenu.access"
+                           v-bind:true-value="1"
+                           v-bind:false-value="0"/>
                     <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
                 </div>
             </div>
@@ -32,7 +33,11 @@
 
         data() {
             return {
-                menus: {},
+                menus: [{
+                    accessMenu: {
+                        access: 0
+                    }
+                }],
                 selectMenu: []
             }
         },
