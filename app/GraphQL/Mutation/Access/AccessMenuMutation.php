@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Access;
 
+use App\GraphQL\Serialize\MenuSerialize;
 use App\Models\AccessMenu;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -84,12 +85,14 @@ class AccessMenuMutation extends Mutation
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
         // TODO
-        $role = AccessMenu::findOrNew($args['id']);
+        $menu = AccessMenu::findOrNew($args['id']);
 
-        $role->access = $args['access'];
-        $role->save();
+        $menu->access  = $args['access'];
+        $menu->menu_id = $args['menu'];
+        $menu->role_id = $args['role'];
+        $menu->save();
 
-        return RoleSerialize::serialize($role);
+        return MenuSerialize::serialize($menu);
 
     }
 }

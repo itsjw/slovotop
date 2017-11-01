@@ -34249,9 +34249,80 @@ module.exports = Component.exports
 
 /***/ }),
 /* 88 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (67:26)\n\n\u001b[0m \u001b[90m 65 | \u001b[39m            \u001b[36mreturn\u001b[39m \u001b[32m`\u001b[39m\n \u001b[90m 66 | \u001b[39m\u001b[32m                id: ${accessMenu.id},\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 | \u001b[39m\u001b[32m                access: ${}\u001b[39m\n \u001b[90m    | \u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 68 | \u001b[39m\u001b[32m                menu: ${}\u001b[39m\n \u001b[90m 69 | \u001b[39m\u001b[32m                role: ${}\u001b[39m\n \u001b[90m 70 | \u001b[39m\u001b[32m            `\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.getMenus();
+    },
+
+
+    props: {
+        role: {}
+    },
+
+    data: function data() {
+        return {
+            menus: {}
+        };
+    },
+
+
+    methods: {
+        /**
+         * get menus
+         */
+        getMenus: function getMenus() {
+            var _this = this;
+
+            gql.getItem('v1', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
+                _this.menus = response.data.data.MenuQuery;
+            });
+        },
+
+
+        /**
+         * select access menu
+         * @param key
+         */
+        selectMenu: function selectMenu(key) {
+            var _this2 = this;
+
+            gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
+                _this2.getMenus();
+            });
+        },
+        getData: function getData(menu) {
+            return '\n                id: ' + menu.accessMenu.id + ',\n                access: ' + menu.accessMenu.access + ',\n                menu: ' + menu.id + ',\n                role: ' + this.role;
+        }
+    }
+});
 
 /***/ }),
 /* 89 */

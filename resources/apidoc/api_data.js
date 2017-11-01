@@ -93,13 +93,20 @@ define({ "api": [
             "optional": false,
             "field": "id",
             "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "role_id",
+            "description": "<p>role_id</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ MenuQuery ( id:1 ) { id,name...}\"}",
+          "content": "{\"query\":\"{ MenuQuery ( id:1,role_id:1 ) { id,name...}\"}",
           "type": "json"
         }
       ]

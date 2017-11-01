@@ -26,6 +26,11 @@ class MenuQuery extends Query
     ];
 
     /**
+     * @var
+     */
+    private $role_id;
+
+    /**
      * @return \GraphQL\Type\Definition\ListOfType
      */
     public function type()
@@ -39,8 +44,12 @@ class MenuQuery extends Query
     public function args()
     {
         return [
-            'id' => [
+            'id'      => [
                 'name' => 'id',
+                'type' => Type::id(),
+            ],
+            'role_id' => [
+                'name' => 'role_id',
                 'type' => Type::id(),
             ],
         ];
@@ -53,8 +62,9 @@ class MenuQuery extends Query
      * @api           {post} v1 Menu-Query
      * @apiName       Menu-Query
      * @apiParam {Integer} id
+     * @apiParam {Integer} role_id role_id
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ MenuQuery ( id:1 ) { id,name...}"}
+     * {"query":"{ MenuQuery ( id:1,role_id:1 ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} slug slug
@@ -76,11 +86,15 @@ class MenuQuery extends Query
     {
         $query = Menu::query()->where('refer', 1);
 
-        $query->with([
-            'accessMenu' => function ($query) {
-                $query->whereIn('role_id', \Auth::user()->getRoles());
-            },
-        ]);
+        if (isset($args['role_id'])) {
+            $this->role_id = $args['role_id'];
+
+            $query->with([
+                'accessMenu' => function ($query) {
+                    $query->where('role_id', $this->role_id);
+                },
+            ]);
+        }
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
