@@ -34275,6 +34275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34288,12 +34289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            menus: [{
-                accessMenu: {
-                    access: 0
-                }
-            }],
-            selectMenu: []
+            menus: {}
         };
     },
 
@@ -34308,6 +34304,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             gql.getItem('v1', 'MenuQuery', false, 'menu').then(function (response) {
                 _this.menus = response.data.data.MenuQuery;
             });
+        },
+        selectMenu: function selectMenu(key) {
+            var id = this.menus[key].accessMenu.id,
+                access = this.menus[key].accessMenu.access;
+
+            console.log(id, access);
         }
     }
 });
@@ -34329,13 +34331,7 @@ var render = function() {
           _c(
             "div",
             { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(val.name) +
-                  "\n                "
-              )
-            ]
+            [_vm._v("\n                " + _vm._s(val.name) + "\n            ")]
           )
         ]),
         _vm._v(" "),
@@ -34361,25 +34357,30 @@ var render = function() {
                 : _vm._q(val.accessMenu.access, 1)
             },
             on: {
-              change: function($event) {
-                var $$a = val.accessMenu.access,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? 1 : 0
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
+              change: [
+                function($event) {
+                  var $$a = val.accessMenu.access,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? 1 : 0
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (val.accessMenu.access = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
                   } else {
-                    $$i > -1 &&
-                      (val.accessMenu.access = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                    _vm.$set(val.accessMenu, "access", $$c)
                   }
-                } else {
-                  _vm.$set(val.accessMenu, "access", $$c)
+                },
+                function($event) {
+                  _vm.selectMenu(key)
                 }
-              }
+              ]
             }
           }),
           _vm._v(" "),
