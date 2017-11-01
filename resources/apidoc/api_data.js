@@ -1,6 +1,79 @@
 define({ "api": [
   {
     "version": "0.1.0",
+    "group": "Access",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
+    "title": "AccessMenu-Add/Update",
+    "name": "AccessMenu_Add_Update",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,0..",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "access",
+            "description": "<p>access</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "menu",
+            "description": "<p>menu</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { AccessMenuMutation (id: 0,access:1,menu:1,role:1) { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "AccessMenu",
+            "description": "<p>[AccessMenu]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Access/AccessMenuMutation.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.1.0",
     "group": "Menu",
     "permission": [
       {

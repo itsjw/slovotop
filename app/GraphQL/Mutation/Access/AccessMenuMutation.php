@@ -47,6 +47,16 @@ class AccessMenuMutation extends Mutation
                 'type' => Type::int(),
                 'rule' => ['required'],
             ],
+            'menu'   => [
+                'name' => 'menu',
+                'type' => Type::int(),
+                'rule' => ['required'],
+            ],
+            'role'   => [
+                'name' => 'role',
+                'type' => Type::int(),
+                'rule' => ['required'],
+            ],
         ];
     }
 
@@ -58,8 +68,10 @@ class AccessMenuMutation extends Mutation
      * @apiName       AccessMenu-Add/Update
      * @apiParam {Integer{required,0..}} id ID
      * @apiParam {Integer{required}} access access
+     * @apiParam {Integer{required}} menu menu
+     * @apiParam {Integer{required}} role role
      * @apiParamExample {json} Request-Example:
-     * {"query":"mutation { AccessMenuMutation (id: 0,access:1) { id } }"}
+     * {"query":"mutation { AccessMenuMutation (id: 0,access:1,menu:1,role:1) { id } }"}
      * @apiSuccess {Object} AccessMenu [AccessMenu]
      *
      * @param $root
