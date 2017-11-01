@@ -1,7 +1,7 @@
 @extends('crm.layout.master')
 
 @section('title')
-    Roles
+    @lang('data.titleRoles') - {{ Auth::user()->name }}
 @endsection()
 
 @section('HeadTitle')

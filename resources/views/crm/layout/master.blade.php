@@ -10,7 +10,7 @@
     <style>
         {!! file_get_contents(asset('css/app.css')) !!}
     </style>
-    <title>Admin Panel - @yield('title')</title>
+    <title>CRM SlovoNet - @yield('title')</title>
 </head>
 <body>
 

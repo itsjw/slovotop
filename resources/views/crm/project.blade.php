@@ -1,7 +1,7 @@
 @extends('crm.layout.master')
 
 @section('title')
-    Projects
+    @lang('data.titleProject') - {{ Auth::user()->name }}
 @endsection()
 
 @section('HeadTitle')

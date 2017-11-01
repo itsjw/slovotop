@@ -28,8 +28,11 @@ return [
     'titleHome'     => 'Главная панель управления',
     'titleSettings' => 'Настройки',
     'titleRoles'    => 'Роли и права',
-    'titleUser'     => 'Управление пользователями',
-    'titleProject'  => 'Управление проектами',
+    'titleUser'     => 'Пользователи',
+    'titleProject'  => 'Проекты',
+    'titleTasks'    => 'Задачи',
+    'titleDoc'      => 'Документация',
+    'titleReports'  => 'Отчёты',
 
     // roles
     'roleName'      => 'Название роли',
