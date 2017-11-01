@@ -49,7 +49,7 @@ class DeletProjectMutation extends Mutation
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Project
-     * @apiPermission admin,user
+     * @apiPermission auth
      * @api           {post} v2 Project-Delete
      * @apiName       Project-Delete
      * @apiParam {String{1,2,3..}} items items

@@ -32719,7 +32719,7 @@ Vue.component('addProject', __webpack_require__(56));
             var _this = this;
 
             this.selectProject = [];
-            gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
+            gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
                 _this.projects = response.data.data.ProjectQuery;
             });
         },
@@ -32768,7 +32768,7 @@ Vue.component('addProject', __webpack_require__(56));
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectProject + '"'];
                 }
-                gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
+                gql.setItem('v1', 'DeleteProjectMutation', select).then(function (response) {
                     _this2.getProjects();
                 });
             }
@@ -32951,7 +32951,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProject: function getProject(id) {
             var _this2 = this;
 
-            gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
+            gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
                 _this2.project = response.data.data.ProjectQuery[0];
                 _this2.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
             });
@@ -32964,7 +32964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveProject: function saveProject() {
             var _this3 = this;
 
-            gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
+            gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
                 if (response.data.errors) {
                     _this3.errors = response.data.errors[0].validation;
                 } else {

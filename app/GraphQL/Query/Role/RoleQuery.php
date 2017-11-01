@@ -49,7 +49,7 @@ class RoleQuery extends Query
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Role
-     * @apiPermission admin
+     * @apiPermission auth
      * @api           {post} v1 Role-Query
      * @apiName       Role-Query
      * @apiParam {Integer} id

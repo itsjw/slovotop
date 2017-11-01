@@ -65,7 +65,7 @@ class ProjectQuery extends Query
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Project
-     * @apiPermission admin,user
+     * @apiPermission auth
      * @api           {post} v2 Project-Query
      * @apiName       Project-Query
      * @apiParam {Integer} id ID

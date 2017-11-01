@@ -49,7 +49,7 @@ class DeleteUserMutation extends Mutation
     /**
      * @apiVersion    0.1.0
      * @apiGroup      User
-     * @apiPermission admin
+     * @apiPermission auth
      * @api           {post} v1 User-Delete
      * @apiName       User-Delete
      * @apiParam {String{1,2,3...}} items items

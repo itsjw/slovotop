@@ -64,7 +64,7 @@ class UserQuery extends Query
     /**
      * @apiVersion    0.1.0
      * @apiGroup      User
-     * @apiPermission admin
+     * @apiPermission auth
      * @api           {post} v1 User-query
      * @apiName       User-query
      * @apiParam {Integer} id id

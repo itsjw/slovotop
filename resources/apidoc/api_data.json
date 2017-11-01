@@ -4,7 +4,7 @@
     "group": "Project",
     "permission": [
       {
-        "name": "admin,user"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -77,7 +77,7 @@
     "group": "Project",
     "permission": [
       {
-        "name": "admin,user"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -126,7 +126,7 @@
     "group": "Project",
     "permission": [
       {
-        "name": "admin,user"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -237,7 +237,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -294,7 +294,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -343,7 +343,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -426,7 +426,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -521,7 +521,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -570,7 +570,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -619,7 +619,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",
@@ -713,7 +713,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "admin"
+        "name": "auth"
       }
     ],
     "type": "post",

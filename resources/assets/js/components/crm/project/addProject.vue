@@ -114,7 +114,7 @@
              * @param id
              */
             getProject(id) {
-                gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project')
+                gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project')
                     .then(response => {
                         this.project = response.data.data.ProjectQuery[0];
                         this.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
@@ -125,7 +125,7 @@
              * save project
              */
             saveProject() {
-                gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project))
+                gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project))
                     .then(response => {
                         if (response.data.errors) {
                             this.errors = response.data.errors[0].validation;

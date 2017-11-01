@@ -49,7 +49,7 @@ class DeleteRoleMutation extends Mutation
     /**
      * @apiVersion    0.1.0
      * @apiGroup      Role
-     * @apiPermission admin
+     * @apiPermission auth
      * @api           {post} v1 Role-Delete
      * @apiName      Role-Delete
      * @apiParam {String{1,2,3..}} items items
