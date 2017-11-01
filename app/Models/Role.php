@@ -25,12 +25,4 @@ class Role extends Model
         return $this->hasMany(UserRole::class, 'role_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function accessMenu()
-    {
-        return $this->hasMany(AccessMenu::class, 'role_id', 'id');
-
-    }
 }

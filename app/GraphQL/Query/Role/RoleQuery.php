@@ -58,11 +58,10 @@ class RoleQuery extends Query
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} count count
-     * @apiSuccess {Object} accessMenu [accessMenu]
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ RoleQuery { id,name,count,accessMenu{menu_id,access,role_id}created_at,updated_at } }"}
+     * {"query":"{ RoleQuery { id,name,count,created_at,updated_at } }"}
      *
      * @param $root
      * @param $args

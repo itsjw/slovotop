@@ -20,9 +20,9 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function menuAccess()
+    public function accessMenu()
     {
-        return $this->hasOne(AccessMenu::class, 'menu_id', 'id');
+        return $this->hasMany(AccessMenu::class, 'menu_id', 'id');
     }
 
     /**
@@ -35,7 +35,7 @@ class Menu extends Model
     public function scopeCrm($query)
     {
         if ( ! \Auth::user()->hasRole(1)) {
-            $query->whereHas('menuAccess', function ($request) {
+            $query->whereHas('accessMenu', function ($request) {
                 $request->where('access', 1)->whereIn('role_id', \Auth::user()->getRoles());
             });
         }

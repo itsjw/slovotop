@@ -59,10 +59,11 @@ class MenuQuery extends Query
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} slug slug
      * @apiSuccess {Integer} refer refer
+     * @apiSuccess {Object} accessMenu [AccessMenuType]
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ MenuQuery { id,name,slug,refer,menuAccess,created_at,updated_at } }"}
+     * {"query":"{ MenuQuery { id,name,slug,refer,accessMenu{menu_id,access,role_id},created_at,updated_at } }"}
      *
      * @param $root
      * @param $args
@@ -73,7 +74,13 @@ class MenuQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Menu::query();
+        $query = Menu::query()->where('refer', 1);
+
+        $query->with([
+            'accessMenu' => function ($query) {
+                $query->whereIn('role_id', \Auth::user()->getRoles());
+            },
+        ]);
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);

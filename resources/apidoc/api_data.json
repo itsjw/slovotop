@@ -64,6 +64,13 @@
           },
           {
             "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "accessMenu",
+            "description": "<p>[AccessMenuType]</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Timestamp",
             "optional": false,
             "field": "created_at",
@@ -82,7 +89,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,menuAccess,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,accessMenu{menu_id,access,role_id},created_at,updated_at } }\"}",
         "type": "json"
       }
     ],
@@ -486,13 +493,6 @@
           },
           {
             "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "accessMenu",
-            "description": "<p>[accessMenu]</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "Timestamp",
             "optional": false,
             "field": "created_at",
@@ -511,7 +511,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ RoleQuery { id,name,count,accessMenu{menu_id,access,role_id}created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ RoleQuery { id,name,count,created_at,updated_at } }\"}",
         "type": "json"
       }
     ],
