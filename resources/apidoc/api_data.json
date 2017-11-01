@@ -1,6 +1,96 @@
 [
   {
     "version": "0.1.0",
+    "group": "Menu",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
+    "title": "Menu-Query",
+    "name": "Menu_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"{ MenuQuery ( id:1 ) { id,name...}\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>slug</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "refer",
+            "description": "<p>refer</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,menuAccess,created_at,updated_at } }\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/GraphQL/Query/Menu/MenuQuery.php",
+    "groupTitle": "Menu"
+  },
+  {
+    "version": "0.1.0",
     "group": "Project",
     "permission": [
       {

@@ -19,72 +19,20 @@
                         {{ trans('data.roleAccess') }}
                     </div>
                 </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
+
+                <div class="ui-mb-2 ui-grid-block"
+                v-for="(val,key) in menus">
+                    <div class="ui-grid-10">
                         <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleRoles') }}
+                            {{ val.name }}
                         </div>
                     </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_1"/>
-                        <label for="ch_1" class="ui-checkbox ui-color col-green"></label>
+                    <div class="ui-grid-2">
+                        <input type="checkbox" :id="'menu'+key"/>
+                        <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
                     </div>
                 </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleUser') }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_2"/>
-                        <label for="ch_2" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleTasks') }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_3"/>
-                        <label for="ch_3" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleProject') }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_4"/>
-                        <label for="ch_4" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleDoc') }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_5"/>
-                        <label for="ch_5" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
-                <div class="ui-mb-2 ui-grid-block">
-                    <div class="ui-grid-6">
-                        <div class="ui-fnt regular size-2 ui-color col-green">
-                            {{ trans('data.titleReports') }}
-                        </div>
-                    </div>
-                    <div class="ui-grid-6">
-                        <input type="checkbox" id="ch_6"/>
-                        <label for="ch_6" class="ui-checkbox ui-color col-green"></label>
-                    </div>
-                </div>
+
 
                 <div class="ui-mt-6">
                     <button type="button"
@@ -114,9 +62,10 @@
     export default {
 
         mounted() {
-            if(this.role_id > 0){
+            if (this.role_id > 0) {
                 this.getRole(this.role_id);
             }
+            this.getMenus();
         },
 
         props: {
@@ -128,7 +77,8 @@
         data() {
             return {
                 role: {},
-                errors: {}
+                errors: {},
+                menus: {}
             }
         },
 
@@ -141,6 +91,16 @@
                 gql.getItem('v1', 'RoleQuery', ['id:' + id], 'role')
                     .then(response => {
                         this.role = response.data.data.RoleQuery[0];
+                    })
+            },
+
+            /**
+             * get menus
+             */
+            getMenus() {
+                gql.getItem('v1', 'MenuQuery', false, 'menu')
+                    .then(response => {
+                        this.menus = response.data.data.MenuQuery;
                     })
             },
 

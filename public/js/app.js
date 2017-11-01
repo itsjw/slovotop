@@ -29951,9 +29951,9 @@ var Query = function () {
         _classCallCheck(this, Query);
 
         this.v1 = '/apps/v1';
-        this.v2 = '/apps/v2';
 
         this.id = 'id';
+        this.menu = 'id,name,slug,refer';
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
@@ -30485,64 +30485,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.role_id > 0) {
             this.getRole(this.role_id);
         }
+        this.getMenus();
     },
 
 
@@ -30555,7 +30504,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             role: {},
-            errors: {}
+            errors: {},
+            menus: {}
         };
     },
 
@@ -30575,16 +30525,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
+         * get menus
+         */
+        getMenus: function getMenus() {
+            var _this2 = this;
+
+            gql.getItem('v1', 'MenuQuery', false, 'menu').then(function (response) {
+                _this2.menus = response.data.data.MenuQuery;
+            });
+        },
+
+
+        /**
          * save project
          */
         saveRole: function saveRole() {
-            var _this2 = this;
+            var _this3 = this;
 
             gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
                 if (response.data.errors) {
-                    _this2.errors = response.data.errors[0].validation;
+                    _this3.errors = response.data.errors[0].validation;
                 } else {
-                    _this2.$emit('close');
+                    _this3.$emit('close');
                 }
             });
         },
@@ -30635,318 +30597,165 @@ var render = function() {
           [_vm._v("close")]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.roleName")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.role.name,
-                  expression: "role.name"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.role.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.role, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.roleAccess")) +
-                    "\n                "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
+        _c(
+          "div",
+          { staticClass: "ui-p-3" },
+          [
+            _c("div", { staticClass: "ui-mb-2" }, [
               _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleRoles")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
-              _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleUser")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
-              _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleTasks")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(2)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
-              _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleProject")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(3)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
-              _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleDoc")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(4)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
-            _c("div", { staticClass: "ui-grid-6" }, [
-              _c(
-                "div",
-                { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.trans("data.titleReports")) +
-                      "\n                    "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(5)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-6" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.saveRole()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.save")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("close")
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.cancel")) +
-                    "\n                "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui-mt-3" },
-            _vm._l(_vm.errors, function(val, key) {
-              return _c(
                 "div",
                 {
-                  staticClass:
-                    "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
                 },
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(val[0]) +
+                      _vm._s(_vm.trans("data.roleName")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.role.name,
+                    expression: "role.name"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.role.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.role, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-mb-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.roleAccess")) +
                       "\n                "
                   )
                 ]
               )
-            })
-          )
-        ])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.menus, function(val, key) {
+              return _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
+                _c("div", { staticClass: "ui-grid-10" }, [
+                  _c(
+                    "div",
+                    { staticClass: "ui-fnt regular size-2 ui-color col-green" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(val.name) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui-grid-2" }, [
+                  _c("input", {
+                    attrs: { type: "checkbox", id: "menu" + key }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "ui-checkbox ui-color col-green",
+                    attrs: { for: "menu" + key }
+                  })
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-mt-6" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.saveRole()
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.save")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.$emit("close")
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.cancel")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "ui-mt-3" },
+              _vm._l(_vm.errors, function(val, key) {
+                return _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-color col-red ui-fnt bold size-1 animated fadeIn"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(val[0]) +
+                        "\n                "
+                    )
+                  ]
+                )
+              })
+            )
+          ],
+          2
+        )
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_1" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_1" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_2" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_2" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_3" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_3" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_4" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_4" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_5" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_5" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-grid-6" }, [
-      _c("input", { attrs: { type: "checkbox", id: "ch_6" } }),
-      _vm._v(" "),
-      _c("label", {
-        staticClass: "ui-checkbox ui-color col-green",
-        attrs: { for: "ch_6" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

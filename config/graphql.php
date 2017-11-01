@@ -8,6 +8,8 @@ return [
     'schemas'         => [
         'v1' => [
             'query'      => [
+                // menu
+                'MenuQuery'    => App\GraphQL\Query\Menu\MenuQuery::class,
                 // user
                 'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
                 // role
@@ -32,6 +34,7 @@ return [
         ],
     ],
     'types'           => [
+        'MenuType'     => App\GraphQL\Type\MenuType::class,
         'RoleType'     => App\GraphQL\Type\RoleType::class,
         'UserType'     => App\GraphQL\Type\UserType::class,
         'UserRoleType' => App\GraphQL\Type\UserRoleType::class,
