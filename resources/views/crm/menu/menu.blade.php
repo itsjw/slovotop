@@ -1,6 +1,6 @@
-@foreach(App\Models\Menu::user() as $menu)
+@foreach(App\Models\Menu::admin() as $menu)
 
-    <a href="@if ($menu->slug) /user/{{$menu->slug}} @else  /  @endif"
+    <a href="@if ($menu->slug) /crm/{{$menu->slug}} @else  /  @endif"
        title="{{ $menu->name }}"
        class="ui-p-1 ui-color col-greyBlueLL hover admin-menu {{ explode('/',Request::getRequestUri())[2] === $menu->slug ? "active" : "" }} ">
 

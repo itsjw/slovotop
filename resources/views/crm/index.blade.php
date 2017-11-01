@@ -1,4 +1,4 @@
-@extends('admin.layout.master')
+@extends('crm.layout.master')
 
 @section('title')
     Home

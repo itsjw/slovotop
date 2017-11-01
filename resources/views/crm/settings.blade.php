@@ -1,20 +1,17 @@
-@extends('user.layout.master')
+@extends('crm.layout.master')
 
 @section('title')
-    Home
-@endsection
+    Settings
+@endsection()
+
 @section('HeadTitle')
     <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleHome')
+        @lang('data.titleSettings')
     </div>
 @endsection()
 
 @section('content')
 
-    <div class="ui-grid-block">
-
-
-
-    </div>
+    <admin-setting v-cloak></admin-setting>
 
 @endsection()

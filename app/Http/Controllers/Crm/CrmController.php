@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Crm;
 
 use App\Http\Controllers\Controller;
 
 /**
- * Class AdminController
+ * Class CrmController
  *
- * @package App\Http\Controllers\Admin
+ * @package App\Http\Controllers\Crm
  */
-class AdminController extends Controller
+class CrmController extends Controller
 {
     /**
      * Main admin
@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('crm.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function settings()
     {
-        return view('admin.settings');
+        return view('crm.settings');
     }
 
     /**
@@ -35,7 +35,7 @@ class AdminController extends Controller
      */
     public function roles()
     {
-        return view('admin.roles');
+        return view('crm.roles');
     }
 
     /**
@@ -45,7 +45,7 @@ class AdminController extends Controller
      */
     public function users()
     {
-        return view('admin.users');
+        return view('crm.users');
     }
 
     /**
@@ -53,6 +53,6 @@ class AdminController extends Controller
      */
     public function projects()
     {
-        return view('admin.project');
+        return view('crm.project');
     }
 }

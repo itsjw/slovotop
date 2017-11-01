@@ -82,25 +82,17 @@ class CreateMenusTable extends Migration
             'icon'    => 'receipt',
             'role_id' => 1,
         ]);
-
-        // user menu
         Menu::create([
-            'name'    => 'Главная',
-            'slug'    => 'home',
-            'icon'    => 'home',
-            'role_id' => 2,
+            'name'    => 'Документация',
+            'slug'    => 'docs',
+            'icon'    => 'insert_drive_file',
+            'role_id' => 1,
         ]);
         Menu::create([
-            'name'    => 'Настройки',
-            'slug'    => 'settings',
-            'icon'    => 'settings',
-            'role_id' => 2,
-        ]);
-        Menu::create([
-            'name'    => 'Проекты',
-            'slug'    => 'projects',
-            'icon'    => 'view_carousel',
-            'role_id' => 2,
+            'name'    => 'Отчеты',
+            'slug'    => 'reports',
+            'icon'    => 'view_list',
+            'role_id' => 1,
         ]);
     }
 }

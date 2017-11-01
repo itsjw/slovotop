@@ -21,7 +21,7 @@ class CreateRoleMatricesTable extends Migration
             $table->increments('id');
             $table->string('model');
             $table->string('field');
-            $table->integer('integer');
+            $table->integer('access');
             $table->integer('role_id');
             $table->timestamps();
         });

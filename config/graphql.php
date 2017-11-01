@@ -23,7 +23,7 @@ return [
                 'AddRoleMutation'     => App\GraphQL\Mutation\Role\AddRoleMutation::class,
                 'DeleteRoleMutation'  => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
             ],
-            'middleware' => ['isAdmin'],
+            'middleware' => ['auth'],
         ],
         'v2' => [
             'query'      => [

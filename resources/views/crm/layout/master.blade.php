@@ -20,7 +20,7 @@
 
         <div class="admin-left">
 
-            @include('admin.menu.menu')
+            @include('crm.menu.menu')
 
         </div>
 
@@ -28,7 +28,7 @@
 
             <div class="admin-head ui-pt-2 ui-pb-2">
 
-                @include('admin.head.head')
+                @include('crm.head.head')
 
             </div>
             <div class="admin-content ui-p-5">
@@ -38,7 +38,7 @@
             </div>
             <div class="admin-footer">
 
-                @include('admin.footer.footer')
+                @include('crm.footer.footer')
 
             </div>
 

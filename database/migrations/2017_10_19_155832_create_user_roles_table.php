@@ -25,6 +25,7 @@ class CreateUserRolesTable extends Migration
             $table->timestamps();
         });
 
+        // Admin Role
         UserRole::create([
             'user_id' => 1,
             'role_id' => 1,

@@ -1,17 +1,17 @@
-@extends('admin.layout.master')
+@extends('crm.layout.master')
 
 @section('title')
-    Roles
+    Users
 @endsection()
 
 @section('HeadTitle')
     <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleRoles')
+        @lang('data.titleUser')
     </div>
 @endsection()
 
 @section('content')
 
-    <admin-roles v-cloak></admin-roles>
+    <admin-users v-cloak></admin-users>
 
 @endsection()

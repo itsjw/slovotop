@@ -1,17 +1,17 @@
-@extends('user.layout.master')
+@extends('crm.layout.master')
 
 @section('title')
-    Projects
+    Roles
 @endsection()
 
 @section('HeadTitle')
     <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleProject')
+        @lang('data.titleRoles')
     </div>
 @endsection()
 
 @section('content')
 
-    <admin-projects user_id="{{ Auth::id() }}" v-cloak></admin-projects>
+    <admin-roles v-cloak></admin-roles>
 
 @endsection()
