@@ -632,6 +632,10 @@ template {
   background: #ffffff;
 }
 
+.ui-bg.bg-wite.active {
+  background: #ffffff;
+}
+
 .ui-bg.bg-blue {
   background: #337ab7;
 }
@@ -641,6 +645,10 @@ template {
 }
 
 .ui-bg.bg-blue.hover:hover {
+  background: #286090;
+}
+
+.ui-bg.bg-blue.active {
   background: #286090;
 }
 
@@ -656,6 +664,10 @@ template {
   background: #169F85;
 }
 
+.ui-bg.bg-green.active {
+  background: #169F85;
+}
+
 .ui-bg.bg-cyan {
   background: #5bc0de;
 }
@@ -665,6 +677,10 @@ template {
 }
 
 .ui-bg.bg-cyan.hover:hover {
+  background: #31b0d5;
+}
+
+.ui-bg.bg-cyan.active {
   background: #31b0d5;
 }
 
@@ -680,6 +696,10 @@ template {
   background: #c9302c;
 }
 
+.ui-bg.bg-red.active {
+  background: #c9302c;
+}
+
 .ui-bg.bg-yellow {
   background: #f0ad4e;
 }
@@ -689,6 +709,10 @@ template {
 }
 
 .ui-bg.bg-yellow.hover:hover {
+  background: #ec971f;
+}
+
+.ui-bg.bg-yellow.active {
   background: #ec971f;
 }
 
@@ -704,6 +728,10 @@ template {
   background: #E65100;
 }
 
+.ui-bg.bg-orange.active {
+  background: #E65100;
+}
+
 .ui-bg.bg-grey {
   background: #9E9E9E;
 }
@@ -713,6 +741,10 @@ template {
 }
 
 .ui-bg.bg-grey.hover:hover {
+  background: #616161;
+}
+
+.ui-bg.bg-grey.active {
   background: #616161;
 }
 
@@ -728,6 +760,10 @@ template {
   background: #394D5F;
 }
 
+.ui-bg.bg-greyBlue.active {
+  background: #394D5F;
+}
+
 .ui-bg.bg-greyLL {
   background: #FAFAFA;
 }
@@ -737,6 +773,10 @@ template {
 }
 
 .ui-bg.bg-greyLL.hover:hover {
+  background: #F5F5F5;
+}
+
+.ui-bg.bg-greyLL.active {
   background: #F5F5F5;
 }
 
@@ -752,6 +792,10 @@ template {
   background: #E0E0E0;
 }
 
+.ui-bg.bg-greyL.active {
+  background: #E0E0E0;
+}
+
 .ui-bg.bg-greyBlueLL {
   background: #ECEFF1;
 }
@@ -764,6 +808,10 @@ template {
   background: #CFD8DC;
 }
 
+.ui-bg.bg-greyBlueLL.active {
+  background: #CFD8DC;
+}
+
 .ui-bg.bg-greyBlueL {
   background: #B0BEC5;
 }
@@ -773,6 +821,10 @@ template {
 }
 
 .ui-bg.bg-greyBlueL.hover:hover {
+  background: #90A4AE;
+}
+
+.ui-bg.bg-greyBlueL.active {
   background: #90A4AE;
 }
 
@@ -1650,6 +1702,10 @@ template {
   background: #ffffff;
 }
 
+.ui-button.bg-wite.active {
+  background: #ffffff;
+}
+
 .ui-button.bg-blue {
   background: #337ab7;
 }
@@ -1659,6 +1715,10 @@ template {
 }
 
 .ui-button.bg-blue.hover:hover {
+  background: #286090;
+}
+
+.ui-button.bg-blue.active {
   background: #286090;
 }
 
@@ -1674,6 +1734,10 @@ template {
   background: #169F85;
 }
 
+.ui-button.bg-green.active {
+  background: #169F85;
+}
+
 .ui-button.bg-cyan {
   background: #5bc0de;
 }
@@ -1683,6 +1747,10 @@ template {
 }
 
 .ui-button.bg-cyan.hover:hover {
+  background: #31b0d5;
+}
+
+.ui-button.bg-cyan.active {
   background: #31b0d5;
 }
 
@@ -1698,6 +1766,10 @@ template {
   background: #c9302c;
 }
 
+.ui-button.bg-red.active {
+  background: #c9302c;
+}
+
 .ui-button.bg-yellow {
   background: #f0ad4e;
 }
@@ -1707,6 +1779,10 @@ template {
 }
 
 .ui-button.bg-yellow.hover:hover {
+  background: #ec971f;
+}
+
+.ui-button.bg-yellow.active {
   background: #ec971f;
 }
 
@@ -1722,6 +1798,10 @@ template {
   background: #E65100;
 }
 
+.ui-button.bg-orange.active {
+  background: #E65100;
+}
+
 .ui-button.bg-grey {
   background: #9E9E9E;
 }
@@ -1731,6 +1811,10 @@ template {
 }
 
 .ui-button.bg-grey.hover:hover {
+  background: #616161;
+}
+
+.ui-button.bg-grey.active {
   background: #616161;
 }
 
@@ -1746,6 +1830,10 @@ template {
   background: #394D5F;
 }
 
+.ui-button.bg-greyBlue.active {
+  background: #394D5F;
+}
+
 .ui-button.bg-greyLL {
   background: #FAFAFA;
 }
@@ -1755,6 +1843,10 @@ template {
 }
 
 .ui-button.bg-greyLL.hover:hover {
+  background: #F5F5F5;
+}
+
+.ui-button.bg-greyLL.active {
   background: #F5F5F5;
 }
 
@@ -1770,6 +1862,10 @@ template {
   background: #E0E0E0;
 }
 
+.ui-button.bg-greyL.active {
+  background: #E0E0E0;
+}
+
 .ui-button.bg-greyBlueLL {
   background: #ECEFF1;
 }
@@ -1782,6 +1878,10 @@ template {
   background: #CFD8DC;
 }
 
+.ui-button.bg-greyBlueLL.active {
+  background: #CFD8DC;
+}
+
 .ui-button.bg-greyBlueL {
   background: #B0BEC5;
 }
@@ -1791,6 +1891,10 @@ template {
 }
 
 .ui-button.bg-greyBlueL.hover:hover {
+  background: #90A4AE;
+}
+
+.ui-button.bg-greyBlueL.active {
   background: #90A4AE;
 }
 
@@ -2845,6 +2949,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #ffffff;
 }
 
+.ui-tag.bg-wite.active {
+  background: #ffffff;
+}
+
 .ui-tag.bg-blue {
   background: #337ab7;
 }
@@ -2854,6 +2962,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-blue.hover:hover {
+  background: #286090;
+}
+
+.ui-tag.bg-blue.active {
   background: #286090;
 }
 
@@ -2869,6 +2981,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #169F85;
 }
 
+.ui-tag.bg-green.active {
+  background: #169F85;
+}
+
 .ui-tag.bg-cyan {
   background: #5bc0de;
 }
@@ -2878,6 +2994,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-cyan.hover:hover {
+  background: #31b0d5;
+}
+
+.ui-tag.bg-cyan.active {
   background: #31b0d5;
 }
 
@@ -2893,6 +3013,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #c9302c;
 }
 
+.ui-tag.bg-red.active {
+  background: #c9302c;
+}
+
 .ui-tag.bg-yellow {
   background: #f0ad4e;
 }
@@ -2902,6 +3026,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-yellow.hover:hover {
+  background: #ec971f;
+}
+
+.ui-tag.bg-yellow.active {
   background: #ec971f;
 }
 
@@ -2917,6 +3045,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #E65100;
 }
 
+.ui-tag.bg-orange.active {
+  background: #E65100;
+}
+
 .ui-tag.bg-grey {
   background: #9E9E9E;
 }
@@ -2926,6 +3058,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-grey.hover:hover {
+  background: #616161;
+}
+
+.ui-tag.bg-grey.active {
   background: #616161;
 }
 
@@ -2941,6 +3077,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #394D5F;
 }
 
+.ui-tag.bg-greyBlue.active {
+  background: #394D5F;
+}
+
 .ui-tag.bg-greyLL {
   background: #FAFAFA;
 }
@@ -2950,6 +3090,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-greyLL.hover:hover {
+  background: #F5F5F5;
+}
+
+.ui-tag.bg-greyLL.active {
   background: #F5F5F5;
 }
 
@@ -2965,6 +3109,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #E0E0E0;
 }
 
+.ui-tag.bg-greyL.active {
+  background: #E0E0E0;
+}
+
 .ui-tag.bg-greyBlueLL {
   background: #ECEFF1;
 }
@@ -2977,6 +3125,10 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #CFD8DC;
 }
 
+.ui-tag.bg-greyBlueLL.active {
+  background: #CFD8DC;
+}
+
 .ui-tag.bg-greyBlueL {
   background: #B0BEC5;
 }
@@ -2986,6 +3138,10 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-greyBlueL.hover:hover {
+  background: #90A4AE;
+}
+
+.ui-tag.bg-greyBlueL.active {
   background: #90A4AE;
 }
 

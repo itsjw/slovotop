@@ -33974,6 +33974,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('accessTabMenu', __webpack_require__(87));
 
@@ -33986,11 +34015,19 @@ Vue.component('accessTabMenu', __webpack_require__(87));
     },
 
     data: function data() {
-        return {};
+        return {
+            tabs: ['active']
+        };
     },
 
 
-    methods: {}
+    methods: {
+        selectTab: function selectTab(key) {
+            //this.tabs = [];
+            this.tabs.splice(parseInt(key), 0, 'active');
+            console.log(key);
+        }
+    }
 });
 
 /***/ }),
@@ -34013,7 +34050,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      { staticClass: "ui-popup top w40 left animated fadeIn ui-bg bg-wite" },
       [
         _c(
           "div",
@@ -34031,7 +34068,118 @@ var render = function() {
         _c(
           "div",
           { staticClass: "ui-p-3" },
-          [_c("access-tab-menu", { attrs: { role: _vm.role_id } })],
+          [
+            _c("div", { staticClass: "ui-grid-block ui-fnt medium size-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[0],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(0)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleMenu")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[1],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(1)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleProject")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[2],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(2)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleTasks")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[3],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(3)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleDoc")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[4],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(4)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleReports")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.tabs[0]
+              ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
+              : _vm._e()
+          ],
           1
         )
       ]
@@ -34166,17 +34314,24 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyBlueLL" },
     _vm._l(_vm.menus, function(val, key) {
-      return _c("div", { staticClass: "ui-mb-2 ui-grid-block" }, [
+      return _c("div", { staticClass: "ui-grid-block" }, [
         _c("div", { staticClass: "ui-grid-10" }, [
           _c(
             "div",
             { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-            [_vm._v("\n                " + _vm._s(val.name) + "\n            ")]
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(val.name) +
+                  "\n                "
+              )
+            ]
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ui-grid-2" }, [
+        _c("div", { staticClass: "ui-grid-2 center" }, [
           _c("input", {
             directives: [
               {

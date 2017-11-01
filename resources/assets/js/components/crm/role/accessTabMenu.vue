@@ -1,21 +1,21 @@
 <template>
-    <div>
+    <div class="ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyBlueLL">
 
-        <div class="ui-mb-2 ui-grid-block"
-             v-for="(val,key) in menus">
-            <div class="ui-grid-10">
-                <div class="ui-fnt regular size-2 ui-color col-green">
-                    {{ val.name }}
+            <div class="ui-grid-block"
+                 v-for="(val,key) in menus">
+                <div class="ui-grid-10">
+                    <div class="ui-fnt regular size-2 ui-color col-green">
+                        {{ val.name }}
+                    </div>
+                </div>
+                <div class="ui-grid-2 center">
+                    <input type="checkbox"
+                           :id="'menu'+key"
+                           v-model="selectMenu"
+                           :value="val.id"/>
+                    <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
                 </div>
             </div>
-            <div class="ui-grid-2">
-                <input type="checkbox"
-                       :id="'menu'+key"
-                       v-model="selectMenu"
-                       :value="val.id"/>
-                <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
-            </div>
-        </div>
 
     </div>
 </template>
@@ -27,7 +27,7 @@
         },
 
         props: {
-            role:{}
+            role: {}
         },
 
         data() {

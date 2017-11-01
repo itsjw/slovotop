@@ -20,6 +20,9 @@
         background: $colorWite;
       }
     }
+    &.active {
+      background: $colorWite;
+    }
   }
   &.bg-blue {
     background: $colorBlue;
@@ -28,6 +31,9 @@
       &:hover {
         background: $colorBlueDark;
       }
+    }
+    &.active {
+      background: $colorBlueDark;
     }
   }
   &.bg-green {
@@ -38,6 +44,9 @@
         background: $colorGreenDark;
       }
     }
+    &.active {
+      background: $colorGreenDark;
+    }
   }
   &.bg-cyan {
     background: $colorCyan;
@@ -46,6 +55,9 @@
       &:hover {
         background: $colorCyanDark;
       }
+    }
+    &.active {
+      background: $colorCyanDark;
     }
   }
   &.bg-red {
@@ -56,6 +68,9 @@
         background: $colorRedDark;
       }
     }
+    &.active {
+      background: $colorRedDark;
+    }
   }
   &.bg-yellow {
     background: $colorYellow;
@@ -64,6 +79,9 @@
       &:hover {
         background: $colorYellowDark;
       }
+    }
+    &.active {
+      background: $colorYellowDark;
     }
   }
   &.bg-orange {
@@ -74,6 +92,9 @@
         background: $colorOrangeDark;
       }
     }
+    &.active {
+      background: $colorOrangeDark;
+    }
   }
   &.bg-grey {
     background: $colorGrey;
@@ -82,6 +103,9 @@
       &:hover {
         background: $colorGreyDark;
       }
+    }
+    &.active {
+      background: $colorGreyDark;
     }
   }
   &.bg-greyBlue {
@@ -92,6 +116,9 @@
         background: $colorGreyBlueDark;
       }
     }
+    &.active {
+      background: $colorGreyBlueDark;
+    }
   }
   &.bg-greyLL {
     background: $colorGrey_050;
@@ -100,6 +127,9 @@
       &:hover {
         background: $colorGrey_100;
       }
+    }
+    &.active {
+      background: $colorGrey_100;
     }
   }
   &.bg-greyL {
@@ -110,6 +140,9 @@
         background: $colorGrey_300;
       }
     }
+    &.active {
+      background: $colorGrey_300;
+    }
   }
   &.bg-greyBlueLL {
     background: $colorGreyBlue_050;
@@ -119,6 +152,9 @@
         background: $colorGreyBlue_100;
       }
     }
+    &.active {
+      background: $colorGreyBlue_100;
+    }
   }
   &.bg-greyBlueL {
     background: $colorGreyBlue_200;
@@ -127,6 +163,9 @@
       &:hover {
         background: $colorGreyBlue_300;
       }
+    }
+    &.active {
+      background: $colorGreyBlue_300;
     }
   }
 }

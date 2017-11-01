@@ -25,12 +25,13 @@ return [
     'tasks'         => 'Задачи',
 
     // admin title
+    'titleMenu'     => 'Разделы',
     'titleHome'     => 'Главная панель управления',
     'titleSettings' => 'Настройки',
     'titleRoles'    => 'Роли и права',
     'titleUser'     => 'Пользователи',
-    'titleTasks'    => 'Задачи',
     'titleProject'  => 'Проекты',
+    'titleTasks'    => 'Задачи',
     'titleDoc'      => 'Документация',
     'titleReports'  => 'Отчёты',
 
