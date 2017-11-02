@@ -147,7 +147,7 @@ define({ "api": [
             "type": "Object",
             "optional": false,
             "field": "accessMenu",
-            "description": "<p>[AccessMenuType]</p>"
+            "description": "<p>[AccessMenuType] (single)</p>"
           },
           {
             "group": "Success 200",

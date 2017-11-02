@@ -69,7 +69,7 @@ class MenuQuery extends Query
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} slug slug
      * @apiSuccess {Integer} refer refer
-     * @apiSuccess {Object} accessMenu [AccessMenuType]
+     * @apiSuccess {Object} accessMenu [AccessMenuType] (single)
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
