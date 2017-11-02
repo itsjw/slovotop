@@ -92,7 +92,7 @@
                 <th width="10%">{{ trans('data.userConfirm') }}</th>
                 <th width="20%">{{ trans('data.userRole') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
-                <th width="10%">{{ trans('data.updated_at') }}</th>
+                <th width="10%">{{ trans('data.userTasks') }}</th>
                 <th width="5%">
                     <div class="ui-grid-block center">
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
@@ -121,7 +121,7 @@
                     </span>
                 </td>
                 <td>{{ val.created_at }}</td>
-                <td>{{ val.updated_at }}</td>
+                <td>{{ val.tasksCount }}</td>
                 <td>{{ val.id }}</td>
             </tr>
             </tbody>

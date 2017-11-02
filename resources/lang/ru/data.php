@@ -49,6 +49,7 @@ return [
     'userSurname'   => 'Фамилия',
     'userConfirm'   => 'Подтверждён',
     'userRole'      => 'Роль',
+    'userTasks'     => 'Задачи',
 
     // Projects
     'projectName'   => 'Название проекта',

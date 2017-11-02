@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -53,6 +54,14 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->hasMany(UserRole::class, 'user_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(UserTask::class, 'user_id', 'id');
     }
 
     /**

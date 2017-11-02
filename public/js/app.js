@@ -29955,7 +29955,7 @@ var Query = function () {
         this.id = 'id';
         this.menu = 'id,name,slug,refer,accessMenu{id,menu_id,access,role_id}';
         this.role = 'id,name,created_at,updated_at,count';
-        this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,updated_at';
+        this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
 
@@ -32838,7 +32838,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.updated_at")))
+                _vm._v(_vm._s(_vm.trans("data.userTasks")))
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "5%" } }, [
@@ -32959,7 +32959,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.created_at))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.updated_at))]),
+                _c("td", [_vm._v(_vm._s(val.tasksCount))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.id))])
               ]

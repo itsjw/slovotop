@@ -992,6 +992,13 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "tasksCount",
+            "description": "<p>tasksCount</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Timestamp",
             "optional": false,
             "field": "created_at",
@@ -1010,7 +1017,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ UserQuery { id,name,surname,email,role{id,name},confirm,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ UserQuery { id,name,surname,email,role{id,name},tasksCount,confirm,created_at,updated_at } }\"}",
         "type": "json"
       }
     ],

@@ -45,7 +45,7 @@ class UserType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'User email',
             ],
-            'confirm'      => [
+            'confirm'    => [
                 'type'        => Type::string(),
                 'description' => 'User confirm',
             ],
@@ -57,9 +57,13 @@ class UserType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'User updated_at',
             ],
-            'roles'       => [
+            'roles'      => [
                 'type'        => Type::listOf(\GraphQL::type('UserRoleType')),
                 'description' => 'User role',
+            ],
+            'tasksCount' => [
+                'type'        => Type::int(),
+                'description' => 'User tasksCount',
             ],
         ];
     }

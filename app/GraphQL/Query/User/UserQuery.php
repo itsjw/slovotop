@@ -80,10 +80,11 @@ class UserQuery extends Query
      * @apiSuccess {String} email email
      * @apiSuccess {Boolean} confirm confirm
      * @apiSuccess {Object} roles [Roles]
+     * @apiSuccess {Integer} tasksCount tasksCount
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ UserQuery { id,name,surname,email,role{id,name},confirm,created_at,updated_at } }"}
+     * {"query":"{ UserQuery { id,name,surname,email,role{id,name},tasksCount,confirm,created_at,updated_at } }"}
      *
      * @param $root
      * @param $args
