@@ -7,7 +7,7 @@ use Illuminate\Routing\Router;
  * @var Router $router
  */
 
-$router->group(['namespace' => 'Crm', 'prefix' => 'crm', 'middleware' => ['auth']], function (Router $router) {
+$router->group(['namespace' => 'Crm', 'prefix' => 'crm', 'middleware' => ['auth','accessRoute']], function (Router $router) {
 
     $router->get('home', 'CrmController@index')->name('crmHome');
     $router->get('settings', 'CrmController@settings')->name('crmSettings');
