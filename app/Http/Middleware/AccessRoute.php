@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 
 use App\Models\Menu;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AccessRoute
