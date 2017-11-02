@@ -59,13 +59,21 @@ class AddUserMutation extends Mutation
                 'rules' => ['required'],
             ],
             'password' => [
-                'name'  => 'password',
-                'type'  => Type::string(),
-                'rules' => ['required', 'min:6'],
+                'name' => 'password',
+                'type' => Type::string(),
             ],
             'confirm'  => [
                 'name' => 'confirm',
                 'type' => Type::int(),
+            ],
+            'up_price' => [
+                'name' => 'up_price',
+                'type' => Type::float(),
+                'rules' => ['numeric'],
+            ],
+            'note'     => [
+                'name' => 'note',
+                'type' => Type::string(),
             ],
         ];
     }
@@ -83,8 +91,10 @@ class AddUserMutation extends Mutation
      * @apiParam {String{required}} role role (1,2,3)
      * @apiParam {String{required,min:6}} password password
      * @apiParam {String} confirm confirm
+     * @apiParam {Float} up_price up_price
+     * @apiParam {String} note note
      * @apiParamExample {json} Request-Example:
-     * {"query":"mutation { AddUserMutation (id: 0,name:"name",surname:"surname",email:"email",role: "1,2",confirm:
+     * {"query":"mutation { AddUserMutation (id: 0,name:"name",email:"email",role: "1,2",confirm:
      * 1,password: "password" ) { id } }"}
      * @apiSuccess {Object} user [User]
      *
@@ -104,11 +114,22 @@ class AddUserMutation extends Mutation
         $user->up_price = $args['up_price'];
         $user->note     = $args['note'];
         $user->confirm  = $args['confirm'];
-        $user->password = bcrypt($args['password']);
+
+        if (isset($args['password'])) {
+            $user->password = bcrypt($args['password']);
+        } else {
+            $pass           = str_random(8);
+            $user->password = bcrypt($pass);
+        }
 
         $user->save();
 
         $user->roles()->createMany($this->cleanRole($args['role']));
+
+        /**
+         * TODO
+         * send email
+         */
 
         return UserSerialize::serialize($user);
 

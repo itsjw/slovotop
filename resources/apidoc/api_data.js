@@ -666,13 +666,27 @@ define({ "api": [
             "optional": false,
             "field": "confirm",
             "description": "<p>confirm</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "up_price",
+            "description": "<p>up_price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "note",
+            "description": "<p>note</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"mutation { AddUserMutation (id: 0,name:\"name\",surname:\"surname\",email:\"email\",role: \"1,2\",confirm:\n1,password: \"password\" ) { id } }\"}",
+          "content": "{\"query\":\"mutation { AddUserMutation (id: 0,name:\"name\",email:\"email\",role: \"1,2\",confirm:\n1,password: \"password\" ) { id } }\"}",
           "type": "json"
         }
       ]
@@ -858,13 +872,27 @@ define({ "api": [
             "optional": false,
             "field": "confirm",
             "description": "<p>confirm</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "up_price",
+            "description": "<p>up_price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "note",
+            "description": "<p>note</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"mutation { UpdateUserMutation (id: 1,name:\"name\",surname:\"surname\",email:\"email\",role: \"1,2\",confirm:\n1,password: \"password\" ) { id } }\"}",
+          "content": "{\"query\":\"mutation { UpdateUserMutation (id: 1,name:\"name\",email:\"email\",role: \"1,2\",confirm:\n1,password: \"password\" ) { id } }\"}",
           "type": "json"
         }
       ]
@@ -964,6 +992,20 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Float",
+            "optional": false,
+            "field": "up_price",
+            "description": "<p>up_price</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "note",
+            "description": "<p>note</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Boolean",
             "optional": false,
             "field": "confirm",
@@ -1003,7 +1045,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ UserQuery { id,name,surname,email,role{id,name},tasksCount,confirm,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ UserQuery { id,name,email,role{id,name},tasksCount,up_price,note,confirm,created_at,updated_at } }\"}",
         "type": "json"
       }
     ],

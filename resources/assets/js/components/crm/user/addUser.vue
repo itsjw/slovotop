@@ -4,7 +4,8 @@
         <div class="ui-popup top w400 left animated fadeIn ui-bg bg-wite">
             <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
             <div class="ui-p-3">
-                <div class="ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1">
+                <div class="ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1"
+                     v-if="user_id == 0">
                     {{ trans('data.informUseAdd') }}
                 </div>
 
@@ -77,7 +78,7 @@
                         {{ trans('data.userUpPrice') }}
                     </div>
                     <input class="ui-input green focus ui-fnt light size-1"
-                           type="email"
+                           type="number"
                            v-model="user.up_price">
                 </div>
                 <div class="ui-mb-1">
@@ -222,6 +223,8 @@
                     id: ${this.user_id == 0 ? this.user_id : user.id},
                     name: "${user.name || ''}",
                     email: "${user.email || ''}",
+                    up_price: ${user.up_price || 0},
+                    note: "${_.unescape(user.note) || ''}",
                     role: "${this.cleanRole || ''}",
                     confirm: ${parseInt(user.confirm)},
                     password: "${user.password || ''}"`;

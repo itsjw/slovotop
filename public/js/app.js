@@ -29955,7 +29955,7 @@ var Query = function () {
         this.id = 'id';
         this.menu = 'id,name,slug,refer,accessMenu{id,menu_id,access,role_id}';
         this.role = 'id,name,created_at,updated_at,count';
-        this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount';
+        this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
 
@@ -31948,6 +31948,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -32063,7 +32064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         getUserData: function getUserData(user) {
 
-            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
+            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
         },
 
 
@@ -32118,20 +32119,22 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "ui-p-3" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1"
-            },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.trans("data.informUseAdd")) +
-                  "\n            "
+          _vm.user_id == 0
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1"
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("data.informUseAdd")) +
+                      "\n            "
+                  )
+                ]
               )
-            ]
-          ),
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "ui-mb-1" }, [
             _c(
@@ -32445,7 +32448,7 @@ var render = function() {
                 }
               ],
               staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "email" },
+              attrs: { type: "number" },
               domProps: { value: _vm.user.up_price },
               on: {
                 input: function($event) {

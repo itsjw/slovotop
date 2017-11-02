@@ -67,6 +67,15 @@ class UpdateUserMutation extends Mutation
                 'name' => 'confirm',
                 'type' => Type::int(),
             ],
+            'up_price' => [
+                'name'  => 'up_price',
+                'type'  => Type::float(),
+                'rules' => ['numeric'],
+            ],
+            'note'     => [
+                'name' => 'note',
+                'type' => Type::string(),
+            ],
         ];
     }
 
@@ -83,8 +92,10 @@ class UpdateUserMutation extends Mutation
      * @apiParam {String{required}} role role (1,2,3)
      * @apiParam {String} password password
      * @apiParam {String} confirm confirm
+     * @apiParam {Float} up_price up_price
+     * @apiParam {String} note note
      * @apiParamExample {json} Request-Example:
-     * {"query":"mutation { UpdateUserMutation (id: 1,name:"name",surname:"surname",email:"email",role: "1,2",confirm:
+     * {"query":"mutation { UpdateUserMutation (id: 1,name:"name",email:"email",role: "1,2",confirm:
      * 1,password: "password" ) { id } }"}
      * @apiSuccess {Object} user [User]
      *
@@ -99,9 +110,11 @@ class UpdateUserMutation extends Mutation
     {
         $user = User::findOrfail($args['id']);
 
-        $user->name    = $args['name'];
-        $user->email   = $this->validMail($args);
-        $user->confirm = $user->hasRole(1) ? 1 : $args['confirm'];
+        $user->name     = $args['name'];
+        $user->email    = $this->validMail($args);
+        $user->up_price = $args['up_price'];
+        $user->note     = $args['note'];
+        $user->confirm  = $user->hasRole(1) ? 1 : $args['confirm'];
 
         if ($args['password']) {
             $user->password = bcrypt($args['password']);
@@ -111,6 +124,11 @@ class UpdateUserMutation extends Mutation
 
         $user->roles()->delete();
         $user->roles()->createMany($this->cleanRole($args['role']));
+
+        /**
+         * TODO
+         * send email
+         */
 
         return UserSerialize::serialize($user);
 

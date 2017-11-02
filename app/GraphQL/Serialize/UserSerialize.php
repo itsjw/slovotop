@@ -24,6 +24,8 @@ class UserSerialize extends Serialize
             'name'       => $user->name,
             'email'      => $user->email,
             'confirm'    => $user->confirm,
+            'up_price'   => $user->up_price,
+            'note'       => $user->note,
             'tasksCount' => $user->tasks()->count(),
             'roles'      => UserRolesSerialize::collection($user->roles),
             'created_at' => $user->created_at->format('d-m-Y H:m:s'),
