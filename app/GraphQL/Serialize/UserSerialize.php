@@ -22,7 +22,6 @@ class UserSerialize extends Serialize
         return [
             'id'         => $user->id,
             'name'       => $user->name,
-            'surname'    => $user->surname,
             'email'      => $user->email,
             'confirm'    => $user->confirm,
             'tasksCount' => $user->tasks()->count(),

@@ -1,10 +1,14 @@
 <template>
     <div>
         <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
+        <div class="ui-popup top w400 left animated fadeIn ui-bg bg-wite">
             <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
             <div class="ui-p-3">
-                <div class="ui-mb-2">
+                <div class="ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1">
+                    {{ trans('data.informUseAdd') }}
+                </div>
+
+                <div class="ui-mb-1">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.userName') }}
                     </div>
@@ -12,15 +16,7 @@
                            type="text"
                            v-model="user.name">
                 </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.userSurname') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="text"
-                           v-model="user.surname">
-                </div>
-                <div class="ui-mb-2">
+                <div class="ui-mb-1">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.userEmail') }}
                     </div>
@@ -28,7 +24,7 @@
                            type="email"
                            v-model="user.email">
                 </div>
-                <div class="ui-mb-2">
+                <div class="ui-mb-1">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.userPassword') }}
                     </div>
@@ -36,7 +32,7 @@
                            type="password"
                            v-model="user.password">
                 </div>
-                <div class="ui-mb-2 ui-block-flex">
+                <div class="ui-mb-1 ui-block-flex">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mr-2">
                         {{ trans('data.userConfirm') }}
                     </div>
@@ -46,26 +42,28 @@
                            v-bind:false-value="0"/>
                     <label for="conf" class="ui-checkbox ui-color col-green hover"></label>
                 </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex">
-                        <i class="ui-icon size-5 ui-color col-green hover"
-                           @click="getRoles()">add_circle</i>
-                        <span class="ui-pl-2">{{ trans('data.userRole') }}</span>
+                <div class="ui-mb-1">
+                    <div class="ui-block-flex">
 
-                        <div class="ui-popup-bg" @click="showRoles=false" v-if="showRoles"></div>
-                        <div class="ui-popup ui-bg bg-wite" v-if="showRoles">
-                            <table>
-                                <tbody>
-                                <tr v-for="(val,key) in roles"
-                                    class="hover ui-fnt regular size-1 ui-color col-blue">
-                                    <td class="left" @click="addRole(key)">{{ val.name }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex">
+                            <span class="ui-pr-2">{{ trans('data.userRole') }}</span>
+                            <i class="ui-icon size-5 ui-color col-green hover"
+                               @click="getRoles()">add_circle</i>
+
+                            <div class="ui-popup-bg" @click="showRoles=false" v-if="showRoles"></div>
+                            <div class="ui-popup ui-bg bg-wite" v-if="showRoles">
+                                <table>
+                                    <tbody>
+                                    <tr v-for="(val,key) in roles"
+                                        class="hover ui-fnt regular size-1 ui-color col-blue">
+                                        <td class="left" @click="addRole(key)">{{ val.name }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
 
-                    </div>
-                    <div class="ui-block-flex">
                         <div v-for="(item,k) in user.roles"
                              class="ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn">
                             {{ item.role.name }}
@@ -74,7 +72,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="ui-mt-5">
+                <div class="ui-mb-1">
+                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                        {{ trans('data.userUpPrice') }}
+                    </div>
+                    <input class="ui-input green focus ui-fnt light size-1"
+                           type="email"
+                           v-model="user.up_price">
+                </div>
+                <div class="ui-mb-1">
+                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                        {{ trans('data.userNote') }}
+                    </div>
+                    <textarea class="ui-input green focus ui-fnt light size-1"
+                              v-model="user.note"></textarea>
+                </div>
+
+
+                <div class="ui-mt-3">
                     <button type="button"
                             class="ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2"
                             @click="saveUser()">
@@ -206,7 +221,6 @@
                 return `
                     id: ${this.user_id == 0 ? this.user_id : user.id},
                     name: "${user.name || ''}",
-                    surname: "${user.surname || ''}",
                     email: "${user.email || ''}",
                     role: "${this.cleanRole || ''}",
                     confirm: ${parseInt(user.confirm)},

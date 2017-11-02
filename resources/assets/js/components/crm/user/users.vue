@@ -34,7 +34,7 @@
                        @click="getUsers()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="10%" class="left">
+                <th width="30%" class="left">
                     <div class="ui-grid-block">
 
                         <search-pop
@@ -52,26 +52,7 @@
                         <span>{{ trans('data.userName') }}</span>
                     </div>
                 </th>
-                <th width="15%" class="left">
-                    <div class="ui-grid-block">
-
-                        <search-pop
-                            v-if="showSearchSurname"
-                            position="left"
-                            type="surname"
-                            @submit="search"
-                            @close="closePopUp()"></search-pop>
-
-
-                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="showSearchSurname=true">search</i>
-                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
-                           v-show="queryParams[1]"
-                           @click="search()">close</i>
-                        <span>{{ trans('data.userSurname') }}</span>
-                    </div>
-                </th>
-                <th width="15%" class="left">
+                <th width="20%" class="left">
                     <div class="ui-grid-block">
 
                         <search-pop
@@ -112,7 +93,6 @@
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
-                <td class="left">{{ val.surname }}</td>
                 <td class="left">{{ val.email }}</td>
                 <td>{{ val.confirm == 1 ? trans('data.yes') : trans('data.no') }}</td>
                 <td>

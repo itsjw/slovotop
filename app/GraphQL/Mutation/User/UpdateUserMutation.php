@@ -49,10 +49,6 @@ class UpdateUserMutation extends Mutation
                 'type'  => Type::string(),
                 'rules' => ['required'],
             ],
-            'surname'  => [
-                'name' => 'surname',
-                'type' => Type::string(),
-            ],
             'email'    => [
                 'name'  => 'email',
                 'type'  => Type::string(),
@@ -104,7 +100,6 @@ class UpdateUserMutation extends Mutation
         $user = User::findOrfail($args['id']);
 
         $user->name    = $args['name'];
-        $user->surname = $args['surname'] ?? '';
         $user->email   = $this->validMail($args);
         $user->confirm = $user->hasRole(1) ? 1 : $args['confirm'];
 

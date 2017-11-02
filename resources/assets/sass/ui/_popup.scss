@@ -18,7 +18,7 @@
   z-index: 999;
   @include BlockShadow;
   border-radius: 3px;
-  padding: 20px;
+  padding: 15px;
 
   &.top {
     top: 5%;
@@ -82,6 +82,22 @@
     &.left {
       left: 50%;
       margin-left: -25%;
+    }
+  }
+  &.w300 {
+    width: 300px;
+
+    &.left {
+      left: 50%;
+      margin-left: -150px;
+    }
+  }
+  &.w400 {
+    width: 400px;
+
+    &.left {
+      left: 50%;
+      margin-left: -200px;
     }
   }
 }

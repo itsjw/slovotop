@@ -48,10 +48,6 @@ class AddUserMutation extends Mutation
                 'type'  => Type::string(),
                 'rules' => ['required'],
             ],
-            'surname'  => [
-                'name' => 'surname',
-                'type' => Type::string(),
-            ],
             'email'    => [
                 'name'  => 'email',
                 'type'  => Type::string(),
@@ -104,8 +100,9 @@ class AddUserMutation extends Mutation
         $user = new User();
 
         $user->name     = $args['name'];
-        $user->surname  = $args['surname'] ?? '';
         $user->email    = $args['email'];
+        $user->up_price = $args['up_price'];
+        $user->note     = $args['note'];
         $user->confirm  = $args['confirm'];
         $user->password = bcrypt($args['password']);
 

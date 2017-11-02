@@ -1519,7 +1519,7 @@ template {
   padding: 10px 15px;
   cursor: pointer;
   outline: none;
-  border-radius: 0px;
+  border-radius: 3px;
 }
 
 .ui-button.col-wite {
@@ -1985,8 +1985,8 @@ textarea.ui-input {
 }
 
 .ui-input {
-  padding: 10px;
-  border-radius: 0px;
+  padding: 5px;
+  border-radius: 3px;
   width: 100%;
 }
 
@@ -2622,7 +2622,7 @@ input[type=radio]:checked + label.ui-radio:before {
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
           box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   border-radius: 3px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .ui-popup.top {
@@ -2861,6 +2861,24 @@ input[type=radio]:checked + label.ui-radio:before {
 .ui-popup.w50.left {
   left: 50%;
   margin-left: -25%;
+}
+
+.ui-popup.w300 {
+  width: 300px;
+}
+
+.ui-popup.w300.left {
+  left: 50%;
+  margin-left: -150px;
+}
+
+.ui-popup.w400 {
+  width: 400px;
+}
+
+.ui-popup.w400.left {
+  left: 50%;
+  margin-left: -200px;
 }
 
 .ui-popup-tip {
@@ -3142,6 +3160,219 @@ input[type=radio]:checked + label.ui-radio:before {
 }
 
 .ui-tag.bg-greyBlueL.active {
+  background: #90A4AE;
+}
+
+.ui-inform {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.ui-inform.bg-wite {
+  background: #ffffff;
+}
+
+.ui-inform.bg-wite.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-wite.hover:hover {
+  background: #ffffff;
+}
+
+.ui-inform.bg-wite.active {
+  background: #ffffff;
+}
+
+.ui-inform.bg-blue {
+  background: #337ab7;
+}
+
+.ui-inform.bg-blue.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-blue.hover:hover {
+  background: #286090;
+}
+
+.ui-inform.bg-blue.active {
+  background: #286090;
+}
+
+.ui-inform.bg-green {
+  background: #26B99A;
+}
+
+.ui-inform.bg-green.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-green.hover:hover {
+  background: #169F85;
+}
+
+.ui-inform.bg-green.active {
+  background: #169F85;
+}
+
+.ui-inform.bg-cyan {
+  background: #5bc0de;
+}
+
+.ui-inform.bg-cyan.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-cyan.hover:hover {
+  background: #31b0d5;
+}
+
+.ui-inform.bg-cyan.active {
+  background: #31b0d5;
+}
+
+.ui-inform.bg-red {
+  background: #d9534f;
+}
+
+.ui-inform.bg-red.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-red.hover:hover {
+  background: #c9302c;
+}
+
+.ui-inform.bg-red.active {
+  background: #c9302c;
+}
+
+.ui-inform.bg-yellow {
+  background: #f0ad4e;
+}
+
+.ui-inform.bg-yellow.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-yellow.hover:hover {
+  background: #ec971f;
+}
+
+.ui-inform.bg-yellow.active {
+  background: #ec971f;
+}
+
+.ui-inform.bg-orange {
+  background: #FF9800;
+}
+
+.ui-inform.bg-orange.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-orange.hover:hover {
+  background: #E65100;
+}
+
+.ui-inform.bg-orange.active {
+  background: #E65100;
+}
+
+.ui-inform.bg-grey {
+  background: #9E9E9E;
+}
+
+.ui-inform.bg-grey.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-grey.hover:hover {
+  background: #616161;
+}
+
+.ui-inform.bg-grey.active {
+  background: #616161;
+}
+
+.ui-inform.bg-greyBlue {
+  background: #4B5F71;
+}
+
+.ui-inform.bg-greyBlue.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-greyBlue.hover:hover {
+  background: #394D5F;
+}
+
+.ui-inform.bg-greyBlue.active {
+  background: #394D5F;
+}
+
+.ui-inform.bg-greyLL {
+  background: #FAFAFA;
+}
+
+.ui-inform.bg-greyLL.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-greyLL.hover:hover {
+  background: #F5F5F5;
+}
+
+.ui-inform.bg-greyLL.active {
+  background: #F5F5F5;
+}
+
+.ui-inform.bg-greyL {
+  background: #EEEEEE;
+}
+
+.ui-inform.bg-greyL.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-greyL.hover:hover {
+  background: #E0E0E0;
+}
+
+.ui-inform.bg-greyL.active {
+  background: #E0E0E0;
+}
+
+.ui-inform.bg-greyBlueLL {
+  background: #ECEFF1;
+}
+
+.ui-inform.bg-greyBlueLL.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-greyBlueLL.hover:hover {
+  background: #CFD8DC;
+}
+
+.ui-inform.bg-greyBlueLL.active {
+  background: #CFD8DC;
+}
+
+.ui-inform.bg-greyBlueL {
+  background: #B0BEC5;
+}
+
+.ui-inform.bg-greyBlueL.hover {
+  cursor: pointer;
+}
+
+.ui-inform.bg-greyBlueL.hover:hover {
+  background: #90A4AE;
+}
+
+.ui-inform.bg-greyBlueL.active {
   background: #90A4AE;
 }
 

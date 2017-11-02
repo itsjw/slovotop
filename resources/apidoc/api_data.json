@@ -925,13 +925,6 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "surname",
-            "description": "<p>surname</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "email",
             "description": "<p>email</p>"
           }
@@ -961,13 +954,6 @@
             "optional": false,
             "field": "name",
             "description": "<p>name</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "surname",
-            "description": "<p>surname</p>"
           },
           {
             "group": "Success 200",

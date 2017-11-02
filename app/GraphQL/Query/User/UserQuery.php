@@ -50,10 +50,6 @@ class UserQuery extends Query
                 'name' => 'name',
                 'type' => Type::string(),
             ],
-            'surname' => [
-                'name' => 'surname',
-                'type' => Type::string(),
-            ],
             'email'   => [
                 'name' => 'email',
                 'type' => Type::string(),
@@ -70,21 +66,21 @@ class UserQuery extends Query
      * @apiParam {Integer} id id
      * @apiParam {String} orderID order by ID
      * @apiParam {String} name name
-     * @apiParam {String} surname surname
      * @apiParam {String} email email
      * @apiParamExample {json} Request-Example:
      * {"query":"{ UserQuery ( id:1,orderID:"asc" ) { id,name,surname,...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
-     * @apiSuccess {String} surname surname
      * @apiSuccess {String} email email
+     * @apiSuccess {Float} up_price up_price
+     * @apiSuccess {String} note note
      * @apiSuccess {Boolean} confirm confirm
      * @apiSuccess {Object} roles [Roles]
      * @apiSuccess {Integer} tasksCount tasksCount
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ UserQuery { id,name,surname,email,role{id,name},tasksCount,confirm,created_at,updated_at } }"}
+     * {"query":"{ UserQuery { id,name,email,role{id,name},tasksCount,up_price,note,confirm,created_at,updated_at } }"}
      *
      * @param $root
      * @param $args
@@ -102,9 +98,6 @@ class UserQuery extends Query
         }
         if (isset($args['name'])) {
             $query->where('name', 'like', '%'.$args['name'].'%');
-        }
-        if (isset($args['surname'])) {
-            $query->where('surname', 'like', '%'.$args['surname'].'%');
         }
         if (isset($args['email'])) {
             $query->where('email', 'like', '%'.$args['email'].'%');

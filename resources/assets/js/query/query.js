@@ -11,7 +11,7 @@ export default class Query {
         this.id = `id`;
         this.menu = `id,name,slug,refer,accessMenu{id,menu_id,access,role_id}`;
         this.role = `id,name,created_at,updated_at,count`;
-        this.user = `id,name,surname,email,roles{id,role{${this.role}}},confirm,created_at,tasksCount`;
+        this.user = `id,name,email,roles{id,role{${this.role}}},confirm,created_at,tasksCount`;
         this.project = `id,name,site,user{${this.user}},created_at,updated_at`;
 
     }

@@ -29955,7 +29955,7 @@ var Query = function () {
         this.id = 'id';
         this.menu = 'id,name,slug,refer,accessMenu{id,menu_id,access,role_id}';
         this.role = 'id,name,created_at,updated_at,count';
-        this.user = 'id,name,surname,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount';
+        this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
     }
 
@@ -31632,26 +31632,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 Vue.component('addUser', __webpack_require__(56));
 
@@ -31953,6 +31933,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -32068,7 +32063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         getUserData: function getUserData(user) {
 
-            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                surname: "' + (user.surname || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
+            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
         },
 
 
@@ -32107,7 +32102,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      { staticClass: "ui-popup top w400 left animated fadeIn ui-bg bg-wite" },
       [
         _c(
           "div",
@@ -32123,7 +32118,22 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "ui-inform bg-cyan ui-color col-wite ui-mb-1 ui-fnt light size-1"
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("data.informUseAdd")) +
+                  "\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-1" }, [
             _c(
               "div",
               {
@@ -32161,45 +32171,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.userSurname")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.surname,
-                  expression: "user.surname"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.user.surname },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.user, "surname", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
+          _c("div", { staticClass: "ui-mb-1" }, [
             _c(
               "div",
               {
@@ -32237,7 +32209,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
+          _c("div", { staticClass: "ui-mb-1" }, [
             _c(
               "div",
               {
@@ -32275,7 +32247,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2 ui-block-flex" }, [
+          _c("div", { staticClass: "ui-mb-1 ui-block-flex" }, [
             _c(
               "div",
               {
@@ -32339,113 +32311,191 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex"
-              },
-              [
-                _c(
-                  "i",
-                  {
-                    staticClass: "ui-icon size-5 ui-color col-green hover",
-                    on: {
-                      click: function($event) {
-                        _vm.getRoles()
-                      }
-                    }
-                  },
-                  [_vm._v("add_circle")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "ui-pl-2" }, [
-                  _vm._v(_vm._s(_vm.trans("data.userRole")))
-                ]),
-                _vm._v(" "),
-                _vm.showRoles
-                  ? _c("div", {
-                      staticClass: "ui-popup-bg",
-                      on: {
-                        click: function($event) {
-                          _vm.showRoles = false
-                        }
-                      }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.showRoles
-                  ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [
-                      _c("table", [
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.roles, function(val, key) {
-                            return _c(
-                              "tr",
-                              {
-                                staticClass:
-                                  "hover ui-fnt regular size-1 ui-color col-blue"
-                              },
-                              [
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "left",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.addRole(key)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(val.name))]
-                                )
-                              ]
-                            )
-                          })
-                        )
-                      ])
-                    ])
-                  : _vm._e()
-              ]
-            ),
-            _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-1" }, [
             _c(
               "div",
               { staticClass: "ui-block-flex" },
-              _vm._l(_vm.user.roles, function(item, k) {
-                return _c(
+              [
+                _c(
                   "div",
                   {
                     staticClass:
-                      "ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn"
+                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex"
                   },
                   [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(item.role.name) +
-                        "\n                        "
-                    ),
+                    _c("span", { staticClass: "ui-pr-2" }, [
+                      _vm._v(_vm._s(_vm.trans("data.userRole")))
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "i",
                       {
-                        staticClass:
-                          "ui-icon size-2 ui-ml-2 ui-color col-red hover",
+                        staticClass: "ui-icon size-5 ui-color col-green hover",
                         on: {
                           click: function($event) {
-                            _vm.deleteRole(k)
+                            _vm.getRoles()
                           }
                         }
                       },
-                      [_vm._v("close")]
-                    )
+                      [_vm._v("add_circle")]
+                    ),
+                    _vm._v(" "),
+                    _vm.showRoles
+                      ? _c("div", {
+                          staticClass: "ui-popup-bg",
+                          on: {
+                            click: function($event) {
+                              _vm.showRoles = false
+                            }
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.showRoles
+                      ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [
+                          _c("table", [
+                            _c(
+                              "tbody",
+                              _vm._l(_vm.roles, function(val, key) {
+                                return _c(
+                                  "tr",
+                                  {
+                                    staticClass:
+                                      "hover ui-fnt regular size-1 ui-color col-blue"
+                                  },
+                                  [
+                                    _c(
+                                      "td",
+                                      {
+                                        staticClass: "left",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.addRole(key)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(val.name))]
+                                    )
+                                  ]
+                                )
+                              })
+                            )
+                          ])
+                        ])
+                      : _vm._e()
                   ]
-                )
-              })
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.user.roles, function(item, k) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass:
+                        "ui-tag bg-greyL hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn"
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(item.role.name) +
+                          "\n                        "
+                      ),
+                      _c(
+                        "i",
+                        {
+                          staticClass:
+                            "ui-icon size-2 ui-ml-2 ui-color col-red hover",
+                          on: {
+                            click: function($event) {
+                              _vm.deleteRole(k)
+                            }
+                          }
+                        },
+                        [_vm._v("close")]
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-5" }, [
+          _c("div", { staticClass: "ui-mb-1" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userUpPrice")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.up_price,
+                  expression: "user.up_price"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "email" },
+              domProps: { value: _vm.user.up_price },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "up_price", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-1" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.userNote")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.note,
+                  expression: "user.note"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              domProps: { value: _vm.user.note },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "note", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mt-3" }, [
             _c(
               "button",
               {
@@ -32648,7 +32698,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "10%" } }, [
+              _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
                 _c(
                   "div",
                   { staticClass: "ui-grid-block" },
@@ -32707,66 +32757,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
-                _c(
-                  "div",
-                  { staticClass: "ui-grid-block" },
-                  [
-                    _vm.showSearchSurname
-                      ? _c("search-pop", {
-                          attrs: { position: "left", type: "surname" },
-                          on: {
-                            submit: _vm.search,
-                            close: function($event) {
-                              _vm.closePopUp()
-                            }
-                          }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "i",
-                      {
-                        staticClass:
-                          "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
-                        on: {
-                          click: function($event) {
-                            _vm.showSearchSurname = true
-                          }
-                        }
-                      },
-                      [_vm._v("search")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "i",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.queryParams[1],
-                            expression: "queryParams[1]"
-                          }
-                        ],
-                        staticClass:
-                          "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
-                        on: {
-                          click: function($event) {
-                            _vm.search()
-                          }
-                        }
-                      },
-                      [_vm._v("close")]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.userSurname")))])
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "15%" } }, [
+              _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
                 _c(
                   "div",
                   { staticClass: "ui-grid-block" },
@@ -32927,10 +32918,6 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(key + 1))]),
                 _vm._v(" "),
                 _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-                _vm._v(" "),
-                _c("td", { staticClass: "left" }, [
-                  _vm._v(_vm._s(val.surname))
-                ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.email))]),
                 _vm._v(" "),
