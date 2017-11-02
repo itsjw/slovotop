@@ -31,8 +31,8 @@ class AccessRoute
             $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
         });
 
-        if ($query->get()->isEmpty()) {
-            return redirect()->route('Home');
+        if ($query->get()->isEmpty() && !\Auth::user()->hasRole(1)) {
+            return redirect()->route('home');
         }
 
         return $next($request);
