@@ -32,7 +32,7 @@ class AccessRoute
         });
 
         if ($query->get()->isEmpty()) {
-            return redirect()->route('crmHome');
+            return redirect()->route('Home');
         }
 
         return $next($request);

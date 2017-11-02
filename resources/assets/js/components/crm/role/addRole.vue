@@ -14,11 +14,6 @@
                            type="text"
                            v-model="role.name">
                 </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.roleAccess') }}
-                    </div>
-                </div>
 
                 <div class="ui-mt-5">
                     <button type="button"
