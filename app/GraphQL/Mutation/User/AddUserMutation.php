@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\User;
 
 use App\GraphQL\Serialize\UserSerialize;
+use App\Jobs\SendUserMailJob;
 use App\Models\User;
+use Bus;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
@@ -67,8 +69,8 @@ class AddUserMutation extends Mutation
                 'type' => Type::int(),
             ],
             'up_price' => [
-                'name' => 'up_price',
-                'type' => Type::float(),
+                'name'  => 'up_price',
+                'type'  => Type::float(),
                 'rules' => ['numeric'],
             ],
             'note'     => [
@@ -128,7 +130,8 @@ class AddUserMutation extends Mutation
 
         /**
          * TODO
-         * send email
+         * need test mail sent
+         * Bus::dispatch(new SendUserMailJob($user, $pass));
          */
 
         return UserSerialize::serialize($user);
