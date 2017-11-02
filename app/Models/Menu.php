@@ -18,6 +18,14 @@ class Menu extends Model
     protected $fillable = ['name', 'slug', 'icon', 'role_id'];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function accessMenus()
+    {
+        return $this->hasMany(AccessMenu::class, 'menu_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function accessMenu()

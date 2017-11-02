@@ -29,35 +29,39 @@ class MenuType extends GraphQLType
     public function fields()
     {
         return [
-            'id'         => [
+            'id'          => [
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'Menu ID',
             ],
-            'name'       => [
+            'name'        => [
                 'type'        => Type::string(),
                 'description' => 'Menu name',
             ],
-            'slug'       => [
+            'slug'        => [
                 'type'        => Type::string(),
                 'description' => 'Menu slug',
             ],
-            'icon'       => [
+            'icon'        => [
                 'type'        => Type::string(),
                 'description' => 'Menu icon',
             ],
-            'refer'      => [
+            'refer'       => [
                 'type'        => Type::int(),
                 'description' => 'Menu refer',
             ],
-            'created_at' => [
+            'created_at'  => [
                 'type'        => Type::string(),
                 'description' => 'Menu created_at',
             ],
-            'updated_at' => [
+            'updated_at'  => [
                 'type'        => Type::string(),
                 'description' => 'Menu updated_at',
             ],
-            'accessMenu' => [
+            'accessMenus' => [
+                'type'        => Type::listOf(\GraphQL::type('AccessMenuType')),
+                'description' => 'Menu accessMenu',
+            ],
+            'accessMenu'  => [
                 'type'        => \GraphQL::type('AccessMenuType'),
                 'description' => 'Menu accessMenu',
             ],

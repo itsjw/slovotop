@@ -1072,7 +1072,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(63);
+module.exports = __webpack_require__(69);
 
 
 /***/ }),
@@ -30043,11 +30043,11 @@ var Query = function () {
  */
 Vue.component('adminSetting', __webpack_require__(39));
 Vue.component('adminRoles', __webpack_require__(42));
-Vue.component('adminUsers', __webpack_require__(48));
-Vue.component('adminProjects', __webpack_require__(54));
+Vue.component('adminUsers', __webpack_require__(54));
+Vue.component('adminProjects', __webpack_require__(60));
 
 // search tip pop
-Vue.component('searchPop', __webpack_require__(60));
+Vue.component('searchPop', __webpack_require__(66));
 
 /***/ }),
 /* 39 */
@@ -30165,7 +30165,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(43)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30283,7 +30283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 Vue.component('addRole', __webpack_require__(44));
-Vue.component('accessRole', __webpack_require__(84));
+Vue.component('accessRole', __webpack_require__(47));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30726,6 +30726,514 @@ if (false) {
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(52)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/crm/role/accessRole.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4b8d297f", Component.options)
+  } else {
+    hotAPI.reload("data-v-4b8d297f", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+Vue.component('accessTabMenu', __webpack_require__(49));
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+
+    props: {
+        role_id: {}
+    },
+
+    data: function data() {
+        return {
+            tabs: ['active', '', '', '', '']
+        };
+    },
+
+
+    methods: {
+        /**
+         * select tabs
+         * @param key
+         */
+        selectTab: function selectTab(key) {
+            this.tabs = ['', '', '', '', ''];
+            this.tabs.splice(key, 0, 'active');
+        }
+    }
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(50)
+/* template */
+var __vue_template__ = __webpack_require__(51)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/crm/role/accessTabMenu.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d43547ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-d43547ca", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.getMenus();
+    },
+
+
+    props: {
+        role: {}
+    },
+
+    data: function data() {
+        return {
+            menus: {}
+        };
+    },
+
+
+    methods: {
+        /**
+         * get menus
+         */
+        getMenus: function getMenus() {
+            var _this = this;
+
+            gql.getItem('v1', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
+                _this.menus = response.data.data.MenuQuery;
+            });
+        },
+
+
+        /**
+         * select access menu
+         * @param key
+         */
+        selectMenu: function selectMenu(key) {
+            var _this2 = this;
+
+            gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
+                _this2.getMenus();
+            });
+        },
+        getData: function getData(menu) {
+            return '\n                id: ' + menu.accessMenu.id + ',\n                access: ' + menu.accessMenu.access + ',\n                menu: ' + menu.id + ',\n                role: ' + this.role;
+        }
+    }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL" },
+    _vm._l(_vm.menus, function(val, key) {
+      return _c("div", { staticClass: "ui-grid-block" }, [
+        _c("div", { staticClass: "ui-grid-10" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-green" },
+            [_vm._v("\n                " + _vm._s(val.name) + "\n            ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-2 center" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: val.accessMenu.access,
+                expression: "val.accessMenu.access"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "menu" + key,
+              "true-value": 1,
+              "false-value": 0
+            },
+            domProps: {
+              checked: Array.isArray(val.accessMenu.access)
+                ? _vm._i(val.accessMenu.access, null) > -1
+                : _vm._q(val.accessMenu.access, 1)
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$a = val.accessMenu.access,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? 1 : 0
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (val.accessMenu.access = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.$set(val.accessMenu, "access", $$c)
+                  }
+                },
+                function($event) {
+                  _vm.selectMenu(key)
+                }
+              ]
+            }
+          }),
+          _vm._v(" "),
+          _c("label", {
+            staticClass: "ui-checkbox ui-color col-green",
+            attrs: { for: "menu" + key }
+          })
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d43547ca", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "ui-popup-close col-red hover ui-icon",
+            on: {
+              click: function($event) {
+                _vm.$emit("close")
+              }
+            }
+          },
+          [_vm._v("close")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-p-3" },
+          [
+            _c("div", { staticClass: "ui-grid-block ui-fnt medium size-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[0],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(0)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleMenu")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[1],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(1)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleProject")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[2],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(2)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleTasks")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[3],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(3)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleDoc")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
+                  class: _vm.tabs[4],
+                  on: {
+                    click: function($event) {
+                      _vm.selectTab(4)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.titleReports")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.tabs[0]
+              ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
+              : _vm._e()
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4b8d297f", module.exports)
+  }
+}
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -30978,15 +31486,15 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(59)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -31026,7 +31534,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31166,7 +31674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addUser', __webpack_require__(50));
+Vue.component('addUser', __webpack_require__(56));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31314,15 +31822,15 @@ Vue.component('addUser', __webpack_require__(50));
 });
 
 /***/ }),
-/* 50 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(51)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -31362,7 +31870,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31601,7 +32109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 52 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32040,7 +32548,7 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32506,15 +33014,15 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(61)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -32554,7 +33062,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32688,7 +33196,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addProject', __webpack_require__(56));
+Vue.component('addProject', __webpack_require__(62));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -32832,15 +33340,15 @@ Vue.component('addProject', __webpack_require__(56));
 });
 
 /***/ }),
-/* 56 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(63)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(64)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -32880,7 +33388,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33042,7 +33550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -33294,7 +33802,7 @@ if (false) {
 }
 
 /***/ }),
-/* 59 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -33709,15 +34217,15 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(61)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(62)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -33757,7 +34265,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33800,7 +34308,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 62 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -33880,538 +34388,10 @@ if (false) {
 }
 
 /***/ }),
-/* 63 */
+/* 69 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(85)
-/* template */
-var __vue_template__ = __webpack_require__(86)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/crm/role/accessRole.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4b8d297f", Component.options)
-  } else {
-    hotAPI.reload("data-v-4b8d297f", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 85 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-Vue.component('accessTabMenu', __webpack_require__(87));
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
-
-
-    props: {
-        role_id: {}
-    },
-
-    data: function data() {
-        return {
-            tabs: ['active', '', '', '', '']
-        };
-    },
-
-
-    methods: {
-        /**
-         * select tabs
-         * @param key
-         */
-        selectTab: function selectTab(key) {
-            this.tabs = ['', '', '', '', ''];
-            this.tabs.splice(key, 0, 'active');
-        }
-    }
-});
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
-      on: {
-        click: function($event) {
-          _vm.$emit("close")
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "ui-p-3" },
-          [
-            _c("div", { staticClass: "ui-grid-block ui-fnt medium size-2" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
-                  class: _vm.tabs[0],
-                  on: {
-                    click: function($event) {
-                      _vm.selectTab(0)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.titleMenu")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
-                  class: _vm.tabs[1],
-                  on: {
-                    click: function($event) {
-                      _vm.selectTab(1)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.titleProject")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
-                  class: _vm.tabs[2],
-                  on: {
-                    click: function($event) {
-                      _vm.selectTab(2)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.titleTasks")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-grid-3 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
-                  class: _vm.tabs[3],
-                  on: {
-                    click: function($event) {
-                      _vm.selectTab(3)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.titleDoc")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-grid-2 center ui-bg bg-blue hover ui-color col-wite ui-pt-2 ui-pb-2",
-                  class: _vm.tabs[4],
-                  on: {
-                    click: function($event) {
-                      _vm.selectTab(4)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.titleReports")) +
-                      "\n                "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm.tabs[0]
-              ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
-              : _vm._e()
-          ],
-          1
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4b8d297f", module.exports)
-  }
-}
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(88)
-/* template */
-var __vue_template__ = __webpack_require__(89)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/crm/role/accessTabMenu.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d43547ca", Component.options)
-  } else {
-    hotAPI.reload("data-v-d43547ca", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 88 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        this.getMenus();
-    },
-
-
-    props: {
-        role: {}
-    },
-
-    data: function data() {
-        return {
-            menus: {}
-        };
-    },
-
-
-    methods: {
-        /**
-         * get menus
-         */
-        getMenus: function getMenus() {
-            var _this = this;
-
-            gql.getItem('v1', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
-                _this.menus = response.data.data.MenuQuery;
-            });
-        },
-
-
-        /**
-         * select access menu
-         * @param key
-         */
-        selectMenu: function selectMenu(key) {
-            var _this2 = this;
-
-            gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
-                _this2.getMenus();
-            });
-        },
-        getData: function getData(menu) {
-            return '\n                id: ' + menu.accessMenu.id + ',\n                access: ' + menu.accessMenu.access + ',\n                menu: ' + menu.id + ',\n                role: ' + this.role;
-        }
-    }
-});
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL" },
-    _vm._l(_vm.menus, function(val, key) {
-      return _c("div", { staticClass: "ui-grid-block" }, [
-        _c("div", { staticClass: "ui-grid-10" }, [
-          _c(
-            "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-green" },
-            [_vm._v("\n                " + _vm._s(val.name) + "\n            ")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-grid-2 center" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: val.accessMenu.access,
-                expression: "val.accessMenu.access"
-              }
-            ],
-            attrs: {
-              type: "checkbox",
-              id: "menu" + key,
-              "true-value": 1,
-              "false-value": 0
-            },
-            domProps: {
-              checked: Array.isArray(val.accessMenu.access)
-                ? _vm._i(val.accessMenu.access, null) > -1
-                : _vm._q(val.accessMenu.access, 1)
-            },
-            on: {
-              change: [
-                function($event) {
-                  var $$a = val.accessMenu.access,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? 1 : 0
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (val.accessMenu.access = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.$set(val.accessMenu, "access", $$c)
-                  }
-                },
-                function($event) {
-                  _vm.selectMenu(key)
-                }
-              ]
-            }
-          }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "ui-checkbox ui-color col-green",
-            attrs: { for: "menu" + key }
-          })
-        ])
-      ])
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d43547ca", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
