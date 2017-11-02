@@ -69,6 +69,10 @@ class UserType extends GraphQLType
                 'type'        => Type::int(),
                 'description' => 'User tasksCount',
             ],
+            'lastLogin' => [
+                'type'        => Type::string(),
+                'description' => 'User lastLogin',
+            ],
         ];
     }
 }
