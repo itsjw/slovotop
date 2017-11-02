@@ -65,6 +65,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function lastLogin()
+    {
+        return $this->hasOne(LastLogin::class, 'user_id', 'id')->select('updated_at');
+    }
+
+    /**
      * get has Roles
      *
      * @param $id
