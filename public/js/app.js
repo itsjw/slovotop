@@ -30977,53 +30977,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ui-grid-2 center" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: val.accessMenu.access,
-                expression: "val.accessMenu.access"
-              }
-            ],
-            attrs: {
-              type: "checkbox",
-              id: "menu" + key,
-              "true-value": 1,
-              "false-value": 0
-            },
-            domProps: {
-              checked: Array.isArray(val.accessMenu.access)
-                ? _vm._i(val.accessMenu.access, null) > -1
-                : _vm._q(val.accessMenu.access, 1)
-            },
-            on: {
-              change: [
-                function($event) {
-                  var $$a = val.accessMenu.access,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? 1 : 0
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (val.accessMenu.access = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (val.accessMenu.access = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.$set(val.accessMenu, "access", $$c)
-                  }
-                },
-                function($event) {
-                  _vm.selectMenu(key)
-                }
-              ]
-            }
-          }),
+          _c("input", { attrs: { type: "checkbox", id: "menu" + key } }),
           _vm._v(" "),
           _c("label", {
             staticClass: "ui-checkbox ui-color col-green",
