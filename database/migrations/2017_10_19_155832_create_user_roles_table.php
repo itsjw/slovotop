@@ -30,6 +30,11 @@ class CreateUserRolesTable extends Migration
             'user_id' => 1,
             'role_id' => 1,
         ]);
+        // Test Role
+        UserRole::create([
+            'user_id' => 2,
+            'role_id' => 2,
+        ]);
     }
 
     /**

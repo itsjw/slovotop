@@ -38,6 +38,12 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('111'),
             'confirm'  => true,
         ]);
+        User::create([
+            'name'     => 'test',
+            'email'    => 'test@test.ru',
+            'password' => bcrypt('111'),
+            'confirm'  => true,
+        ]);
     }
 
     /**

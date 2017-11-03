@@ -30,6 +30,12 @@ class CreateRolesTable extends Migration
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        Role::create([
+            'name'       => 'Редактор',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 
     /**
