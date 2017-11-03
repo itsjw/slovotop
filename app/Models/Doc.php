@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Doc
  *
- * @package App
+ * @package App\Models
  */
 class Doc extends Model
 {
