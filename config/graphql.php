@@ -42,6 +42,7 @@ return [
         'UserType'       => App\GraphQL\Type\UserType::class,
         'UserRoleType'   => App\GraphQL\Type\UserRoleType::class,
         'ProjectType'    => App\GraphQL\Type\ProjectType::class,
+        'LastLoginType'  => App\GraphQL\Type\LastLoginType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

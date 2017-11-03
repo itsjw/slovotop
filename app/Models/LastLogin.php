@@ -16,4 +16,12 @@ class LastLogin extends Model
      * @var array
      */
     protected $fillable = ['user_id'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

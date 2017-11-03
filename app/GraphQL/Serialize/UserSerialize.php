@@ -27,7 +27,7 @@ class UserSerialize extends Serialize
             'up_price'   => $user->up_price,
             'note'       => $user->note,
             'tasksCount' => $user->tasks()->count(),
-            'lastLogin'  => $user->lastLogin,
+            'lastLogin'  => LastLoginSerialize::serialize($user->lastLogin),
             'roles'      => UserRolesSerialize::collection($user->roles),
             'created_at' => $user->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $user->updated_at->format('d-m-Y H:m:s'),
