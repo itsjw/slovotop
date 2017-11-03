@@ -16,6 +16,10 @@ class Role extends Model
      * @var array
      */
     protected $fillable = ['name'];
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -25,6 +29,9 @@ class Role extends Model
         return $this->hasMany(UserRole::class, 'role_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function docs()
     {
         return $this->morphToMany(Doc::class, 'accessable');
