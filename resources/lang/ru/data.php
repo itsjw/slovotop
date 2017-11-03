@@ -51,6 +51,7 @@ return [
     'userTasks'     => 'Задачи',
     'userUpPrice'   => 'Увеличить базовую ставку на Х рублей',
     'userNote'      => 'Заметки о пользователе',
+    'userLastLogin' => 'Последний вход',
 
     // Projects
     'projectName'   => 'Название проекта',

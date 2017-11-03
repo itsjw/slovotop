@@ -34,7 +34,7 @@
                        @click="getUsers()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="30%" class="left">
+                <th width="20%" class="left">
                     <div class="ui-grid-block">
 
                         <search-pop
@@ -70,10 +70,11 @@
                         <span>{{ trans('data.userEmail') }}</span>
                     </div>
                 </th>
+                <th width="10%">{{ trans('data.userTasks') }}</th>
+                <th width="10%">{{ trans('data.userLastLogin') }}</th>
                 <th width="10%">{{ trans('data.userConfirm') }}</th>
                 <th width="20%">{{ trans('data.userRole') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
-                <th width="10%">{{ trans('data.userTasks') }}</th>
                 <th width="5%">
                     <div class="ui-grid-block center">
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
@@ -94,6 +95,8 @@
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
                 <td class="left">{{ val.email }}</td>
+                <td>{{ val.tasksCount }}</td>
+                <td>{{ val.lastLogin.updated_at }}</td>
                 <td>{{ val.confirm == 1 ? trans('data.yes') : trans('data.no') }}</td>
                 <td>
                     <span v-for="(item,k) in val.roles">
@@ -101,7 +104,6 @@
                     </span>
                 </td>
                 <td>{{ val.created_at }}</td>
-                <td>{{ val.tasksCount }}</td>
                 <td>{{ val.id }}</td>
             </tr>
             </tbody>

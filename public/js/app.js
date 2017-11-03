@@ -31632,6 +31632,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 Vue.component('addUser', __webpack_require__(56));
 
@@ -32701,7 +32703,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
+              _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
                 _c(
                   "div",
                   { staticClass: "ui-grid-block" },
@@ -32820,6 +32822,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userTasks")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.userLastLogin")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "10%" } }, [
                 _vm._v(_vm._s(_vm.trans("data.userConfirm")))
               ]),
               _vm._v(" "),
@@ -32829,10 +32839,6 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
                 _vm._v(_vm._s(_vm.trans("data.created_at")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.userTasks")))
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "5%" } }, [
@@ -32924,6 +32930,10 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.email))]),
                 _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.tasksCount))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.lastLogin.updated_at))]),
+                _vm._v(" "),
                 _c("td", [
                   _vm._v(
                     _vm._s(
@@ -32948,8 +32958,6 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.created_at))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.tasksCount))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.id))])
               ]
