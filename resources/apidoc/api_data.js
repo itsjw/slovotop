@@ -1,79 +1,6 @@
 define({ "api": [
   {
     "version": "0.1.0",
-    "group": "Access",
-    "permission": [
-      {
-        "name": "auth"
-      }
-    ],
-    "type": "post",
-    "url": "v1",
-    "title": "AccessMenu-Add/Update",
-    "name": "AccessMenu_Add_Update",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "size": "required,0..",
-            "optional": false,
-            "field": "id",
-            "description": "<p>ID</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "size": "required",
-            "optional": false,
-            "field": "access",
-            "description": "<p>access</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "size": "required",
-            "optional": false,
-            "field": "menu",
-            "description": "<p>menu</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "size": "required",
-            "optional": false,
-            "field": "role",
-            "description": "<p>role</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\"query\":\"mutation { AccessMenuMutation (id: 0,access:1,menu:1,role:1) { id } }\"}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "AccessMenu",
-            "description": "<p>[AccessMenu]</p>"
-          }
-        ]
-      }
-    },
-    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Access/AccessMenuMutation.php",
-    "groupTitle": "Access"
-  },
-  {
-    "version": "0.1.0",
     "group": "Menu",
     "permission": [
       {
@@ -144,13 +71,6 @@ define({ "api": [
           },
           {
             "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "accessMenu",
-            "description": "<p>[AccessMenuType] (single)</p>"
-          },
-          {
-            "group": "Success 200",
             "type": "Timestamp",
             "optional": false,
             "field": "created_at",
@@ -169,7 +89,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,accessMenu{menu_id,access,role_id},created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,created_at,updated_at } }\"}",
         "type": "json"
       }
     ],
@@ -1027,6 +947,13 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "lastLogin",
+            "description": "<p>[LastLogin]</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Timestamp",
             "optional": false,
             "field": "created_at",
@@ -1045,7 +972,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ UserQuery { id,name,email,role{id,name},tasksCount,up_price,note,confirm,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ UserQuery { id,name,email,role{id,name},tasksCount,lastLogin{updated_at},up_price,note,confirm,\ncreated_at,updated_at } }\"}",
         "type": "json"
       }
     ],

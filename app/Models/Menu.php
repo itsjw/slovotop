@@ -35,4 +35,11 @@ class Menu extends Model
         return $query->where('refer', 1)->get();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function roles()
+    {
+        return $this->morphToMany(Role::class, 'accessable');
+    }
 }
