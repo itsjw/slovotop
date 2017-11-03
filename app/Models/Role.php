@@ -25,4 +25,8 @@ class Role extends Model
         return $this->hasMany(UserRole::class, 'role_id', 'id');
     }
 
+    public function docs()
+    {
+        return $this->morphToMany(Doc::class, 'accessable');
+    }
 }
