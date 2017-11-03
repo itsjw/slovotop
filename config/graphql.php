@@ -29,15 +29,12 @@ return [
                 // project
                 'AddProjectMutation'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
                 'DeleteProjectMutation' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
-                // access
-                'AccessMenuMutation'    => App\GraphQL\Mutation\Access\AccessMenuMutation::class,
             ],
             'middleware' => ['auth'],
         ],
     ],
     'types'           => [
         'MenuType'       => App\GraphQL\Type\MenuType::class,
-        'AccessMenuType' => App\GraphQL\Type\AccessMenuType::class,
         'RoleType'       => App\GraphQL\Type\RoleType::class,
         'UserType'       => App\GraphQL\Type\UserType::class,
         'UserRoleType'   => App\GraphQL\Type\UserRoleType::class,

@@ -25,7 +25,6 @@ class MenuSerialize extends Serialize
             'slug'       => $menu->slug,
             'icon'       => $menu->icon,
             'refer'      => $menu->refer,
-            'accessMenu' => $menu->accessMenu ?? ['id' => 0],
             'created_at' => $menu->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $menu->updated_at->format('d-m-Y H:m:s'),
         ];
