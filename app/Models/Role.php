@@ -16,10 +16,6 @@ class Role extends Model
      * @var array
      */
     protected $fillable = ['name'];
-    /**
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
