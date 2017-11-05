@@ -28,12 +28,6 @@
                     </button>
                 </div>
 
-                <div class="ui-mt-3" v-if="errors">
-                    <div class="ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                         v-for="(val,key) in errors">
-                        {{ val[0] }}
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -46,7 +40,6 @@
             if (this.role_id > 0) {
                 this.getRole(this.role_id);
             }
-            console.log(this.errors.length);
         },
 
         props: {
@@ -58,7 +51,6 @@
         data() {
             return {
                 role: {},
-                errors: '',
             }
         },
 
@@ -81,8 +73,9 @@
                 gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role))
                     .then(response => {
                         if (response.data.errors) {
-                            this.errors = response.data.errors[0].validation;
+                            notify.make('alert', response.data.errors[0].validation);
                         } else {
+                            notify.make('success', response.data.data.AddRoleMutation.id);
                             this.$emit('close');
                         }
                     });

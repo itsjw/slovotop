@@ -94,7 +94,7 @@ class AddProjectMutation extends Mutation
 
         $project->save();
 
-        return ProjectSerialize::serialize($project);
+        return ['id' => trans('data.notifyOK')];
 
     }
 

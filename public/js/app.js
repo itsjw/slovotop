@@ -1097,20 +1097,27 @@ var app = new Vue({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__query_query__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_notify__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__query_query__ = __webpack_require__(37);
+// Lodash
 window._ = __webpack_require__(13);
 //window.$ = window.jQuery = require('jquery');
 
+// Axios
 window.axios = __webpack_require__(15);
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
+// Vue
 window.Vue = __webpack_require__(34);
 
+// notify
 
+window.notify = new __WEBPACK_IMPORTED_MODULE_0__helpers_notify__["a" /* default */]();
 
-window.gql = new __WEBPACK_IMPORTED_MODULE_0__query_query__["a" /* default */]();
+// query builder for graphQL
+
+window.gql = new __WEBPACK_IMPORTED_MODULE_1__query_query__["a" /* default */]();
 
 // lang from laravel trans
 Vue.prototype.trans = function (key) {
@@ -30371,6 +30378,7 @@ Vue.component('accessRole', __webpack_require__(47));
                     select = ['items:"' + this.selectRole + '"'];
                 }
                 gql.setItem('v1', 'DeleteRoleMutation', select).then(function (response) {
+                    notify.make('success', response.data.data.DeleteRoleMutation.id);
                     _this2.getRoles();
                 });
             }
@@ -30477,19 +30485,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.role_id > 0) {
             this.getRole(this.role_id);
         }
-        console.log(this.errors.length);
     },
 
 
@@ -30501,8 +30502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            role: {},
-            errors: ''
+            role: {}
         };
     },
 
@@ -30529,8 +30529,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
                 if (response.data.errors) {
-                    _this2.errors = response.data.errors[0].validation;
+                    notify.make('alert', response.data.errors[0].validation);
                 } else {
+                    notify.make('success', response.data.data.AddRoleMutation.id);
                     _this2.$emit('close');
                 }
             });
@@ -30663,30 +30664,7 @@ var render = function() {
                 )
               ]
             )
-          ]),
-          _vm._v(" "),
-          _vm.errors
-            ? _c(
-                "div",
-                { staticClass: "ui-mt-3" },
-                _vm._l(_vm.errors, function(val, key) {
-                  return _c(
-                    "div",
-                    {
-                      staticClass:
-                        "ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(val[0]) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                })
-              )
-            : _vm._e()
+          ])
         ])
       ]
     )
@@ -31714,6 +31692,7 @@ Vue.component('addUser', __webpack_require__(56));
                     select = ['items:"' + this.selectUser + '"'];
                 }
                 gql.setItem('v1', 'DeleteUserMutation', select).then(function (response) {
+                    notify.make('success', response.data.data.DeleteUserMutation.id);
                     _this2.getUsers();
                 });
             }
@@ -31730,6 +31709,7 @@ Vue.component('addUser', __webpack_require__(56));
             if (this.selectUser.length > 0) {
                 select = ['items:"' + this.selectUser + '"'];
                 gql.setItem('v1', 'ApproveUserMutation', select).then(function (response) {
+                    notify.make('success', response.data.data.ApproveUserMutation.id);
                     _this3.getUsers();
                 });
             }
@@ -31900,12 +31880,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31928,7 +31902,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 confirm: 1,
                 roles: []
             },
-            errors: '',
             roles: [],
             cleanRole: []
         };
@@ -32006,8 +31979,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             gql.setItem('v1', point, this.getUserData(this.user)).then(function (response) {
                 if (response.data.errors) {
-                    _this3.errors = response.data.errors[0].validation;
+                    notify.make('alert', response.data.errors[0].validation);
                 } else {
+                    notify.make('success', response.data.data[point].id);
                     _this3.$emit('close');
                 }
             });
@@ -32460,7 +32434,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -32481,7 +32455,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -32497,30 +32471,7 @@ var render = function() {
                 )
               ]
             )
-          ]),
-          _vm._v(" "),
-          _vm.errors
-            ? _c(
-                "div",
-                { staticClass: "ui-mt-3" },
-                _vm._l(_vm.errors, function(val, key) {
-                  return _c(
-                    "div",
-                    {
-                      staticClass:
-                        "ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(val[0]) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                })
-              )
-            : _vm._e()
+          ])
         ])
       ]
     )
@@ -33264,6 +33215,7 @@ Vue.component('addProject', __webpack_require__(62));
                     select = ['items:"' + this.selectProject + '"'];
                 }
                 gql.setItem('v1', 'DeleteProjectMutation', select).then(function (response) {
+                    notify.make('seccess', response.data.data.DeleteProjectMutation.id);
                     _this2.getProjects();
                 });
             }
@@ -33376,12 +33328,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33408,7 +33354,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             project: {
                 user: {}
             },
-            errors: {},
             users: []
         };
     },
@@ -33461,8 +33406,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
                 if (response.data.errors) {
-                    _this3.errors = response.data.errors[0].validation;
+                    notify.make('alert', response.data.errors[0].validation);
                 } else {
+                    notify.make('success', response.data.data.AddProjectMutation.id);
                     _this3.$emit('close');
                 }
             });
@@ -33659,7 +33605,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
+                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -33680,7 +33626,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -33696,28 +33642,7 @@ var render = function() {
                 )
               ]
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui-mt-3" },
-            _vm._l(_vm.errors, function(val, key) {
-              return _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(val[0]) +
-                      "\n                "
-                  )
-                ]
-              )
-            })
-          )
+          ])
         ])
       ]
     )
@@ -34659,6 +34584,140 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Notify = function () {
+    function Notify() {
+        _classCallCheck(this, Notify);
+
+        this.base = 'ui-notify success animated fadeInDown';
+        this.alert = 'ui-notify alert animated fadeInDown';
+        this.success = 'ui-notify success animated fadeInDown';
+        this.check = '<div class="ui-grid-1"><i class="ui-icon ui-pr-2">check</i></div>';
+        this.data = '';
+        this.time = 5;
+    }
+
+    /**
+     * make notify
+     * @param event
+     * @param data
+     * @param time
+     */
+
+
+    _createClass(Notify, [{
+        key: 'make',
+        value: function make() {
+            var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'base';
+            var data = arguments[1];
+            var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.time;
+
+            this.data = this.makeData(data);
+            var block = this.showBlock(this[event]);
+
+            var self = this;
+            setTimeout(function () {
+                self.removeBlock(block);
+            }, time * 1000);
+        }
+
+        /**
+         * prepare data
+         * @param data
+         * @return {string}
+         */
+
+    }, {
+        key: 'makeData',
+        value: function makeData(data) {
+            var type = typeof data === 'undefined' ? 'undefined' : _typeof(data),
+                html = '';
+
+            switch (type) {
+                case 'string':
+                    html = '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                    html = html + '<div class="ui-grid-11">' + data + '</div>';
+                    html = html + '</div>';
+                    break;
+                case 'object':
+                    for (var val in data) {
+                        html = html + '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                        html = html + '<div class="ui-grid-11">' + data[val][0] + '</div>';
+                        html = html + '</div>';
+                    }
+                    break;
+            }
+
+            return html;
+        }
+
+        /**
+         * show block
+         * @param event
+         * @return {Element}
+         */
+
+    }, {
+        key: 'showBlock',
+        value: function showBlock(event) {
+            var div = document.createElement('div');
+            div.className = event;
+            div.innerHTML = this.data;
+            document.body.insertBefore(div, document.body.firstChild);
+
+            return div;
+        }
+
+        /**
+         * remove block
+         * @param block
+         */
+
+    }, {
+        key: 'removeBlock',
+        value: function removeBlock(block) {
+            document.body.removeChild(block);
+        }
+    }]);
+
+    return Notify;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Notify);
 
 /***/ })
 /******/ ]);

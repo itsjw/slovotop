@@ -76,6 +76,6 @@ class DeleteUserMutation extends Mutation
             }
         }
 
-        return UserSerialize::serialize($user->get());
+        return ['id' => trans('data.notifyOK')];
     }
 }

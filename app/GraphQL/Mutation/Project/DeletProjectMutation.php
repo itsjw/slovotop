@@ -78,7 +78,7 @@ class DeletProjectMutation extends Mutation
             $project->delete();
         }
 
-        return ProjectSerialize::serialize($project);
+        return ['id' => trans('data.notifyOK')];
 
     }
 

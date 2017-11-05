@@ -34,23 +34,17 @@
                 </div>
                 <div class="ui-mt-5">
                     <button type="button"
-                            class="ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2"
+                            class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
                             @click="saveProject()">
                         {{ trans('data.save') }}
                     </button>
                     <button type="button"
-                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2"
+                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1"
                             @click="$emit('close')">
                         {{ trans('data.cancel') }}
                     </button>
                 </div>
 
-                <div class="ui-mt-3">
-                    <div class="ui-color col-red ui-fnt bold size-1 animated fadeIn"
-                         v-for="(val,key) in errors">
-                        {{ val[0] }}
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -62,7 +56,7 @@
             if (this.project_id > 0) {
                 this.getProject(this.project_id);
             }
-            if(this.user_id == 0){
+            if (this.user_id == 0) {
                 this.getUsers();
             }
         },
@@ -81,7 +75,6 @@
                 project: {
                     user: {}
                 },
-                errors: {},
                 users: []
             }
         },
@@ -128,8 +121,9 @@
                 gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project))
                     .then(response => {
                         if (response.data.errors) {
-                            this.errors = response.data.errors[0].validation;
+                            notify.make('alert', response.data.errors[0].validation);
                         } else {
+                            notify.make('success', response.data.data.AddProjectMutation.id);
                             this.$emit('close');
                         }
                     });

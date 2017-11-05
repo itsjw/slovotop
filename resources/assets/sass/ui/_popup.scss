@@ -153,3 +153,36 @@
     }
   }
 }
+
+.ui-notify {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
+  padding: 10px;
+  color: $colorWite;
+  font-size: $fontSize_2;
+  font-family: $fontRegular;
+  z-index: 9999;
+
+  &.alert{
+    background: $colorRed;
+    border-bottom: 6px solid $colorRedDark;
+  }
+  &.base{
+    background: $colorBlue;
+    border-bottom: 6px solid $colorBlueDark;
+  }
+  &.success{
+    background: $colorGreen;
+    border-bottom: 6px solid $colorGreenDark;
+  }
+
+  & ui{
+    display: block;
+    margin-left: 10px;
+    list-style: disc;
+  }
+}

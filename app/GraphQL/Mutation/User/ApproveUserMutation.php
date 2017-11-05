@@ -77,6 +77,6 @@ class ApproveUserMutation extends Mutation
 
         }
 
-        return UserSerialize::serialize($user);
+        return ['id' => trans('data.notifyOK')];
     }
 }

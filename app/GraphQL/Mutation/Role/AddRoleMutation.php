@@ -56,7 +56,7 @@ class AddRoleMutation extends Mutation
      * @apiGroup      Role
      * @apiPermission auth
      * @api           {post} v1 Role-Add/Update
-     * @apiName      Role-Add/Update
+     * @apiName       Role-Add/Update
      * @apiParam {Integer{required,0..}} id ID
      * @apiParam {String{required}} name name
      * @apiParamExample {json} Request-Example:
@@ -77,7 +77,7 @@ class AddRoleMutation extends Mutation
         $role->name = $args['name'];
         $role->save();
 
-        return RoleSerialize::serialize($role);
+        return ['id' => trans('data.notifyOK')];
 
     }
 }

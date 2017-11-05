@@ -229,6 +229,7 @@
                     }
                     gql.setItem('v1', 'DeleteUserMutation', select)
                         .then(response => {
+                            notify.make('success', response.data.data.DeleteUserMutation.id);
                             this.getUsers();
                         })
                 }
@@ -243,6 +244,7 @@
                     select = ['items:"' + this.selectUser + '"'];
                     gql.setItem('v1', 'ApproveUserMutation', select)
                         .then(response => {
+                            notify.make('success', response.data.data.ApproveUserMutation.id);
                             this.getUsers();
                         })
                 }

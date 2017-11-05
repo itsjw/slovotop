@@ -150,6 +150,7 @@
                     }
                     gql.setItem('v1', 'DeleteRoleMutation', select)
                         .then(response => {
+                            notify.make('success', response.data.data.DeleteRoleMutation.id);
                             this.getRoles();
                         })
                 }

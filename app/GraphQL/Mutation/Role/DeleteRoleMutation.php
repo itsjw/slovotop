@@ -51,7 +51,7 @@ class DeleteRoleMutation extends Mutation
      * @apiGroup      Role
      * @apiPermission auth
      * @api           {post} v1 Role-Delete
-     * @apiName      Role-Delete
+     * @apiName       Role-Delete
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { DeleteRoleMutation (items:"1,2,3") { id } }"}
@@ -75,7 +75,7 @@ class DeleteRoleMutation extends Mutation
             }
         }
 
-        return RoleSerialize::serialize($role);
+        return ['id' => trans('data.notifyOK')];
 
     }
 }

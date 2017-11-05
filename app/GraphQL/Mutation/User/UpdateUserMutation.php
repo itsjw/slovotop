@@ -130,7 +130,7 @@ class UpdateUserMutation extends Mutation
          * send email
          */
 
-        return UserSerialize::serialize($user);
+        return ['id' => trans('data.notifyOK')];
 
     }
 
