@@ -9,7 +9,7 @@ export default class Query {
         this.v1 = '/apps/v1';
 
         this.id = `id`;
-        this.menu = `id,name,slug,refer`;
+        this.menu = `id,name,slug,refer,roles{access}`;
         this.role = `id,name,created_at,updated_at,count`;
         this.user = `id,name,email,roles{id,role{${this.role}}},confirm,created_at,tasksCount,up_price,note,
                         lastLogin{updated_at}`;

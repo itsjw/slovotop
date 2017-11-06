@@ -86,13 +86,13 @@ class MenuQuery extends Query
         $query = Menu::query()->where('refer', 1);
 
         if (isset($args['role_id'])) {
-            /*$this->role_id = $args['role_id'];
+            $this->role_id = $args['role_id'];
 
             $query->with([
-                'accessMenu' => function ($query) {
-                    $query->where('role_id', $this->role_id);
+                'roles' => function ($query) {
+                    $query->where('role_id', $this->role_id)->select('access');
                 },
-            ]);*/
+            ]);
         }
 
         if (isset($args['id'])) {

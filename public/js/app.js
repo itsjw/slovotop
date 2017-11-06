@@ -1072,7 +1072,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(72);
+module.exports = __webpack_require__(73);
 
 
 /***/ }),
@@ -1085,7 +1085,7 @@ module.exports = __webpack_require__(72);
 __webpack_require__(12);
 
 // Vue Admin
-__webpack_require__(38);
+__webpack_require__(39);
 
 var app = new Vue({
     el: '#app'
@@ -1097,8 +1097,8 @@ var app = new Vue({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_notify__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__query_query__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_notify__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__query_query__ = __webpack_require__(38);
 // Lodash
 window._ = __webpack_require__(13);
 //window.$ = window.jQuery = require('jquery');
@@ -29945,6 +29945,119 @@ exports.clearImmediate = clearImmediate;
 
 "use strict";
 
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Notify = function () {
+    function Notify() {
+        _classCallCheck(this, Notify);
+
+        this.base = 'ui-notify success animated fadeInDown';
+        this.alert = 'ui-notify alert animated fadeInDown';
+        this.success = 'ui-notify success animated fadeInDown';
+        this.check = '<div class="ui-grid-1"><i class="ui-icon ui-pr-2">check</i></div>';
+        this.data = '';
+        this.time = 5;
+    }
+
+    /**
+     * make notify
+     * @param event
+     * @param data
+     * @param time
+     */
+
+
+    _createClass(Notify, [{
+        key: 'make',
+        value: function make() {
+            var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'base';
+            var data = arguments[1];
+            var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.time;
+
+            this.data = this.makeData(data);
+            var block = this.showBlock(this[event]);
+
+            var self = this;
+            setTimeout(function () {
+                self.removeBlock(block);
+            }, time * 1000);
+        }
+
+        /**
+         * prepare data
+         * @param data
+         * @return {string}
+         */
+
+    }, {
+        key: 'makeData',
+        value: function makeData(data) {
+            var type = typeof data === 'undefined' ? 'undefined' : _typeof(data),
+                html = '';
+
+            switch (type) {
+                case 'string':
+                    html = '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                    html = html + '<div class="ui-grid-11">' + data + '</div>';
+                    html = html + '</div>';
+                    break;
+                case 'object':
+                    for (var val in data) {
+                        html = html + '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                        html = html + '<div class="ui-grid-11">' + data[val][0] + '</div>';
+                        html = html + '</div>';
+                    }
+                    break;
+            }
+
+            return html;
+        }
+
+        /**
+         * show block
+         * @param event
+         * @return {Element}
+         */
+
+    }, {
+        key: 'showBlock',
+        value: function showBlock(event) {
+            var div = document.createElement('div');
+            div.className = event;
+            div.innerHTML = this.data;
+            document.body.insertBefore(div, document.body.firstChild);
+
+            return div;
+        }
+
+        /**
+         * remove block
+         * @param block
+         */
+
+    }, {
+        key: 'removeBlock',
+        value: function removeBlock(block) {
+            document.body.removeChild(block);
+        }
+    }]);
+
+    return Notify;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Notify);
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
 /**
  * class query for graphQL
  */
@@ -29960,7 +30073,7 @@ var Query = function () {
         this.v1 = '/apps/v1';
 
         this.id = 'id';
-        this.menu = 'id,name,slug,refer';
+        this.menu = 'id,name,slug,refer,roles{access}';
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
@@ -30042,31 +30155,31 @@ var Query = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Query);
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Admin panel components
  */
-Vue.component('adminSetting', __webpack_require__(39));
-Vue.component('adminRoles', __webpack_require__(42));
-Vue.component('adminUsers', __webpack_require__(54));
-Vue.component('adminProjects', __webpack_require__(60));
-Vue.component('adminDocs', __webpack_require__(66));
+Vue.component('adminSetting', __webpack_require__(40));
+Vue.component('adminRoles', __webpack_require__(43));
+Vue.component('adminUsers', __webpack_require__(55));
+Vue.component('adminProjects', __webpack_require__(61));
+Vue.component('adminDocs', __webpack_require__(67));
 
 // search tip pop
-Vue.component('searchPop', __webpack_require__(69));
+Vue.component('searchPop', __webpack_require__(70));
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(40)
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(41)
+var __vue_template__ = __webpack_require__(42)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30106,7 +30219,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30134,7 +30247,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30165,15 +30278,15 @@ if (false) {
 }
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(44)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(54)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30213,7 +30326,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30290,8 +30403,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addRole', __webpack_require__(44));
-Vue.component('accessRole', __webpack_require__(47));
+Vue.component('addRole', __webpack_require__(45));
+Vue.component('accessRole', __webpack_require__(48));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30397,15 +30510,15 @@ Vue.component('accessRole', __webpack_require__(47));
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(45)
+var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(47)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30445,7 +30558,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30549,7 +30662,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30681,15 +30794,15 @@ if (false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(48)
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30729,7 +30842,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30779,7 +30892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('accessTabMenu', __webpack_require__(49));
+Vue.component('accessTabMenu', __webpack_require__(50));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -30809,15 +30922,15 @@ Vue.component('accessTabMenu', __webpack_require__(49));
 });
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(50)
+var __vue_script__ = __webpack_require__(51)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(52)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -30857,7 +30970,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30921,11 +31034,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param key
          */
         selectMenu: function selectMenu(key) {
-            var _this2 = this;
-
-            gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
-                _this2.getMenus();
-            });
+            /*gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key]))
+                .then(response => {
+                    this.getMenus();
+                });*/
         },
         getData: function getData(menu) {
             return '\n                id: ' + menu.accessMenu.id + ',\n                access: ' + menu.accessMenu.access + ',\n                menu: ' + menu.id + ',\n                role: ' + this.role;
@@ -30934,7 +31046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -30955,7 +31067,53 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ui-grid-2 center" }, [
-          _c("input", { attrs: { type: "checkbox", id: "menu" + key } }),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: val.roles[0].access,
+                expression: "val.roles[0].access"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "menu" + key,
+              "true-value": 1,
+              "false-value": 0
+            },
+            domProps: {
+              checked: Array.isArray(val.roles[0].access)
+                ? _vm._i(val.roles[0].access, null) > -1
+                : _vm._q(val.roles[0].access, 1)
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$a = val.roles[0].access,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? 1 : 0
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (val.roles[0].access = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.$set(val.roles[0], "access", $$c)
+                  }
+                },
+                function($event) {
+                  _vm.selectMenu(key)
+                }
+              ]
+            }
+          }),
           _vm._v(" "),
           _c("label", {
             staticClass: "ui-checkbox ui-color col-green",
@@ -30977,7 +31135,7 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -31143,7 +31301,7 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -31398,15 +31556,15 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(60)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -31446,7 +31604,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31568,7 +31726,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addUser', __webpack_require__(56));
+Vue.component('addUser', __webpack_require__(57));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31718,15 +31876,15 @@ Vue.component('addUser', __webpack_require__(56));
 });
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(58)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(59)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -31766,7 +31924,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32015,7 +32173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32488,7 +32646,7 @@ if (false) {
 }
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32897,15 +33055,15 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(61)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(65)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -32945,7 +33103,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33079,7 +33237,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addProject', __webpack_require__(62));
+Vue.component('addProject', __webpack_require__(63));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33224,15 +33382,15 @@ Vue.component('addProject', __webpack_require__(62));
 });
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(64)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -33272,7 +33430,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33428,7 +33586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -33659,7 +33817,7 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -34074,15 +34232,15 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(67)
+var __vue_script__ = __webpack_require__(68)
 /* template */
-var __vue_template__ = __webpack_require__(68)
+var __vue_template__ = __webpack_require__(69)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -34122,7 +34280,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34208,7 +34366,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -34409,15 +34567,15 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(70)
+var __vue_script__ = __webpack_require__(71)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(72)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -34457,7 +34615,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34500,7 +34658,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -34580,144 +34738,10 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Notify = function () {
-    function Notify() {
-        _classCallCheck(this, Notify);
-
-        this.base = 'ui-notify success animated fadeInDown';
-        this.alert = 'ui-notify alert animated fadeInDown';
-        this.success = 'ui-notify success animated fadeInDown';
-        this.check = '<div class="ui-grid-1"><i class="ui-icon ui-pr-2">check</i></div>';
-        this.data = '';
-        this.time = 5;
-    }
-
-    /**
-     * make notify
-     * @param event
-     * @param data
-     * @param time
-     */
-
-
-    _createClass(Notify, [{
-        key: 'make',
-        value: function make() {
-            var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'base';
-            var data = arguments[1];
-            var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.time;
-
-            this.data = this.makeData(data);
-            var block = this.showBlock(this[event]);
-
-            var self = this;
-            setTimeout(function () {
-                self.removeBlock(block);
-            }, time * 1000);
-        }
-
-        /**
-         * prepare data
-         * @param data
-         * @return {string}
-         */
-
-    }, {
-        key: 'makeData',
-        value: function makeData(data) {
-            var type = typeof data === 'undefined' ? 'undefined' : _typeof(data),
-                html = '';
-
-            switch (type) {
-                case 'string':
-                    html = '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                    html = html + '<div class="ui-grid-11">' + data + '</div>';
-                    html = html + '</div>';
-                    break;
-                case 'object':
-                    for (var val in data) {
-                        html = html + '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                        html = html + '<div class="ui-grid-11">' + data[val][0] + '</div>';
-                        html = html + '</div>';
-                    }
-                    break;
-            }
-
-            return html;
-        }
-
-        /**
-         * show block
-         * @param event
-         * @return {Element}
-         */
-
-    }, {
-        key: 'showBlock',
-        value: function showBlock(event) {
-            var div = document.createElement('div');
-            div.className = event;
-            div.innerHTML = this.data;
-            document.body.insertBefore(div, document.body.firstChild);
-
-            return div;
-        }
-
-        /**
-         * remove block
-         * @param block
-         */
-
-    }, {
-        key: 'removeBlock',
-        value: function removeBlock(block) {
-            document.body.removeChild(block);
-        }
-    }]);
-
-    return Notify;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Notify);
 
 /***/ })
 /******/ ]);

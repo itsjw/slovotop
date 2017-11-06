@@ -25,6 +25,7 @@ class MenuSerialize extends Serialize
             'slug'       => $menu->slug,
             'icon'       => $menu->icon,
             'refer'      => $menu->refer,
+            'roles'      => count($menu->roles) > 0 ? $menu->roles : ['access' => 0],
             'created_at' => $menu->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $menu->updated_at->format('d-m-Y H:m:s'),
         ];

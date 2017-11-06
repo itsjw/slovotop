@@ -10,11 +10,11 @@
             </div>
             <div class="ui-grid-2 center">
                 <input type="checkbox"
-                       :id="'menu'+key"/>
-                       <!-- v-model="val.accessMenu.access"
+                       :id="'menu'+key"
+                       v-model="val.roles[0].access"
                        v-bind:true-value="1"
                        v-bind:false-value="0"
-                       @change="selectMenu(key)" !-->
+                       @change="selectMenu(key)"/>
                 <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
             </div>
         </div>
@@ -54,10 +54,10 @@
              * @param key
              */
             selectMenu(key) {
-                gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key]))
+                /*gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key]))
                     .then(response => {
                         this.getMenus();
-                    });
+                    });*/
             },
 
             getData(menu) {

@@ -34,12 +34,13 @@ return [
         ],
     ],
     'types'           => [
-        'MenuType'       => App\GraphQL\Type\MenuType::class,
-        'RoleType'       => App\GraphQL\Type\RoleType::class,
-        'UserType'       => App\GraphQL\Type\UserType::class,
-        'UserRoleType'   => App\GraphQL\Type\UserRoleType::class,
-        'ProjectType'    => App\GraphQL\Type\ProjectType::class,
-        'LastLoginType'  => App\GraphQL\Type\LastLoginType::class,
+        'MenuType'      => App\GraphQL\Type\MenuType::class,
+        'RoleType'      => App\GraphQL\Type\RoleType::class,
+        'UserType'      => App\GraphQL\Type\UserType::class,
+        'UserRoleType'  => App\GraphQL\Type\UserRoleType::class,
+        'ProjectType'   => App\GraphQL\Type\ProjectType::class,
+        'LastLoginType' => App\GraphQL\Type\LastLoginType::class,
+        'AccessType'    => App\GraphQL\Type\AccessType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

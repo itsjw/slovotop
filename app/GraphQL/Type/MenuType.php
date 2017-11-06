@@ -49,6 +49,10 @@ class MenuType extends GraphQLType
                 'type'        => Type::int(),
                 'description' => 'Menu refer',
             ],
+            'roles'      => [
+                'type'        => Type::listOf(\GraphQL::type('AccessType')),
+                'description' => 'Menu roles',
+            ],
             'created_at' => [
                 'type'        => Type::string(),
                 'description' => 'Menu created_at',
