@@ -25,15 +25,15 @@ class AccessRoute
     {
         $slug = substr(strrchr($request->route()->uri(), '/'), 1);
 
-        /*$query = Menu::query()->where('refer', 1)->where('slug', $slug);
+        $query = Menu::query()->where('refer', 1)->where('slug', $slug);
 
-        $query->whereHas('accessMenu', function ($request) {
+        $query->whereHas('roles', function ($request) {
             $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
         });
 
         if ($query->get()->isEmpty() && !\Auth::user()->hasRole(1)) {
             return redirect()->route('home');
-        }*/
+        }
 
         return $next($request);
     }

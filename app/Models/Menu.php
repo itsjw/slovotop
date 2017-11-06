@@ -26,11 +26,11 @@ class Menu extends Model
      */
     public function scopeCrm($query) //TODO
     {
-        /*if ( ! \Auth::user()->hasRole(1)) {
-            $query->whereHas('accessMenu', function ($request) {
+        if ( ! \Auth::user()->hasRole(1)) {
+            $query->whereHas('roles', function ($request) {
                 $request->where('access', 1)->whereIn('role_id', \Auth::user()->getRoles());
             });
-        }*/
+        }
 
         return $query->where('refer', 1)->get();
     }
