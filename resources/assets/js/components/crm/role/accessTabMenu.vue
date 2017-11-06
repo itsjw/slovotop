@@ -54,16 +54,20 @@
              * @param key
              */
             selectMenu(key) {
-                /*gql.setItem('v1', 'AccessMenuMutation', this.getData(this.menus[key]))
+                gql.setItem('v1', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
                     .then(response => {
-                        this.getMenus();
-                    });*/
+                        notify.make('success', response.data.data.ChangeAccessMenuMutation.id,1);
+                    });
             },
 
+            /**
+             * get data for change access
+             * @param menu
+             * @return {string}
+             */
             getData(menu) {
                 return `
-                    id: ${menu.accessMenu.id},
-                    access: ${menu.accessMenu.access},
+                    access: ${menu.roles[0].access},
                     menu: ${menu.id},
                     role: ${this.role}`;
             }

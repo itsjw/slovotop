@@ -19,16 +19,18 @@ return [
             ],
             'mutation'   => [
                 // user
-                'AddUserMutation'       => App\GraphQL\Mutation\User\AddUserMutation::class,
-                'UpdateUserMutation'    => App\GraphQL\Mutation\User\UpdateUserMutation::class,
-                'DeleteUserMutation'    => App\GraphQL\Mutation\User\DeleteUserMutation::class,
-                'ApproveUserMutation'   => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                'AddUserMutation'          => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUserMutation'       => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUserMutation'       => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUserMutation'      => App\GraphQL\Mutation\User\ApproveUserMutation::class,
                 // role
-                'AddRoleMutation'       => App\GraphQL\Mutation\Role\AddRoleMutation::class,
-                'DeleteRoleMutation'    => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
+                'AddRoleMutation'          => App\GraphQL\Mutation\Role\AddRoleMutation::class,
+                'DeleteRoleMutation'       => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
                 // project
-                'AddProjectMutation'    => App\GraphQL\Mutation\Project\AddProjectMutation::class,
-                'DeleteProjectMutation' => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
+                'AddProjectMutation'       => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'DeleteProjectMutation'    => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
+                // access
+                'ChangeAccessMenuMutation' => App\GraphQL\Mutation\Access\ChangeAccessMenuMutation::class,
             ],
             'middleware' => ['auth'],
         ],

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Role;
 
-use App\GraphQL\Serialize\RoleSerialize;
 use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -57,11 +56,11 @@ class AddRoleMutation extends Mutation
      * @apiPermission auth
      * @api           {post} v1 Role-Add/Update
      * @apiName       Role-Add/Update
-     * @apiParam {Integer{required,0..}} id ID
+     * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddRoleMutation (id: 0,name:"name") { id } }"}
-     * @apiSuccess {Object} role [Role]
+     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

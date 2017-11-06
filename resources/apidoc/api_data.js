@@ -1,6 +1,71 @@
 define({ "api": [
   {
     "version": "0.1.0",
+    "group": "Access",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
+    "title": "Change Access Menu",
+    "name": "Change_Access_Menu",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,0-1",
+            "optional": false,
+            "field": "access",
+            "description": "<p>access</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,>=1",
+            "optional": false,
+            "field": "menu",
+            "description": "<p>menu ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,>=1",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role ID</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { ChangeAccessMenuMutation (access:1,menu:1,role:2) { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Access/ChangeAccessMenuMutation.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.1.0",
     "group": "Menu",
     "permission": [
       {
@@ -158,10 +223,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "project",
-            "description": "<p>[Project]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -207,10 +272,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "project",
-            "description": "<p>[Project]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -347,7 +412,7 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "Integer",
-            "size": "required,0..",
+            "size": "required",
             "optional": false,
             "field": "id",
             "description": "<p>ID</p>"
@@ -375,10 +440,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "role",
-            "description": "<p>[Role]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -424,10 +489,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "role",
-            "description": "<p>[Role]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -616,10 +681,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "user",
-            "description": "<p>[User]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -665,10 +730,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "user",
-            "description": "<p>[User]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -714,10 +779,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "user",
-            "description": "<p>[User]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }
@@ -822,10 +887,10 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Array",
             "optional": false,
-            "field": "user",
-            "description": "<p>[User]</p>"
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
           }
         ]
       }

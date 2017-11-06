@@ -55,7 +55,7 @@ class DeleteUserMutation extends Mutation
      * @apiParam {String{1,2,3...}} items items
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { DeleteUserMutation (items: "1,2,3") { id } }"}
-     * @apiSuccess {Object} user [User]
+     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args
