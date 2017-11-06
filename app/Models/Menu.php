@@ -24,7 +24,7 @@ class Menu extends Model
      *
      * @return mixed
      */
-    public function scopeCrm($query) //TODO
+    public function scopeCrm($query)
     {
         if ( ! \Auth::user()->hasRole(1)) {
             $query->whereHas('roles', function ($request) {
