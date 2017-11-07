@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <admin-doc-edit></admin-doc-edit>
+    <admin-doc-edit user_id="{{ \Auth::id() }}"></admin-doc-edit>
 
 @endsection()
 

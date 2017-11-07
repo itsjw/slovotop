@@ -80,7 +80,12 @@
             });
         },
 
-        props: {},
+        props: {
+            doc_id: {
+                default: 0
+            },
+            user_id: ''
+        },
 
         data() {
             return {
@@ -143,14 +148,38 @@
                 this.getCleanRole();
             },
 
-            saveDoc(){
+            /**
+             * save doc
+             */
+            saveDoc() {
+                gql.setItem('v1', 'AddDocMutation', this.getDocData(this.doc))
+                    .then(response => {
+                        if (response.data.errors) {
+                            notify.make('alert', response.data.errors[0].validation);
+                        } else {
+                            notify.make('success', response.data.data.AddDocMutation.id, 2);
+                        }
+                    });
+            },
 
+            /**
+             * get doc data
+             */
+            getDocData(doc) {
+                doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
+
+                return `
+                        id: ${this.doc_id == 0 ? this.doc_id : doc.id},
+                        name: "${_.escape(doc.name) || ''}",
+                        roles: "${this.cleanRole || ''}",
+                        user: ${this.user_id},
+                        body: "${_.escape(doc.body) || ''}"`;
             },
 
             /**
              * cancel save doc
              */
-            cancelDoc(){
+            cancelDoc() {
                 window.location = '/crm/docs';
             }
         }

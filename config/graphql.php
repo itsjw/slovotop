@@ -33,6 +33,9 @@ return [
                 'DeleteProjectMutation'    => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
                 // access
                 'ChangeAccessMenuMutation' => App\GraphQL\Mutation\Access\ChangeAccessMenuMutation::class,
+                // doc
+                'AddDocMutation'           => App\GraphQL\Mutation\Doc\AddDocMutation::class,
+                'DeleteDocMutation'        => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,
             ],
             'middleware' => ['auth'],
         ],

@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation\Role;
+namespace App\GraphQL\Mutation\Doc;
 
-use App\Models\Role;
+use App\Models\Doc;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
 /**
- * Class DeleteRoleMutation
+ * Class DeleteDocMutation
  *
  * @package App\GraphQL\Mutation
  */
-class DeleteRoleMutation extends Mutation
+class DeleteDocMutation extends Mutation
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DeleteRoleMutation',
+        'name'        => 'DeleteDocMutation',
         'description' => 'A mutation',
     ];
 
@@ -29,7 +29,7 @@ class DeleteRoleMutation extends Mutation
      */
     public function type()
     {
-        return \GraphQL::type('RoleType');
+        return \GraphQL::type('DocType');
     }
 
     /**
@@ -47,13 +47,13 @@ class DeleteRoleMutation extends Mutation
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Role
+     * @apiGroup      Doc
      * @apiPermission auth
-     * @api           {post} v1 Role-Delete
-     * @apiName       Role-Delete
+     * @api           {post} v1 Doc-Delete
+     * @apiName       Doc-Delete
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:
-     * {"query":"mutation { DeleteRoleMutation (items:"1,2,3") { id } }"}
+     * {"query":"mutation { DeleteDocMutation (items:"1,2,3") { id } }"}
      * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
      *
      * @param $root
@@ -68,10 +68,8 @@ class DeleteRoleMutation extends Mutation
         $items = explode(',', $args['items']);
 
         foreach ($items as $key) {
-            $role = Role::findOrfail($key);
-            if ( ! $role->users()->count()) {
-                $role->delete();
-            }
+            $doc = Doc::findOrfail($key);
+            $doc->delete();
         }
 
         return ['id' => trans('data.notifyOK')];

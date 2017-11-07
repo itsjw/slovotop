@@ -74,6 +74,136 @@ define({ "api": [
     ],
     "type": "post",
     "url": "v1",
+    "title": "Doc-Add/Update",
+    "name": "Doc_Add_Update",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required,1,2,3...",
+            "optional": false,
+            "field": "roles",
+            "description": "<p>roles</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "user",
+            "description": "<p>user_id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required",
+            "optional": false,
+            "field": "body",
+            "description": "<p>body</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { AddDocMutation (id: 0,name:\"name\") { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Doc/AddDocMutation.php",
+    "groupTitle": "Doc"
+  },
+  {
+    "version": "0.1.0",
+    "group": "Doc",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
+    "title": "Doc-Delete",
+    "name": "Doc_Delete",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "1,2,3..",
+            "optional": false,
+            "field": "items",
+            "description": "<p>items</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { DeleteDocMutation (items:\"1,2,3\") { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Doc/DeleteDocMutation.php",
+    "groupTitle": "Doc"
+  },
+  {
+    "version": "0.1.0",
+    "group": "Doc",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
     "title": "Doc-Query",
     "name": "Doc_Query",
     "parameter": {

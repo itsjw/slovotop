@@ -104,7 +104,22 @@
             },
             editDoc() {
             },
+
+            /**
+             * delete doc
+             */
             deleteDoc() {
+                let select;
+                if (this.selectDoc.length > 0) {
+                    if (confirm('Удалить?')) {
+                        select = ['items:"' + this.selectDoc + '"'];
+                    }
+                    gql.setItem('v1', 'DeleteDocMutation', select)
+                        .then(response => {
+                            notify.make('success', response.data.data.DeleteDocMutation.id,1);
+                            this.getDocs();
+                        })
+                }
             }
         }
     }

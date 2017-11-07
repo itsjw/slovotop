@@ -34661,7 +34661,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location = 'docs/doc/';
         },
         editDoc: function editDoc() {},
-        deleteDoc: function deleteDoc() {}
+
+
+        /**
+         * delete doc
+         */
+        deleteDoc: function deleteDoc() {
+            var _this2 = this;
+
+            var select = void 0;
+            if (this.selectDoc.length > 0) {
+                if (confirm('Удалить?')) {
+                    select = ['items:"' + this.selectDoc + '"'];
+                }
+                gql.setItem('v1', 'DeleteDocMutation', select).then(function (response) {
+                    notify.make('success', response.data.data.DeleteDocMutation.id, 1);
+                    _this2.getDocs();
+                });
+            }
+        }
     }
 });
 
@@ -35006,7 +35024,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: {},
+    props: {
+        doc_id: {
+            default: 0
+        },
+        user_id: ''
+    },
 
     data: function data() {
         return {
@@ -35072,7 +35095,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.arrayRoles.splice(id, 1);
             this.getCleanRole();
         },
-        saveDoc: function saveDoc() {},
+
+
+        /**
+         * save doc
+         */
+        saveDoc: function saveDoc() {
+            gql.setItem('v1', 'AddDocMutation', this.getDocData(this.doc)).then(function (response) {
+                if (response.data.errors) {
+                    notify.make('alert', response.data.errors[0].validation);
+                } else {
+                    notify.make('success', response.data.data.AddDocMutation.id, 2);
+                }
+            });
+        },
+
+
+        /**
+         * get doc data
+         */
+        getDocData: function getDocData(doc) {
+            doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
+
+            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    roles: "' + (this.cleanRole || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
+        },
 
 
         /**
