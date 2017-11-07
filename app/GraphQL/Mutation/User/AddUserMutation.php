@@ -98,7 +98,7 @@ class AddUserMutation extends Mutation
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddUserMutation (id: 0,name:"name",email:"email",role: "1,2",confirm:
      * 1,password: "password" ) { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

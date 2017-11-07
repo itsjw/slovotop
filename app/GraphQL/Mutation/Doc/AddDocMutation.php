@@ -80,7 +80,7 @@ class AddDocMutation extends Mutation
      * @apiParam {String{required}} body body
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddDocMutation (id: 0,name:"name") { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

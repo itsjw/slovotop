@@ -75,7 +75,7 @@ class AddProjectMutation extends Mutation
      * @apiParam {Integer{required,>=1}} user_id user_id
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddProjectMutation (id: 0,name:"name",site:"site",user_id:1) { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

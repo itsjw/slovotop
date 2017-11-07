@@ -54,7 +54,7 @@ class DeleteRoleMutation extends Mutation
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { DeleteRoleMutation (items:"1,2,3") { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

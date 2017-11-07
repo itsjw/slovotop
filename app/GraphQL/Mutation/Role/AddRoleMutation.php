@@ -60,7 +60,7 @@ class AddRoleMutation extends Mutation
      * @apiParam {String{required}} name name
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddRoleMutation (id: 0,name:"name") { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args

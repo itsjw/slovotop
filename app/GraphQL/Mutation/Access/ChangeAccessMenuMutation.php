@@ -68,7 +68,7 @@ class ChangeAccessMenuMutation extends Mutation
      * @apiParam {Integer{required,>=1}} role role ID
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { ChangeAccessMenuMutation (access:1,menu:1,role:2) { id } }"}
-     * @apiSuccess {Array} id ['id' => trans('data.notifyOK')]
+     * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
      *
      * @param $root
      * @param $args
