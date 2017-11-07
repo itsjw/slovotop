@@ -53,7 +53,7 @@ class CrmController extends Controller
      */
     public function projects()
     {
-        return view('crm.project');
+        return view('crm.projects');
     }
 
     /**
@@ -70,6 +70,14 @@ class CrmController extends Controller
     public function docs()
     {
         return view('crm.docs');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function docEdit()
+    {
+        return view('crm.docEdit');
     }
 
     /**

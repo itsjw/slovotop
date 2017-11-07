@@ -1,41 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Query\Menu;
+namespace App\GraphQL\Query\Doc;
 
-use App\GraphQL\Serialize\MenuSerialize;
-use App\Models\Menu;
+use App\GraphQL\Serialize\DocSerialize;
+use App\Models\Doc;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
 /**
- * Class MenuQuery
+ * Class DocQuery
  *
- * @package App\GraphQL\Query\Menu
+ * @package App\GraphQL\Query\Doc
  */
-class MenuQuery extends Query
+class DocQuery extends Query
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'MenuQuery',
+        'name'        => 'DocQuery',
         'description' => 'A query',
     ];
-
-    /**
-     * @var
-     */
-    private $role_id;
 
     /**
      * @return \GraphQL\Type\Definition\ListOfType
      */
     public function type()
     {
-        return Type::listOf(\GraphQL::type('MenuType'));
+        return Type::listOf(\GraphQL::type('DocType'));
     }
 
     /**
@@ -44,12 +39,8 @@ class MenuQuery extends Query
     public function args()
     {
         return [
-            'id'      => [
+            'id' => [
                 'name' => 'id',
-                'type' => Type::id(),
-            ],
-            'role_id' => [
-                'name' => 'role_id',
                 'type' => Type::id(),
             ],
         ];
@@ -57,22 +48,22 @@ class MenuQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Menu
+     * @apiGroup      Doc
      * @apiPermission auth
-     * @api           {post} v1 Menu-Query
-     * @apiName       Menu-Query
+     * @api           {post} v1 Doc-Query
+     * @apiName       Doc-Query
      * @apiParam {Integer} id
-     * @apiParam {Integer} role_id role_id
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ MenuQuery ( id:1,role_id:1 ) { id,name...}"}
+     * {"query":"{ DocQuery ( id:1 ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
-     * @apiSuccess {Integer} slug slug
-     * @apiSuccess {Integer} refer refer
+     * @apiSuccess {String} body body
+     * @apiSuccess {Object} user [User]
+     * @apiSuccess {Object} roles [Roles]
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ MenuQuery { id,name,slug,refer,roles{access},created_at,updated_at } }"}
+     * {"query":"{ DocQuery { id,name,body,user{id,name},roles{access},created_at,updated_at } }"}
      *
      * @param $root
      * @param $args
@@ -83,22 +74,12 @@ class MenuQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Menu::query()->where('refer', 1);
-
-        if (isset($args['role_id'])) {
-            $this->role_id = $args['role_id'];
-
-            $query->with([
-                'roles' => function ($query) {
-                    $query->where('role_id', $this->role_id)->select('access');
-                },
-            ]);
-        }
+        $query = Doc::query();
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
         }
 
-        return MenuSerialize::collection($query->get());
+        return DocSerialize::collection($query->get());
     }
 }

@@ -27,10 +27,11 @@
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
                 <th width="1%">
                     <i class="ui-icon size-3 ui-color col-green hover"
-                       @click="getProjects()">autorenew</i>
+                       @click="getDocs()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="70%" class="left">{{ trans('data.docsName') }}</th>
+                <th width="60%" class="left">{{ trans('data.docsName') }}</th>
+                <th width="10%">{{ trans('data.docsOwner') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="10%">{{ trans('data.updated_at') }}</th>
                 <th width="5%">ID</th>
@@ -46,6 +47,7 @@
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
+                <td>{{ val.user.name }}</td>
                 <td>{{ val.created_at }}</td>
                 <td>{{ val.updated_at }}</td>
                 <td>{{ val.id }}</td>
@@ -59,6 +61,7 @@
     export default {
 
         mounted() {
+            this.getDocs();
         },
 
         props: {},
@@ -71,9 +74,33 @@
         },
 
         methods: {
-            selectDocs() {
+            /**
+             * select docs
+             */
+            selectDocs(id) {
+                if (this.selectDoc.indexOf(id) == -1) {
+                    this.selectDoc.push(id);
+                } else {
+                    this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
+                }
             },
+
+            /**
+             * get docs
+             */
+            getDocs() {
+                this.selectRole = [];
+                gql.getItem('v1', 'DocQuery', false, 'doc')
+                    .then(response => {
+                        this.docs = response.data.data.DocQuery;
+                    })
+            },
+
+            /**
+             * add doc
+             */
             addDoc() {
+                window.location = 'docs/doc/';
             },
             editDoc() {
             },

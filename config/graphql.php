@@ -16,6 +16,8 @@ return [
                 'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
                 // project
                 'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
+                // doc
+                'DocQuery'     => App\GraphQL\Query\Doc\DocQuery::class,
             ],
             'mutation'   => [
                 // user
@@ -43,6 +45,7 @@ return [
         'ProjectType'   => App\GraphQL\Type\ProjectType::class,
         'LastLoginType' => App\GraphQL\Type\LastLoginType::class,
         'AccessType'    => App\GraphQL\Type\AccessType::class,
+        'DocType'       => App\GraphQL\Type\DocType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

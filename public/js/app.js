@@ -30077,6 +30077,7 @@ var Query = function () {
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
+        this.doc = 'id,name,body,created_at,updated_at,roles{access},user{id,name}';
     }
 
     /**
@@ -30166,6 +30167,7 @@ Vue.component('adminRoles', __webpack_require__(97));
 Vue.component('adminUsers', __webpack_require__(109));
 Vue.component('adminProjects', __webpack_require__(115));
 Vue.component('adminDocs', __webpack_require__(121));
+Vue.component('adminDocEdit', __webpack_require__(124));
 
 // search tip pop
 Vue.component('searchPop', __webpack_require__(70));
@@ -34608,9 +34610,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getDocs();
+    },
 
 
     props: {},
@@ -34624,8 +34630,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        selectDocs: function selectDocs() {},
-        addDoc: function addDoc() {},
+        /**
+         * select docs
+         */
+        selectDocs: function selectDocs(id) {
+            if (this.selectDoc.indexOf(id) == -1) {
+                this.selectDoc.push(id);
+            } else {
+                this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
+            }
+        },
+
+
+        /**
+         * get docs
+         */
+        getDocs: function getDocs() {
+            var _this = this;
+
+            this.selectRole = [];
+            gql.getItem('v1', 'DocQuery', false, 'doc').then(function (response) {
+                _this.docs = response.data.data.DocQuery;
+            });
+        },
+
+
+        /**
+         * add doc
+         */
+        addDoc: function addDoc() {
+            window.location = 'docs/doc/';
+        },
         editDoc: function editDoc() {},
         deleteDoc: function deleteDoc() {}
     }
@@ -34719,7 +34754,7 @@ var render = function() {
                   staticClass: "ui-icon size-3 ui-color col-green hover",
                   on: {
                     click: function($event) {
-                      _vm.getProjects()
+                      _vm.getDocs()
                     }
                   }
                 },
@@ -34729,8 +34764,12 @@ var render = function() {
             _vm._v(" "),
             _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
             _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "70%" } }, [
+            _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
               _vm._v(_vm._s(_vm.trans("data.docsName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.docsOwner")))
             ]),
             _vm._v(" "),
             _c("th", { attrs: { width: "10%" } }, [
@@ -34810,6 +34849,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.user.name))]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(val.created_at))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(val.updated_at))]),
@@ -34829,6 +34870,103 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ecab96f6", module.exports)
+  }
+}
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(125)
+/* template */
+var __vue_template__ = __webpack_require__(126)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/doc/docEdit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c4883af0", Component.options)
+  } else {
+    hotAPI.reload("data-v-c4883af0", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {},
+    mounted: function mounted() {},
+
+
+    props: {},
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n\n    Doc\n\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c4883af0", module.exports)
   }
 }
 
