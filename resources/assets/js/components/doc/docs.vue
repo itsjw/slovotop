@@ -89,7 +89,7 @@
              * get docs
              */
             getDocs() {
-                this.selectRole = [];
+                this.selectDoc = [];
                 gql.getItem('v1', 'DocQuery', false, 'doc')
                     .then(response => {
                         this.docs = response.data.data.DocQuery;

@@ -14,7 +14,7 @@ export default class Query {
         this.user = `id,name,email,roles{id,role{${this.role}}},confirm,created_at,tasksCount,up_price,note,
                         lastLogin{updated_at}`;
         this.project = `id,name,site,user{${this.user}},created_at,updated_at`;
-        this.doc = `id,name,body,created_at,updated_at,roles{access},user{id,name}`;
+        this.doc = `id,name,body,created_at,updated_at,roles{id,name},user{id,name}`;
     }
 
     /**

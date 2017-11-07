@@ -43,6 +43,10 @@ class AccessType extends GraphQLType
                 'type'        => Type::int(),
                 'description' => 'AccessType role_id',
             ],
+            'name' => [
+                'type'        => Type::string(),
+                'description' => 'AccessType name',
+            ],
             'access'      => [
                 'type'        => Type::int(),
                 'description' => 'AccessType access',

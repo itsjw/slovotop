@@ -33,7 +33,7 @@
                             </div>
 
                         </div>
-                        <div v-for="(item,k) in arrayRoles"
+                        <div v-for="(item,k) in doc.roles"
                              class="ui-tag bg-yellow hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn">
                             {{ item.name }}
                             <i class="ui-icon size-2 ui-ml-2 ui-color col-red hover"
@@ -80,7 +80,7 @@
                     'hr', 'eraser', 'fullsize', 'copyformat']
             });
 
-            if (this.doc_id > 0) {
+            if(this.doc_id > 0){
                 this.getDoc();
             }
         },
@@ -95,11 +95,12 @@
         data() {
             return {
                 showRoles: false,
-                arrayRoles: [],
                 cleanRole: [],
                 roles: [],
                 editor: {},
-                doc: {}
+                doc: {
+                    roles:[]
+                }
             }
         },
 
@@ -122,7 +123,7 @@
             addRole(id) {
                 this.showRoles = false;
                 if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
-                    this.arrayRoles.push({
+                    this.doc.roles.push({
                         'id': this.roles[id].id,
                         'name': this.roles[id].name
                     });
@@ -138,7 +139,7 @@
                 let _vm = this;
                 this.cleanRole = [];
 
-                _.forEach(this.arrayRoles, function (value) {
+                _.forEach(this.doc.roles, function (value) {
                     _vm.cleanRole.push(value.id);
                 });
 
@@ -149,7 +150,7 @@
              * @param id
              */
             deleteRole(id) {
-                this.arrayRoles.splice(id, 1);
+                this.doc.roles.splice(id, 1);
                 this.getCleanRole();
             },
 
@@ -161,6 +162,7 @@
                     .then(response => {
                         this.doc = response.data.data.DocQuery[0];
                         this.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+                        this.getCleanRole();
                     })
             },
 
@@ -187,6 +189,7 @@
                 return `
                         id: ${this.doc_id == 0 ? this.doc_id : doc.id},
                         name: "${_.escape(doc.name) || ''}",
+                        roles: "${this.cleanRole || ''}",
                         user: ${this.user_id},
                         body: "${_.escape(doc.body) || ''}"`;
             },

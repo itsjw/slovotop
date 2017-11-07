@@ -74,10 +74,16 @@ class DocQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Doc::query()->with('roles');
+        $query = Doc::query();
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
+        }
+
+        if ( ! \Auth::user()->hasRole(1)) {
+            $query->whereHas('roles', function ($request) {
+                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
+            });
         }
 
         return DocSerialize::collection($query->get());

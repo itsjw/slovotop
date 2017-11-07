@@ -77,7 +77,7 @@ class CrmController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function docEdit($id)
+    public function docEdit($id = null)
     {
         $doc = Doc::find($id);
 

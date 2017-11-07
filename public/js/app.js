@@ -30077,7 +30077,7 @@ var Query = function () {
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
-        this.doc = 'id,name,body,created_at,updated_at,roles{access},user{id,name}';
+        this.doc = 'id,name,body,created_at,updated_at,roles{id,name},user{id,name}';
     }
 
     /**
@@ -34647,7 +34647,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDocs: function getDocs() {
             var _this = this;
 
-            this.selectRole = [];
+            this.selectDoc = [];
             gql.getItem('v1', 'DocQuery', false, 'doc').then(function (response) {
                 _this.docs = response.data.data.DocQuery;
             });
@@ -35048,11 +35048,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             showRoles: false,
-            arrayRoles: [],
             cleanRole: [],
             roles: [],
             editor: {},
-            doc: {}
+            doc: {
+                roles: []
+            }
         };
     },
 
@@ -35078,7 +35079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addRole: function addRole(id) {
             this.showRoles = false;
             if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
-                this.arrayRoles.push({
+                this.doc.roles.push({
                     'id': this.roles[id].id,
                     'name': this.roles[id].name
                 });
@@ -35095,7 +35096,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _vm = this;
             this.cleanRole = [];
 
-            _.forEach(this.arrayRoles, function (value) {
+            _.forEach(this.doc.roles, function (value) {
                 _vm.cleanRole.push(value.id);
             });
         },
@@ -35106,7 +35107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param id
          */
         deleteRole: function deleteRole(id) {
-            this.arrayRoles.splice(id, 1);
+            this.doc.roles.splice(id, 1);
             this.getCleanRole();
         },
 
@@ -35120,6 +35121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             gql.getItem('v1', 'DocQuery', ['id:' + this.doc_id], 'doc').then(function (response) {
                 _this2.doc = response.data.data.DocQuery[0];
                 _this2.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+                _this2.getCleanRole();
             });
         },
 
@@ -35144,7 +35146,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDocData: function getDocData(doc) {
             doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
 
-            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
+            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    roles: "' + (this.cleanRole || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
         },
 
 
@@ -35279,7 +35281,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._l(_vm.arrayRoles, function(item, k) {
+              _vm._l(_vm.doc.roles, function(item, k) {
                 return _c(
                   "div",
                   {

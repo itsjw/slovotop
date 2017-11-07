@@ -69,6 +69,7 @@ class DeleteDocMutation extends Mutation
 
         foreach ($items as $key) {
             $doc = Doc::findOrfail($key);
+            $doc->roles()->detach();
             $doc->delete();
         }
 
