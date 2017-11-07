@@ -167,20 +167,20 @@
   font-family: $fontRegular;
   z-index: 9999;
 
-  &.alert{
+  &.alert {
     background: $colorRed;
     border-bottom: 6px solid $colorRedDark;
   }
-  &.base{
+  &.base {
     background: $colorBlue;
     border-bottom: 6px solid $colorBlueDark;
   }
-  &.success{
+  &.success {
     background: $colorGreen;
     border-bottom: 6px solid $colorGreenDark;
   }
 
-  & ui{
+  & ui {
     display: block;
     margin-left: 10px;
     list-style: disc;

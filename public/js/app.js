@@ -30003,14 +30003,14 @@ var Notify = function () {
             switch (type) {
                 case 'string':
                     html = '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                    html = html + '<div class="ui-grid-11">' + data + '</div>';
-                    html = html + '</div>';
+                    html += '<div class="ui-grid-11">' + data + '</div>';
+                    html += '</div>';
                     break;
                 case 'object':
                     for (var val in data) {
-                        html = html + '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                        html = html + '<div class="ui-grid-11">' + data[val][0] + '</div>';
-                        html = html + '</div>';
+                        html += '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                        html += '<div class="ui-grid-11">' + data[val][0] + '</div>';
+                        html += '</div>';
                     }
                     break;
             }

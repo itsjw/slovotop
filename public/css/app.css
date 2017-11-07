@@ -1520,6 +1520,7 @@ template {
   cursor: pointer;
   outline: none;
   border-radius: 3px;
+  outline: none;
 }
 
 .ui-button.col-wite {
