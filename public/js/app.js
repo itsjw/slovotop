@@ -34660,7 +34660,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addDoc: function addDoc() {
             window.location = 'docs/doc/';
         },
-        editDoc: function editDoc() {},
+
+
+        /**
+         * edit doc
+         */
+        editDoc: function editDoc() {
+            if (this.selectDoc.length > 0) {
+                window.location = 'docs/doc/' + this.selectDoc[0];
+            }
+        },
 
 
         /**
@@ -35017,10 +35026,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
+
         this.editor = new Jodit(document.getElementById('editor'), {
             height: 400,
             buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|', 'hr', 'eraser', 'fullsize', 'copyformat']
         });
+
+        if (this.doc_id > 0) {
+            this.getDoc();
+        }
     },
 
 
@@ -35094,6 +35108,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteRole: function deleteRole(id) {
             this.arrayRoles.splice(id, 1);
             this.getCleanRole();
+        },
+
+
+        /**
+         * get doc for edit
+         */
+        getDoc: function getDoc() {
+            var _this2 = this;
+
+            gql.getItem('v1', 'DocQuery', ['id:' + this.doc_id], 'doc').then(function (response) {
+                _this2.doc = response.data.data.DocQuery[0];
+                _this2.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+            });
         },
 
 

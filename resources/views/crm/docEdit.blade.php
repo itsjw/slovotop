@@ -12,7 +12,11 @@
 
 @section('content')
 
-    <admin-doc-edit user_id="{{ \Auth::id() }}"></admin-doc-edit>
+    <admin-doc-edit
+            doc_id="{{ $doc->id ?? 0 }}"
+            user_id="{{ \Auth::id() }}"
+            v-cloak>
+    </admin-doc-edit>
 
 @endsection()
 

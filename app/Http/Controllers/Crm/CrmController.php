@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Crm;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doc;
+use Request;
 
 /**
  * Class CrmController
@@ -75,9 +77,11 @@ class CrmController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function docEdit()
+    public function docEdit($id)
     {
-        return view('crm.docEdit');
+        $doc = Doc::find($id);
+
+        return view('crm.docEdit', ['doc' => $doc]);
     }
 
     /**

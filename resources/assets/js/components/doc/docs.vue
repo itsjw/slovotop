@@ -102,7 +102,14 @@
             addDoc() {
                 window.location = 'docs/doc/';
             },
+
+            /**
+             * edit doc
+             */
             editDoc() {
+                if (this.selectDoc.length > 0) {
+                    window.location = 'docs/doc/' + this.selectDoc[0];
+                }
             },
 
             /**

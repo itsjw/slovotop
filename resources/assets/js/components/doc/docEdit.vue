@@ -72,12 +72,17 @@
     export default {
 
         mounted() {
+
             this.editor = new Jodit(document.getElementById('editor'), {
                 height: 400,
                 buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
                     'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
                     'hr', 'eraser', 'fullsize', 'copyformat']
             });
+
+            if(this.doc_id > 0){
+                this.getDoc();
+            }
         },
 
         props: {
@@ -146,6 +151,17 @@
             deleteRole(id) {
                 this.arrayRoles.splice(id, 1);
                 this.getCleanRole();
+            },
+
+            /**
+             * get doc for edit
+             */
+            getDoc() {
+                gql.getItem('v1', 'DocQuery', ['id:' + this.doc_id], 'doc')
+                    .then(response => {
+                        this.doc = response.data.data.DocQuery[0];
+                        this.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+                    })
             },
 
             /**
