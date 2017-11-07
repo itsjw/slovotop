@@ -200,7 +200,7 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data[point].id);
+                            notify.make('success', response.data.data[point].id,2);
                             this.$emit('close');
                         }
                     });

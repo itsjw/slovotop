@@ -3439,6 +3439,7 @@ html {
 .admin-wrap .admin-left {
   min-width: 90px;
   background: #394D5F;
+  overflow: auto;
 }
 
 .admin-wrap .admin-content-wrap {

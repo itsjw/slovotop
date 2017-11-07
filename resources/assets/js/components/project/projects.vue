@@ -252,7 +252,7 @@
                     }
                     gql.setItem('v1', 'DeleteProjectMutation', select)
                         .then(response => {
-                            notify.make('seccess', response.data.data.DeleteProjectMutation.id);
+                            notify.make('seccess', response.data.data.DeleteProjectMutation.id,1);
                             this.getProjects();
                         })
                 }

@@ -8,36 +8,39 @@
   padding: 184px;
 }
 
-html{
+html {
   height: 100vh;
 }
-#app{
+
+#app {
   height: inherit;
 }
-.admin-wrap{
+
+.admin-wrap {
   height: inherit;
   display: flex;
 
-  & .admin-left{
+  & .admin-left {
     min-width: 90px;
     background: $colorGreyBlueDark;
+    overflow: auto;
   }
 
-  & .admin-content-wrap{
+  & .admin-content-wrap {
     display: flex;
     flex-direction: column;
     flex: auto;
     background: $colorGreyBlue_050;
 
-    & .admin-head{
+    & .admin-head {
       background: $colorGrey_300;
     }
 
-    & .admin-content{
+    & .admin-content {
       flex: 1 auto;
     }
 
-    & .admin-footer{
+    & .admin-footer {
       height: 30px;
       background: $colorGrey_300;
     }
@@ -45,7 +48,7 @@ html{
 }
 
 // menu
-.admin-menu{
+.admin-menu {
   display: block;
   text-align: center;
   word-wrap: break-word;
@@ -53,12 +56,12 @@ html{
   &.active {
     color: $colorOrange;
   }
-  & .ui-icon{
+  & .ui-icon {
     font-size: 35px;
   }
 }
 
 // title block
-.admin-title-block{
+.admin-title-block {
   border-bottom: 2px solid $colorGrey_300;
 }
