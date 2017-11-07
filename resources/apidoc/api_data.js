@@ -66,6 +66,103 @@ define({ "api": [
   },
   {
     "version": "0.1.0",
+    "group": "Doc",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v1",
+    "title": "Doc-Query",
+    "name": "Doc_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"{ DocQuery ( id:1 ) { id,name...}\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "body",
+            "description": "<p>body</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>[User]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "roles",
+            "description": "<p>[Roles]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"query\":\"{ DocQuery { id,name,body,user{id,name},roles{access},created_at,updated_at } }\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/GraphQL/Query/Doc/DocQuery.php",
+    "groupTitle": "Doc"
+  },
+  {
+    "version": "0.1.0",
     "group": "Menu",
     "permission": [
       {
@@ -154,7 +251,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ MenuQuery { id,name,slug,refer,roles{access},created_at,updated_at } }\"}",
         "type": "json"
       }
     ],
