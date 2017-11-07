@@ -80,7 +80,7 @@
                     'hr', 'eraser', 'fullsize', 'copyformat']
             });
 
-            if(this.doc_id > 0){
+            if (this.doc_id > 0) {
                 this.getDoc();
             }
         },
@@ -99,7 +99,7 @@
                 roles: [],
                 editor: {},
                 doc: {
-                    roles:[]
+                    roles: []
                 }
             }
         },
@@ -175,7 +175,8 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data.AddDocMutation.id, 2);
+                            notify.make('success', response.data.data.AddDocMutation.notify, 2);
+                            history.pushState(null, null, response.data.data.AddDocMutation.id);
                         }
                     });
             },

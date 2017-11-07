@@ -27,11 +27,11 @@ class AccessType extends GraphQLType
     public function fields()
     {
         return [
-            'id'         => [
+            'id'              => [
                 'type'        => Type::nonNull(Type::id()),
                 'description' => 'AccessType ID',
             ],
-            'accessable_id'       => [
+            'accessable_id'   => [
                 'type'        => Type::int(),
                 'description' => 'AccessType accessable_id',
             ],
@@ -39,18 +39,23 @@ class AccessType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'AccessType accessable_type',
             ],
-            'role_id' => [
+            'role_id'         => [
                 'type'        => Type::int(),
                 'description' => 'AccessType role_id',
             ],
-            'name' => [
+            'name'            => [
                 'type'        => Type::string(),
                 'description' => 'AccessType name',
             ],
-            'access'      => [
+            'access'          => [
                 'type'        => Type::int(),
                 'description' => 'AccessType access',
-            ]
+            ],
+            'notify'          => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

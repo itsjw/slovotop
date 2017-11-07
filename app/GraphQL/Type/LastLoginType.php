@@ -45,6 +45,11 @@ class LastLoginType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'LastLogin updated_at',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

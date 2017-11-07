@@ -48,7 +48,12 @@ class RoleType extends GraphQLType
             'count'      => [
                 'type'        => Type::int(),
                 'description' => 'RoleType count users',
-            ]
+            ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

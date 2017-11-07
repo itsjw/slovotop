@@ -29,6 +29,11 @@ class UserRoleType extends GraphQLType
                 'type'        => \GraphQL::type('RoleType'),
                 'description' => 'UserRoleType role',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

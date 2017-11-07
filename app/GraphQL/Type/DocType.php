@@ -57,6 +57,11 @@ class DocType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'DocType updated_at',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

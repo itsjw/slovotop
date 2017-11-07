@@ -41,11 +41,11 @@ class UserType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'User email',
             ],
-            'up_price'      => [
+            'up_price'   => [
                 'type'        => Type::float(),
                 'description' => 'User up_price',
             ],
-            'note'      => [
+            'note'       => [
                 'type'        => Type::string(),
                 'description' => 'User note',
             ],
@@ -69,9 +69,14 @@ class UserType extends GraphQLType
                 'type'        => Type::int(),
                 'description' => 'User tasksCount',
             ],
-            'lastLogin' => [
+            'lastLogin'  => [
                 'type'        => \GraphQL::type('LastLoginType'),
                 'description' => 'User lastLogin',
+            ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
             ],
         ];
     }

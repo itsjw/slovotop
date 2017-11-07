@@ -134,7 +134,10 @@ class AddUserMutation extends Mutation
          * Bus::dispatch(new SendUserMailJob($user, $pass));
          */
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 

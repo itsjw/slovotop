@@ -75,7 +75,7 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data.AddRoleMutation.id,2);
+                            notify.make('success', response.data.data.AddRoleMutation.notify,2);
                             this.$emit('close');
                         }
                     });

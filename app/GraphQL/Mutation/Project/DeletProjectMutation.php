@@ -78,7 +78,10 @@ class DeletProjectMutation extends Mutation
             $project->delete();
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $project->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 

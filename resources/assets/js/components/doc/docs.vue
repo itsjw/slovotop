@@ -123,7 +123,7 @@
                     }
                     gql.setItem('v1', 'DeleteDocMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.DeleteDocMutation.id,1);
+                            notify.make('success', response.data.data.DeleteDocMutation.notify,1);
                             this.getDocs();
                         })
                 }

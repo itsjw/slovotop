@@ -53,6 +53,11 @@ class ProjectType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'ProjectType updated_at',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

@@ -30072,7 +30072,7 @@ var Query = function () {
 
         this.v1 = '/apps/v1';
 
-        this.id = 'id';
+        this.id = 'id,notify';
         this.menu = 'id,name,slug,refer,roles{access}';
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
@@ -30117,7 +30117,7 @@ var Query = function () {
     }, {
         key: 'setItem',
         value: function setItem(url, item, select) {
-            var params = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : this.id;
+            var params = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'id';
 
 
             var querytoapi = this.clearQuery('mutation { ' + item + ' ( ' + select + ' ) { ' + this[params] + ' } }');
@@ -30720,7 +30720,7 @@ Vue.component('accessRole', __webpack_require__(102));
                     select = ['items:"' + this.selectRole + '"'];
                 }
                 gql.setItem('v1', 'DeleteRoleMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteRoleMutation.id, 1);
+                    notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
                     _this2.getRoles();
                 });
             }
@@ -30873,7 +30873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
-                    notify.make('success', response.data.data.AddRoleMutation.id, 2);
+                    notify.make('success', response.data.data.AddRoleMutation.notify, 2);
                     _this2.$emit('close');
                 }
             });
@@ -31279,7 +31279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         selectMenu: function selectMenu(key) {
             gql.setItem('v1', 'ChangeAccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
-                notify.make('success', response.data.data.ChangeAccessMenuMutation.id, 1);
+                notify.make('success', response.data.data.ChangeAccessMenuMutation.notify, 1);
             });
         },
 
@@ -32118,7 +32118,7 @@ Vue.component('addUser', __webpack_require__(111));
                     select = ['items:"' + this.selectUser + '"'];
                 }
                 gql.setItem('v1', 'DeleteUserMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteUserMutation.id, 1);
+                    notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
                     _this2.getUsers();
                 });
             }
@@ -32135,7 +32135,7 @@ Vue.component('addUser', __webpack_require__(111));
             if (this.selectUser.length > 0) {
                 select = ['items:"' + this.selectUser + '"'];
                 gql.setItem('v1', 'ApproveUserMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.ApproveUserMutation.id, 1);
+                    notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
                     _this3.getUsers();
                 });
             }
@@ -32406,7 +32406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
-                    notify.make('success', response.data.data[point].id, 2);
+                    notify.make('success', response.data.data[point].notify, 2);
                     _this3.$emit('close');
                 }
             });
@@ -33640,7 +33640,7 @@ Vue.component('addProject', __webpack_require__(117));
                     select = ['items:"' + this.selectProject + '"'];
                 }
                 gql.setItem('v1', 'DeleteProjectMutation', select).then(function (response) {
-                    notify.make('seccess', response.data.data.DeleteProjectMutation.id, 1);
+                    notify.make('seccess', response.data.data.DeleteProjectMutation.notify, 1);
                     _this2.getProjects();
                 });
             }
@@ -33833,7 +33833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
-                    notify.make('success', response.data.data.AddProjectMutation.id, 2);
+                    notify.make('success', response.data.data.AddProjectMutation.notify, 2);
                     _this3.$emit('close');
                 }
             });
@@ -34684,7 +34684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     select = ['items:"' + this.selectDoc + '"'];
                 }
                 gql.setItem('v1', 'DeleteDocMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteDocMutation.id, 1);
+                    notify.make('success', response.data.data.DeleteDocMutation.notify, 1);
                     _this2.getDocs();
                 });
             }
@@ -35134,7 +35134,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
-                    notify.make('success', response.data.data.AddDocMutation.id, 2);
+                    notify.make('success', response.data.data.AddDocMutation.notify, 2);
+                    history.pushState(null, null, response.data.data.AddDocMutation.id);
                 }
             });
         },

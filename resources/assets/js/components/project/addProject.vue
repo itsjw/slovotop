@@ -123,7 +123,7 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data.AddProjectMutation.id,2);
+                            notify.make('success', response.data.data.AddProjectMutation.notify,2);
                             this.$emit('close');
                         }
                     });

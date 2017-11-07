@@ -74,7 +74,10 @@ class DeleteRoleMutation extends Mutation
             }
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $role->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 }

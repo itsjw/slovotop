@@ -76,6 +76,9 @@ class DeleteUserMutation extends Mutation
             }
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
     }
 }

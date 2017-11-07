@@ -88,6 +88,9 @@ class ChangeAccessMenuMutation extends Mutation
             $menu->save($role, ['access' => $args['access']]);
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $menu->id,
+            'notify' => trans('data.notifyOK'),
+        ];
     }
 }

@@ -73,7 +73,10 @@ class DeleteDocMutation extends Mutation
             $doc->delete();
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $doc->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 }

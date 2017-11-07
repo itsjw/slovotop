@@ -76,7 +76,10 @@ class AddRoleMutation extends Mutation
         $role->name = $args['name'];
         $role->save();
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $role->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 }

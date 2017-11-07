@@ -61,6 +61,11 @@ class MenuType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'Menu updated_at',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

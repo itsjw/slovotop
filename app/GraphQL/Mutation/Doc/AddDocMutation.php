@@ -105,7 +105,10 @@ class AddDocMutation extends Mutation
             $doc->roles()->save($role, ['access' => 1]);
         }
 
-        return ['id' => trans('data.notifyOK')];
+        return [
+            'id'     => $doc->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 }

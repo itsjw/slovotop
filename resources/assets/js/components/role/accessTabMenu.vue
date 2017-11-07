@@ -56,7 +56,7 @@
             selectMenu(key) {
                 gql.setItem('v1', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
                     .then(response => {
-                        notify.make('success', response.data.data.ChangeAccessMenuMutation.id,1);
+                        notify.make('success', response.data.data.ChangeAccessMenuMutation.notify,1);
                     });
             },
 
