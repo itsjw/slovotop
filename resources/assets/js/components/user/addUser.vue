@@ -45,7 +45,6 @@
                 </div>
                 <div class="ui-mb-1">
                     <div class="ui-block-flex">
-
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex">
                             <span class="ui-pr-2">{{ trans('data.userRole') }}</span>
                             <i class="ui-icon size-5 ui-color col-green hover"

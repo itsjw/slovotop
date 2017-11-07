@@ -30003,14 +30003,14 @@ var Notify = function () {
             switch (type) {
                 case 'string':
                     html = '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                    html += '<div class="ui-grid-11">' + data + '</div>';
-                    html += '</div>';
+                    html = html + '<div class="ui-grid-11">' + data + '</div>';
+                    html = html + '</div>';
                     break;
                 case 'object':
                     for (var val in data) {
-                        html += '<div class="ui-grid-block top ui-mt-1">' + this.check;
-                        html += '<div class="ui-grid-11">' + data[val][0] + '</div>';
-                        html += '</div>';
+                        html = html + '<div class="ui-grid-block top ui-mt-1">' + this.check;
+                        html = html + '<div class="ui-grid-11">' + data[val][0] + '</div>';
+                        html = html + '</div>';
                     }
                     break;
             }
@@ -32197,7 +32197,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -34934,20 +34933,155 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.editor = new Jodit(document.getElementById('editor'), {
+            height: 400,
+            buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|', 'hr', 'eraser', 'fullsize', 'copyformat']
+        });
+    },
 
 
     props: {},
 
     data: function data() {
-        return {};
+        return {
+            showRoles: false,
+            arrayRoles: [],
+            cleanRole: [],
+            roles: [],
+            editor: {},
+            doc: {}
+        };
     },
 
 
-    methods: {}
+    methods: {
+        /**
+         * get roles
+         */
+        getRoles: function getRoles() {
+            var _this = this;
+
+            gql.getItem('v1', 'RoleQuery', null, 'role').then(function (response) {
+                _this.roles = response.data.data.RoleQuery;
+                _this.showRoles = true;
+            });
+        },
+
+
+        /**
+         * add role
+         * @param id
+         */
+        addRole: function addRole(id) {
+            this.showRoles = false;
+            if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
+                this.arrayRoles.push({
+                    'id': this.roles[id].id,
+                    'name': this.roles[id].name
+                });
+            }
+            this.getCleanRole();
+        },
+
+
+        /**
+         * get clean role
+         * @param role
+         */
+        getCleanRole: function getCleanRole() {
+            var _vm = this;
+            this.cleanRole = [];
+
+            _.forEach(this.arrayRoles, function (value) {
+                _vm.cleanRole.push(value.id);
+            });
+        },
+
+
+        /**
+         * delete role
+         * @param id
+         */
+        deleteRole: function deleteRole(id) {
+            this.arrayRoles.splice(id, 1);
+            this.getCleanRole();
+        },
+        saveDoc: function saveDoc() {},
+
+
+        /**
+         * cancel save doc
+         */
+        cancelDoc: function cancelDoc() {
+            window.location = '/crm/docs';
+        }
+    }
 });
 
 /***/ }),
@@ -34958,7 +35092,218 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\n    Doc\n\n")])
+  return _c("div", [
+    _c("div", { staticClass: "ui-grid-block" }, [
+      _c("div", { staticClass: "ui-grid-10" }, [
+        _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.docsName")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.doc.name,
+                expression: "doc.name"
+              }
+            ],
+            staticClass: "ui-input green focus ui-fnt light size-1",
+            attrs: { type: "text" },
+            domProps: { value: _vm.doc.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.doc, "name", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-block-flex" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex"
+                },
+                [
+                  _c("span", { staticClass: "ui-pr-2" }, [
+                    _vm._v(_vm._s(_vm.trans("data.userRole")))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    {
+                      staticClass: "ui-icon size-5 ui-color col-green hover",
+                      on: {
+                        click: function($event) {
+                          _vm.getRoles()
+                        }
+                      }
+                    },
+                    [_vm._v("add_circle")]
+                  ),
+                  _vm._v(" "),
+                  _vm.showRoles
+                    ? _c("div", {
+                        staticClass: "ui-popup-bg",
+                        on: {
+                          click: function($event) {
+                            _vm.showRoles = false
+                          }
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.showRoles
+                    ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [
+                        _c("table", [
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.roles, function(val, key) {
+                              return _c(
+                                "tr",
+                                {
+                                  staticClass:
+                                    "hover ui-fnt regular size-1 ui-color col-blue"
+                                },
+                                [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "left",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.addRole(key)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(val.name))]
+                                  )
+                                ]
+                              )
+                            })
+                          )
+                        ])
+                      ])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.arrayRoles, function(item, k) {
+                return _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-tag bg-yellow hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn"
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.name) +
+                        "\n                        "
+                    ),
+                    _c(
+                      "i",
+                      {
+                        staticClass:
+                          "ui-icon size-2 ui-ml-2 ui-color col-red hover",
+                        on: {
+                          click: function($event) {
+                            _vm.deleteRole(k)
+                          }
+                        }
+                      },
+                      [_vm._v("close")]
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.docsBody")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("textarea", { staticClass: "ui-input", attrs: { id: "editor" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-grid-12 ui-mb-2 ui-mt-3" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.saveDoc()
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.save")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.cancelDoc()
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.cancel")) +
+                  "\n                "
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-2" })
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
