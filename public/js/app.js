@@ -35144,7 +35144,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDocData: function getDocData(doc) {
             doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
 
-            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    roles: "' + (this.cleanRole || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
+            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
         },
 
 

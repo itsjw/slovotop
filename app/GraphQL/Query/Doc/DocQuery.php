@@ -74,7 +74,7 @@ class DocQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Doc::query();
+        $query = Doc::query()->with('roles');
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);

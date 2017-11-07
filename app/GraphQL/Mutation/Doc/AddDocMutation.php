@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\Doc;
 
 use App\Models\Doc;
+use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
@@ -48,11 +49,6 @@ class AddDocMutation extends Mutation
                 'type'  => Type::string(),
                 'rules' => ['required'],
             ],
-            'roles' => [
-                'name'  => 'roles',
-                'type'  => Type::string(),
-                'rules' => ['required'],
-            ],
             'user'  => [
                 'name'  => 'user',
                 'type'  => Type::int(),
@@ -74,7 +70,6 @@ class AddDocMutation extends Mutation
      * @apiName       Doc-Add/Update
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name
-     * @apiParam {String{required,1,2,3...}} roles roles
      * @apiParam {Integer{required}} user user_id
      * @apiParam {String{required}} body body
      * @apiParamExample {json} Request-Example:
@@ -95,7 +90,6 @@ class AddDocMutation extends Mutation
         $doc->body    = $args['body'];
         $doc->user_id = $args['user'];
         $doc->save();
-
 
         return ['id' => trans('data.notifyOK')];
 

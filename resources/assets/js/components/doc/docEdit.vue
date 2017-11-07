@@ -80,7 +80,7 @@
                     'hr', 'eraser', 'fullsize', 'copyformat']
             });
 
-            if(this.doc_id > 0){
+            if (this.doc_id > 0) {
                 this.getDoc();
             }
         },
@@ -187,7 +187,6 @@
                 return `
                         id: ${this.doc_id == 0 ? this.doc_id : doc.id},
                         name: "${_.escape(doc.name) || ''}",
-                        roles: "${this.cleanRole || ''}",
                         user: ${this.user_id},
                         body: "${_.escape(doc.body) || ''}"`;
             },
