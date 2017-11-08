@@ -28,7 +28,7 @@ class AccessType extends GraphQLType
     {
         return [
             'id'              => [
-                'type'        => Type::nonNull(Type::id()),
+                'type'        => Type::id(),
                 'description' => 'AccessType ID',
             ],
             'accessable_id'   => [

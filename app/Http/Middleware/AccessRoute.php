@@ -23,7 +23,7 @@ class AccessRoute
      */
     public function handle($request, Closure $next)
     {
-        $slug = substr(strrchr($request->route()->uri(), '/'), 1);
+        $slug = explode('/', $request->route()->uri())[1];
 
         $query = Menu::query()->where('refer', 1)->where('slug', $slug);
 
@@ -31,7 +31,7 @@ class AccessRoute
             $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
         });
 
-        if ($query->get()->isEmpty() && !\Auth::user()->hasRole(1)) {
+        if ($query->get()->isEmpty()&& ! \Auth::user()->hasRole(1)) {
             return redirect()->route('home');
         }
 
