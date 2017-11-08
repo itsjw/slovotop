@@ -13,11 +13,11 @@ html {
 }
 
 #app {
-  height: inherit;
+  min-height: 100%;
 }
 
 .admin-wrap {
-  height: inherit;
+  min-height: 100%;
   display: flex;
 
   & .admin-left {

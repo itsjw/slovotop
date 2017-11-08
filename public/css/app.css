@@ -3427,11 +3427,11 @@ html {
 }
 
 #app {
-  height: inherit;
+  min-height: 100%;
 }
 
 .admin-wrap {
-  height: inherit;
+  min-height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
