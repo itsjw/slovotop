@@ -3427,11 +3427,11 @@ html {
 }
 
 #app {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .admin-wrap {
-  min-height: 100%;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

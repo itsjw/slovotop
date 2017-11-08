@@ -89,7 +89,7 @@ class ChangeAccessMenuMutation extends Mutation
         }
 
         return [
-            'id'     => $menu->id,
+            'id'     => $args['menu'],
             'notify' => trans('data.notifyOK'),
         ];
     }

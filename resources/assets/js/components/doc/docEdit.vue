@@ -5,15 +5,18 @@
             <div class="ui-grid-10">
 
                 <div class="ui-grid-12 ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
                         {{ trans('data.docsName') }}
                     </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
+                    <input class="ui-input green focus ui-bg bg-wite ui-fnt light size-1"
                            type="text"
                            v-model="doc.name">
                 </div>
 
                 <div class="ui-grid-12 ui-mb-2">
+                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
+                        {{ trans('data.docsAccess') }}
+                    </div>
                     <div class="ui-block-flex">
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex">
                             <span class="ui-pr-2">{{ trans('data.userRole') }}</span>
@@ -43,7 +46,7 @@
                 </div>
 
                 <div class="ui-grid-12 ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
                         {{ trans('data.docsBody') }}
                     </div>
                     <textarea class="ui-input" id="editor"></textarea>

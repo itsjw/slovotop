@@ -34796,6 +34796,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34947,7 +34950,9 @@ var render = function() {
         _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
           _c(
             "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            {
+              staticClass: "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
+            },
             [
               _vm._v(
                 "\n                    " +
@@ -34966,7 +34971,8 @@ var render = function() {
                 expression: "doc.name"
               }
             ],
-            staticClass: "ui-input green focus ui-fnt light size-1",
+            staticClass:
+              "ui-input green focus ui-bg bg-wite ui-fnt light size-1",
             attrs: { type: "text" },
             domProps: { value: _vm.doc.name },
             on: {
@@ -34981,6 +34987,20 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
+          _c(
+            "div",
+            {
+              staticClass: "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
+            },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.docsAccess")) +
+                  "\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "ui-block-flex" },
@@ -35092,7 +35112,9 @@ var render = function() {
         _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
           _c(
             "div",
-            { staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1" },
+            {
+              staticClass: "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
+            },
             [
               _vm._v(
                 "\n                    " +

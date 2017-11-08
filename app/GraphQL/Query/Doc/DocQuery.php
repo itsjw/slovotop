@@ -82,14 +82,9 @@ class DocQuery extends Query
 
         if ( ! \Auth::user()->hasRole(1)) {
             $query->whereHas('roles', function ($request) {
-                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
+                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access','>', 0);
             });
         }
-        $query->with([
-            'roles' => function ($query) {
-                $query->select('access','role_id','name');
-            },
-        ]);
 
         return DocSerialize::collection($query->get());
     }

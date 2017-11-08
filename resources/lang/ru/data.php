@@ -63,6 +63,7 @@ return [
     // Docs
     'docsName'      => 'Название',
     'docsBody'      => 'Текст документа',
+    'docsAccess'    => 'Доступ к документу',
     'docsOwner'     => 'Создатель документа',
 
     // inform
