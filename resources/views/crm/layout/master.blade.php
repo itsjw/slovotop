@@ -60,6 +60,8 @@
     }
     echo json_encode($trans);
     ?>;
+
+    window.user_role = @json(\Auth::user()->getRoles());
 </script>
 
 @stack('scripts')
