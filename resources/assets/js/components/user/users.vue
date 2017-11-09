@@ -183,7 +183,7 @@
              */
             getUsers() {
                 this.selectUser = [];
-                gql.getItem('v1', 'UserQuery', this.queryParams, 'user')
+                gql.getItem('v2', 'UserQuery', this.queryParams, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
                     })
@@ -227,7 +227,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectUser + '"'];
                     }
-                    gql.setItem('v1', 'DeleteUserMutation', select)
+                    gql.setItem('v2', 'DeleteUserMutation', select)
                         .then(response => {
                             notify.make('success', response.data.data.DeleteUserMutation.notify,1);
                             this.getUsers();
@@ -242,7 +242,7 @@
                 let select;
                 if (this.selectUser.length > 0) {
                     select = ['items:"' + this.selectUser + '"'];
-                    gql.setItem('v1', 'ApproveUserMutation', select)
+                    gql.setItem('v2', 'ApproveUserMutation', select)
                         .then(response => {
                             notify.make('success', response.data.data.ApproveUserMutation.notify,1);
                             this.getUsers();

@@ -112,7 +112,7 @@
              * get roles
              */
             getRoles() {
-                gql.getItem('v1', 'RoleQuery', null, 'role')
+                gql.getItem('v2', 'RoleQuery', null, 'role')
                     .then(response => {
                         this.roles = response.data.data.RoleQuery;
                         this.showRoles = true;
@@ -161,7 +161,7 @@
              * get doc for edit
              */
             getDoc() {
-                gql.getItem('v1', 'DocQuery', ['id:' + this.doc_id], 'doc')
+                gql.getItem('v2', 'DocQuery', ['id:' + this.doc_id], 'doc')
                     .then(response => {
                         this.doc = response.data.data.DocQuery[0];
                         this.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
@@ -173,7 +173,7 @@
              * save doc
              */
             saveDoc() {
-                gql.setItem('v1', 'AddDocMutation', this.getDocData(this.doc))
+                gql.setItem('v2', 'AddDocMutation', this.getDocData(this.doc))
                     .then(response => {
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);

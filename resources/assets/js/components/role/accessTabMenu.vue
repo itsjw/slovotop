@@ -43,7 +43,7 @@
              * get menus
              */
             getMenus() {
-                gql.getItem('v1', 'MenuQuery', 'role_id:' + this.role, 'menu')
+                gql.getItem('v2', 'MenuQuery', 'role_id:' + this.role, 'menu')
                     .then(response => {
                         this.menus = response.data.data.MenuQuery;
                     })
@@ -54,7 +54,7 @@
              * @param key
              */
             selectMenu(key) {
-                gql.setItem('v1', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
+                gql.setItem('v2', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
                     .then(response => {
                         notify.make('success', response.data.data.ChangeAccessMenuMutation.notify,1);
                     });

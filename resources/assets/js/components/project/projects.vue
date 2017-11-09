@@ -206,7 +206,7 @@
              */
             getProjects() {
                 this.selectProject = [];
-                gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project')
+                gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project')
                     .then(response => {
                         this.projects = response.data.data.ProjectQuery;
                     })
@@ -250,7 +250,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectProject + '"'];
                     }
-                    gql.setItem('v1', 'DeleteProjectMutation', select)
+                    gql.setItem('v2', 'DeleteProjectMutation', select)
                         .then(response => {
                             notify.make('seccess', response.data.data.DeleteProjectMutation.notify,1);
                             this.getProjects();

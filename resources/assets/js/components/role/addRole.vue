@@ -60,7 +60,7 @@
              * @param id
              */
             getRole(id) {
-                gql.getItem('v1', 'RoleQuery', ['id:' + id], 'role')
+                gql.getItem('v2', 'RoleQuery', ['id:' + id], 'role')
                     .then(response => {
                         this.role = response.data.data.RoleQuery[0];
                     })
@@ -70,7 +70,7 @@
              * save project
              */
             saveRole() {
-                gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role))
+                gql.setItem('v2', 'AddRoleMutation', this.getRoleData(this.role))
                     .then(response => {
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);

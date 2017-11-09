@@ -86,6 +86,7 @@ class DocQuery extends Query
             });
         }
 
+
         return DocSerialize::collection($query->get());
     }
 }

@@ -39,6 +39,39 @@ return [
             ],
             'middleware' => ['auth'],
         ],
+        'v2' => [
+            'query'      => [
+                // menu
+                'MenuQuery'    => App\GraphQL\Query\Menu\MenuQuery::class,
+                // user
+                'UserQuery'    => App\GraphQL\Query\User\UserQuery::class,
+                // role
+                'RoleQuery'    => App\GraphQL\Query\Role\RoleQuery::class,
+                // project
+                'ProjectQuery' => App\GraphQL\Query\Project\ProjectQuery::class,
+                // doc
+                'DocQuery'     => App\GraphQL\Query\Doc\DocQuery::class,
+            ],
+            'mutation'   => [
+                // user
+                'AddUserMutation'          => App\GraphQL\Mutation\User\AddUserMutation::class,
+                'UpdateUserMutation'       => App\GraphQL\Mutation\User\UpdateUserMutation::class,
+                'DeleteUserMutation'       => App\GraphQL\Mutation\User\DeleteUserMutation::class,
+                'ApproveUserMutation'      => App\GraphQL\Mutation\User\ApproveUserMutation::class,
+                // role
+                'AddRoleMutation'          => App\GraphQL\Mutation\Role\AddRoleMutation::class,
+                'DeleteRoleMutation'       => App\GraphQL\Mutation\Role\DeleteRoleMutation::class,
+                // project
+                'AddProjectMutation'       => App\GraphQL\Mutation\Project\AddProjectMutation::class,
+                'DeleteProjectMutation'    => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
+                // access
+                'ChangeAccessMenuMutation' => App\GraphQL\Mutation\Access\ChangeAccessMenuMutation::class,
+                // doc
+                'AddDocMutation'           => App\GraphQL\Mutation\Doc\AddDocMutation::class,
+                'DeleteDocMutation'        => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,
+            ],
+            'middleware' => ['auth'],
+        ],
     ],
     'types'           => [
         'MenuType'      => App\GraphQL\Type\MenuType::class,

@@ -30071,13 +30071,13 @@ var Query = function () {
         _classCallCheck(this, Query);
 
         this.v1 = '/apps/v1';
-
+        this.v2 = '/apps/v2';
         this.id = 'id,notify';
         this.menu = 'id,name,slug,refer,roles{access}';
         this.role = 'id,name,created_at,updated_at,count';
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
-        this.doc = 'id,name,body,created_at,updated_at,roles{id,name,access},user{id,name}';
+        this.doc = 'id,name,body,created_at,updated_at,roles{id,name,access,role_id},user{id,name}';
     }
 
     /**
@@ -30456,7 +30456,7 @@ Vue.component('accessRole', __webpack_require__(48));
             var _this = this;
 
             this.selectRole = [];
-            gql.getItem('v1', 'RoleQuery', false, 'role').then(function (response) {
+            gql.getItem('v2', 'RoleQuery', false, 'role').then(function (response) {
                 _this.roles = response.data.data.RoleQuery;
             });
         },
@@ -30492,7 +30492,7 @@ Vue.component('accessRole', __webpack_require__(48));
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectRole + '"'];
                 }
-                gql.setItem('v1', 'DeleteRoleMutation', select).then(function (response) {
+                gql.setItem('v2', 'DeleteRoleMutation', select).then(function (response) {
                     notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
                     _this2.getRoles();
                 });
@@ -30630,7 +30630,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRole: function getRole(id) {
             var _this = this;
 
-            gql.getItem('v1', 'RoleQuery', ['id:' + id], 'role').then(function (response) {
+            gql.getItem('v2', 'RoleQuery', ['id:' + id], 'role').then(function (response) {
                 _this.role = response.data.data.RoleQuery[0];
             });
         },
@@ -30642,7 +30642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveRole: function saveRole() {
             var _this2 = this;
 
-            gql.setItem('v1', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
+            gql.setItem('v2', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
@@ -30898,8 +30898,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 Vue.component('accessTabMenu', __webpack_require__(50));
+Vue.component('accessTabDoc', __webpack_require__(97));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30931,7 +30935,7 @@ Vue.component('accessTabMenu', __webpack_require__(50));
         getRole: function getRole() {
             var _this = this;
 
-            gql.getItem('v1', 'RoleQuery', ['id:' + this.role_id], 'role').then(function (response) {
+            gql.getItem('v2', 'RoleQuery', ['id:' + this.role_id], 'role').then(function (response) {
                 _this.role = response.data.data.RoleQuery[0];
             });
         }
@@ -31040,7 +31044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMenus: function getMenus() {
             var _this = this;
 
-            gql.getItem('v1', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
+            gql.getItem('v2', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
                 _this.menus = response.data.data.MenuQuery;
             });
         },
@@ -31051,7 +31055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param key
          */
         selectMenu: function selectMenu(key) {
-            gql.setItem('v1', 'ChangeAccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
+            gql.setItem('v2', 'ChangeAccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
                 notify.make('success', response.data.data.ChangeAccessMenuMutation.notify, 1);
             });
         },
@@ -31204,7 +31208,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                Изменение прав доступа для роли -\n                "
+                  "\n                " +
+                    _vm._s(_vm.trans("data.roleTitle")) +
+                    "\n                "
                 ),
                 _c(
                   "span",
@@ -31323,6 +31329,10 @@ var render = function() {
             _vm._v(" "),
             _vm.tabs[0]
               ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.tabs[3]
+              ? _c("access-tab-doc", { attrs: { role: _vm.role_id } })
               : _vm._e()
           ],
           1
@@ -31841,7 +31851,7 @@ Vue.component('addUser', __webpack_require__(57));
             var _this = this;
 
             this.selectUser = [];
-            gql.getItem('v1', 'UserQuery', this.queryParams, 'user').then(function (response) {
+            gql.getItem('v2', 'UserQuery', this.queryParams, 'user').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
         },
@@ -31890,7 +31900,7 @@ Vue.component('addUser', __webpack_require__(57));
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectUser + '"'];
                 }
-                gql.setItem('v1', 'DeleteUserMutation', select).then(function (response) {
+                gql.setItem('v2', 'DeleteUserMutation', select).then(function (response) {
                     notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
                     _this2.getUsers();
                 });
@@ -31907,7 +31917,7 @@ Vue.component('addUser', __webpack_require__(57));
             var select = void 0;
             if (this.selectUser.length > 0) {
                 select = ['items:"' + this.selectUser + '"'];
-                gql.setItem('v1', 'ApproveUserMutation', select).then(function (response) {
+                gql.setItem('v2', 'ApproveUserMutation', select).then(function (response) {
                     notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
                     _this3.getUsers();
                 });
@@ -32114,7 +32124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUser: function getUser(id) {
             var _this = this;
 
-            gql.getItem('v1', 'UserQuery', ['id:' + id], 'user').then(function (response) {
+            gql.getItem('v2', 'UserQuery', ['id:' + id], 'user').then(function (response) {
                 _this.user = response.data.data.UserQuery[0];
                 _this.getCleanRole();
             });
@@ -32127,7 +32137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRoles: function getRoles() {
             var _this2 = this;
 
-            gql.getItem('v1', 'RoleQuery', null, 'role').then(function (response) {
+            gql.getItem('v2', 'RoleQuery', null, 'role').then(function (response) {
                 _this2.roles = response.data.data.RoleQuery;
                 _this2.showRoles = true;
             });
@@ -32175,7 +32185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 point = 'UpdateUserMutation';
             }
 
-            gql.setItem('v1', point, this.getUserData(this.user)).then(function (response) {
+            gql.setItem('v2', point, this.getUserData(this.user)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
@@ -33363,7 +33373,7 @@ Vue.component('addProject', __webpack_require__(63));
             var _this = this;
 
             this.selectProject = [];
-            gql.getItem('v1', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
+            gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
                 _this.projects = response.data.data.ProjectQuery;
             });
         },
@@ -33412,7 +33422,7 @@ Vue.component('addProject', __webpack_require__(63));
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectProject + '"'];
                 }
-                gql.setItem('v1', 'DeleteProjectMutation', select).then(function (response) {
+                gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
                     notify.make('seccess', response.data.data.DeleteProjectMutation.notify, 1);
                     _this2.getProjects();
                 });
@@ -33576,7 +33586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
-            gql.getItem('v1', 'UserQuery', false, 'user').then(function (response) {
+            gql.getItem('v2', 'UserQuery', false, 'user').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
         },
@@ -33589,7 +33599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProject: function getProject(id) {
             var _this2 = this;
 
-            gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
+            gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
                 _this2.project = response.data.data.ProjectQuery[0];
                 _this2.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
             });
@@ -33602,7 +33612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveProject: function saveProject() {
             var _this3 = this;
 
-            gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
+            gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
@@ -34396,8 +34406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             docs: {},
-            selectDoc: [],
-            userRole: user_role[0]
+            selectDoc: []
         };
     },
 
@@ -34422,7 +34431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.selectDoc = [];
-            gql.getItem('v1', 'DocQuery', false, 'doc').then(function (response) {
+            gql.getItem('v2', 'DocQuery', false, 'doc').then(function (response) {
                 _this.docs = response.data.data.DocQuery;
             });
         },
@@ -34457,7 +34466,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectDoc + '"'];
                 }
-                gql.setItem('v1', 'DeleteDocMutation', select).then(function (response) {
+                gql.setItem('v2', 'DeleteDocMutation', select).then(function (response) {
                     notify.make('success', response.data.data.DeleteDocMutation.notify, 1);
                     _this2.getDocs();
                 });
@@ -34475,79 +34484,71 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.userRole == 1
-      ? _c(
+    _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
+      _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+        _c(
           "div",
-          { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.addDoc()
+              }
+            }
+          },
           [
-            _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.addDoc()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [
-                    _vm._v("note_add")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.add")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.editDoc()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.edit")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.deleteDoc()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.delete")))
-                  ])
-                ]
-              )
-            ]),
+            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("note_add")]),
             _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-6" })
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.add")))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.editDoc()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.edit")))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+            on: {
+              click: function($event) {
+                _vm.deleteDoc()
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+              _vm._v(_vm._s(_vm.trans("data.delete")))
+            ])
           ]
         )
-      : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-6" })
+    ]),
     _vm._v(" "),
     _c("table", [
       _c("thead", [
@@ -34850,7 +34851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRoles: function getRoles() {
             var _this = this;
 
-            gql.getItem('v1', 'RoleQuery', null, 'role').then(function (response) {
+            gql.getItem('v2', 'RoleQuery', null, 'role').then(function (response) {
                 _this.roles = response.data.data.RoleQuery;
                 _this.showRoles = true;
             });
@@ -34903,7 +34904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDoc: function getDoc() {
             var _this2 = this;
 
-            gql.getItem('v1', 'DocQuery', ['id:' + this.doc_id], 'doc').then(function (response) {
+            gql.getItem('v2', 'DocQuery', ['id:' + this.doc_id], 'doc').then(function (response) {
                 _this2.doc = response.data.data.DocQuery[0];
                 _this2.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
                 _this2.getCleanRole();
@@ -34915,7 +34916,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * save doc
          */
         saveDoc: function saveDoc() {
-            gql.setItem('v1', 'AddDocMutation', this.getDocData(this.doc)).then(function (response) {
+            gql.setItem('v2', 'AddDocMutation', this.getDocData(this.doc)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
@@ -35371,6 +35372,171 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(98)
+/* template */
+var __vue_template__ = __webpack_require__(99)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/role/accessTabDoc.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c7b2b9d", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c7b2b9d", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {},
+    mounted: function mounted() {},
+
+
+    props: {},
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL" }, [
+      _c("div", { staticClass: "ui-grid-block" }, [
+        _c("div", { staticClass: "ui-grid-10" }, [
+          _c(
+            "div",
+            { staticClass: "ui-fnt regular size-2 ui-color col-green" },
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.roleDoc")) +
+                  "\n                "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui-grid-2 center" }, [
+      _c("input", { attrs: { type: "checkbox", id: "hello" } }),
+      _vm._v(" "),
+      _c("label", {
+        staticClass: "ui-checkbox ui-color col-green",
+        attrs: { for: "hello" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4c7b2b9d", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

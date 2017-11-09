@@ -116,7 +116,7 @@
              */
             getRoles() {
                 this.selectRole = [];
-                gql.getItem('v1', 'RoleQuery', false, 'role')
+                gql.getItem('v2', 'RoleQuery', false, 'role')
                     .then(response => {
                         this.roles = response.data.data.RoleQuery;
                     })
@@ -148,7 +148,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectRole + '"'];
                     }
-                    gql.setItem('v1', 'DeleteRoleMutation', select)
+                    gql.setItem('v2', 'DeleteRoleMutation', select)
                         .then(response => {
                             notify.make('success', response.data.data.DeleteRoleMutation.notify,1);
                             this.getRoles();

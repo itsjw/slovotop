@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="userRole==1">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addDoc()">
@@ -70,7 +70,6 @@
             return {
                 docs: {},
                 selectDoc: [],
-                userRole: user_role[0]
             }
         },
 
@@ -91,7 +90,7 @@
              */
             getDocs() {
                 this.selectDoc = [];
-                gql.getItem('v1', 'DocQuery', false, 'doc')
+                gql.getItem('v2', 'DocQuery', false, 'doc')
                     .then(response => {
                         this.docs = response.data.data.DocQuery;
                     })
@@ -122,7 +121,7 @@
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectDoc + '"'];
                     }
-                    gql.setItem('v1', 'DeleteDocMutation', select)
+                    gql.setItem('v2', 'DeleteDocMutation', select)
                         .then(response => {
                             notify.make('success', response.data.data.DeleteDocMutation.notify, 1);
                             this.getDocs();

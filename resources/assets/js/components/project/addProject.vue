@@ -96,7 +96,7 @@
              * get all users
              */
             getUsers() {
-                gql.getItem('v1', 'UserQuery', false, 'user')
+                gql.getItem('v2', 'UserQuery', false, 'user')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
                     });
@@ -107,7 +107,7 @@
              * @param id
              */
             getProject(id) {
-                gql.getItem('v1', 'ProjectQuery', ['id:' + id], 'project')
+                gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project')
                     .then(response => {
                         this.project = response.data.data.ProjectQuery[0];
                         this.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
@@ -118,7 +118,7 @@
              * save project
              */
             saveProject() {
-                gql.setItem('v1', 'AddProjectMutation', this.getProjectData(this.project))
+                gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project))
                     .then(response => {
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);

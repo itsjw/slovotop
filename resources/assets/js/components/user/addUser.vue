@@ -139,7 +139,7 @@
              * @param id
              */
             getUser(id) {
-                gql.getItem('v1', 'UserQuery', ['id:' + id], 'user')
+                gql.getItem('v2', 'UserQuery', ['id:' + id], 'user')
                     .then(response => {
                         this.user = response.data.data.UserQuery[0];
                         this.getCleanRole();
@@ -150,7 +150,7 @@
              * get roles
              */
             getRoles() {
-                gql.getItem('v1', 'RoleQuery', null, 'role')
+                gql.getItem('v2', 'RoleQuery', null, 'role')
                     .then(response => {
                         this.roles = response.data.data.RoleQuery;
                         this.showRoles = true;
@@ -194,7 +194,7 @@
                     point = 'UpdateUserMutation';
                 }
 
-                gql.setItem('v1', point, this.getUserData(this.user))
+                gql.setItem('v2', point, this.getUserData(this.user))
                     .then(response => {
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
