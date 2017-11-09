@@ -62,6 +62,7 @@
 
         mounted() {
             this.getDocs();
+            console.log(this.currentUser);
         },
 
         props: {},

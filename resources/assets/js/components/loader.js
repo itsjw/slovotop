@@ -10,3 +10,8 @@ Vue.component('adminDocEdit', require('./doc/docEdit.vue'));
 
 // search tip pop
 Vue.component('searchPop', require('./searchPop.vue'));
+
+// Mixins
+import Auth from '../mixin/Auth';
+
+Vue.mixin(Auth);

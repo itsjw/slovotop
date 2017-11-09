@@ -30157,8 +30157,11 @@ var Query = function () {
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixin_Auth__ = __webpack_require__(100);
 /**
  * Admin panel components
  */
@@ -30171,6 +30174,11 @@ Vue.component('adminDocEdit', __webpack_require__(70));
 
 // search tip pop
 Vue.component('searchPop', __webpack_require__(73));
+
+// Mixins
+
+
+Vue.mixin(__WEBPACK_IMPORTED_MODULE_0__mixin_Auth__["a" /* default */]);
 
 /***/ }),
 /* 40 */
@@ -34496,6 +34504,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getDocs();
+        console.log(this.currentUser);
     },
 
 
@@ -35585,6 +35594,47 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-4c7b2b9d", module.exports)
   }
 }
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        /**
+         * user role
+         * @return {*}
+         */
+        currentUserRole: function currentUserRole() {
+            return USER_ROLE;
+        },
+
+
+        /**
+         * can write
+         * @return {boolean}
+         */
+        canWrite: function canWrite() {
+            if (USER_ROLE.indexOf(2) == -1) {
+                return false;
+            }
+            return true;
+        },
+
+
+        /**
+         * can read
+         * @return {boolean}
+         */
+        canRead: function canRead() {
+            if (USER_ROLE.indexOf(1) == -1) {
+                return false;
+            }
+            return true;
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
