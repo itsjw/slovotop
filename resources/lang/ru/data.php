@@ -15,6 +15,9 @@ return [
     'access'        => 'Права доступа',
     'created_at'    => 'Создан',
     'updated_at'    => 'Обновлен',
+    'read'          => 'Чтение',
+    'write'         => 'Запись',
+
 
     // notify
     'notifyOK'      => 'Успешно',

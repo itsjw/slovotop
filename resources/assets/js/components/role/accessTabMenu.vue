@@ -1,23 +1,38 @@
 <template>
-    <div class="ui-grid-block ui-mt-5 ui-p-3 ui-bg bg-greyLL">
 
-        <div class="ui-grid-block"
-             v-for="(val,key) in menus">
-            <div class="ui-grid-10">
-                <div class="ui-fnt regular size-2 ui-color col-green">
-                    {{ val.name }}
-                </div>
-            </div>
-            <div class="ui-grid-2 center">
-                <input type="checkbox"
-                       :id="'menu'+key"
-                       v-model="val.roles[0].access"
-                       v-bind:true-value="1"
-                       v-bind:false-value="0"
-                       @change="selectMenu(key)"/>
-                <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
-            </div>
-        </div>
+    <div class="ui-grid-block ui-mt-5 ui-bg bg-greyLL">
+        <table>
+            <thead>
+            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
+                <th width="5%">№</th>
+                <th width="75%" class="left">{{ trans('data.titleMenu') }}</th>
+                <th width="10%">{{ trans('data.read') }}</th>
+                <th width="10%">{{ trans('data.write') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(val,key) in menus">
+                <td>{{ key+1 }}</td>
+                <td class="left">{{ val.name }}</td>
+                <td>
+                    <input type="checkbox"
+                           :id="'menu'+key"
+                           v-model="val.roles[0].access"
+
+                           @change="selectMenu(key)"/>
+                    <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
+                </td>
+                <td>
+                    <input type="checkbox"
+                           :id="'menu'+key"
+                           v-model="val.roles[0].access"
+
+                           @change="selectMenu(key)"/>
+                    <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 </template>
@@ -56,7 +71,7 @@
             selectMenu(key) {
                 gql.setItem('v2', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
                     .then(response => {
-                        notify.make('success', response.data.data.ChangeAccessMenuMutation.notify,1);
+                        notify.make('success', response.data.data.ChangeAccessMenuMutation.notify, 1);
                     });
             },
 
