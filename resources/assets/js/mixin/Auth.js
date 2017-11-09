@@ -1,10 +1,10 @@
 export default {
     computed: {
         /**
-         * user role
+         * access menu
          * @return {*}
          */
-        currentUserRole() {
+        accessMenu() {
             return ACCESS;
         },
     },

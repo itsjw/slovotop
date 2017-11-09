@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="accessMenu > 1">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addDoc()">

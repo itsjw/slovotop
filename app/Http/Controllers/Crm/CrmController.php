@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Crm;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doc;
-use App\Models\Menu;
-use View;
 
 /**
  * Class CrmController
