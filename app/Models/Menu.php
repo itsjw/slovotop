@@ -42,4 +42,25 @@ class Menu extends Model
     {
         return $this->morphToMany(Role::class, 'accessable');
     }
+
+    /**
+     * get access menu by slug
+     *
+     * @return mixed
+     */
+    public static function getAccessMenu()
+    {
+        $slug = explode('/', \Request::route()->uri())[1];
+        $menu = Menu::where('refer', 1)->where('slug', $slug)->with([
+            'roles' => function ($query) {
+                $query->whereIn('role_id', \Auth::user()->getRoles())->select('access');
+            },
+        ])->get();
+
+        foreach ($menu as $val) {
+            $access = $val->roles->pluck('access')->toArray();
+        }
+
+        return $access[0];
+    }
 }

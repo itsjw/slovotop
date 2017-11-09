@@ -61,7 +61,7 @@
     echo json_encode($trans);
     ?>;
 
-    window.USER_ROLE = @json(\Auth::user()->getRoles());
+    window.ACCESS = @json(\App\Models\Menu::getAccessMenu());
 </script>
 
 @stack('scripts')

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use function foo\func;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {

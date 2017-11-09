@@ -35607,31 +35607,7 @@ if (false) {
          * @return {*}
          */
         currentUserRole: function currentUserRole() {
-            return USER_ROLE;
-        },
-
-
-        /**
-         * can write
-         * @return {boolean}
-         */
-        canWrite: function canWrite() {
-            if (USER_ROLE.indexOf(2) == -1) {
-                return false;
-            }
-            return true;
-        },
-
-
-        /**
-         * can read
-         * @return {boolean}
-         */
-        canRead: function canRead() {
-            if (USER_ROLE.indexOf(1) == -1) {
-                return false;
-            }
-            return true;
+            return ACCESS;
         }
     }
 });
