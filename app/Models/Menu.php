@@ -28,7 +28,7 @@ class Menu extends Model
     {
         if ( ! \Auth::user()->hasRole(1)) {
             $query->whereHas('roles', function ($request) {
-                $request->where('access', 1)->whereIn('role_id', \Auth::user()->getRoles());
+                $request->where('access', '>', 0)->whereIn('role_id', \Auth::user()->getRoles());
             });
         }
 

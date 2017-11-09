@@ -28,7 +28,7 @@ class AccessRoute
         $query = Menu::query()->where('refer', 1)->where('slug', $slug);
 
         $query->whereHas('roles', function ($request) {
-            $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', 1);
+            $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
         });
 
         if ($query->get()->isEmpty()&& ! \Auth::user()->hasRole(1)) {
