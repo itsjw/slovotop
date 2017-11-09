@@ -31034,6 +31034,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31122,111 +31125,125 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.menus, function(val, key) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(key + 1))]),
-            _vm._v(" "),
-            _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-            _vm._v(" "),
-            _c("td", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: val.roles[0].access,
-                    expression: "val.roles[0].access"
-                  }
-                ],
-                attrs: { type: "checkbox", id: "menu" + key },
-                domProps: {
-                  checked: Array.isArray(val.roles[0].access)
-                    ? _vm._i(val.roles[0].access, null) > -1
-                    : val.roles[0].access
-                },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$a = val.roles[0].access,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (val.roles[0].access = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.$set(val.roles[0], "access", $$c)
-                      }
-                    },
-                    function($event) {
-                      _vm.selectMenu(key)
-                    }
-                  ]
-                }
-              }),
+          return _c(
+            "tr",
+            { staticClass: "ui-fnt light size-1 ui-color col-black" },
+            [
+              _c("td", [_vm._v(_vm._s(key + 1))]),
               _vm._v(" "),
-              _c("label", {
-                staticClass: "ui-checkbox ui-color col-green",
-                attrs: { for: "menu" + key }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: val.roles[0].access,
-                    expression: "val.roles[0].access"
-                  }
-                ],
-                attrs: { type: "checkbox", id: "menu" + key },
-                domProps: {
-                  checked: Array.isArray(val.roles[0].access)
-                    ? _vm._i(val.roles[0].access, null) > -1
-                    : val.roles[0].access
-                },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$a = val.roles[0].access,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (val.roles[0].access = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.$set(val.roles[0], "access", $$c)
-                      }
-                    },
-                    function($event) {
-                      _vm.selectMenu(key)
-                    }
-                  ]
-                }
-              }),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
               _vm._v(" "),
-              _c("label", {
-                staticClass: "ui-checkbox ui-color col-green",
-                attrs: { for: "menu" + key }
-              })
-            ])
-          ])
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: val.roles[0].access,
+                      expression: "val.roles[0].access"
+                    }
+                  ],
+                  attrs: {
+                    type: "checkbox",
+                    id: "menuR" + key,
+                    "true-value": 1,
+                    "false-value": 0
+                  },
+                  domProps: {
+                    checked: Array.isArray(val.roles[0].access)
+                      ? _vm._i(val.roles[0].access, null) > -1
+                      : _vm._q(val.roles[0].access, 1)
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$a = val.roles[0].access,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? 1 : 0
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (val.roles[0].access = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(val.roles[0], "access", $$c)
+                        }
+                      },
+                      function($event) {
+                        _vm.selectMenu(key)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", {
+                  staticClass: "ui-checkbox ui-color col-green",
+                  attrs: { for: "menuR" + key }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: val.roles[0].access,
+                      expression: "val.roles[0].access"
+                    }
+                  ],
+                  attrs: {
+                    type: "checkbox",
+                    id: "menuW" + key,
+                    "true-value": 2,
+                    "false-value": 0
+                  },
+                  domProps: {
+                    checked: Array.isArray(val.roles[0].access)
+                      ? _vm._i(val.roles[0].access, null) > -1
+                      : _vm._q(val.roles[0].access, 2)
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$a = val.roles[0].access,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? 2 : 0
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (val.roles[0].access = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(val.roles[0], "access", $$c)
+                        }
+                      },
+                      function($event) {
+                        _vm.selectMenu(key)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", {
+                  staticClass: "ui-checkbox ui-color col-green",
+                  attrs: { for: "menuW" + key }
+                })
+              ])
+            ]
+          )
         })
       )
     ])

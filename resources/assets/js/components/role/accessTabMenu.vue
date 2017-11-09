@@ -11,24 +11,27 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(val,key) in menus">
-                <td>{{ key+1 }}</td>
+            <tr class="ui-fnt light size-1 ui-color col-black"
+                v-for="(val,key) in menus">
+                <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
                 <td>
                     <input type="checkbox"
-                           :id="'menu'+key"
+                           :id="'menuR'+key"
                            v-model="val.roles[0].access"
-
+                           :true-value="1"
+                           :false-value="0"
                            @change="selectMenu(key)"/>
-                    <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
+                    <label :for="'menuR'+key" class="ui-checkbox ui-color col-green"></label>
                 </td>
                 <td>
                     <input type="checkbox"
-                           :id="'menu'+key"
+                           :id="'menuW'+key"
                            v-model="val.roles[0].access"
-
+                           :true-value="2"
+                           :false-value="0"
                            @change="selectMenu(key)"/>
-                    <label :for="'menu'+key" class="ui-checkbox ui-color col-green"></label>
+                    <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
                 </td>
             </tr>
             </tbody>
