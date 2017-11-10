@@ -12,6 +12,6 @@
 
 @section('content')
 
-    <admin-tasks v-cloak></admin-tasks>
+    <admin-tasks user_id="{{ \Auth::id() }}" v-cloak></admin-tasks>
 
 @endsection()
