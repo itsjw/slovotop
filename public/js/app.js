@@ -34080,71 +34080,87 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
-        _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-          _c(
+      _vm.accessMenu == 2
+        ? _c(
             "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.addProject()
-                }
-              }
-            },
+            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
             [
-              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("note_add")]),
+              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.addProject()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon size-4" }, [
+                      _vm._v("note_add")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.add")))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.editProject()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon size-4" }, [
+                      _vm._v("edit")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteProject()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
+                    )
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.add")))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.editProject()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.edit")))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.deleteProject()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.delete")))
-              ])
+              _c("div", { staticClass: "ui-grid-6" })
             ]
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-grid-6" })
-      ]),
+        : _vm._e(),
       _vm._v(" "),
       _c("table", [
         _c("thead", [
