@@ -31,7 +31,7 @@ class AccessRoute
             $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
         });
 
-        if ($query->get()->isEmpty()&& ! \Auth::user()->hasRole(1)) {
+        if ($query->get()->isEmpty()&& ! \Auth::user()->isAdmin()) {
             return redirect()->route('home');
         }
 
