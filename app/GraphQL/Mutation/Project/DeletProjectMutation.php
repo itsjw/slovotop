@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\Project;
 
 use App\GraphQL\Serialize\ProjectSerialize;
+use App\Models\Menu;
 use App\Models\Project;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;

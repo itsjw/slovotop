@@ -33738,16 +33738,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.project_id > 0) {
             this.getProject(this.project_id);
         }
-        if (this.user_id == 0) {
-            this.getUsers();
-        }
+        this.getUsers();
     },
 
 
@@ -33950,23 +33947,24 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.projectUser")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.user_id == 0
-              ? _c(
+          _vm.isAdmin
+            ? _c("div", { staticClass: "ui-mb-2" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.projectUser")) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
                   "select",
                   {
                     directives: [
@@ -34008,8 +34006,8 @@ var render = function() {
                     ])
                   })
                 )
-              : _vm._e()
-          ]),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "ui-mt-5" }, [
             _c(

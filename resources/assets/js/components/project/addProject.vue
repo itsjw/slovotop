@@ -20,13 +20,12 @@
                            type="text"
                            v-model="project.site">
                 </div>
-                <div class="ui-mb-2">
+                <div class="ui-mb-2" v-if="isAdmin">
                     <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                         {{ trans('data.projectUser') }}
                     </div>
                     <select class="ui-input green focus ui-fnt light size-1"
-                            v-model="project.user.id"
-                            v-if="user_id == 0">
+                            v-model="project.user.id">
                         <option v-for="(val,key) in users" :value="val.id">
                             {{ val.name }}
                         </option>
@@ -56,9 +55,8 @@
             if (this.project_id > 0) {
                 this.getProject(this.project_id);
             }
-            if (this.user_id == 0) {
-                this.getUsers();
-            }
+            this.getUsers();
+
         },
 
         props: {
@@ -123,7 +121,7 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data.AddProjectMutation.notify,2);
+                            notify.make('success', response.data.data.AddProjectMutation.notify, 2);
                             this.$emit('close');
                         }
                     });
