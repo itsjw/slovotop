@@ -35775,6 +35775,25 @@ if (false) {
          */
         accessMenu: function accessMenu() {
             return ACCESS;
+        },
+
+        /**
+         * return user roles
+         * @return {*}
+         */
+        userRole: function userRole() {
+            return ROLE;
+        },
+
+        /**
+         * is admin
+         * @return {boolean}
+         */
+        isAdmin: function isAdmin() {
+            if (ROLE.indexOf(1) == -1) {
+                return false;
+            }
+            return true;
         }
     }
 });

@@ -13,7 +13,6 @@
     <title>CRM SlovoNet - @yield('title')</title>
 </head>
 <body>
-
 <div id="app">
 
     <div class="admin-wrap">
@@ -62,6 +61,7 @@
     ?>;
 
     window.ACCESS = @json(\App\Models\Menu::getAccessMenu());
+    window.ROLE = @json(\Auth::user()->getRoles());
 </script>
 
 @stack('scripts')
