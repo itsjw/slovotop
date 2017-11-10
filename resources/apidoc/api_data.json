@@ -215,13 +215,20 @@
             "optional": false,
             "field": "id",
             "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "searchName",
+            "description": "<p>searchName</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ DocQuery ( id:1 ) { id,name...}\"}",
+          "content": "{\"query\":\"{ DocQuery ( id:1,searchName:\"searchName\" ) { id,name...}\"}",
           "type": "json"
         }
       ]

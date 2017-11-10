@@ -39,9 +39,13 @@ class DocQuery extends Query
     public function args()
     {
         return [
-            'id' => [
+            'id'         => [
                 'name' => 'id',
                 'type' => Type::id(),
+            ],
+            'searchName' => [
+                'name' => 'searchName',
+                'type' => Type::string(),
             ],
         ];
     }
@@ -53,8 +57,9 @@ class DocQuery extends Query
      * @api           {post} v1 Doc-Query
      * @apiName       Doc-Query
      * @apiParam {Integer} id
+     * @apiParam {String} searchName searchName
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ DocQuery ( id:1 ) { id,name...}"}
+     * {"query":"{ DocQuery ( id:1,searchName:"searchName" ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {String} body body
@@ -79,10 +84,12 @@ class DocQuery extends Query
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
         }
-
+        if (isset($args['searchName'])) {
+            $query->where('name', 'like', '%'.$args['searchName'].'%');
+        }
         if ( ! \Auth::user()->hasRole(1)) {
             $query->whereHas('roles', function ($request) {
-                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access','>', 0);
+                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
             });
         }
 

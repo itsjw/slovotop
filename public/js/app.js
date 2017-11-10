@@ -31977,6 +31977,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 Vue.component('addUser', __webpack_require__(60));
 
@@ -34597,6 +34599,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34609,6 +34628,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            queryParams: [],
+            showSearchName: false,
             docs: {},
             selectDoc: []
         };
@@ -34616,6 +34637,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+
+        /**
+         * close all popup
+         */
+        closePopUp: function closePopUp() {
+            this.showSearchName = false;
+            this.getDocs();
+        },
+
+
         /**
          * select docs
          */
@@ -34633,13 +34664,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
+         * search my type and value
+         * @param value
+         * @param type
+         */
+        search: function search(value, type) {
+            this.queryParams.splice(0, 1);
+
+            if (value) {
+                this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
+            }
+            this.closePopUp();
+        },
+
+
+        /**
          * get docs
          */
         getDocs: function getDocs() {
             var _this = this;
 
             this.selectDoc = [];
-            gql.getItem('v2', 'DocQuery', false, 'doc').then(function (response) {
+            gql.getItem('v2', 'DocQuery', this.queryParams.length > 0 ? this.queryParams : false, 'doc').then(function (response) {
                 _this.docs = response.data.data.DocQuery;
             });
         },
@@ -34790,7 +34836,62 @@ var render = function() {
             _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
             _vm._v(" "),
             _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.docsName")))
+              _c(
+                "div",
+                { staticClass: "ui-grid-block" },
+                [
+                  _vm.showSearchName
+                    ? _c("search-pop", {
+                        attrs: { position: "left", type: "searchName" },
+                        on: {
+                          submit: _vm.search,
+                          close: function($event) {
+                            _vm.closePopUp()
+                          }
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    {
+                      staticClass:
+                        "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.showSearchName = true
+                        }
+                      }
+                    },
+                    [_vm._v("search")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.queryParams[0],
+                          expression: "queryParams[0]"
+                        }
+                      ],
+                      staticClass:
+                        "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.search()
+                        }
+                      }
+                    },
+                    [_vm._v("close")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.docsName")))])
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("th", { attrs: { width: "10%" } }, [

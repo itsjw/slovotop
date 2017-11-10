@@ -30,7 +30,24 @@
                        @click="getDocs()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="60%" class="left">{{ trans('data.docsName') }}</th>
+                <th width="60%" class="left">
+                    <div class="ui-grid-block">
+                        <search-pop
+                            v-if="showSearchName"
+                            position="left"
+                            type="searchName"
+                            @submit="search"
+                            @close="closePopUp()"></search-pop>
+
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
+                           @click="showSearchName=true">search</i>
+                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
+                           v-show="queryParams[0]"
+                           @click="search()">close</i>
+
+                        <span>{{ trans('data.docsName') }}</span>
+                    </div>
+                </th>
                 <th width="10%">{{ trans('data.docsOwner') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="10%">{{ trans('data.updated_at') }}</th>
@@ -71,25 +88,50 @@
 
         data() {
             return {
+                queryParams: [],
+                showSearchName: false,
                 docs: {},
                 selectDoc: [],
             }
         },
 
         methods: {
+
+            /**
+             * close all popup
+             */
+            closePopUp() {
+                this.showSearchName = false;
+                this.getDocs();
+            },
+
             /**
              * select docs
              */
             selectDocs(id) {
-                if(this.accessMenu == 2){
+                if (this.accessMenu == 2) {
                     if (this.selectDoc.indexOf(id) == -1) {
                         this.selectDoc.push(id);
                     } else {
                         this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
                     }
-                }else{
+                } else {
                     window.location = 'docs/doc/' + id;
                 }
+            },
+
+            /**
+             * search my type and value
+             * @param value
+             * @param type
+             */
+            search(value, type) {
+                this.queryParams.splice(0, 1);
+
+                if (value) {
+                    this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
+                }
+                this.closePopUp();
             },
 
             /**
@@ -97,7 +139,7 @@
              */
             getDocs() {
                 this.selectDoc = [];
-                gql.getItem('v2', 'DocQuery', false, 'doc')
+                gql.getItem('v2', 'DocQuery', this.queryParams.length > 0 ? this.queryParams : false, 'doc')
                     .then(response => {
                         this.docs = response.data.data.DocQuery;
                     })

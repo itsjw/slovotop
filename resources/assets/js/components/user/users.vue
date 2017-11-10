@@ -49,6 +49,7 @@
                         <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
                            v-show="queryParams[1]"
                            @click="search()">close</i>
+
                         <span>{{ trans('data.userName') }}</span>
                     </div>
                 </th>
@@ -67,6 +68,7 @@
                         <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
                            v-show="queryParams[1]"
                            @click="search()">close</i>
+
                         <span>{{ trans('data.userEmail') }}</span>
                     </div>
                 </th>
