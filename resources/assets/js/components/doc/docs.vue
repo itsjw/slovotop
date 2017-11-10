@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="accessMenu > 1">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="accessMenu == 2">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addDoc()">
@@ -42,8 +42,10 @@
                 v-for="(val,key) in docs"
                 @click="selectDocs(val.id)">
                 <td>
-                    <input type="checkbox" :id="key" :value="val.id" v-model="selectDoc"/>
-                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    <div v-if="accessMenu > 1">
+                        <input type="checkbox" :id="key" :value="val.id" v-model="selectDoc"/>
+                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    </div>
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
@@ -79,10 +81,14 @@
              * select docs
              */
             selectDocs(id) {
-                if (this.selectDoc.indexOf(id) == -1) {
-                    this.selectDoc.push(id);
-                } else {
-                    this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
+                if(this.accessMenu == 2){
+                    if (this.selectDoc.indexOf(id) == -1) {
+                        this.selectDoc.push(id);
+                    } else {
+                        this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
+                    }
+                }else{
+                    window.location = 'docs/doc/' + id;
                 }
             },
 

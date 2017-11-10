@@ -1,7 +1,19 @@
 <template>
     <div>
 
-        <div class="ui-grid-block">
+        <div class="ui-grid-block" v-if="accessMenu != 2">
+            <div class="ui-grid-10">
+                <div class="ui-fnt medium size-3 ui-color col-greyBlue ui-mb-5">
+                    {{ doc.name }}
+                </div>
+                <div class="ui-fnt regular size-2 ui-color col-black ui-mb-2 ui-bg bg-wite ui-p-3"
+                     v-html="converToHtml(doc.body)">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ui-grid-block" v-if="accessMenu == 2">
             <div class="ui-grid-10">
 
                 <div class="ui-grid-12 ui-mb-2">
@@ -76,12 +88,14 @@
 
         mounted() {
 
-            this.editor = new Jodit(document.getElementById('editor'), {
-                height: 400,
-                buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
-                    'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
-                    'hr', 'eraser', 'fullsize', 'copyformat']
-            });
+            if (this.accessMenu == 2) {
+                this.editor = new Jodit(document.getElementById('editor'), {
+                    height: 400,
+                    buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
+                        'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
+                        'hr', 'eraser', 'fullsize', 'copyformat']
+                });
+            }
 
             if (this.doc_id > 0) {
                 this.getDoc();
@@ -108,6 +122,15 @@
         },
 
         methods: {
+
+            /**
+             * unescape text
+             * @param text
+             */
+            converToHtml(text) {
+                return _.unescape(text);
+            },
+
             /**
              * get roles
              */
