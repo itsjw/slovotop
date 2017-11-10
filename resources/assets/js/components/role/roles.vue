@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="isAdmin">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addRole()">
@@ -46,8 +46,10 @@
                 v-for="(val,key) in roles"
                 @click="selectRoles(val.id)">
                 <td>
-                    <input type="checkbox" :id="key" :value="val.id" v-model="selectRole"/>
-                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    <div v-if="isAdmin">
+                        <input type="checkbox" :id="key" :value="val.id" v-model="selectRole"/>
+                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    </div>
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
