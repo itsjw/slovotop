@@ -87,7 +87,7 @@ class DocQuery extends Query
         if (isset($args['searchName'])) {
             $query->where('name', 'like', '%'.$args['searchName'].'%');
         }
-        if ( ! \Auth::user()->hasRole(1)) {
+        if ( ! \Auth::user()->isAdmin()) {
             $query->whereHas('roles', function ($request) {
                 $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
             });

@@ -97,7 +97,7 @@ class ProjectQuery extends Query
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
         }
-        if ( ! \Auth::user()->hasRole(1)) {
+        if ( ! \Auth::user()->isAdmin()) {
             $query->where('user_id', \Auth::id());
         }
 
