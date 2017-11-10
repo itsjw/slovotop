@@ -36320,8 +36320,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+
+        /*this.editor = new Jodit(document.getElementById('editor'), {
+             height: 400,
+             buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
+                 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
+                 'hr', 'eraser', 'fullsize', 'copyformat']
+         });*/
+
+        if (this.task_id > 0) {
+            this.getTask();
+        }
+    },
 
 
     props: {
@@ -36334,7 +36345,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {}
+    methods: {
+        getTask: function getTask() {}
+    }
 });
 
 /***/ }),

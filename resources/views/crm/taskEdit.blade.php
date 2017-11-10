@@ -18,3 +18,8 @@
             v-cloak></admin-task-edit>
 
 @endsection()
+
+@push('scripts')
+    <script src="{{ asset('edit/jodit.min.js') }}"></script>
+    <link href="{{ asset('edit/jodit.min.css') }}" rel="stylesheet" type="text/css">
+@endpush
