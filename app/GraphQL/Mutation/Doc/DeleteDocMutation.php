@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\Doc;
 
 use App\Models\Doc;
+use App\Models\Menu;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
@@ -65,18 +66,23 @@ class DeleteDocMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $items = explode(',', $args['items']);
+        if (Menu::getAccessMenu('docs') == 2) {
 
-        foreach ($items as $key) {
-            $doc = Doc::findOrfail($key);
-            $doc->roles()->detach();
-            $doc->delete();
+            $items = explode(',', $args['items']);
+
+            foreach ($items as $key) {
+                $doc = Doc::findOrfail($key);
+                $doc->roles()->detach();
+                $doc->delete();
+            }
+
+            return [
+                'id'     => $doc->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        return [
-            'id'     => $doc->id,
-            'notify' => trans('data.notifyOK'),
-        ];
-
+        return [];
     }
 }

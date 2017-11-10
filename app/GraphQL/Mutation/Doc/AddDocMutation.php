@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\Doc;
 
 use App\Models\Doc;
+use App\Models\Menu;
 use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -91,24 +92,29 @@ class AddDocMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $doc          = Doc::findOrNew($args['id']);
-        $doc->name    = $args['name'];
-        $doc->body    = $args['body'];
-        $doc->user_id = $args['user'];
-        $doc->save();
-        $doc->roles()->detach();
+        if (Menu::getAccessMenu('docs') == 2) {
 
-        $roles = explode(',', $args['roles']);
+            $doc          = Doc::findOrNew($args['id']);
+            $doc->name    = $args['name'];
+            $doc->body    = $args['body'];
+            $doc->user_id = $args['user'];
+            $doc->save();
+            $doc->roles()->detach();
 
-        foreach ($roles as $val) {
-            $role = Role::find($val);
-            $doc->roles()->save($role, ['access' => 1]);
+            $roles = explode(',', $args['roles']);
+
+            foreach ($roles as $val) {
+                $role = Role::find($val);
+                $doc->roles()->save($role, ['access' => 1]);
+            }
+
+            return [
+                'id'     => $doc->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        return [
-            'id'     => $doc->id,
-            'notify' => trans('data.notifyOK'),
-        ];
-
+        return [];
     }
 }

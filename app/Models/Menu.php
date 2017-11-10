@@ -46,11 +46,14 @@ class Menu extends Model
     /**
      * get access menu by slug
      *
+     * @param null $link
+     *
      * @return mixed
      */
-    public static function getAccessMenu()
+    public static function getAccessMenu($link = null)
     {
-        $slug = explode('/', \Request::route()->uri())[1];
+        $slug = $link ?? explode('/', \Request::route()->uri())[1];
+
         $menu = Menu::where('refer', 1)->where('slug', $slug)->with([
             'roles' => function ($query) {
                 $query->whereIn('role_id', \Auth::user()->getRoles())->select('access');
