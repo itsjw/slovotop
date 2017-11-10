@@ -64,6 +64,10 @@ class Menu extends Model
             $access = $val->roles->pluck('access')->toArray();
         }
 
+        if (\Auth::user()->isAdmin()) {
+            return 2;
+        }
+
         return $access[0];
     }
 }

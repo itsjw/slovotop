@@ -109,4 +109,18 @@ class User extends Authenticatable
 
         return $roles;
     }
+
+    /**
+     * check user for admin
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        if (in_array(1, $this->getRoles(), true)) {
+            return true;
+        }
+
+        return false;
+    }
 }
