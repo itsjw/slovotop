@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="isAdmin">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="accessMenu == 2">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addUser()">
@@ -233,7 +233,7 @@
                     }
                     gql.setItem('v2', 'DeleteUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
+                            notify.make('success', response.data.data.DeleteUserMutation.notify,1);
                             this.getUsers();
                         })
                 }
@@ -248,7 +248,7 @@
                     select = ['items:"' + this.selectUser + '"'];
                     gql.setItem('v2', 'ApproveUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
+                            notify.make('success', response.data.data.ApproveUserMutation.notify,1);
                             this.getUsers();
                         })
                 }

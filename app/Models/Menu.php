@@ -32,7 +32,7 @@ class Menu extends Model
             });
         }
 
-        return $query->where('refer', 1)->get();
+        return $query->where('refer', 1)->orderBy('id', 'asc')->get();
     }
 
     /**
