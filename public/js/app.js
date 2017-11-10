@@ -30170,6 +30170,7 @@ Vue.component('adminRoles', __webpack_require__(43));
 Vue.component('adminUsers', __webpack_require__(58));
 Vue.component('adminProjects', __webpack_require__(64));
 Vue.component('adminTasks', __webpack_require__(101));
+Vue.component('adminTaskEdit', __webpack_require__(104));
 Vue.component('adminDocs', __webpack_require__(70));
 Vue.component('adminDocEdit', __webpack_require__(73));
 
@@ -35953,21 +35954,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
     mounted: function mounted() {},
 
 
-    props: {},
+    props: {
+        user_id: {}
+    },
 
     data: function data() {
-        return {};
+        return {
+            selectTask: [],
+            tasks: {}
+        };
     },
 
 
     methods: {
-        addTask: function addTask() {},
+        selectTasks: function selectTasks(id) {},
+        getTasks: function getTasks() {},
+
+
+        /**
+         * add task
+         */
+        addTask: function addTask() {
+            window.location = '/crm/tasks/task/';
+        },
         editTask: function editTask() {},
         deleteTask: function deleteTask() {}
     }
@@ -36054,7 +36107,144 @@ var render = function() {
             _c("div", { staticClass: "ui-grid-6" })
           ]
         )
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "1%" } }, [
+              _c(
+                "i",
+                {
+                  staticClass: "ui-icon size-3 ui-color col-green hover",
+                  on: {
+                    click: function($event) {
+                      _vm.getTasks()
+                    }
+                  }
+                },
+                [_vm._v("autorenew")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.taskName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "20%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.projectName")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.taskState")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.taskUser")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.taskOwner")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.created_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.updated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.tasks, function(val, key) {
+          return _c(
+            "tr",
+            {
+              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              on: {
+                click: function($event) {
+                  _vm.selectTasks(val.id)
+                }
+              }
+            },
+            [
+              _c("td", [
+                _vm.isAdmin
+                  ? _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectTask,
+                            expression: "selectTask"
+                          }
+                        ],
+                        attrs: { type: "checkbox", id: key },
+                        domProps: {
+                          value: val.id,
+                          checked: Array.isArray(_vm.selectTask)
+                            ? _vm._i(_vm.selectTask, val.id) > -1
+                            : _vm.selectTask
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selectTask,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = val.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 && (_vm.selectTask = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selectTask = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selectTask = $$c
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "ui-checkbox ui-color col-green hover",
+                        attrs: { for: key }
+                      })
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.count))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.id))])
+            ]
+          )
+        })
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -36064,6 +36254,106 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-25826697", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(105)
+/* template */
+var __vue_template__ = __webpack_require__(106)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/task/taskEdit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69a69f36", Component.options)
+  } else {
+    hotAPI.reload("data-v-69a69f36", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {},
+    mounted: function mounted() {},
+
+
+    props: {
+        user_id: {},
+        task_id: {}
+    },
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n\n    Edit task\n\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-69a69f36", module.exports)
   }
 }
 

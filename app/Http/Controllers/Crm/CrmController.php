@@ -68,6 +68,16 @@ class CrmController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function taskEdit($id = null)
+    {
+        //$task = Task::find($id);
+
+        return view('crm.taskEdit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function docs()
     {
         return view('crm.docs');
