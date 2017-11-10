@@ -249,12 +249,12 @@
                 if (this.selectProject.length > 0) {
                     if (confirm('Удалить?')) {
                         select = ['items:"' + this.selectProject + '"'];
+                        gql.setItem('v2', 'DeleteProjectMutation', select)
+                            .then(response => {
+                                notify.make('success', response.data.data.DeleteProjectMutation.notify, 1);
+                                this.getProjects();
+                            })
                     }
-                    gql.setItem('v2', 'DeleteProjectMutation', select)
-                        .then(response => {
-                            notify.make('seccess', response.data.data.DeleteProjectMutation.notify,1);
-                            this.getProjects();
-                        })
                 }
             }
         }

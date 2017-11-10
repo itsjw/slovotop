@@ -82,7 +82,7 @@
              * get user ID
              */
             getUser() {
-                if (this.user_id === 0) {
+                if (this.isAdmin) {
                     return this.project.user.id || 0;
                 }
                 return this.user_id;

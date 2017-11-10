@@ -33624,11 +33624,11 @@ Vue.component('addProject', __webpack_require__(66));
             if (this.selectProject.length > 0) {
                 if (confirm('Удалить?')) {
                     select = ['items:"' + this.selectProject + '"'];
+                    gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
+                        notify.make('success', response.data.data.DeleteProjectMutation.notify, 1);
+                        _this2.getProjects();
+                    });
                 }
-                gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
-                    notify.make('seccess', response.data.data.DeleteProjectMutation.notify, 1);
-                    _this2.getProjects();
-                });
             }
         }
     }
@@ -33772,7 +33772,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * get user ID
          */
         getUser: function getUser() {
-            if (this.user_id === 0) {
+            if (this.isAdmin) {
                 return this.project.user.id || 0;
             }
             return this.user_id;
