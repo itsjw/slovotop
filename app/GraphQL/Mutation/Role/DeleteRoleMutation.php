@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Role;
 
+use App\Models\Menu;
 use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -65,19 +66,24 @@ class DeleteRoleMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $items = explode(',', $args['items']);
+        if (Menu::getAccessMenu('roles') == 2) {
 
-        foreach ($items as $key) {
-            $role = Role::findOrfail($key);
-            if ( ! $role->users()->count()) {
-                $role->delete();
+            $items = explode(',', $args['items']);
+
+            foreach ($items as $key) {
+                $role = Role::findOrfail($key);
+                if ( ! $role->users()->count()) {
+                    $role->delete();
+                }
             }
+
+            return [
+                'id'     => $role->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        return [
-            'id'     => $role->id,
-            'notify' => trans('data.notifyOK'),
-        ];
-
+        return [];
     }
 }

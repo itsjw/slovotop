@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\User;
 
 use App\GraphQL\Serialize\UserSerialize;
+use App\Models\Menu;
 use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -66,19 +67,25 @@ class DeleteUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $items = explode(',', $args['items']);
+        if (Menu::getAccessMenu('users') == 2) {
 
-        foreach ($items as $key) {
-            $user = User::findOrfail($key);
-            if (!$user->hasRole(1)) {
-                $user->delete();
-                $user->roles()->delete();
+            $items = explode(',', $args['items']);
+
+            foreach ($items as $key) {
+                $user = User::findOrfail($key);
+                if ( ! $user->hasRole(1)) {
+                    $user->delete();
+                    $user->roles()->delete();
+                }
             }
+
+            return [
+                'id'     => $user->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        return [
-            'id'     => $user->id,
-            'notify' => trans('data.notifyOK'),
-        ];
+        return [];
     }
 }

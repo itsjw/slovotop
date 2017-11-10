@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation\Role;
 
+use App\Models\Menu;
 use App\Models\Role;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -71,15 +72,19 @@ class AddRoleMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $role = Role::findOrNew($args['id']);
+        if (Menu::getAccessMenu('roles') == 2) {
 
-        $role->name = $args['name'];
-        $role->save();
+            $role = Role::findOrNew($args['id']);
 
-        return [
-            'id'     => $role->id,
-            'notify' => trans('data.notifyOK'),
-        ];
+            $role->name = $args['name'];
+            $role->save();
 
+            return [
+                'id'     => $role->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+        }
+
+        return [];
     }
 }

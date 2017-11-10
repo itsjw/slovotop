@@ -79,18 +79,24 @@ class ChangeAccessMenuMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $menu = Menu::find($args['menu'])->roles()->where('role_id', $args['role']);
+        if (Menu::getAccessMenu('roles') == 2) {
 
-        if ($menu->exists()) {
-            $menu->updateExistingPivot($args['role'], ['access' => $args['access']]);
-        } else {
-            $role = Role::find($args['role']);
-            $menu->save($role, ['access' => $args['access']]);
+            $menu = Menu::find($args['menu'])->roles()->where('role_id', $args['role']);
+
+            if ($menu->exists()) {
+                $menu->updateExistingPivot($args['role'], ['access' => $args['access']]);
+            } else {
+                $role = Role::find($args['role']);
+                $menu->save($role, ['access' => $args['access']]);
+            }
+
+            return [
+                'id'     => $args['menu'],
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        return [
-            'id'     => $args['menu'],
-            'notify' => trans('data.notifyOK'),
-        ];
+        return [];
     }
 }

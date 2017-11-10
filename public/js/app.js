@@ -31979,6 +31979,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 Vue.component('addUser', __webpack_require__(60));
 
@@ -32909,93 +32911,111 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" }, [
-        _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-          _c(
+      _vm.isAdmin
+        ? _c(
             "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.addUser()
-                }
-              }
-            },
+            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
             [
-              _c("i", { staticClass: "ui-icon size-4" }, [
-                _vm._v("person_add")
+              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.addUser()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon size-4" }, [
+                      _vm._v("person_add")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.add")))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.editUser()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon size-4" }, [
+                      _vm._v("edit")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.approveUser()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon size-4" }, [
+                      _vm._v("touch_app")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.approve")))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteUser()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
+                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
+                    )
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.add")))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.editUser()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.edit")))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.approveUser()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("touch_app")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.approve")))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-              on: {
-                click: function($event) {
-                  _vm.deleteUser()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                _vm._v(_vm._s(_vm.trans("data.delete")))
-              ])
+              _c("div", { staticClass: "ui-grid-6" })
             ]
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-grid-6" })
-      ]),
+        : _vm._e(),
       _vm._v(" "),
       _c("table", [
         _c("thead", [
@@ -33138,7 +33158,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "10%" } }, [
+              _c("th", { attrs: { width: "5%" } }, [
                 _vm._v(_vm._s(_vm.trans("data.userTasks")))
               ]),
               _vm._v(" "),
@@ -33150,7 +33170,7 @@ var render = function() {
                 _vm._v(_vm._s(_vm.trans("data.userConfirm")))
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "20%" } }, [
+              _c("th", { attrs: { width: "10%" } }, [
                 _vm._v(_vm._s(_vm.trans("data.userRole")))
               ]),
               _vm._v(" "),
@@ -33196,49 +33216,54 @@ var render = function() {
               },
               [
                 _c("td", [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.selectUser,
-                        expression: "selectUser"
-                      }
-                    ],
-                    attrs: { type: "checkbox", id: key },
-                    domProps: {
-                      value: val.id,
-                      checked: Array.isArray(_vm.selectUser)
-                        ? _vm._i(_vm.selectUser, val.id) > -1
-                        : _vm.selectUser
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.selectUser,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = val.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.selectUser = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.selectUser = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
+                  _vm.isAdmin
+                    ? _c("div", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectUser,
+                              expression: "selectUser"
+                            }
+                          ],
+                          attrs: { type: "checkbox", id: key },
+                          domProps: {
+                            value: val.id,
+                            checked: Array.isArray(_vm.selectUser)
+                              ? _vm._i(_vm.selectUser, val.id) > -1
+                              : _vm.selectUser
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selectUser,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = val.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selectUser = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selectUser = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selectUser = $$c
+                              }
+                            }
                           }
-                        } else {
-                          _vm.selectUser = $$c
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "ui-checkbox ui-color col-green hover",
-                    attrs: { for: key }
-                  })
+                        }),
+                        _vm._v(" "),
+                        _c("label", {
+                          staticClass: "ui-checkbox ui-color col-green hover",
+                          attrs: { for: key }
+                        })
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(key + 1))]),

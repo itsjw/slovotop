@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1">
+        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="isAdmin">
             <div class="ui-grid-6 ui-grid-block">
                 <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
                      @click="addUser()">
@@ -72,10 +72,10 @@
                         <span>{{ trans('data.userEmail') }}</span>
                     </div>
                 </th>
-                <th width="10%">{{ trans('data.userTasks') }}</th>
+                <th width="5%">{{ trans('data.userTasks') }}</th>
                 <th width="10%">{{ trans('data.userLastLogin') }}</th>
                 <th width="10%">{{ trans('data.userConfirm') }}</th>
-                <th width="20%">{{ trans('data.userRole') }}</th>
+                <th width="10%">{{ trans('data.userRole') }}</th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="5%">
                     <div class="ui-grid-block center">
@@ -91,8 +91,10 @@
                 v-for="(val,key) in users"
                 @click="selectUsers(val.id)">
                 <td>
-                    <input type="checkbox" :id="key" :value="val.id" v-model="selectUser"/>
-                    <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    <div v-if="isAdmin">
+                        <input type="checkbox" :id="key" :value="val.id" v-model="selectUser"/>
+                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
+                    </div>
                 </td>
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
@@ -231,7 +233,7 @@
                     }
                     gql.setItem('v2', 'DeleteUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.DeleteUserMutation.notify,1);
+                            notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
                             this.getUsers();
                         })
                 }
@@ -246,7 +248,7 @@
                     select = ['items:"' + this.selectUser + '"'];
                     gql.setItem('v2', 'ApproveUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.ApproveUserMutation.notify,1);
+                            notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
                             this.getUsers();
                         })
                 }

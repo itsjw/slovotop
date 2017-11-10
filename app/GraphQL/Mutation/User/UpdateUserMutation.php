@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation\User;
 
 use App\GraphQL\Serialize\UserSerialize;
+use App\Models\Menu;
 use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -108,32 +109,38 @@ class UpdateUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $user = User::findOrfail($args['id']);
+        if (Menu::getAccessMenu('users') == 2) {
 
-        $user->name     = $args['name'];
-        $user->email    = $this->validMail($args);
-        $user->up_price = $args['up_price'];
-        $user->note     = $args['note'];
-        $user->confirm  = $user->hasRole(1) ? 1 : $args['confirm'];
+            $user = User::findOrfail($args['id']);
 
-        if ($args['password']) {
-            $user->password = bcrypt($args['password']);
+            $user->name     = $args['name'];
+            $user->email    = $this->validMail($args);
+            $user->up_price = $args['up_price'];
+            $user->note     = $args['note'];
+            $user->confirm  = $user->hasRole(1) ? 1 : $args['confirm'];
+
+            if ($args['password']) {
+                $user->password = bcrypt($args['password']);
+            }
+
+            $user->save();
+
+            $user->roles()->delete();
+            $user->roles()->createMany($this->cleanRole($args['role']));
+
+            /**
+             * TODO
+             * send email
+             */
+
+            return [
+                'id'     => $user->id,
+                'notify' => trans('data.notifyOK'),
+            ];
+
         }
 
-        $user->save();
-
-        $user->roles()->delete();
-        $user->roles()->createMany($this->cleanRole($args['role']));
-
-        /**
-         * TODO
-         * send email
-         */
-
-        return [
-            'id'     => $user->id,
-            'notify' => trans('data.notifyOK'),
-        ];
+        return [];
 
     }
 
