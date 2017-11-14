@@ -47,6 +47,11 @@ class TaskSubjectType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'TaskSubjectType updated_at',
             ],
+            'notify'     => [
+                'type'        => Type::string(),
+                'description' => 'notify',
+                'selectable'  => false,
+            ],
         ];
     }
 }

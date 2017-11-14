@@ -36597,8 +36597,26 @@ Vue.component('addSubject', __webpack_require__(110));
             this.selectSubject = [];
             this.showAddSubject = true;
         },
-        editSubject: function editSubject() {},
-        deleteSubject: function deleteSubject() {}
+
+
+        /**
+         * edit sunbject
+         */
+        editSubject: function editSubject() {
+            if (this.selectSubject.length > 0) {
+                this.showAddSubject = true;
+            }
+        },
+
+
+        /**
+         * delete subject
+         */
+        deleteSubject: function deleteSubject() {
+            if (this.selectSubject.length > 0) {
+                if (confirm('Удалить?')) {}
+            }
+        }
     }
 });
 
@@ -37000,13 +37018,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.subject_id > 0) {
-            this.getSubject();
+            this.getSubject(this.subject_id);
         }
     },
 
 
     props: {
-        subject_id: 0
+        subject_id: {
+            default: 0
+        }
     },
 
     data: function data() {
@@ -37017,8 +37037,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        getSubject: function getSubject() {},
-        saveSubject: function saveSubject() {}
+        /**
+         * get subject
+         */
+        getSubject: function getSubject(id) {
+            var _this = this;
+
+            gql.getItem('v2', 'TaskSubjectQuery', ['id:' + id], 'subject').then(function (response) {
+                _this.subject = response.data.data.TaskSubjectQuery[0];
+            });
+        },
+
+
+        /**
+         * save subject
+         */
+        saveSubject: function saveSubject() {
+            var _this2 = this;
+
+            gql.setItem('v2', 'AddTaskSubjectMutation', this.getSubjectData(this.subject)).then(function (response) {
+                if (response.data.errors) {
+                    notify.make('alert', response.data.errors[0].validation);
+                } else {
+                    notify.make('success', response.data.data.AddTaskSubjectMutation.notify, 2);
+                    _this2.$emit('close');
+                }
+            });
+        },
+
+
+        /**
+         * get data for sent
+         * @param subject
+         */
+        getSubjectData: function getSubjectData(subject) {
+            return '\n                id: ' + (this.subject_id == 0 ? this.subject_id : subject.id) + ',\n                name: "' + (subject.name || '') + '"\n                price: ' + (subject.price || 0);
+        }
     }
 });
 

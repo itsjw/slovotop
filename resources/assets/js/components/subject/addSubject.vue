@@ -45,12 +45,14 @@
 
         mounted() {
             if (this.subject_id > 0) {
-                this.getSubject();
+                this.getSubject(this.subject_id);
             }
         },
 
         props: {
-            subject_id: 0
+            subject_id: {
+                default: 0
+            }
         },
 
         data() {
@@ -60,9 +62,40 @@
         },
 
         methods: {
-            getSubject() {
+            /**
+             * get subject
+             */
+            getSubject(id) {
+                gql.getItem('v2', 'TaskSubjectQuery', ['id:' + id], 'subject')
+                    .then(response => {
+                        this.subject = response.data.data.TaskSubjectQuery[0];
+                    })
             },
+
+            /**
+             * save subject
+             */
             saveSubject() {
+                gql.setItem('v2', 'AddTaskSubjectMutation', this.getSubjectData(this.subject))
+                    .then(response => {
+                        if (response.data.errors) {
+                            notify.make('alert', response.data.errors[0].validation);
+                        } else {
+                            notify.make('success', response.data.data.AddTaskSubjectMutation.notify, 2);
+                            this.$emit('close');
+                        }
+                    });
+            },
+
+            /**
+             * get data for sent
+             * @param subject
+             */
+            getSubjectData(subject) {
+                return `
+                    id: ${this.subject_id == 0 ? this.subject_id : subject.id},
+                    name: "${subject.name || ''}"
+                    price: ${subject.price || 0}`;
             }
         }
     }

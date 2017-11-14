@@ -160,9 +160,24 @@
                 this.selectSubject = [];
                 this.showAddSubject = true;
             },
+
+            /**
+             * edit sunbject
+             */
             editSubject() {
+                if (this.selectSubject.length > 0) {
+                    this.showAddSubject = true;
+                }
             },
+
+            /**
+             * delete subject
+             */
             deleteSubject() {
+                if (this.selectSubject.length > 0) {
+                    if (confirm('Удалить?')) {
+                    }
+                }
             }
         }
     }

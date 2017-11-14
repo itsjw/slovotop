@@ -43,6 +43,8 @@ return [
                 // doc
                 'AddDocMutation'           => App\GraphQL\Mutation\Doc\AddDocMutation::class,
                 'DeleteDocMutation'        => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,
+                // subject
+                'AddTaskSubjectMutation'   => App\GraphQL\Mutation\TaskSubject\AddTaskSubjectMutation::class,
             ],
             'middleware' => ['auth'],
         ],

@@ -819,7 +819,72 @@
   },
   {
     "version": "0.1.0",
-    "group": "Task_Subject",
+    "group": "TaskSubject",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
+    "title": "TaskSubject-Add/Update",
+    "name": "TaskSubject_Add_Update",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { AddTaskSubjectMutation (id: 0,name:\"name\",price:100) { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskSubject/AddTaskSubjectMutation.php",
+    "groupTitle": "TaskSubject"
+  },
+  {
+    "version": "0.1.0",
+    "group": "TaskSubject",
     "permission": [
       {
         "name": "auth"
@@ -905,7 +970,7 @@
       }
     ],
     "filename": "/home/www/slovo.zz/app/GraphQL/Query/TaskSubject/TaskSubjectQuery.php",
-    "groupTitle": "Task_Subject"
+    "groupTitle": "TaskSubject"
   },
   {
     "version": "0.1.0",
