@@ -30256,6 +30256,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -30264,11 +30282,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: [],
 
     data: function data() {
-        return {};
+        return {
+            tabs: ['active', '', '', '', '']
+        };
     },
 
 
-    methods: {}
+    methods: {
+        /**
+         * select tabs
+         * @param key
+         */
+        selectTab: function selectTab(key) {
+            this.tabs = ['', '', '', '', ''];
+            this.tabs.splice(key, 0, 'active');
+        }
+    }
 });
 
 /***/ }),
@@ -30280,18 +30309,99 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui-navbar" }, [
-      _c("ul", [
-        _c("li", [
-          _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("security")]),
+    _c("div", { staticClass: "ui-grid-block ui-bg bg-wite ui-p-3" }, [
+      _c("div", { staticClass: "ui-tabs-box" }, [
+        _c("ul", [
+          _c(
+            "li",
+            {
+              class: _vm.tabs[0],
+              on: {
+                click: function($event) {
+                  _vm.selectTab(0)
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("settings")]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskStatus")))])
+            ]
+          ),
           _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+          _c(
+            "li",
+            {
+              class: _vm.tabs[1],
+              on: {
+                click: function($event) {
+                  _vm.selectTab(1)
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                _vm._v("view_carousel")
+              ]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleProject")))])
+            ]
+          ),
           _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+          _c(
+            "li",
+            {
+              class: _vm.tabs[2],
+              on: {
+                click: function($event) {
+                  _vm.selectTab(2)
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("receipt")]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleTasks")))])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              class: _vm.tabs[3],
+              on: {
+                click: function($event) {
+                  _vm.selectTab(3)
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                _vm._v("insert_drive_file")
+              ]),
+              _vm._v(" "),
+              _c("span", [_vm._v(" " + _vm._s(_vm.trans("data.titleDoc")))])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              class: _vm.tabs[4],
+              on: {
+                click: function($event) {
+                  _vm.selectTab(4)
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                _vm._v("view_list")
+              ]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleReports")))])
+            ]
+          )
         ])
       ])
     ])
@@ -30439,6 +30549,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addSubject', __webpack_require__(45));
 
@@ -30454,7 +30571,8 @@ Vue.component('addSubject', __webpack_require__(45));
 
     data: function data() {
         return {
-            queryParams: [],
+            queryParams: ['orderPrice:"asc"'],
+            order: 'asc',
             showSearchName: false,
             showAddSubject: false,
             selectSubject: [],
@@ -30491,15 +30609,30 @@ Vue.component('addSubject', __webpack_require__(45));
 
 
         /**
+         * order by ID
+         */
+        orderByID: function orderByID() {
+            if (this.order === 'asc') {
+                this.queryParams.splice(0, 1, 'orderPrice:"desc"');
+                this.order = 'desc';
+            } else {
+                this.queryParams.splice(0, 1, 'orderPrice:"asc"');
+                this.order = 'asc';
+            }
+            this.getSubjects();
+        },
+
+
+        /**
          * search my type and value
          * @param value
          * @param type
          */
         search: function search(value, type) {
-            this.queryParams.splice(0, 1);
+            this.queryParams.splice(1, 1);
 
             if (value) {
-                this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
+                this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
             }
             this.closePopUp();
         },
@@ -31018,8 +31151,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.queryParams[0],
-                            expression: "queryParams[0]"
+                            value: _vm.queryParams[1],
+                            expression: "queryParams[1]"
                           }
                         ],
                         staticClass:
@@ -31040,7 +31173,23 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.subjectPrice")))
+                _c("div", { staticClass: "ui-grid-block center" }, [
+                  _c(
+                    "i",
+                    {
+                      staticClass:
+                        "ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.orderByID()
+                        }
+                      }
+                    },
+                    [_vm._v("sort")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.subjectPrice")))])
+                ])
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [

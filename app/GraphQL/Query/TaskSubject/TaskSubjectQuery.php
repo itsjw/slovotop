@@ -47,6 +47,10 @@ class TaskSubjectQuery extends Query
                 'name' => 'searchName',
                 'type' => Type::string(),
             ],
+            'orderPrice'    => [
+                'name' => 'orderPrice',
+                'type' => Type::string(),
+            ],
         ];
     }
 
@@ -58,8 +62,9 @@ class TaskSubjectQuery extends Query
      * @apiName       TaskSubject-Query
      * @apiParam {Integer} id
      * @apiParam {String} searchName searchName
+     * @apiParam {String} orderPrice order by price
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ TaskSubjectQuery ( id:1,searchName:"searchName" ) { id,name...}"}
+     * {"query":"{ TaskSubjectQuery ( id:1,searchName:"searchName",orderPrice:"asc" ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} price price
@@ -84,6 +89,9 @@ class TaskSubjectQuery extends Query
         }
         if (isset($args['searchName'])) {
             $query->where('name', 'like', '%'.$args['searchName'].'%');
+        }
+        if (isset($args['orderPrice'])) {
+            $query->orderBy('price', $args['orderPrice']);
         }
 
         return TaskSubjectSerialize::collection($query->get());

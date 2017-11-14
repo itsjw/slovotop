@@ -28,6 +28,7 @@
                 <th width="4%">№</th>
                 <th width="60%" class="left">
                     <div class="ui-grid-block">
+
                         <search-pop
                             v-if="showSearchName"
                             position="left"
@@ -38,13 +39,19 @@
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
                            @click="showSearchName=true">search</i>
                         <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
-                           v-show="queryParams[0]"
+                           v-show="queryParams[1]"
                            @click="search()">close</i>
 
                         <span>{{ trans('data.subjectName') }}</span>
                     </div>
                 </th>
-                <th width="10%">{{ trans('data.subjectPrice') }}</th>
+                <th width="10%">
+                    <div class="ui-grid-block center">
+                        <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
+                           @click="orderByID()">sort</i>
+                        <span>{{ trans('data.subjectPrice') }}</span>
+                    </div>
+                </th>
                 <th width="10%">{{ trans('data.created_at') }}</th>
                 <th width="10%">{{ trans('data.updated_at') }}</th>
                 <th width="5%">ID</th>
@@ -91,7 +98,8 @@
 
         data() {
             return {
-                queryParams: [],
+                queryParams: ['orderPrice:"asc"'],
+                order: 'asc',
                 showSearchName: false,
                 showAddSubject: false,
                 selectSubject: [],
@@ -125,15 +133,29 @@
             },
 
             /**
+             * order by ID
+             */
+            orderByID() {
+                if (this.order === 'asc') {
+                    this.queryParams.splice(0, 1, 'orderPrice:"desc"');
+                    this.order = 'desc';
+                } else {
+                    this.queryParams.splice(0, 1, 'orderPrice:"asc"');
+                    this.order = 'asc';
+                }
+                this.getSubjects();
+            },
+
+            /**
              * search my type and value
              * @param value
              * @param type
              */
             search(value, type) {
-                this.queryParams.splice(0, 1);
+                this.queryParams.splice(1, 1);
 
                 if (value) {
-                    this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
+                    this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
                 }
                 this.closePopUp();
             },

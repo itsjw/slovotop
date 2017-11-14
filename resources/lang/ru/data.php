@@ -39,6 +39,9 @@ return [
     'titleDoc'      => 'Документация',
     'titleReports'  => 'Отчёты',
 
+    // settings
+    'setTaskStatus' => 'Статусы задач',
+
     // roles
     'roleName'      => 'Имя роли',
     'roleCount'     => 'Количество пользователей',
