@@ -21,7 +21,8 @@ html {
   display: flex;
 
   & .admin-left {
-    min-width: 90px;
+    max-width: 90px;
+    width: 100%;
     background: $colorGreyBlueDark;
     overflow: auto;
   }

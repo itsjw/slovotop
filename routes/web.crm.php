@@ -12,6 +12,7 @@ $router->group(['namespace' => 'Crm', 'prefix' => 'crm', 'middleware' => ['auth'
 
         $router->get('home', 'CrmController@index')->name('crmHome');
         $router->get('settings', 'CrmController@settings')->name('crmSettings');
+        $router->get('subjects', 'CrmController@subjects')->name('crmSubjects');
         $router->get('roles', 'CrmController@roles')->name('crmRoles');
         $router->get('users', 'CrmController@users')->name('crmUsers');
         $router->get('projects', 'CrmController@projects')->name('crmProjects');

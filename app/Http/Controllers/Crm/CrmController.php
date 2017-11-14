@@ -34,6 +34,14 @@ class CrmController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function subjects()
+    {
+        return view('crm.subjects');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function roles()
     {
         return view('crm.roles');

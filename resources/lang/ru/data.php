@@ -31,6 +31,7 @@ return [
     'titleMenu'     => 'Разделы',
     'titleHome'     => 'Главная панель управления',
     'titleSettings' => 'Настройки',
+    'titleSubjects' => 'Тематика задач',
     'titleRoles'    => 'Роли и права',
     'titleUser'     => 'Пользователи',
     'titleProject'  => 'Проекты',

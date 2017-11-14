@@ -2,6 +2,7 @@
  * Admin panel components
  */
 Vue.component('adminSetting', require('./setting/setting.vue'));
+Vue.component('adminSubject', require('./subject/subjects.vue'));
 Vue.component('adminRoles', require('./role/roles.vue'));
 Vue.component('adminUsers', require('./user/users.vue'));
 Vue.component('adminProjects', require('./project/projects.vue'));
