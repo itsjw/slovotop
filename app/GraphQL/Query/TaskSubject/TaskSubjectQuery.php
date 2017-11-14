@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Query\Doc;
+namespace App\GraphQL\Query\TaskSubject;
 
-use App\GraphQL\Serialize\DocSerialize;
-use App\Models\Doc;
+use App\GraphQL\Serialize\TaskSubjectSerialize;
+use App\Models\TaskSubject;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
 /**
- * Class DocQuery
+ * Class TaskSubjectQuery
  *
- * @package App\GraphQL\Query\Doc
+ * @package App\GraphQL\Query\TaskSubject
  */
-class DocQuery extends Query
+class TaskSubjectQuery extends Query
 {
     /**
      * @var array
      */
     protected $attributes = [
-        'name'        => 'DocQuery',
+        'name'        => 'RoleQuery',
         'description' => 'A query',
     ];
 
@@ -30,7 +30,7 @@ class DocQuery extends Query
      */
     public function type()
     {
-        return Type::listOf(\GraphQL::type('DocType'));
+        return Type::listOf(\GraphQL::type('TaskSubjectType'));
     }
 
     /**
@@ -52,23 +52,21 @@ class DocQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      Doc
+     * @apiGroup      Task Subject
      * @apiPermission auth
-     * @api           {post} v2 Doc-Query
-     * @apiName       Doc-Query
+     * @api           {post} v2 TaskSubject-Query
+     * @apiName       TaskSubject-Query
      * @apiParam {Integer} id
      * @apiParam {String} searchName searchName
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ DocQuery ( id:1,searchName:"searchName" ) { id,name...}"}
+     * {"query":"{ TaskSubjectQuery ( id:1,searchName:"searchName" ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
-     * @apiSuccess {String} body body
-     * @apiSuccess {Object} user [User]
-     * @apiSuccess {Object} roles [Roles]
+     * @apiSuccess {Integer} price price
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ DocQuery { id,name,body,user{id,name},roles{access},created_at,updated_at } }"}
+     * {"query":"{ TaskSubjectQuery { id,name,price,created_at,updated_at } }"}
      *
      * @param $root
      * @param $args
@@ -79,7 +77,7 @@ class DocQuery extends Query
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        $query = Doc::query();
+        $query = TaskSubject::query();
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
@@ -87,13 +85,7 @@ class DocQuery extends Query
         if (isset($args['searchName'])) {
             $query->where('name', 'like', '%'.$args['searchName'].'%');
         }
-        if ( ! \Auth::user()->isAdmin()) {
-            $query->whereHas('roles', function ($request) {
-                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
-            });
-        }
 
-
-        return DocSerialize::collection($query->get());
+        return TaskSubjectSerialize::collection($query->get());
     }
 }

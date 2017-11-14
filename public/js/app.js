@@ -30078,6 +30078,7 @@ var Query = function () {
         this.user = 'id,name,email,roles{id,role{' + this.role + '}},confirm,created_at,tasksCount,up_price,note,\n                        lastLogin{updated_at}';
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
         this.doc = 'id,name,body,created_at,updated_at,roles{id,name,access,role_id},user{id,name}';
+        this.subject = 'id,name,price,created_at,updated_at';
     }
 
     /**
@@ -36432,9 +36433,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getSubjects();
+    },
 
 
     props: {
@@ -36442,11 +36516,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     data: function data() {
-        return {};
+        return {
+            queryParams: [],
+            showSearchName: false,
+            showAddSubject: false,
+            selectSubject: [],
+            subjects: {}
+        };
     },
 
 
-    methods: {}
+    methods: {
+        /**
+         * close all popup
+         */
+        closePopUp: function closePopUp() {
+            this.showSearchName = false;
+            this.showAddSubject = false;
+            this.getSubjects();
+        },
+
+
+        /**
+         * select subject
+         */
+        selectSubjects: function selectSubjects(id) {
+            if (this.accessMenu == 2) {
+                if (this.selectSubject.indexOf(id) == -1) {
+                    this.selectSubject.push(id);
+                } else {
+                    this.selectSubject.splice(this.selectSubject.indexOf(id), 1);
+                }
+            } else {
+                window.location = 'docs/doc/' + id;
+            }
+        },
+
+
+        /**
+         * search my type and value
+         * @param value
+         * @param type
+         */
+        search: function search(value, type) {
+            this.queryParams.splice(0, 1);
+
+            if (value) {
+                this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
+            }
+            this.closePopUp();
+        },
+
+
+        /**
+         * get all subjects
+         */
+        getSubjects: function getSubjects() {
+            var _this = this;
+
+            this.selectSubject = [];
+            gql.getItem('v2', 'TaskSubjectQuery', this.queryParams.length > 0 ? this.queryParams : false, 'subject').then(function (response) {
+                _this.subjects = response.data.data.TaskSubjectQuery;
+            });
+        },
+        addSubject: function addSubject() {},
+        editSubject: function editSubject() {},
+        deleteSubject: function deleteSubject() {}
+    }
 });
 
 /***/ }),
@@ -36457,7 +36593,262 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\n    titleSubjects\n\n")])
+  return _c("div", [
+    _vm.isAdmin
+      ? _c(
+          "div",
+          { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
+          [
+            _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                  on: {
+                    click: function($event) {
+                      _vm.addSubject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon size-4" }, [
+                    _vm._v("subject")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                    _vm._v(_vm._s(_vm.trans("data.add")))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                  on: {
+                    click: function($event) {
+                      _vm.editSubject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                    _vm._v(_vm._s(_vm.trans("data.edit")))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
+                  on: {
+                    click: function($event) {
+                      _vm.deleteSubject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
+                    _vm._v(_vm._s(_vm.trans("data.delete")))
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-6" })
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "1%" } }, [
+              _c(
+                "i",
+                {
+                  staticClass: "ui-icon size-3 ui-color col-green hover",
+                  on: {
+                    click: function($event) {
+                      _vm.getSubjects()
+                    }
+                  }
+                },
+                [_vm._v("autorenew")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
+              _c(
+                "div",
+                { staticClass: "ui-grid-block" },
+                [
+                  _vm.showSearchName
+                    ? _c("search-pop", {
+                        attrs: { position: "left", type: "searchName" },
+                        on: {
+                          submit: _vm.search,
+                          close: function($event) {
+                            _vm.closePopUp()
+                          }
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    {
+                      staticClass:
+                        "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.showSearchName = true
+                        }
+                      }
+                    },
+                    [_vm._v("search")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.queryParams[0],
+                          expression: "queryParams[0]"
+                        }
+                      ],
+                      staticClass:
+                        "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.search()
+                        }
+                      }
+                    },
+                    [_vm._v("close")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.subjectName")))])
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.subjectPrice")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.created_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.updated_at")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.subjects, function(val, key) {
+          return _c(
+            "tr",
+            {
+              staticClass: "hover ui-fnt light size-1 ui-color col-black",
+              on: {
+                click: function($event) {
+                  _vm.selectSubjects(val.id)
+                }
+              }
+            },
+            [
+              _c("td", [
+                _vm.accessMenu > 1
+                  ? _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectSubject,
+                            expression: "selectSubject"
+                          }
+                        ],
+                        attrs: { type: "checkbox", id: key },
+                        domProps: {
+                          value: val.id,
+                          checked: Array.isArray(_vm.selectSubject)
+                            ? _vm._i(_vm.selectSubject, val.id) > -1
+                            : _vm.selectSubject
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selectSubject,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = val.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selectSubject = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selectSubject = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selectSubject = $$c
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "ui-checkbox ui-color col-green hover",
+                        attrs: { for: key }
+                      })
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.price))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.updated_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(val.id))])
+            ]
+          )
+        })
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

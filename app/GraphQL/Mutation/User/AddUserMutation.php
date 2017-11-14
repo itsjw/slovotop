@@ -85,7 +85,7 @@ class AddUserMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      User
      * @apiPermission auth
-     * @api           {post} v1 User-Add
+     * @api           {post} v2 User-Add
      * @apiName       User-Add
      * @apiParam {Integer{required,>=0}} id ID
      * @apiParam {String{required}} name name

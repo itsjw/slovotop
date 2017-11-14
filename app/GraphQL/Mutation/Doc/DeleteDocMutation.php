@@ -50,7 +50,7 @@ class DeleteDocMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Doc
      * @apiPermission auth
-     * @api           {post} v1 Doc-Delete
+     * @api           {post} v2 Doc-Delete
      * @apiName       Doc-Delete
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:

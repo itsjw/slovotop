@@ -61,7 +61,7 @@ class ChangeAccessMenuMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Access
      * @apiPermission auth
-     * @api           {post} v1 Change Access Menu
+     * @api           {post} v2 Change Access Menu
      * @apiName       Change Access Menu
      * @apiParam {Integer{required,0-1}} access access
      * @apiParam {Integer{required,>=1}} menu menu ID

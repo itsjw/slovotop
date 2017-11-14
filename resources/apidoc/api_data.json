@@ -8,7 +8,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Change Access Menu",
     "name": "Change_Access_Menu",
     "parameter": {
@@ -73,7 +73,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Doc-Add/Update",
     "name": "Doc_Add_Update",
     "parameter": {
@@ -154,7 +154,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Doc-Delete",
     "name": "Doc_Delete",
     "parameter": {
@@ -203,7 +203,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Doc-Query",
     "name": "Doc_Query",
     "parameter": {
@@ -307,7 +307,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Menu-Query",
     "name": "Menu_Query",
     "parameter": {
@@ -637,7 +637,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Role-Add/Update",
     "name": "Role_Add_Update",
     "parameter": {
@@ -694,7 +694,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Role-Delete",
     "name": "Role_Delete",
     "parameter": {
@@ -743,7 +743,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "Role-Query",
     "name": "Role_Query",
     "parameter": {
@@ -819,6 +819,96 @@
   },
   {
     "version": "0.1.0",
+    "group": "Task_Subject",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
+    "title": "TaskSubject-Query",
+    "name": "TaskSubject_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "searchName",
+            "description": "<p>searchName</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"{ TaskSubjectQuery ( id:1,searchName:\"searchName\" ) { id,name...}\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"query\":\"{ TaskSubjectQuery { id,name,price,created_at,updated_at } }\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/GraphQL/Query/TaskSubject/TaskSubjectQuery.php",
+    "groupTitle": "Task_Subject"
+  },
+  {
+    "version": "0.1.0",
     "group": "User",
     "permission": [
       {
@@ -826,7 +916,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "User-Add",
     "name": "User_Add",
     "parameter": {
@@ -935,7 +1025,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "User-Approve",
     "name": "User_Approve",
     "parameter": {
@@ -984,7 +1074,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "User-Delete",
     "name": "User_Delete",
     "parameter": {
@@ -1033,7 +1123,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "User-Update",
     "name": "User_Update",
     "parameter": {
@@ -1141,7 +1231,7 @@
       }
     ],
     "type": "post",
-    "url": "v1",
+    "url": "v2",
     "title": "User-query",
     "name": "User_query",
     "parameter": {

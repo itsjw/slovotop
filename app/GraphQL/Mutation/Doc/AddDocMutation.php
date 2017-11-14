@@ -72,7 +72,7 @@ class AddDocMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Doc
      * @apiPermission auth
-     * @api           {post} v1 Doc-Add/Update
+     * @api           {post} v2 Doc-Add/Update
      * @apiName       Doc-Add/Update
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name
