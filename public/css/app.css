@@ -3412,6 +3412,56 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #90A4AE;
 }
 
+.ui-tabs-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100%;
+  border-bottom: 1px solid #CFD8DC;
+  background: #ffffff;
+  font-family: "Roboto Regular";
+  font-size: 16px;
+  color: #4B5F71;
+}
+
+.ui-tabs-box ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: inherit;
+}
+
+.ui-tabs-box ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.ui-tabs-box ul li.active {
+  border-color: #CFD8DC;
+  border-bottom-color: transparent !important;
+  border-radius: 3px 3px 0 0;
+  background: #ffffff;
+  color: #337ab7;
+}
+
+.ui-tabs-box ul li:hover {
+  background: #CFD8DC;
+}
+
 [v-cloak]::before {
   content: " ";
   display: block;
