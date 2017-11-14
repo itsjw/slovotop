@@ -3462,6 +3462,45 @@ input[type=radio]:checked + label.ui-radio:before {
   background: #CFD8DC;
 }
 
+.ui-navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100%;
+  background: #ffffff;
+  font-family: "Roboto Regular";
+  font-size: 16px;
+  color: #4B5F71;
+}
+
+.ui-navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: inherit;
+}
+
+.ui-navbar ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.ui-navbar ul li:hover {
+  color: #337ab7;
+}
+
 [v-cloak]::before {
   content: " ";
   display: block;

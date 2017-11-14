@@ -1,23 +1,19 @@
 <template>
     <div>
-        <div class="ui-grid-block">
-            <div class="ui-tabs-box">
-                <ul>
-                    <li class="active">
-                        <i class="ui-icon ui-mr-2">subject</i>
-                        <span>Константы</span>
-                    </li>
-                    <li>
-                        <i class="ui-icon ui-mr-2">subject</i>
-                        <span>Статусы задач</span>
-                    </li>
-                    <li>
-                        <i class="ui-icon ui-mr-2">subject</i>
-                        <span>Этапы задач</span>
-                    </li>
-                </ul>
-            </div>
+
+        <div class="ui-navbar">
+            <ul>
+                <li>
+                    <i class="ui-icon ui-mr-2">security</i>
+                    <span>{{ trans('data.add') }}</span>
+                </li>
+                <li>
+                    <i class="ui-icon ui-mr-2">edit</i>
+                    <span>{{ trans('data.edit') }}</span>
+                </li>
+            </ul>
         </div>
+
     </div>
 </template>
 <script>

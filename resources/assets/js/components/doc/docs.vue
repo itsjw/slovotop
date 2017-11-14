@@ -1,25 +1,21 @@
 <template>
     <div>
 
-        <div class="ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" v-if="accessMenu == 2">
-            <div class="ui-grid-6 ui-grid-block">
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
-                     @click="addDoc()">
-                    <i class="ui-icon size-4">note_add</i>
-                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.add') }}</span>
-                </div>
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
-                     @click="editDoc()">
-                    <i class="ui-icon size-4">edit</i>
-                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.edit') }}</span>
-                </div>
-                <div class="ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover"
-                     @click="deleteDoc()">
-                    <i class="ui-icon">delete</i>
-                    <span class="ui-pl-2 ui-fnt medium size-1">{{ trans('data.delete') }}</span>
-                </div>
-            </div>
-            <div class="ui-grid-6"></div>
+        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
+            <ul>
+                <li @click="addDoc()">
+                    <i class="ui-icon ui-mr-2">note_add</i>
+                    <span>{{ trans('data.add') }}</span>
+                </li>
+                <li @click="editDoc()">
+                    <i class="ui-icon ui-mr-2">edit</i>
+                    <span>{{ trans('data.edit') }}</span>
+                </li>
+                <li @click="deleteDoc()">
+                    <i class="ui-icon ui-mr-2">delete</i>
+                    <span>{{ trans('data.delete') }}</span>
+                </li>
+            </ul>
         </div>
 
         <table>

@@ -30256,10 +30256,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -30283,40 +30279,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "ui-grid-block" }, [
-        _c("div", { staticClass: "ui-tabs-box" }, [
-          _c("ul", [
-            _c("li", { staticClass: "active" }, [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("subject")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("Константы")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("subject")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("Статусы задач")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("subject")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("Этапы задач")])
-            ])
-          ])
+  return _c("div", [
+    _c("div", { staticClass: "ui-navbar" }, [
+      _c("ul", [
+        _c("li", [
+          _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("security")]),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -30380,10 +30361,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -30922,86 +30899,62 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.isAdmin
-        ? _c(
-            "div",
-            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-            [
-              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.addSubject()
-                      }
+      _vm.accessMenu == 2
+        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+            _c("ul", [
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.addSubject()
                     }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("subject")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.add")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.editSubject()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("edit")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteSubject()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
-                    )
-                  ]
-                )
-              ]),
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("subject")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "ui-grid-6" })
-            ]
-          )
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editSubject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.deleteSubject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("delete")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+                ]
+              )
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _c("table", [
@@ -31263,10 +31216,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -32479,109 +32428,79 @@ var render = function() {
     "div",
     [
       _vm.isAdmin
-        ? _c(
-            "div",
-            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-            [
-              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.addRole()
-                      }
+        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+            _c("ul", [
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.addRole()
                     }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("security")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.add")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.editRole()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("edit")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.editAccess()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("fingerprint")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.access")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteRole()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
-                    )
-                  ]
-                )
-              ]),
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("security")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "ui-grid-6" })
-            ]
-          )
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editRole()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editAccess()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("fingerprint")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.access")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.deleteRole()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("delete")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+                ]
+              )
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _c("table", [
@@ -32799,10 +32718,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -33850,109 +33765,79 @@ var render = function() {
     "div",
     [
       _vm.accessMenu == 2
-        ? _c(
-            "div",
-            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-            [
-              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.addUser()
-                      }
+        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+            _c("ul", [
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.addUser()
                     }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("person_add")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.add")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.editUser()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("edit")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.approveUser()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("touch_app")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.approve")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteUser()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
-                    )
-                  ]
-                )
-              ]),
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("person_add")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "ui-grid-6" })
-            ]
-          )
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editUser()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.approveUser()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("touch_app")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.approve")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.deleteUser()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("delete")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+                ]
+              )
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _c("table", [
@@ -34324,9 +34209,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -35045,85 +34927,61 @@ var render = function() {
     "div",
     [
       _vm.accessMenu == 2
-        ? _c(
-            "div",
-            { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-            [
-              _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.addProject()
-                      }
+        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+            _c("ul", [
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.addProject()
                     }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("note_add")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.add")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.editProject()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon size-4" }, [
-                      _vm._v("edit")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.edit")))]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteProject()
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "ui-pl-2 ui-fnt medium size-1" },
-                      [_vm._v(_vm._s(_vm.trans("data.delete")))]
-                    )
-                  ]
-                )
-              ]),
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("note_add")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "ui-grid-6" })
-            ]
-          )
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editProject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.deleteProject()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("delete")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+                ]
+              )
+            ])
+          ])
         : _vm._e(),
       _vm._v(" "),
       _c("table", [
@@ -35578,10 +35436,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
@@ -35626,77 +35480,59 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.accessMenu == 2
-      ? _c(
-          "div",
-          { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-          [
-            _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.addTask()
-                    }
+      ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+          _c("ul", [
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.addTask()
                   }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [
-                    _vm._v("receipt")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.add")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.editTask()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.edit")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.deleteTask()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.delete")))
-                  ])
-                ]
-              )
-            ]),
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                  _vm._v("receipt")
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-6" })
-          ]
-        )
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.editTask()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.deleteTask()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("delete")]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+              ]
+            )
+          ])
+        ])
       : _vm._e(),
     _vm._v(" "),
     _c("table", [
@@ -36088,10 +35924,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -36215,77 +36047,59 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.accessMenu == 2
-      ? _c(
-          "div",
-          { staticClass: "ui-grid-block ui-bg bg-blue ui-mb-3 ui-p-1" },
-          [
-            _c("div", { staticClass: "ui-grid-6 ui-grid-block" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.addDoc()
-                    }
+      ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+          _c("ul", [
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.addDoc()
                   }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [
-                    _vm._v("note_add")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.add")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.editDoc()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon size-4" }, [_vm._v("edit")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.edit")))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-block-flex ui-pl-2 ui-pr-2 ui-color col-greyBlueLL hover",
-                  on: {
-                    click: function($event) {
-                      _vm.deleteDoc()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon" }, [_vm._v("delete")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ui-pl-2 ui-fnt medium size-1" }, [
-                    _vm._v(_vm._s(_vm.trans("data.delete")))
-                  ])
-                ]
-              )
-            ]),
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                  _vm._v("note_add")
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-6" })
-          ]
-        )
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.editDoc()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.deleteDoc()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("delete")]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+              ]
+            )
+          ])
+        ])
       : _vm._e(),
     _vm._v(" "),
     _c("table", [
