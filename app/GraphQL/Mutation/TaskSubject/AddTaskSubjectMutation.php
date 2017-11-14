@@ -78,7 +78,7 @@ class AddTaskSubjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('roles') == 2) {
+        if (Menu::getAccessMenu('subjects') == 2) {
 
             $subject = TaskSubject::findOrNew($args['id']);
 
