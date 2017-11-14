@@ -1,0 +1,20 @@
+// elements
+.ui-block-flex{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ui-tag{
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  @include Background;
+}
+
+.ui-inform{
+  padding: 10px;
+  border-radius: 3px;
+
+  @include Background;
+}

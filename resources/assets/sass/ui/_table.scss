@@ -1,0 +1,70 @@
+table {
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    background: $colorGrey_300;
+
+    tr {
+      th {
+        border-bottom: 2px solid $colorGreyBlue_300;
+        text-align: center;
+        padding: 5px;
+
+        &.left {
+          text-align: left;
+        }
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+      background: $colorWite;
+
+      &.hover {
+        cursor: pointer;
+        &:hover {
+          background: $colorGrey_050;
+        }
+      }
+
+      &.use {
+        background: $colorGrey_200;
+      }
+
+      td {
+        border-bottom: 1px solid $colorGrey_300;
+        text-align: center;
+        padding: 3px;
+
+        &.left {
+          text-align: left;
+        }
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+    tr:last-child {
+
+      td {
+        padding: 3px;
+        text-align: center;
+        border-bottom: none;
+
+        &.left {
+          text-align: left;
+        }
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+}
