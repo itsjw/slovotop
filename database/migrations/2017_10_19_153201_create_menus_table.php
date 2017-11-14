@@ -57,6 +57,11 @@ class CreateMenusTable extends Migration
             'icon'    => 'settings',
         ]);
         Menu::create([
+            'name'    => 'Тематика заданий',
+            'slug'    => 'subjects',
+            'icon'    => 'subject',
+        ]);
+        Menu::create([
             'name'    => 'Роли и права',
             'slug'    => 'roles',
             'icon'    => 'security',
