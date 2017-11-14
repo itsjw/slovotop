@@ -145,16 +145,16 @@
              * delete role
              */
             deleteRole() {
-                let select;
                 if (this.selectRole.length > 0) {
                     if (confirm('Удалить?')) {
-                        select = ['items:"' + this.selectRole + '"'];
+                        let select = ['items:"' + this.selectRole + '"'];
+
+                        gql.setItem('v2', 'DeleteRoleMutation', select)
+                            .then(response => {
+                                notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
+                                this.getRoles();
+                            })
                     }
-                    gql.setItem('v2', 'DeleteRoleMutation', select)
-                        .then(response => {
-                            notify.make('success', response.data.data.DeleteRoleMutation.notify,1);
-                            this.getRoles();
-                        })
                 }
             },
 

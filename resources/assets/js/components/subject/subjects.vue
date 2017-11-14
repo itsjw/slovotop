@@ -176,6 +176,13 @@
             deleteSubject() {
                 if (this.selectSubject.length > 0) {
                     if (confirm('Удалить?')) {
+                        let select = ['items:"' + this.selectSubject + '"'];
+
+                        gql.setItem('v2', 'DeleteTaskSubjectMutation', select)
+                            .then(response => {
+                                notify.make('success', response.data.data.DeleteTaskSubjectMutation.notify, 1);
+                                this.getSubjects();
+                            })
                     }
                 }
             }

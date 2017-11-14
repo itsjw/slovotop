@@ -892,6 +892,55 @@
     ],
     "type": "post",
     "url": "v2",
+    "title": "TaskSubject-Delete",
+    "name": "TaskSubject_Delete",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "1,2,3..",
+            "optional": false,
+            "field": "items",
+            "description": "<p>items</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { DeleteTaskSubjectMutation (items:\"1,2,3\") { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskSubject/DeleteTaskSubjectMutation.php",
+    "groupTitle": "TaskSubject"
+  },
+  {
+    "version": "0.1.0",
+    "group": "TaskSubject",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
     "title": "TaskSubject-Query",
     "name": "TaskSubject_Query",
     "parameter": {

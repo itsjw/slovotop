@@ -30501,15 +30501,15 @@ Vue.component('accessRole', __webpack_require__(48));
         deleteRole: function deleteRole() {
             var _this2 = this;
 
-            var select = void 0;
             if (this.selectRole.length > 0) {
                 if (confirm('Удалить?')) {
-                    select = ['items:"' + this.selectRole + '"'];
+                    var select = ['items:"' + this.selectRole + '"'];
+
+                    gql.setItem('v2', 'DeleteRoleMutation', select).then(function (response) {
+                        notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
+                        _this2.getRoles();
+                    });
                 }
-                gql.setItem('v2', 'DeleteRoleMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
-                    _this2.getRoles();
-                });
             }
         },
 
@@ -36613,8 +36613,17 @@ Vue.component('addSubject', __webpack_require__(110));
          * delete subject
          */
         deleteSubject: function deleteSubject() {
+            var _this2 = this;
+
             if (this.selectSubject.length > 0) {
-                if (confirm('Удалить?')) {}
+                if (confirm('Удалить?')) {
+                    var select = ['items:"' + this.selectSubject + '"'];
+
+                    gql.setItem('v2', 'DeleteTaskSubjectMutation', select).then(function (response) {
+                        notify.make('success', response.data.data.DeleteTaskSubjectMutation.notify, 1);
+                        _this2.getSubjects();
+                    });
+                }
             }
         }
     }
