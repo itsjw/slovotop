@@ -959,13 +959,20 @@
             "optional": false,
             "field": "searchName",
             "description": "<p>searchName</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "orderPrice",
+            "description": "<p>order by price</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ TaskSubjectQuery ( id:1,searchName:\"searchName\" ) { id,name...}\"}",
+          "content": "{\"query\":\"{ TaskSubjectQuery ( id:1,searchName:\"searchName\",orderPrice:\"asc\" ) { id,name...}\"}",
           "type": "json"
         }
       ]
