@@ -74,9 +74,15 @@
             </tbody>
         </table>
 
+        <add-subject v-if="showAddSubject"
+                     :subject_id="selectSubject[0]"
+                     @close="closePopUp()"></add-subject>
+
     </div>
 </template>
 <script>
+    Vue.component('addSubject', require('./addSubject.vue'));
+
     export default {
 
         mounted() {
@@ -146,7 +152,13 @@
                         this.subjects = response.data.data.TaskSubjectQuery;
                     })
             },
+
+            /**
+             * add subject
+             */
             addSubject() {
+                this.selectSubject = [];
+                this.showAddSubject = true;
             },
             editSubject() {
             },

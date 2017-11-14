@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="ui-popup-bg" @click="$emit('close')"></div>
         <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
             <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
@@ -31,6 +32,7 @@
                         </option>
                     </select>
                 </div>
+
                 <div class="ui-mt-5">
                     <button type="button"
                             class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
@@ -46,6 +48,7 @@
 
             </div>
         </div>
+
     </div>
 </template>
 <script>
