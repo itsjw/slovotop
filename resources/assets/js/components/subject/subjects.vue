@@ -26,7 +26,7 @@
                        @click="getSubjects()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="60%" class="left">
+                <th width="50%" class="left">
                     <div class="ui-grid-block">
 
                         <search-pop
@@ -45,7 +45,7 @@
                         <span>{{ trans('data.subjectName') }}</span>
                     </div>
                 </th>
-                <th width="10%">
+                <th width="20%">
                     <div class="ui-grid-block center">
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-1 ui-mr-1"
                            @click="orderByID()">sort</i>

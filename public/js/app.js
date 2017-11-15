@@ -31290,46 +31290,43 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.isAdmin
-            ? _c("div", { staticClass: "ui-mb-2" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.trans("data.subjectPrice")) +
-                        "\n                "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.subject.price,
-                      expression: "subject.price"
-                    }
-                  ],
-                  staticClass: "ui-input green focus ui-fnt light size-1",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.subject.price },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.subject, "price", $event.target.value)
-                    }
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.subjectPrice")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.subject.price,
+                  expression: "subject.price"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "number" },
+              domProps: { value: _vm.subject.price },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                })
-              ])
-            : _vm._e(),
+                  _vm.$set(_vm.subject, "price", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "ui-mt-5" }, [
             _c(
@@ -31481,7 +31478,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
+              _c("th", { staticClass: "left", attrs: { width: "50%" } }, [
                 _c(
                   "div",
                   { staticClass: "ui-grid-block" },
@@ -31540,7 +31537,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "10%" } }, [
+              _c("th", { attrs: { width: "20%" } }, [
                 _c("div", { staticClass: "ui-grid-block center" }, [
                   _c(
                     "i",
@@ -37849,46 +37846,43 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.isAdmin
-            ? _c("div", { staticClass: "ui-mb-2" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.trans("data.stagePriority")) +
-                        "\n                "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.stage.priority,
-                      expression: "stage.priority"
-                    }
-                  ],
-                  staticClass: "ui-input green focus ui-fnt light size-1",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.stage.priority },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.stage, "priority", $event.target.value)
-                    }
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.stagePriority")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.stage.priority,
+                  expression: "stage.priority"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "number" },
+              domProps: { value: _vm.stage.priority },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                })
-              ])
-            : _vm._e(),
+                  _vm.$set(_vm.stage, "priority", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "ui-mt-5" }, [
             _c(
