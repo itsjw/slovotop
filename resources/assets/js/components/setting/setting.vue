@@ -7,23 +7,11 @@
                 <ul>
                     <li :class="tabs[0]" @click="selectTab(0)">
                         <i class="ui-icon ui-mr-2">settings</i>
-                        <span>{{ trans('data.setTaskStatus') }}</span>
+                        <span>{{ trans('data.setTaskMain') }}</span>
                     </li>
                     <li :class="tabs[1]" @click="selectTab(1)">
-                        <i class="ui-icon ui-mr-2">view_carousel</i>
-                        <span>{{ trans('data.titleProject') }}</span>
-                    </li>
-                    <li :class="tabs[2]" @click="selectTab(2)">
-                        <i class="ui-icon ui-mr-2">receipt</i>
-                        <span>{{ trans('data.titleTasks') }}</span>
-                    </li>
-                    <li :class="tabs[3]" @click="selectTab(3)">
-                        <i class="ui-icon ui-mr-2">insert_drive_file</i>
-                        <span> {{ trans('data.titleDoc') }}</span>
-                    </li>
-                    <li :class="tabs[4]" @click="selectTab(4)">
-                        <i class="ui-icon ui-mr-2">view_list</i>
-                        <span>{{ trans('data.titleReports') }}</span>
+                        <i class="ui-icon ui-mr-2">navigate_next</i>
+                        <span>{{ trans('data.setTaskStage') }}</span>
                     </li>
                 </ul>
             </div>
@@ -44,7 +32,7 @@
 
         data() {
             return {
-                tabs: ['active', '', '', '', ''],
+                tabs: ['active', ''],
             }
         },
 
@@ -54,7 +42,7 @@
              * @param key
              */
             selectTab(key) {
-                this.tabs = ['', '', '', '', ''];
+                this.tabs = ['', ''];
                 this.tabs.splice(key, 0, 'active');
             },
 

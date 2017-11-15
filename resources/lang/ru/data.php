@@ -40,7 +40,8 @@ return [
     'titleReports'  => 'Отчёты',
 
     // settings
-    'setTaskStatus' => 'Статусы задач',
+    'setTaskMain'   => 'Общие параметры',
+    'setTaskStage'  => 'Этапы задач',
 
     // roles
     'roleName'      => 'Имя роли',

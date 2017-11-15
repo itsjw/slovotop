@@ -30262,18 +30262,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -30283,7 +30271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            tabs: ['active', '', '', '', '']
+            tabs: ['active', '']
         };
     },
 
@@ -30294,7 +30282,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param key
          */
         selectTab: function selectTab(key) {
-            this.tabs = ['', '', '', '', ''];
+            this.tabs = ['', ''];
             this.tabs.splice(key, 0, 'active');
         }
     }
@@ -30325,7 +30313,7 @@ var render = function() {
             [
               _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("settings")]),
               _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskStatus")))])
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskMain")))])
             ]
           ),
           _vm._v(" "),
@@ -30341,65 +30329,10 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                _vm._v("view_carousel")
+                _vm._v("navigate_next")
               ]),
               _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleProject")))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              class: _vm.tabs[2],
-              on: {
-                click: function($event) {
-                  _vm.selectTab(2)
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("receipt")]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleTasks")))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              class: _vm.tabs[3],
-              on: {
-                click: function($event) {
-                  _vm.selectTab(3)
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                _vm._v("insert_drive_file")
-              ]),
-              _vm._v(" "),
-              _c("span", [_vm._v(" " + _vm._s(_vm.trans("data.titleDoc")))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              class: _vm.tabs[4],
-              on: {
-                click: function($event) {
-                  _vm.selectTab(4)
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                _vm._v("view_list")
-              ]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.trans("data.titleReports")))])
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskStage")))])
             ]
           )
         ])

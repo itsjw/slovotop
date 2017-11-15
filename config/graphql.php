@@ -60,6 +60,7 @@ return [
         'AccessType'      => App\GraphQL\Type\AccessType::class,
         'DocType'         => App\GraphQL\Type\DocType::class,
         'TaskSubjectType' => App\GraphQL\Type\TaskSubjectType::class,
+        'TaskStageType'   => App\GraphQL\Type\TaskStageType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

@@ -16,6 +16,7 @@ class CreateTaskStagesTable extends Migration
         Schema::create('task_stages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('priority');
             $table->timestamps();
         });
     }
