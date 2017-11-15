@@ -121,14 +121,10 @@
              * select subject
              */
             selectSubjects(id) {
-                if (this.accessMenu == 2) {
-                    if (this.selectSubject.indexOf(id) == -1) {
-                        this.selectSubject.push(id);
-                    } else {
-                        this.selectSubject.splice(this.selectSubject.indexOf(id), 1);
-                    }
+                if (this.selectSubject.indexOf(id) == -1) {
+                    this.selectSubject.push(id);
                 } else {
-                    window.location = 'docs/doc/' + id;
+                    this.selectSubject.splice(this.selectSubject.indexOf(id), 1);
                 }
             },
 

@@ -16,13 +16,15 @@
                 </ul>
             </div>
 
+            <setting-stages v-if="tabs[1]"></setting-stages>
+
         </div>
-
-
 
     </div>
 </template>
 <script>
+    Vue.component('settingStages', require('./stage/stages.vue'));
+
     export default {
 
         mounted() {

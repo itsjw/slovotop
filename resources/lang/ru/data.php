@@ -84,4 +84,8 @@ return [
     // Subjects
     'subjectName'   => 'Название тематики',
     'subjectPrice'  => 'Стоимость за 1000',
+
+    // Stages
+    'stageName'     => 'Название этапа',
+    'stagePriority' => 'Приоритет',
 ];
