@@ -30402,6 +30402,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
+Vue.component('addStage', __webpack_require__(116));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
@@ -30460,19 +30466,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         /**
          * add stage
          */
-        addStage: function addStage() {},
+        addStage: function addStage() {
+            this.selectStage = [];
+            this.showAddStage = true;
+        },
 
 
         /**
          * edit stage
          */
-        editStage: function editStage() {},
+        editStage: function editStage() {
+            if (this.selectStage.length > 0) {
+                this.showAddStage = true;
+            }
+        },
 
 
         /**
          * delete stage
          */
-        deleteStage: function deleteStage() {}
+        deleteStage: function deleteStage() {
+            if (this.selectStage.length > 0) {
+                if (confirm('Удалить')) {}
+            }
+        }
     }
 });
 
@@ -30484,185 +30501,203 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-mt-5 animated fadeIn" }, [
-    _vm.accessMenu == 2
-      ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
-          _c("ul", [
-            _c(
-              "li",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.addStage()
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                  _vm._v("navigate_next")
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.editStage()
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.deleteStage()
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("delete")]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
-              ]
-            )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("table", [
-      _c("thead", [
-        _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "1%" } }, [
+  return _c(
+    "div",
+    { staticClass: "ui-mt-5 animated fadeIn" },
+    [
+      _vm.accessMenu == 2
+        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+            _c("ul", [
               _c(
-                "i",
+                "li",
                 {
-                  staticClass: "ui-icon size-3 ui-color col-green hover",
                   on: {
                     click: function($event) {
-                      _vm.getStages()
+                      _vm.addStage()
                     }
                   }
                 },
-                [_vm._v("autorenew")]
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("navigate_next")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editStage()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.deleteStage()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
+                    _vm._v("delete")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+                ]
               )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.trans("data.stageName")) +
-                  "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "30%" } }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.trans("data.stagePriority")) +
-                  "\n            "
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-          ]
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("table", [
+        _c("thead", [
+          _c(
+            "tr",
+            { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+            [
+              _c("th", { attrs: { width: "1%" } }, [
+                _c(
+                  "i",
+                  {
+                    staticClass: "ui-icon size-3 ui-color col-green hover",
+                    on: {
+                      click: function($event) {
+                        _vm.getStages()
+                      }
+                    }
+                  },
+                  [_vm._v("autorenew")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
+              _vm._v(" "),
+              _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("data.stageName")) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "30%" } }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("data.stagePriority")) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.stages, function(val, key) {
+            return _c(
+              "tr",
+              {
+                staticClass: "hover ui-fnt light size-1 ui-color col-black",
+                on: {
+                  click: function($event) {
+                    _vm.selectStages(val.id)
+                  }
+                }
+              },
+              [
+                _c("td", [
+                  _vm.accessMenu == 2
+                    ? _c("div", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectSubject,
+                              expression: "selectSubject"
+                            }
+                          ],
+                          attrs: { type: "checkbox", id: key },
+                          domProps: {
+                            value: val.id,
+                            checked: Array.isArray(_vm.selectSubject)
+                              ? _vm._i(_vm.selectSubject, val.id) > -1
+                              : _vm.selectSubject
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selectSubject,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = val.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selectSubject = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selectSubject = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selectSubject = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", {
+                          staticClass: "ui-checkbox ui-color col-green hover",
+                          attrs: { for: key }
+                        })
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(key + 1))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.priority))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.id))])
+              ]
+            )
+          })
         )
       ]),
       _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.stages, function(val, key) {
-          return _c(
-            "tr",
-            {
-              staticClass: "hover ui-fnt light size-1 ui-color col-black",
-              on: {
-                click: function($event) {
-                  _vm.selectStages(val.id)
-                }
+      _vm.showAddStage
+        ? _c("add-stage", {
+            attrs: { stage_id: _vm.selectStage[0] },
+            on: {
+              close: function($event) {
+                _vm.closePopUp()
               }
-            },
-            [
-              _c("td", [
-                _vm.accessMenu == 2
-                  ? _c("div", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectSubject,
-                            expression: "selectSubject"
-                          }
-                        ],
-                        attrs: { type: "checkbox", id: key },
-                        domProps: {
-                          value: val.id,
-                          checked: Array.isArray(_vm.selectSubject)
-                            ? _vm._i(_vm.selectSubject, val.id) > -1
-                            : _vm.selectSubject
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.selectSubject,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = val.id,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  (_vm.selectSubject = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.selectSubject = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.selectSubject = $$c
-                            }
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green hover",
-                        attrs: { for: key }
-                      })
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.priority))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.id))])
-            ]
-          )
-        })
-      )
-    ])
-  ])
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37550,6 +37585,316 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(117)
+/* template */
+var __vue_template__ = __webpack_require__(118)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/setting/stage/addStage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dd2bb100", Component.options)
+  } else {
+    hotAPI.reload("data-v-dd2bb100", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {},
+
+
+    props: {
+        stage_id: {
+            default: 0
+        }
+    },
+
+    data: function data() {
+        return {
+            stage: {}
+        };
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "ui-popup-bg",
+      on: {
+        click: function($event) {
+          _vm.$emit("close")
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "ui-popup-close col-red hover ui-icon",
+            on: {
+              click: function($event) {
+                _vm.$emit("close")
+              }
+            }
+          },
+          [_vm._v("close")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui-p-3" }, [
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.stageName")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.stage.name,
+                  expression: "stage.name"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.stage.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.stage, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm.isAdmin
+            ? _c("div", { staticClass: "ui-mb-2" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.stagePriority")) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.stage.priority,
+                      expression: "stage.priority"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.stage.priority },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.stage, "priority", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mt-5" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.saveSubject()
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.save")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("close")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.cancel")) +
+                    "\n                "
+                )
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dd2bb100", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

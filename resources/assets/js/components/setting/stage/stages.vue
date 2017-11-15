@@ -53,9 +53,15 @@
             </tbody>
         </table>
 
+        <add-stage v-if="showAddStage"
+                   :stage_id="selectStage[0]"
+                   @close="closePopUp()"></add-stage>
+
     </div>
 </template>
 <script>
+    Vue.component('addStage', require('./addStage.vue'));
+
     export default {
 
         created() {
@@ -111,18 +117,28 @@
              * add stage
              */
             addStage() {
+                this.selectStage = [];
+                this.showAddStage = true;
             },
 
             /**
              * edit stage
              */
             editStage() {
+                if (this.selectStage.length > 0) {
+                    this.showAddStage = true;
+                }
             },
 
             /**
              * delete stage
              */
             deleteStage() {
+                if (this.selectStage.length > 0) {
+                    if (confirm('Удалить')) {
+
+                    }
+                }
             }
         }
     }
