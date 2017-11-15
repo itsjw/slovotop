@@ -25,7 +25,7 @@
                 <div class="ui-mt-5">
                     <button type="button"
                             class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
-                            @click="saveSubject()">
+                            @click="saveStage()">
                         {{ trans('data.save') }}
                     </button>
                     <button type="button"
@@ -44,6 +44,9 @@
     export default {
 
         mounted() {
+            if (this.stage_id > 0) {
+                this.getStage(this.stage_id);
+            }
         },
 
         props: {
@@ -59,7 +62,43 @@
         },
 
         methods: {
+            /**
+             * get stage
+             * @param id
+             */
+            getStage(id) {
+                gql.getItem('v2', 'TaskStageQuery', ['id:' + id], 'stage')
+                    .then(response => {
+                        this.stage = response.data.data.TaskStageQuery[0];
+                    })
+            },
 
+            /**
+             * save stage
+             */
+            saveStage() {
+                gql.setItem('v2', 'AddTaskStageMutation', this.getStageData(this.stage))
+                    .then(response => {
+                        if (response.data.errors) {
+                            notify.make('alert', response.data.errors[0].validation);
+                        } else {
+                            notify.make('success', response.data.data.AddTaskStageMutation.notify, 2);
+                            this.$emit('close');
+                        }
+                    });
+            },
+
+            /**
+             * get stage data
+             * @param stage
+             * @return {string}
+             */
+            getStageData(stage) {
+                return `
+                    id: ${this.stage_id == 0 ? this.stage_id : stage.id},
+                    name: "${stage.name || ''}"
+                    priority: ${stage.priority || 1}`;
+            }
         }
     }
 </script>

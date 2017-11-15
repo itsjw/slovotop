@@ -30486,8 +30486,17 @@ Vue.component('addStage', __webpack_require__(116));
          * delete stage
          */
         deleteStage: function deleteStage() {
+            var _this2 = this;
+
             if (this.selectStage.length > 0) {
-                if (confirm('Удалить')) {}
+                if (confirm('Удалить')) {
+                    var select = ['items:"' + this.selectStage + '"'];
+
+                    gql.setItem('v2', 'DeleteTaskStageMutation', select).then(function (response) {
+                        notify.make('success', response.data.data.DeleteTaskStageMutation.notify, 1);
+                        _this2.getStages();
+                    });
+                }
             }
         }
     }
@@ -30629,20 +30638,20 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.selectSubject,
-                              expression: "selectSubject"
+                              value: _vm.selectStage,
+                              expression: "selectStage"
                             }
                           ],
                           attrs: { type: "checkbox", id: key },
                           domProps: {
                             value: val.id,
-                            checked: Array.isArray(_vm.selectSubject)
-                              ? _vm._i(_vm.selectSubject, val.id) > -1
-                              : _vm.selectSubject
+                            checked: Array.isArray(_vm.selectStage)
+                              ? _vm._i(_vm.selectStage, val.id) > -1
+                              : _vm.selectStage
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.selectSubject,
+                              var $$a = _vm.selectStage,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -30650,15 +30659,15 @@ var render = function() {
                                   $$i = _vm._i($$a, $$v)
                                 if ($$el.checked) {
                                   $$i < 0 &&
-                                    (_vm.selectSubject = $$a.concat([$$v]))
+                                    (_vm.selectStage = $$a.concat([$$v]))
                                 } else {
                                   $$i > -1 &&
-                                    (_vm.selectSubject = $$a
+                                    (_vm.selectStage = $$a
                                       .slice(0, $$i)
                                       .concat($$a.slice($$i + 1)))
                                 }
                               } else {
-                                _vm.selectSubject = $$c
+                                _vm.selectStage = $$c
                               }
                             }
                           }
@@ -37704,7 +37713,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        if (this.stage_id > 0) {
+            this.getStage(this.stage_id);
+        }
+    },
 
 
     props: {
@@ -37720,7 +37733,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {}
+    methods: {
+        /**
+         * get stage
+         * @param id
+         */
+        getStage: function getStage(id) {
+            var _this = this;
+
+            gql.getItem('v2', 'TaskStageQuery', ['id:' + id], 'stage').then(function (response) {
+                _this.stage = response.data.data.TaskStageQuery[0];
+            });
+        },
+
+
+        /**
+         * save stage
+         */
+        saveStage: function saveStage() {
+            var _this2 = this;
+
+            gql.setItem('v2', 'AddTaskStageMutation', this.getStageData(this.stage)).then(function (response) {
+                if (response.data.errors) {
+                    notify.make('alert', response.data.errors[0].validation);
+                } else {
+                    notify.make('success', response.data.data.AddTaskStageMutation.notify, 2);
+                    _this2.$emit('close');
+                }
+            });
+        },
+
+
+        /**
+         * get stage data
+         * @param stage
+         * @return {string}
+         */
+        getStageData: function getStageData(stage) {
+            return '\n                id: ' + (this.stage_id == 0 ? this.stage_id : stage.id) + ',\n                name: "' + (stage.name || '') + '"\n                priority: ' + (stage.priority || 1);
+        }
+    }
 });
 
 /***/ }),
@@ -37847,7 +37899,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    _vm.saveSubject()
+                    _vm.saveStage()
                   }
                 }
               },

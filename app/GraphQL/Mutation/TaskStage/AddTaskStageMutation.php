@@ -49,7 +49,7 @@ class AddTaskStageMutation extends Mutation
                 'rules' => ['required'],
             ],
             'priority' => [
-                'name'  => 'price',
+                'name'  => 'priority',
                 'type'  => Type::int(),
                 'rules' => ['required', 'numeric', 'unique:task_stages'],
             ],

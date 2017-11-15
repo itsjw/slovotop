@@ -41,7 +41,7 @@
                 @click="selectStages(val.id)">
                 <td>
                     <div v-if="accessMenu == 2">
-                        <input type="checkbox" :id="key" :value="val.id" v-model="selectSubject"/>
+                        <input type="checkbox" :id="key" :value="val.id" v-model="selectStage"/>
                         <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
                     </div>
                 </td>
@@ -136,7 +136,13 @@
             deleteStage() {
                 if (this.selectStage.length > 0) {
                     if (confirm('Удалить')) {
+                        let select = ['items:"' + this.selectStage + '"'];
 
+                        gql.setItem('v2', 'DeleteTaskStageMutation', select)
+                            .then(response => {
+                                notify.make('success', response.data.data.DeleteTaskStageMutation.notify, 1);
+                                this.getStages();
+                            })
                     }
                 }
             }

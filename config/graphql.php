@@ -46,8 +46,8 @@ return [
                 'AddDocMutation'            => App\GraphQL\Mutation\Doc\AddDocMutation::class,
                 'DeleteDocMutation'         => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,
                 // task subject
-                'AddTaskSubjectMutation'    => App\GraphQL\Mutation\TaskSubject\AddTaskStageMutation::class,
-                'DeleteTaskSubjectMutation' => App\GraphQL\Mutation\TaskSubject\DeleteTaskStageMutation::class,
+                'AddTaskSubjectMutation'    => App\GraphQL\Mutation\TaskSubject\AddTaskSubjectMutation::class,
+                'DeleteTaskSubjectMutation' => App\GraphQL\Mutation\TaskSubject\DeleteTaskSubjectMutation::class,
                 // task stage
                 'AddTaskStageMutation'      => App\GraphQL\Mutation\TaskStage\AddTaskStageMutation::class,
                 'DeleteTaskStageMutation'   => App\GraphQL\Mutation\TaskStage\DeleteTaskStageMutation::class,
