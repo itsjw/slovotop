@@ -25,6 +25,8 @@ return [
                 'DocQuery'         => App\GraphQL\Query\Doc\DocQuery::class,
                 // task subject
                 'TaskSubjectQuery' => App\GraphQL\Query\TaskSubject\TaskSubjectQuery::class,
+                // task stage
+                'TaskStageQuery'   => App\GraphQL\Query\TaskStage\TaskStageQuery::class,
             ],
             'mutation'   => [
                 // user
@@ -43,7 +45,7 @@ return [
                 // doc
                 'AddDocMutation'            => App\GraphQL\Mutation\Doc\AddDocMutation::class,
                 'DeleteDocMutation'         => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,
-                // subject
+                // task subject
                 'AddTaskSubjectMutation'    => App\GraphQL\Mutation\TaskSubject\AddTaskSubjectMutation::class,
                 'DeleteTaskSubjectMutation' => App\GraphQL\Mutation\TaskSubject\DeleteTaskSubjectMutation::class,
             ],

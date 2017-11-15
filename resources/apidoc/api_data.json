@@ -819,7 +819,90 @@
   },
   {
     "version": "0.1.0",
-    "group": "TaskSubject",
+    "group": "Task_Stage",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
+    "title": "TaskStage-Query",
+    "name": "TaskStage_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"{ TaskStageQuery ( id:1 ) { id,name...}\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "priority",
+            "description": "<p>priority</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"query\":\"{ TaskStageQuery { id,name,priority,created_at,updated_at } }\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/GraphQL/Query/TaskStage/TaskStageQuery.php",
+    "groupTitle": "Task_Stage"
+  },
+  {
+    "version": "0.1.0",
+    "group": "Task_Subject",
     "permission": [
       {
         "name": "auth"
@@ -880,11 +963,11 @@
       }
     },
     "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskSubject/AddTaskSubjectMutation.php",
-    "groupTitle": "TaskSubject"
+    "groupTitle": "Task_Subject"
   },
   {
     "version": "0.1.0",
-    "group": "TaskSubject",
+    "group": "Task_Subject",
     "permission": [
       {
         "name": "auth"
@@ -929,11 +1012,11 @@
       }
     },
     "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskSubject/DeleteTaskSubjectMutation.php",
-    "groupTitle": "TaskSubject"
+    "groupTitle": "Task_Subject"
   },
   {
     "version": "0.1.0",
-    "group": "TaskSubject",
+    "group": "Task_Subject",
     "permission": [
       {
         "name": "auth"
@@ -1026,7 +1109,7 @@
       }
     ],
     "filename": "/home/www/slovo.zz/app/GraphQL/Query/TaskSubject/TaskSubjectQuery.php",
-    "groupTitle": "TaskSubject"
+    "groupTitle": "Task_Subject"
   },
   {
     "version": "0.1.0",

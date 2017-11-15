@@ -56,7 +56,7 @@ class TaskSubjectQuery extends Query
 
     /**
      * @apiVersion    0.1.0
-     * @apiGroup      TaskSubject
+     * @apiGroup      Task Subject
      * @apiPermission auth
      * @api           {post} v2 TaskSubject-Query
      * @apiName       TaskSubject-Query
