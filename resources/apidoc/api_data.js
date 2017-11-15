@@ -827,6 +827,120 @@ define({ "api": [
     ],
     "type": "post",
     "url": "v2",
+    "title": "AddTaskStageMutation-Add/Update",
+    "name": "AddTaskStageMutation_Add_Update",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,unique",
+            "optional": false,
+            "field": "priority",
+            "description": "<p>priority</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { AddTaskStageMutation (id: 0,name:\"name\",priority:1) { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskStage/AddTaskStageMutation.php",
+    "groupTitle": "Task_Stage"
+  },
+  {
+    "version": "0.1.0",
+    "group": "Task_Stage",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
+    "title": "TaskStage-Delete",
+    "name": "TaskStage_Delete",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "1,2,3..",
+            "optional": false,
+            "field": "items",
+            "description": "<p>items</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { DeleteTaskStageMutation (items:\"1,2,3\") { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/TaskStage/DeleteTaskStageMutation.php",
+    "groupTitle": "Task_Stage"
+  },
+  {
+    "version": "0.1.0",
+    "group": "Task_Stage",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "v2",
     "title": "TaskStage-Query",
     "name": "TaskStage_Query",
     "parameter": {
