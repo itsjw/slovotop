@@ -7,6 +7,8 @@ use App\Models\Menu;
 use App\Models\TaskStage;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Validation\Rule;
+use Rebing\GraphQL\Error\ValidationError;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\SelectFields;
 
@@ -49,9 +51,8 @@ class AddTaskStageMutation extends Mutation
                 'rules' => ['required'],
             ],
             'priority' => [
-                'name'  => 'priority',
-                'type'  => Type::int(),
-                'rules' => ['required', 'numeric', 'unique:task_stages'],
+                'name' => 'priority',
+                'type' => Type::int(),
             ],
         ];
     }
@@ -82,6 +83,8 @@ class AddTaskStageMutation extends Mutation
 
             $subject = TaskStage::findOrNew($args['id']);
 
+            $this->validPriority($args);
+
             $subject->name     = $args['name'];
             $subject->priority = $args['priority'];
             $subject->save();
@@ -93,5 +96,28 @@ class AddTaskStageMutation extends Mutation
         }
 
         return [];
+    }
+
+    /**
+     * validate Priority
+     *
+     * @param $data
+     *
+     * @throws \Rebing\GraphQL\Error\ValidationError
+     */
+    private function validPriority($data)
+    {
+        $validate = \Validator::make($data, [
+            'priority' => [
+                'required',
+                Rule::unique('task_stages')->ignore($data['id']),
+            ],
+        ]);
+
+        if ($validate->fails()) {
+            throw with(new ValidationError('validation'))->setValidator($validate);
+        }
+
+        return $data;
     }
 }
