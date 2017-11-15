@@ -30512,7 +30512,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ui-mt-5 animated fadeIn" },
+    { staticClass: "ui-grid-block ui-mt-5 animated fadeIn" },
     [
       _vm.accessMenu == 2
         ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [

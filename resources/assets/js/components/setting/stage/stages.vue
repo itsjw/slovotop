@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-mt-5 animated fadeIn">
+    <div class="ui-grid-block ui-mt-5 animated fadeIn">
 
         <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
             <ul>
