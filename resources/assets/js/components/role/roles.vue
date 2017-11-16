@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="ui-navbar ui-mb-5" v-if="isAdmin">
+        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
             <ul>
                 <li @click="addRole()">
                     <i class="ui-icon ui-mr-2">security</i>
@@ -42,7 +42,7 @@
                 v-for="(val,key) in roles"
                 @click="selectRoles(val.id)">
                 <td>
-                    <div v-if="isAdmin">
+                    <div v-if="accessMenu == 2">
                         <input type="checkbox" :id="key" :value="val.id" v-model="selectRole"/>
                         <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
                     </div>

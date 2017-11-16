@@ -32663,18 +32663,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 Vue.component('accessTabMenu', __webpack_require__(62));
 Vue.component('accessTabDoc', __webpack_require__(65));
@@ -32691,7 +32679,7 @@ Vue.component('accessTabDoc', __webpack_require__(65));
 
     data: function data() {
         return {
-            tabs: ['active', '', '', '', ''],
+            tabs: ['active', ''],
             role: {}
         };
     },
@@ -32703,7 +32691,7 @@ Vue.component('accessTabDoc', __webpack_require__(65));
          * @param key
          */
         selectTab: function selectTab(key) {
-            this.tabs = ['', '', '', '', ''];
+            this.tabs = ['', ''];
             this.tabs.splice(key, 0, 'active');
         },
         getRole: function getRole() {
@@ -33223,66 +33211,7 @@ var render = function() {
                       _vm._v("view_carousel")
                     ]),
                     _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.titleProject")))])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    class: _vm.tabs[2],
-                    on: {
-                      click: function($event) {
-                        _vm.selectTab(2)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("receipt")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.titleTasks")))])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    class: _vm.tabs[3],
-                    on: {
-                      click: function($event) {
-                        _vm.selectTab(3)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("insert_drive_file")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v(" " + _vm._s(_vm.trans("data.titleDoc")))
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    class: _vm.tabs[4],
-                    on: {
-                      click: function($event) {
-                        _vm.selectTab(4)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("view_list")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.titleReports")))])
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.roleStage")))])
                   ]
                 )
               ])
@@ -33323,7 +33252,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.isAdmin
+      _vm.accessMenu == 2
         ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
             _c("ul", [
               _c(
@@ -33458,7 +33387,7 @@ var render = function() {
               },
               [
                 _c("td", [
-                  _vm.isAdmin
+                  _vm.accessMenu == 2
                     ? _c("div", [
                         _c("input", {
                           directives: [
@@ -34935,7 +34864,7 @@ var render = function() {
               },
               [
                 _c("td", [
-                  _vm.isAdmin
+                  _vm.accessMenu == 2
                     ? _c("div", [
                         _c("input", {
                           directives: [

@@ -87,7 +87,7 @@
                 v-for="(val,key) in users"
                 @click="selectUsers(val.id)">
                 <td>
-                    <div v-if="isAdmin">
+                    <div v-if="accessMenu == 2">
                         <input type="checkbox" :id="key" :value="val.id" v-model="selectUser"/>
                         <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
                     </div>
