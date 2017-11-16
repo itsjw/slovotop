@@ -15,6 +15,10 @@
                     <i class="ui-icon ui-mr-2">delete</i>
                     <span>{{ trans('data.delete') }}</span>
                 </li>
+                <li @click="accessStage()">
+                    <i class="ui-icon ui-mr-2">fingerprint</i>
+                    <span>{{ trans('data.stageAccessTask') }}</span>
+                </li>
             </ul>
         </div>
 
@@ -57,10 +61,15 @@
                    :stage_id="selectStage[0]"
                    @close="closePopUp()"></add-stage>
 
+        <access-task v-if="showAccessTask"
+                     :stage_id="selectStage[0]"
+                     @close="closePopUp()"></access-task>
+
     </div>
 </template>
 <script>
     Vue.component('addStage', require('./addStage.vue'));
+    Vue.component('accessTask', require('./accessTask.vue'));
 
     export default {
 
@@ -76,6 +85,7 @@
         data() {
             return {
                 showAddStage: false,
+                showAccessTask: false,
                 selectStage: [],
                 stages: {}
             }
@@ -87,6 +97,7 @@
              */
             closePopUp() {
                 this.showAddStage = false;
+                this.showAccessTask = false;
                 this.getStages();
             },
 
@@ -144,6 +155,15 @@
                                 this.getStages();
                             })
                     }
+                }
+            },
+
+            /**
+             * set access to field task
+             */
+            accessStage() {
+                if (this.selectStage.length > 0) {
+                    this.showAccessTask = true;
                 }
             }
         }
