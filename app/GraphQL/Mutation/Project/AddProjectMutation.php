@@ -87,24 +87,20 @@ class AddProjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('projects') == 2) {
 
-            $project = Project::findOrNew($args['id']);
+        $project = Project::findOrNew($args['id']);
 
-            $project->name    = $args['name'];
-            $project->site    = $args['site'];
-            $project->user_id = $this->VaildNoAdmin($args);
+        $project->name    = $args['name'];
+        $project->site    = $args['site'];
+        $project->user_id = $this->VaildNoAdmin($args);
 
-            $project->save();
+        $project->save();
 
-            return [
-                'id'     => $project->id,
-                'notify' => trans('data.notifyOK'),
-            ];
+        return [
+            'id'     => $project->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        }
-
-        return [];
     }
 
     /**

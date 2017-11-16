@@ -67,26 +67,22 @@ class ApproveUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('users') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            foreach ($items as $key) {
-                $user = User::findOrfail($key);
+        foreach ($items as $key) {
+            $user = User::findOrfail($key);
 
-                $user->confirm     = 1;
-                $user->confirm_key = null;
-                $user->save();
-
-            }
-
-            return [
-                'id'     => $user->id,
-                'notify' => trans('data.notifyOK'),
-            ];
+            $user->confirm     = 1;
+            $user->confirm_key = null;
+            $user->save();
 
         }
 
-        return [];
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
 }

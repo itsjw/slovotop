@@ -109,38 +109,33 @@ class UpdateUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('users') == 2) {
 
-            $user = User::findOrfail($args['id']);
+        $user = User::findOrfail($args['id']);
 
-            $user->name     = $args['name'];
-            $user->email    = $this->validMail($args);
-            $user->up_price = $args['up_price'];
-            $user->note     = $args['note'];
-            $user->confirm  = $user->hasRole(1) ? 1 : $args['confirm'];
+        $user->name     = $args['name'];
+        $user->email    = $this->validMail($args);
+        $user->up_price = $args['up_price'];
+        $user->note     = $args['note'];
+        $user->confirm  = $user->hasRole(1) ? 1 : $args['confirm'];
 
-            if ($args['password']) {
-                $user->password = bcrypt($args['password']);
-            }
-
-            $user->save();
-
-            $user->roles()->delete();
-            $user->roles()->createMany($this->cleanRole($args['role']));
-
-            /**
-             * TODO
-             * send email
-             */
-
-            return [
-                'id'     => $user->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-
+        if ($args['password']) {
+            $user->password = bcrypt($args['password']);
         }
 
-        return [];
+        $user->save();
+
+        $user->roles()->delete();
+        $user->roles()->createMany($this->cleanRole($args['role']));
+
+        /**
+         * TODO
+         * send email
+         */
+
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 

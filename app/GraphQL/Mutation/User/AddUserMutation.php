@@ -110,40 +110,36 @@ class AddUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('users') == 2) {
 
-            $user = new User();
+        $user = new User();
 
-            $user->name     = $args['name'];
-            $user->email    = $args['email'];
-            $user->up_price = $args['up_price'];
-            $user->note     = $args['note'];
-            $user->confirm  = $args['confirm'];
+        $user->name     = $args['name'];
+        $user->email    = $args['email'];
+        $user->up_price = $args['up_price'];
+        $user->note     = $args['note'];
+        $user->confirm  = $args['confirm'];
 
-            if (isset($args['password'])) {
-                $user->password = bcrypt($args['password']);
-            } else {
-                $pass           = str_random(8);
-                $user->password = bcrypt($pass);
-            }
-
-            $user->save();
-
-            $user->roles()->createMany($this->cleanRole($args['role']));
-
-            /**
-             * TODO
-             * need test mail sent
-             * Bus::dispatch(new SendUserMailJob($user, $pass));
-             */
-
-            return [
-                'id'     => $user->id,
-                'notify' => trans('data.notifyOK'),
-            ];
+        if (isset($args['password'])) {
+            $user->password = bcrypt($args['password']);
+        } else {
+            $pass           = str_random(8);
+            $user->password = bcrypt($pass);
         }
 
-        return [];
+        $user->save();
+
+        $user->roles()->createMany($this->cleanRole($args['role']));
+
+        /**
+         * TODO
+         * need test mail sent
+         * Bus::dispatch(new SendUserMailJob($user, $pass));
+         */
+
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
     }
 

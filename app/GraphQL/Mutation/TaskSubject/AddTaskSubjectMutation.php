@@ -51,7 +51,7 @@ class AddTaskSubjectMutation extends Mutation
             'price' => [
                 'name'  => 'price',
                 'type'  => Type::int(),
-                'rules' => ['required', 'numeric','not_in:0'],
+                'rules' => ['required', 'numeric', 'not_in:0'],
             ],
         ];
     }
@@ -78,20 +78,18 @@ class AddTaskSubjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('subjects') == 2) {
 
-            $subject = TaskSubject::findOrNew($args['id']);
+        $subject = TaskSubject::findOrNew($args['id']);
 
-            $subject->name  = $args['name'];
-            $subject->price = $args['price'];
-            $subject->save();
+        $subject->name  = $args['name'];
+        $subject->price = $args['price'];
+        $subject->save();
 
-            return [
-                'id'     => $subject->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-        }
+        return [
+            'id'     => $subject->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        return [];
     }
+
 }

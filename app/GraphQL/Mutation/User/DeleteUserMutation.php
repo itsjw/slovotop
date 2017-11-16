@@ -67,25 +67,21 @@ class DeleteUserMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('users') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            foreach ($items as $key) {
-                $user = User::findOrfail($key);
-                if ( ! $user->hasRole(1)) {
-                    $user->delete();
-                    $user->roles()->delete();
-                }
+        foreach ($items as $key) {
+            $user = User::findOrfail($key);
+            if ( ! $user->hasRole(1)) {
+                $user->delete();
+                $user->roles()->delete();
             }
-
-            return [
-                'id'     => $user->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-
         }
 
-        return [];
+        return [
+            'id'     => $user->id,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
 }

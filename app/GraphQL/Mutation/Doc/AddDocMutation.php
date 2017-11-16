@@ -92,29 +92,26 @@ class AddDocMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('docs') == 2) {
 
-            $doc          = Doc::findOrNew($args['id']);
-            $doc->name    = $args['name'];
-            $doc->body    = $args['body'];
-            $doc->user_id = $args['user'];
-            $doc->save();
-            $doc->roles()->detach();
+        $doc          = Doc::findOrNew($args['id']);
+        $doc->name    = $args['name'];
+        $doc->body    = $args['body'];
+        $doc->user_id = $args['user'];
+        $doc->save();
+        $doc->roles()->detach();
 
-            $roles = explode(',', $args['roles']);
+        $roles = explode(',', $args['roles']);
 
-            foreach ($roles as $val) {
-                $role = Role::find($val);
-                $doc->roles()->save($role, ['access' => 1]);
-            }
-
-            return [
-                'id'     => $doc->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-
+        foreach ($roles as $val) {
+            $role = Role::find($val);
+            $doc->roles()->save($role, ['access' => 1]);
         }
 
-        return [];
+        return [
+            'id'     => $doc->id,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
+
 }

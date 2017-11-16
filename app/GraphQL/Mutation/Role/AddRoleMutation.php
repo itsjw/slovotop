@@ -72,19 +72,16 @@ class AddRoleMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('roles') == 2) {
 
-            $role = Role::findOrNew($args['id']);
+        $role = Role::findOrNew($args['id']);
 
-            $role->name = $args['name'];
-            $role->save();
+        $role->name = $args['name'];
+        $role->save();
 
-            return [
-                'id'     => $role->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-        }
+        return [
+            'id'     => $role->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        return [];
     }
 }

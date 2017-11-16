@@ -79,23 +79,20 @@ class AddTaskStageMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('settings') == 2) {
 
-            $subject = TaskStage::findOrNew($args['id']);
+        $subject = TaskStage::findOrNew($args['id']);
 
-            $this->validPriority($args);
+        $this->validPriority($args);
 
-            $subject->name     = $args['name'];
-            $subject->priority = $args['priority'];
-            $subject->save();
+        $subject->name     = $args['name'];
+        $subject->priority = $args['priority'];
+        $subject->save();
 
-            return [
-                'id'     => $subject->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-        }
+        return [
+            'id'     => $subject->id,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        return [];
     }
 
     /**

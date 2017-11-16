@@ -67,28 +67,24 @@ class DeletProjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('projects') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            foreach ($items as $key) {
-                $project = Project::where('id', $key);
+        foreach ($items as $key) {
+            $project = Project::where('id', $key);
 
-                if ( ! \Auth::user()->hasRole(1)) {
-                    $project->where('user_id', \Auth::id());
-                }
-
-                $project->delete();
+            if ( ! \Auth::user()->hasRole(1)) {
+                $project->where('user_id', \Auth::id());
             }
 
-            return [
-                'id'     => 0,
-                'notify' => trans('data.notifyOK'),
-            ];
-
+            $project->delete();
         }
 
-        return [];
+        return [
+            'id'     => 0,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
 
 }

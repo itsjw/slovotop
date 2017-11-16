@@ -66,23 +66,20 @@ class DeleteDocMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('docs') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            foreach ($items as $key) {
-                $doc = Doc::findOrfail($key);
-                $doc->roles()->detach();
-                $doc->delete();
-            }
-
-            return [
-                'id'     => $doc->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-
+        foreach ($items as $key) {
+            $doc = Doc::findOrfail($key);
+            $doc->roles()->detach();
+            $doc->delete();
         }
 
-        return [];
+        return [
+            'id'     => $doc->id,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
+
 }

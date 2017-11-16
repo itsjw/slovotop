@@ -66,18 +66,16 @@ class DeleteTaskSubjectMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('subjects') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            TaskSubject::whereIn('id', $items)->delete();
+        TaskSubject::whereIn('id', $items)->delete();
 
-            return [
-                'id'     => 0,
-                'notify' => trans('data.notifyOK'),
-            ];
-        }
+        return [
+            'id'     => 0,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        return [];
     }
+
 }

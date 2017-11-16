@@ -66,24 +66,20 @@ class DeleteRoleMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('roles') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            foreach ($items as $key) {
-                $role = Role::findOrfail($key);
-                if ( ! $role->users()->count()) {
-                    $role->delete();
-                }
+        foreach ($items as $key) {
+            $role = Role::findOrfail($key);
+            if ( ! $role->users()->count()) {
+                $role->delete();
             }
-
-            return [
-                'id'     => $role->id,
-                'notify' => trans('data.notifyOK'),
-            ];
-
         }
 
-        return [];
+        return [
+            'id'     => $role->id,
+            'notify' => trans('data.notifyOK'),
+        ];
+
     }
 }

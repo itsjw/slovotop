@@ -66,18 +66,16 @@ class DeleteTaskStageMutation extends Mutation
      */
     public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
     {
-        if (Menu::getAccessMenu('settings') == 2) {
 
-            $items = explode(',', $args['items']);
+        $items = explode(',', $args['items']);
 
-            TaskStage::whereIn('id', $items)->delete();
+        TaskStage::whereIn('id', $items)->delete();
 
-            return [
-                'id'     => 0,
-                'notify' => trans('data.notifyOK'),
-            ];
-        }
+        return [
+            'id'     => 0,
+            'notify' => trans('data.notifyOK'),
+        ];
 
-        return [];
     }
+
 }
