@@ -32872,7 +32872,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-grid-block ui-mt-5 ui-bg bg-greyLL" }, [
+  return _c("div", { staticClass: "ui-grid-block ui-mt-5" }, [
     _c("table", [
       _c("thead", [
         _c(
@@ -38063,6 +38063,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
@@ -38101,7 +38136,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
+      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
       [
         _c(
           "div",
@@ -38117,7 +38152,162 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "ui-p-3" }, [
-          _vm._v("\n\n            Hello\n\n        ")
+          _c("table", [
+            _c("thead", [
+              _c(
+                "tr",
+                { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+                [
+                  _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
+                  _vm._v(" "),
+                  _c("th", { staticClass: "left", attrs: { width: "65%" } }, [
+                    _vm._v(_vm._s(_vm.trans("data.taskField")))
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { width: "10%" } }, [
+                    _vm._v(_vm._s(_vm.trans("data.read")))
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { width: "10%" } }, [
+                    _vm._v(_vm._s(_vm.trans("data.write")))
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { width: "10%" } }, [
+                    _vm._v(_vm._s(_vm.trans("data.hide")))
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.menus, function(val, key) {
+                return _c(
+                  "tr",
+                  { staticClass: "ui-fnt light size-1 ui-color col-black" },
+                  [
+                    _c("td", [_vm._v(_vm._s(key + 1))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "left" }, [
+                      _vm._v(_vm._s(val.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: val.roles[0].access,
+                            expression: "val.roles[0].access"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "menuR" + key,
+                          "true-value": 1,
+                          "false-value": 0
+                        },
+                        domProps: {
+                          checked: Array.isArray(val.roles[0].access)
+                            ? _vm._i(val.roles[0].access, null) > -1
+                            : _vm._q(val.roles[0].access, 1)
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$a = val.roles[0].access,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? 1 : 0
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (val.roles[0].access = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (val.roles[0].access = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.$set(val.roles[0], "access", $$c)
+                              }
+                            },
+                            function($event) {
+                              _vm.selectMenu(key)
+                            }
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "ui-checkbox ui-color col-green",
+                        attrs: { for: "menuR" + key }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: val.roles[0].access,
+                            expression: "val.roles[0].access"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "menuW" + key,
+                          "true-value": 2,
+                          "false-value": 0
+                        },
+                        domProps: {
+                          checked: Array.isArray(val.roles[0].access)
+                            ? _vm._i(val.roles[0].access, null) > -1
+                            : _vm._q(val.roles[0].access, 2)
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$a = val.roles[0].access,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? 2 : 0
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (val.roles[0].access = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (val.roles[0].access = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.$set(val.roles[0], "access", $$c)
+                              }
+                            },
+                            function($event) {
+                              _vm.selectMenu(key)
+                            }
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "ui-checkbox ui-color col-green",
+                        attrs: { for: "menuW" + key }
+                      })
+                    ])
+                  ]
+                )
+              })
+            )
+          ])
         ])
       ]
     )

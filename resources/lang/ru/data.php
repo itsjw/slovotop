@@ -17,6 +17,7 @@ return [
     'updated_at'      => 'Обновлен',
     'read'            => 'Чтение',
     'write'           => 'Запись',
+    'hide'            => 'Видимость',
 
     // notify
     'notifyOK'        => 'Успешно',
@@ -80,6 +81,7 @@ return [
     'taskOwner'       => 'Создатель задачи',
     'taskState'       => 'Статус задачи',
     'taskUser'        => 'Испольнитель',
+    'taskField'       => 'Поле задачи',
 
     // Subjects
     'subjectName'     => 'Название тематики',
