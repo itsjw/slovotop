@@ -16,7 +16,7 @@ class CreateStageTaskAccessesTable extends Migration
         Schema::create('stage_task_accesses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('stage_id');
-            $table->string('filed');
+            $table->string('field');
             $table->integer('access')->default(0);
             $table->timestamps();
         });
