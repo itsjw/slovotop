@@ -855,6 +855,14 @@ define({ "api": [
             "optional": false,
             "field": "priority",
             "description": "<p>priority</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,numeric",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
           }
         ]
       },
@@ -986,6 +994,13 @@ define({ "api": [
             "optional": false,
             "field": "priority",
             "description": "<p>priority</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
           },
           {
             "group": "Success 200",

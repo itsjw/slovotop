@@ -36,8 +36,12 @@ class TaskStageType extends GraphQLType
                 'description' => 'TaskStageType name',
             ],
             'priority'      => [
-                'type'        => Type::string(),
+                'type'        => Type::int(),
                 'description' => 'TaskStageType priority',
+            ],
+            'price'      => [
+                'type'        => Type::int(),
+                'description' => 'TaskStageType price',
             ],
             'created_at' => [
                 'type'        => Type::string(),

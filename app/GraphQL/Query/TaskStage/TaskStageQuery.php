@@ -58,6 +58,7 @@ class TaskStageQuery extends Query
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} priority priority
+     * @apiSuccess {Integer} price price
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
