@@ -31032,7 +31032,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getStageAccess: function getStageAccess() {
             var _this = this;
 
-            gql.getRaw('/api/stageAccess', { stage: 1 }).then(function (response) {
+            gql.getRaw('/api/stageAccess', { stage: this.stage_id }).then(function (response) {
                 _this.stageAccess = response.data;
                 console.log(response.data);
             });
