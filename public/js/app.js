@@ -30907,10 +30907,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ui-grid-block ui-mt-5 animated fadeIn" },
+    { staticClass: "ui-grid-block animated fadeIn" },
     [
       _vm.accessMenu == 2
-        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
+        ? _c("div", { staticClass: "ui-navbar ui-mb-1 ui-mt-1" }, [
             _c("ul", [
               _c(
                 "li",

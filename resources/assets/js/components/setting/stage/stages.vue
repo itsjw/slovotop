@@ -1,7 +1,7 @@
 <template>
-    <div class="ui-grid-block ui-mt-5 animated fadeIn">
+    <div class="ui-grid-block animated fadeIn">
 
-        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
+        <div class="ui-navbar ui-mb-1 ui-mt-1" v-if="accessMenu == 2">
             <ul>
                 <li @click="addStage()">
                     <i class="ui-icon ui-mr-2">navigate_next</i>
