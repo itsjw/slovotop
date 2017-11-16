@@ -15,8 +15,7 @@
     "fideloper/proxy": "~3.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
-    "rebing/graphql-laravel": "~1.7",
-    "renatomarinho/laravel-page-speed": "^1.8"
+    "rebing/graphql-laravel": "~1.7"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.1",
