@@ -84,7 +84,7 @@ class UpdateUserMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      User
      * @apiPermission auth
-     * @api           {post} v2 User-Update
+     * @api           {post} /apps/v2 User-Update
      * @apiName       User-Update
      * @apiParam {Integer{required,1..}} id ID
      * @apiParam {String{required}} name name

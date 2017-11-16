@@ -61,7 +61,7 @@ class UserQuery extends Query
      * @apiVersion    0.1.0
      * @apiGroup      User
      * @apiPermission auth
-     * @api           {post} v2 User-query
+     * @api           {post} /apps/v2 User-query
      * @apiName       User-query
      * @apiParam {Integer} id id
      * @apiParam {String} orderID order by ID

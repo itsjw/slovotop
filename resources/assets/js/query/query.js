@@ -70,6 +70,6 @@ export default class Query {
      * @return {*|AxiosPromise}
      */
     getRaw(url, params) {
-        return axios.post(url, params)
+        return axios.post('/api/' + url, params)
     }
 }

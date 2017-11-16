@@ -51,7 +51,7 @@ class ApproveUserMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      User
      * @apiPermission auth
-     * @api           {post} v2 User-Approve
+     * @api           {post} /apps/v2 User-Approve
      * @apiName       User-Approve
      * @apiParam {String{1,2,3...}} items items
      * @apiParamExample {json} Request-Example:

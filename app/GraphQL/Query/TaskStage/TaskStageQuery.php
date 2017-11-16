@@ -50,7 +50,7 @@ class TaskStageQuery extends Query
      * @apiVersion    0.1.0
      * @apiGroup      Task Stage
      * @apiPermission auth
-     * @api           {post} v2 TaskStage-Query
+     * @api           {post} /apps/v2 TaskStage-Query
      * @apiName       TaskStage-Query
      * @apiParam {Integer} id
      * @apiParamExample {json} Request-Example:

@@ -50,7 +50,7 @@ class DeleteTaskSubjectMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Task Subject
      * @apiPermission auth
-     * @api           {post} v2 TaskSubject-Delete
+     * @api           {post} /apps/v2 TaskSubject-Delete
      * @apiName       TaskSubject-Delete
      * @apiParam {String{1,2,3..}} items items
      * @apiParamExample {json} Request-Example:

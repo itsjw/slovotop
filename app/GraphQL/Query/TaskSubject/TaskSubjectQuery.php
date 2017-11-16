@@ -58,7 +58,7 @@ class TaskSubjectQuery extends Query
      * @apiVersion    0.1.0
      * @apiGroup      Task Subject
      * @apiPermission auth
-     * @api           {post} v2 TaskSubject-Query
+     * @api           {post} /apps/v2 TaskSubject-Query
      * @apiName       TaskSubject-Query
      * @apiParam {Integer} id
      * @apiParam {String} searchName searchName

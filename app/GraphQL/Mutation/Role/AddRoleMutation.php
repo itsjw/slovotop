@@ -55,7 +55,7 @@ class AddRoleMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Role
      * @apiPermission auth
-     * @api           {post} v2 Role-Add/Update
+     * @api           {post} /apps/v2 Role-Add/Update
      * @apiName       Role-Add/Update
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name

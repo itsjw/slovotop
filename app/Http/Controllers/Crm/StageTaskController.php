@@ -18,6 +18,18 @@ class StageTaskController extends Controller
     /**
      * get stage to task field access from config and DB
      *
+     * @apiVersion    0.1.0
+     * @apiGroup      Stage Task Access
+     * @apiPermission auth
+     * @api           {post} /api/stageAccess StageTaskAccess-Query
+     * @apiName       StageTaskAccess-Query
+     * @apiParam {Integer{required}} stage stage
+     * @apiParamExample {json} Request-Example:
+     * {"stage":"2"}
+     * @apiSuccess {Array} fields ['access','name']
+     * @apiExample {json} Example usage:
+     * {"stage":"2"}
+     *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Config\Repository|mixed

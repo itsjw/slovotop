@@ -9,6 +9,6 @@ use Illuminate\Routing\Router;
 
 $router->group(['namespace' => 'Crm', 'prefix' => 'api', 'middleware' => ['auth']], function (Router $router) {
 
-    $router->post('stageAccess', 'StageTaskController@getStageTaskAccess');
+    $router->post('getStageAccess', 'StageTaskController@getStageTaskAccess');
 
 });

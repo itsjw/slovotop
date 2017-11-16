@@ -76,7 +76,7 @@
 
         methods: {
             getStageAccess() {
-                gql.getRaw('/api/stageAccess', {stage: this.stage_id})
+                gql.getRaw('getStageAccess', {stage: this.stage_id})
                     .then(response => {
                         this.stageAccess = response.data;
                         console.log(response.data);

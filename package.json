@@ -22,7 +22,6 @@
     "apidoc": {
         "name": "Api Documentation Slovo Project",
         "version": "0.1.0",
-        "title": "Api Documentation Slovo Project",
-        "url" : "/apps/"
+        "title": "Api Documentation Slovo Project"
     }
 }

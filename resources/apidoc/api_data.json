@@ -8,7 +8,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Change Access Menu",
     "name": "Change_Access_Menu",
     "parameter": {
@@ -73,7 +73,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Doc-Add/Update",
     "name": "Doc_Add_Update",
     "parameter": {
@@ -154,7 +154,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Doc-Delete",
     "name": "Doc_Delete",
     "parameter": {
@@ -203,7 +203,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Doc-Query",
     "name": "Doc_Query",
     "parameter": {
@@ -307,7 +307,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Menu-Query",
     "name": "Menu_Query",
     "parameter": {
@@ -404,7 +404,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Project-Add/Update",
     "name": "Project_Add_Update",
     "parameter": {
@@ -477,7 +477,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Project-Delete",
     "name": "Project_Delete",
     "parameter": {
@@ -526,7 +526,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Project-Query",
     "name": "Project_Query",
     "parameter": {
@@ -637,7 +637,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Role-Add/Update",
     "name": "Role_Add_Update",
     "parameter": {
@@ -694,7 +694,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Role-Delete",
     "name": "Role_Delete",
     "parameter": {
@@ -743,7 +743,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "Role-Query",
     "name": "Role_Query",
     "parameter": {
@@ -819,6 +819,62 @@
   },
   {
     "version": "0.1.0",
+    "group": "Stage_Task_Access",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "/api/stageAccess",
+    "title": "StageTaskAccess-Query",
+    "name": "StageTaskAccess_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required",
+            "optional": false,
+            "field": "stage",
+            "description": "<p>stage</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"stage\":\"2\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "fields",
+            "description": "<p>['access','name']</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"stage\":\"2\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Crm/StageTaskController.php",
+    "groupTitle": "Stage_Task_Access"
+  },
+  {
+    "version": "0.1.0",
     "group": "Task_Stage",
     "permission": [
       {
@@ -826,9 +882,9 @@
       }
     ],
     "type": "post",
-    "url": "v2",
-    "title": "AddTaskStageMutation-Add/Update",
-    "name": "AddTaskStageMutation_Add_Update",
+    "url": "/apps/v2",
+    "title": "AddTaskStage-Add/Update",
+    "name": "AddTaskStage_Add_Update",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -859,7 +915,7 @@
           {
             "group": "Parameter",
             "type": "Integer",
-            "size": "required,numeric",
+            "size": "integer",
             "optional": false,
             "field": "price",
             "description": "<p>price</p>"
@@ -899,7 +955,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "TaskStage-Delete",
     "name": "TaskStage_Delete",
     "parameter": {
@@ -948,7 +1004,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "TaskStage-Query",
     "name": "TaskStage_Query",
     "parameter": {
@@ -1038,7 +1094,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "TaskSubject-Add/Update",
     "name": "TaskSubject_Add_Update",
     "parameter": {
@@ -1103,7 +1159,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "TaskSubject-Delete",
     "name": "TaskSubject_Delete",
     "parameter": {
@@ -1152,7 +1208,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "TaskSubject-Query",
     "name": "TaskSubject_Query",
     "parameter": {
@@ -1249,7 +1305,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "User-Add",
     "name": "User_Add",
     "parameter": {
@@ -1358,7 +1414,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "User-Approve",
     "name": "User_Approve",
     "parameter": {
@@ -1407,7 +1463,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "User-Delete",
     "name": "User_Delete",
     "parameter": {
@@ -1456,7 +1512,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "User-Update",
     "name": "User_Update",
     "parameter": {
@@ -1564,7 +1620,7 @@
       }
     ],
     "type": "post",
-    "url": "v2",
+    "url": "/apps/v2",
     "title": "User-query",
     "name": "User_query",
     "parameter": {

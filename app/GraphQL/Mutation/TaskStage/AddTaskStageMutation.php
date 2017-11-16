@@ -66,8 +66,8 @@ class AddTaskStageMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Task Stage
      * @apiPermission auth
-     * @api           {post} v2 AddTaskStageMutation-Add/Update
-     * @apiName       AddTaskStageMutation-Add/Update
+     * @api           {post} /apps/v2 AddTaskStage-Add/Update
+     * @apiName       AddTaskStage-Add/Update
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name
      * @apiParam {Integer{required,unique}} priority priority

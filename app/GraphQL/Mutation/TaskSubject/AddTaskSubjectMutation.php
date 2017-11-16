@@ -60,7 +60,7 @@ class AddTaskSubjectMutation extends Mutation
      * @apiVersion    0.1.0
      * @apiGroup      Task Subject
      * @apiPermission auth
-     * @api           {post} v2 TaskSubject-Add/Update
+     * @api           {post} /apps/v2 TaskSubject-Add/Update
      * @apiName       TaskSubject-Add/Update
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name

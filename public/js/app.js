@@ -30148,7 +30148,7 @@ var Query = function () {
     }, {
         key: 'getRaw',
         value: function getRaw(url, params) {
-            return axios.post(url, params);
+            return axios.post('/api/' + url, params);
         }
     }]);
 
@@ -31032,7 +31032,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getStageAccess: function getStageAccess() {
             var _this = this;
 
-            gql.getRaw('/api/stageAccess', { stage: this.stage_id }).then(function (response) {
+            gql.getRaw('getStageAccess', { stage: this.stage_id }).then(function (response) {
                 _this.stageAccess = response.data;
                 console.log(response.data);
             });

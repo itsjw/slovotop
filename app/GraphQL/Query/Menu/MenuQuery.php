@@ -59,7 +59,7 @@ class MenuQuery extends Query
      * @apiVersion    0.1.0
      * @apiGroup      Menu
      * @apiPermission auth
-     * @api           {post} v2 Menu-Query
+     * @api           {post} /apps/v2 Menu-Query
      * @apiName       Menu-Query
      * @apiParam {Integer} id
      * @apiParam {Integer} role_id role_id

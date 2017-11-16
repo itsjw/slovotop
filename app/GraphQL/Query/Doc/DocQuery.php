@@ -54,7 +54,7 @@ class DocQuery extends Query
      * @apiVersion    0.1.0
      * @apiGroup      Doc
      * @apiPermission auth
-     * @api           {post} v2 Doc-Query
+     * @api           {post} /apps/v2 Doc-Query
      * @apiName       Doc-Query
      * @apiParam {Integer} id
      * @apiParam {String} searchName searchName
