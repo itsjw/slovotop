@@ -15,6 +15,7 @@ $router->group(['namespace' => 'Site'], function (Router $router) {
 
 require __DIR__.'/web.crm.php';
 require __DIR__.'/web.auth.php';
+require __DIR__.'/web.api.php';
 
 
 $router->get('test','TestController@index');

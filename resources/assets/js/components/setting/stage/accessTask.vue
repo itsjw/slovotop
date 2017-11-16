@@ -18,13 +18,13 @@
                     </thead>
                     <tbody>
                     <tr class="ui-fnt light size-1 ui-color col-black"
-                        v-for="(val,key) in menus">
+                        v-for="(val,key) in stageAccess">
                         <td>{{ key + 1 }}</td>
                         <td class="left">{{ val.name }}</td>
                         <td>
                             <input type="checkbox"
                                    :id="'menuR'+key"
-                                   v-model="val.roles[0].access"
+                                   v-model="val.access"
                                    :true-value="1"
                                    :false-value="0"
                                    @change="selectMenu(key)"/>
@@ -33,8 +33,17 @@
                         <td>
                             <input type="checkbox"
                                    :id="'menuW'+key"
-                                   v-model="val.roles[0].access"
+                                   v-model="val.access"
                                    :true-value="2"
+                                   :false-value="0"
+                                   @change="selectMenu(key)"/>
+                            <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
+                        </td>
+                        <td>
+                            <input type="checkbox"
+                                   :id="'menuW'+key"
+                                   v-model="val.access"
+                                   :true-value="0"
                                    :false-value="0"
                                    @change="selectMenu(key)"/>
                             <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
@@ -67,9 +76,10 @@
 
         methods: {
             getStageAccess() {
-                gql.getItem('v2', 'StageTaskAccessQuery', ['stage_id:' + 1], 'stageAccess')
+                gql.getRaw('/api/stageAccess', {stage: 1})
                     .then(response => {
-                        this.stageAccess = response.data.data.StageTaskAccessQuery[0];
+                        this.stageAccess = response.data;
+                        console.log(response.data);
                     })
             }
         }

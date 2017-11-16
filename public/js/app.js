@@ -31001,6 +31001,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31023,8 +31032,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getStageAccess: function getStageAccess() {
             var _this = this;
 
-            gql.getItem('v2', 'StageTaskAccessQuery', ['stage_id:' + 1], 'stageAccess').then(function (response) {
-                _this.stageAccess = response.data.data.StageTaskAccessQuery[0];
+            gql.getRaw('/api/stageAccess', { stage: 1 }).then(function (response) {
+                _this.stageAccess = response.data;
+                console.log(response.data);
             });
         }
     }
@@ -31095,7 +31105,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.menus, function(val, key) {
+              _vm._l(_vm.stageAccess, function(val, key) {
                 return _c(
                   "tr",
                   { staticClass: "ui-fnt light size-1 ui-color col-black" },
@@ -31112,8 +31122,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: val.roles[0].access,
-                            expression: "val.roles[0].access"
+                            value: val.access,
+                            expression: "val.access"
                           }
                         ],
                         attrs: {
@@ -31123,30 +31133,29 @@ var render = function() {
                           "false-value": 0
                         },
                         domProps: {
-                          checked: Array.isArray(val.roles[0].access)
-                            ? _vm._i(val.roles[0].access, null) > -1
-                            : _vm._q(val.roles[0].access, 1)
+                          checked: Array.isArray(val.access)
+                            ? _vm._i(val.access, null) > -1
+                            : _vm._q(val.access, 1)
                         },
                         on: {
                           change: [
                             function($event) {
-                              var $$a = val.roles[0].access,
+                              var $$a = val.access,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? 1 : 0
                               if (Array.isArray($$a)) {
                                 var $$v = null,
                                   $$i = _vm._i($$a, $$v)
                                 if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (val.roles[0].access = $$a.concat([$$v]))
+                                  $$i < 0 && (val.access = $$a.concat([$$v]))
                                 } else {
                                   $$i > -1 &&
-                                    (val.roles[0].access = $$a
+                                    (val.access = $$a
                                       .slice(0, $$i)
                                       .concat($$a.slice($$i + 1)))
                                 }
                               } else {
-                                _vm.$set(val.roles[0], "access", $$c)
+                                _vm.$set(val, "access", $$c)
                               }
                             },
                             function($event) {
@@ -31168,8 +31177,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: val.roles[0].access,
-                            expression: "val.roles[0].access"
+                            value: val.access,
+                            expression: "val.access"
                           }
                         ],
                         attrs: {
@@ -31179,30 +31188,84 @@ var render = function() {
                           "false-value": 0
                         },
                         domProps: {
-                          checked: Array.isArray(val.roles[0].access)
-                            ? _vm._i(val.roles[0].access, null) > -1
-                            : _vm._q(val.roles[0].access, 2)
+                          checked: Array.isArray(val.access)
+                            ? _vm._i(val.access, null) > -1
+                            : _vm._q(val.access, 2)
                         },
                         on: {
                           change: [
                             function($event) {
-                              var $$a = val.roles[0].access,
+                              var $$a = val.access,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? 2 : 0
                               if (Array.isArray($$a)) {
                                 var $$v = null,
                                   $$i = _vm._i($$a, $$v)
                                 if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (val.roles[0].access = $$a.concat([$$v]))
+                                  $$i < 0 && (val.access = $$a.concat([$$v]))
                                 } else {
                                   $$i > -1 &&
-                                    (val.roles[0].access = $$a
+                                    (val.access = $$a
                                       .slice(0, $$i)
                                       .concat($$a.slice($$i + 1)))
                                 }
                               } else {
-                                _vm.$set(val.roles[0], "access", $$c)
+                                _vm.$set(val, "access", $$c)
+                              }
+                            },
+                            function($event) {
+                              _vm.selectMenu(key)
+                            }
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "ui-checkbox ui-color col-green",
+                        attrs: { for: "menuW" + key }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: val.access,
+                            expression: "val.access"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: "menuW" + key,
+                          "true-value": 0,
+                          "false-value": 0
+                        },
+                        domProps: {
+                          checked: Array.isArray(val.access)
+                            ? _vm._i(val.access, null) > -1
+                            : _vm._q(val.access, 0)
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$a = val.access,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? 0 : 0
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 && (val.access = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (val.access = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.$set(val, "access", $$c)
                               }
                             },
                             function($event) {

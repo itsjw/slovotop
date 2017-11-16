@@ -23,4 +23,3 @@ $router->group(['namespace' => 'Crm', 'prefix' => 'crm', 'middleware' => ['auth'
         $router->get('reports', 'CrmController@reports')->name('crmReports');
 
     });
-
