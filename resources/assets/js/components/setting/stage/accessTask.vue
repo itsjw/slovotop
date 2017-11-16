@@ -51,10 +51,8 @@
 <script>
     export default {
 
-        created() {
-        },
-
         mounted() {
+            this.getStageAccess();
         },
 
         props: {
@@ -62,9 +60,18 @@
         },
 
         data() {
-            return {}
+            return {
+                stageAccess: {}
+            }
         },
 
-        methods: {}
+        methods: {
+            getStageAccess() {
+                gql.getItem('v2', 'StageTaskAccessQuery', ['stage_id:' + 1], 'stageAccess')
+                    .then(response => {
+                        this.stageAccess = response.data.data.StageTaskAccessQuery[0];
+                    })
+            }
+        }
     }
 </script>
