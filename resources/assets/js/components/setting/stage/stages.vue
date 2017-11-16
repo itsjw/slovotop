@@ -30,12 +30,9 @@
                        @click="getStages()">autorenew</i>
                 </th>
                 <th width="4%">№</th>
-                <th width="60%" class="left">
-                    {{ trans('data.stageName') }}
-                </th>
-                <th width="30%">
-                    {{ trans('data.stagePriority') }}
-                </th>
+                <th width="50%" class="left">{{ trans('data.stageName') }}</th>
+                <th width="20%">{{ trans('data.stagePriority') }}</th>
+                <th width="20%">{{ trans('data.stagePrice') }}</th>
                 <th width="5%">ID</th>
             </tr>
             </thead>
@@ -52,6 +49,7 @@
                 <td>{{ key + 1 }}</td>
                 <td class="left">{{ val.name }}</td>
                 <td>{{ val.priority }}</td>
+                <td>{{ val.price }}</td>
                 <td>{{ val.id }}</td>
             </tr>
             </tbody>

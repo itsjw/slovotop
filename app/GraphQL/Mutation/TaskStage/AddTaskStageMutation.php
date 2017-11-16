@@ -57,7 +57,7 @@ class AddTaskStageMutation extends Mutation
             'price'    => [
                 'name'  => 'price',
                 'type'  => Type::int(),
-                'rules' => ['required', 'numeric'],
+                'rules' => ['numeric'],
             ],
         ];
     }
@@ -71,7 +71,7 @@ class AddTaskStageMutation extends Mutation
      * @apiParam {Integer{required}} id ID
      * @apiParam {String{required}} name name
      * @apiParam {Integer{required,unique}} priority priority
-     * @apiParam {Integer{required,numeric}} price price
+     * @apiParam {Integer{numeric}} price price
      * @apiParamExample {json} Request-Example:
      * {"query":"mutation { AddTaskStageMutation (id: 0,name:"name",priority:1) { id } }"}
      * @apiSuccess {Array} id ['id' => id ,'notify' => trans('data.notifyOK')]
@@ -92,6 +92,7 @@ class AddTaskStageMutation extends Mutation
 
         $subject->name     = $args['name'];
         $subject->priority = $args['priority'];
+        $subject->price    = $args['price'];
         $subject->save();
 
         return [

@@ -21,6 +21,14 @@
                            type="number"
                            v-model="stage.priority">
                 </div>
+                <div class="ui-mb-2">
+                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
+                        {{ trans('data.stagePrice') }}
+                    </div>
+                    <input class="ui-input green focus ui-fnt light size-1"
+                           type="number"
+                           v-model="stage.price">
+                </div>
 
                 <div class="ui-mt-5">
                     <button type="button"
@@ -96,8 +104,9 @@
             getStageData(stage) {
                 return `
                     id: ${this.stage_id == 0 ? this.stage_id : stage.id},
-                    name: "${stage.name || ''}"
-                    priority: ${stage.priority || 1}`;
+                    name: "${stage.name || ''}",
+                    priority: ${stage.priority || 1},
+                    price: ${stage.price || 0}`;
             }
         }
     }

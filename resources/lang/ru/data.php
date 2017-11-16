@@ -89,6 +89,7 @@ return [
 
     // Stages
     'stageName'       => 'Название этапа',
+    'stagePrice'      => 'Стоимость этапа',
     'stagePriority'   => 'Приоритет',
     'stageAccessTask' => 'Доступ к задаче',
 ];

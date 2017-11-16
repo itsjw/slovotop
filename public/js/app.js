@@ -30079,7 +30079,7 @@ var Query = function () {
         this.project = 'id,name,site,user{' + this.user + '},created_at,updated_at';
         this.doc = 'id,name,body,created_at,updated_at,roles{id,name,access,role_id},user{id,name}';
         this.subject = 'id,name,price,created_at,updated_at';
-        this.stage = 'id,name,priority,created_at,updated_at';
+        this.stage = 'id,name,priority,price,created_at,updated_at';
     }
 
     /**
@@ -30412,8 +30412,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 Vue.component('addStage', __webpack_require__(44));
 Vue.component('accessTask', __webpack_require__(119));
@@ -30619,6 +30617,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -30678,7 +30684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @return {string}
          */
         getStageData: function getStageData(stage) {
-            return '\n                id: ' + (this.stage_id == 0 ? this.stage_id : stage.id) + ',\n                name: "' + (stage.name || '') + '"\n                priority: ' + (stage.priority || 1);
+            return '\n                id: ' + (this.stage_id == 0 ? this.stage_id : stage.id) + ',\n                name: "' + (stage.name || '') + '",\n                priority: ' + (stage.priority || 1) + ',\n                price: ' + (stage.price || 0);
         }
     }
 });
@@ -30790,6 +30796,44 @@ var render = function() {
                     return
                   }
                   _vm.$set(_vm.stage, "priority", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-mb-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+              },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("data.stagePrice")) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.stage.price,
+                  expression: "stage.price"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "number" },
+              domProps: { value: _vm.stage.price },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.stage, "price", $event.target.value)
                 }
               }
             })
@@ -30966,20 +31010,16 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
               _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.trans("data.stageName")) +
-                    "\n            "
-                )
+              _c("th", { staticClass: "left", attrs: { width: "50%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.stageName")))
               ]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "30%" } }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.trans("data.stagePriority")) +
-                    "\n            "
-                )
+              _c("th", { attrs: { width: "20%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.stagePriority")))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "20%" } }, [
+                _vm._v(_vm._s(_vm.trans("data.stagePrice")))
               ]),
               _vm._v(" "),
               _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
@@ -31057,6 +31097,8 @@ var render = function() {
                 _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.priority))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(val.price))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(val.id))])
               ]
