@@ -33110,7 +33110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 Vue.component('accessTabMenu', __webpack_require__(65));
-Vue.component('accessTabDoc', __webpack_require__(68));
+Vue.component('accessTabStage', __webpack_require__(68));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33139,6 +33139,11 @@ Vue.component('accessTabDoc', __webpack_require__(68));
             this.tabs = ['', ''];
             this.tabs.splice(key, 0, 'active');
         },
+
+
+        /**
+         * get role by ID
+         */
         getRole: function getRole() {
             var _this = this;
 
@@ -33492,7 +33497,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/role/accessTabDoc.vue"
+Component.options.__file = "resources/assets/js/components/role/accessTabStage.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -33502,9 +33507,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c7b2b9d", Component.options)
+    hotAPI.createRecord("data-v-6fa151ba", Component.options)
   } else {
-    hotAPI.reload("data-v-4c7b2b9d", Component.options)
+    hotAPI.reload("data-v-6fa151ba", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -33525,6 +33530,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {},
@@ -33534,11 +33565,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {},
 
     data: function data() {
-        return {};
+        return {
+            stages: {}
+        };
     },
 
 
-    methods: {}
+    methods: {
+        selectStage: function selectStage(id) {}
+    }
 });
 
 /***/ }),
@@ -33549,7 +33584,97 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "ui-grid-block ui-mt-5" }, [
+    _c("table", [
+      _c("thead", [
+        _c(
+          "tr",
+          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          [
+            _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "left", attrs: { width: "85%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.titleMenu")))
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { width: "10%" } }, [
+              _vm._v(_vm._s(_vm.trans("data.read")))
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.stages, function(val, key) {
+          return _c(
+            "tr",
+            { staticClass: "ui-fnt light size-1 ui-color col-black" },
+            [
+              _c("td", [_vm._v(_vm._s(key + 1))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: val.roles[0].access,
+                      expression: "val.roles[0].access"
+                    }
+                  ],
+                  attrs: {
+                    type: "checkbox",
+                    id: "menuR" + key,
+                    "true-value": 1,
+                    "false-value": 0
+                  },
+                  domProps: {
+                    checked: Array.isArray(val.roles[0].access)
+                      ? _vm._i(val.roles[0].access, null) > -1
+                      : _vm._q(val.roles[0].access, 1)
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$a = val.roles[0].access,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? 1 : 0
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (val.roles[0].access = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(val.roles[0], "access", $$c)
+                        }
+                      },
+                      function($event) {
+                        _vm.selectStage(key)
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", {
+                  staticClass: "ui-checkbox ui-color col-green",
+                  attrs: { for: "menuR" + key }
+                })
+              ])
+            ]
+          )
+        })
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33557,7 +33682,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c7b2b9d", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6fa151ba", module.exports)
   }
 }
 
@@ -33653,7 +33778,7 @@ var render = function() {
                   },
                   [
                     _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("view_carousel")
+                      _vm._v("navigate_next")
                     ]),
                     _vm._v(" "),
                     _c("span", [_vm._v(_vm._s(_vm.trans("data.roleStage")))])
@@ -33666,8 +33791,8 @@ var render = function() {
               ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
               : _vm._e(),
             _vm._v(" "),
-            _vm.tabs[3]
-              ? _c("access-tab-doc", { attrs: { role: _vm.role_id } })
+            _vm.tabs[1]
+              ? _c("access-tab-stage", { attrs: { role: _vm.role_id } })
               : _vm._e()
           ],
           1

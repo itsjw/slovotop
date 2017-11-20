@@ -18,7 +18,7 @@
                             <span>{{ trans('data.titleMenu') }}</span>
                         </li>
                         <li :class="tabs[1]" @click="selectTab(1)">
-                            <i class="ui-icon ui-mr-2">view_carousel</i>
+                            <i class="ui-icon ui-mr-2">navigate_next</i>
                             <span>{{ trans('data.roleStage') }}</span>
                         </li>
                     </ul>
@@ -27,8 +27,8 @@
                 <access-tab-menu :role="role_id"
                                  v-if="tabs[0]"></access-tab-menu>
 
-                <access-tab-doc :role="role_id"
-                                v-if="tabs[3]"></access-tab-doc>
+                <access-tab-stage :role="role_id"
+                                v-if="tabs[1]"></access-tab-stage>
 
             </div>
         </div>
@@ -37,7 +37,7 @@
 </template>
 <script>
     Vue.component('accessTabMenu', require('./accessTabMenu.vue'));
-    Vue.component('accessTabDoc', require('./accessTabDoc.vue'));
+    Vue.component('accessTabStage', require('./accessTabStage.vue'));
 
     export default {
 
@@ -66,6 +66,9 @@
                 this.tabs.splice(key, 0, 'active');
             },
 
+            /**
+             * get role by ID
+             */
             getRole() {
                 gql.getItem('v2', 'RoleQuery', ['id:' + this.role_id], 'role')
                     .then(response => {

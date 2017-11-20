@@ -1,6 +1,6 @@
 <template>
-
     <div class="ui-grid-block ui-mt-5">
+
         <table>
             <thead>
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
