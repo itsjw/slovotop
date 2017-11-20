@@ -33558,8 +33558,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getStages();
+    },
 
 
     props: {},
@@ -33572,7 +33573,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        selectStage: function selectStage(id) {}
+        /**
+         * select stage and save
+         * @param id
+         */
+        selectStage: function selectStage(id) {},
+
+
+        /**
+         * get all stages
+         */
+        getStages: function getStages() {
+            var _this = this;
+
+            gql.getItem('v2', 'TaskStageQuery', false, 'stage').then(function (response) {
+                _this.stages = response.data.data.TaskStageQuery;
+            });
+        }
     }
 });
 
@@ -33594,11 +33611,11 @@ var render = function() {
             _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
             _vm._v(" "),
             _c("th", { staticClass: "left", attrs: { width: "85%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.titleMenu")))
+              _vm._v(_vm._s(_vm.trans("data.stageName")))
             ]),
             _vm._v(" "),
             _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.read")))
+              _vm._v(_vm._s(_vm.trans("data.access")))
             ])
           ]
         )
@@ -33621,8 +33638,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: val.roles[0].access,
-                      expression: "val.roles[0].access"
+                      value: val.priority,
+                      expression: "val.priority"
                     }
                   ],
                   attrs: {
@@ -33632,29 +33649,29 @@ var render = function() {
                     "false-value": 0
                   },
                   domProps: {
-                    checked: Array.isArray(val.roles[0].access)
-                      ? _vm._i(val.roles[0].access, null) > -1
-                      : _vm._q(val.roles[0].access, 1)
+                    checked: Array.isArray(val.priority)
+                      ? _vm._i(val.priority, null) > -1
+                      : _vm._q(val.priority, 1)
                   },
                   on: {
                     change: [
                       function($event) {
-                        var $$a = val.roles[0].access,
+                        var $$a = val.priority,
                           $$el = $event.target,
                           $$c = $$el.checked ? 1 : 0
                         if (Array.isArray($$a)) {
                           var $$v = null,
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
-                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
+                            $$i < 0 && (val.priority = $$a.concat([$$v]))
                           } else {
                             $$i > -1 &&
-                              (val.roles[0].access = $$a
+                              (val.priority = $$a
                                 .slice(0, $$i)
                                 .concat($$a.slice($$i + 1)))
                           }
                         } else {
-                          _vm.$set(val.roles[0], "access", $$c)
+                          _vm.$set(val, "priority", $$c)
                         }
                       },
                       function($event) {

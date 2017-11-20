@@ -18,6 +18,7 @@ return [
     'read'            => 'Чтение',
     'write'           => 'Запись',
     'hide'            => 'Видимость',
+    'access'          => 'Доступ',
 
     // notify
     'notifyOK'        => 'Успешно',

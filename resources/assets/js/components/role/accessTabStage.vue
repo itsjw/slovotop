@@ -5,8 +5,8 @@
             <thead>
             <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
                 <th width="5%">№</th>
-                <th width="85%" class="left">{{ trans('data.titleMenu') }}</th>
-                <th width="10%">{{ trans('data.read') }}</th>
+                <th width="85%" class="left">{{ trans('data.stageName') }}</th>
+                <th width="10%">{{ trans('data.access') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -17,7 +17,7 @@
                 <td>
                     <input type="checkbox"
                            :id="'menuR'+key"
-                           v-model="val.roles[0].access"
+                           v-model="val.priority"
                            :true-value="1"
                            :false-value="0"
                            @change="selectStage(key)"/>
@@ -32,10 +32,8 @@
 <script>
     export default {
 
-        created() {
-        },
-
         mounted() {
+            this.getStages();
         },
 
         props: {},
@@ -47,8 +45,22 @@
         },
 
         methods: {
+            /**
+             * select stage and save
+             * @param id
+             */
             selectStage(id) {
 
+            },
+
+            /**
+             * get all stages
+             */
+            getStages() {
+                gql.getItem('v2', 'TaskStageQuery', false, 'stage')
+                    .then(response => {
+                        this.stages = response.data.data.TaskStageQuery;
+                    })
             }
         }
     }
