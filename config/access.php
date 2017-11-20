@@ -2,80 +2,99 @@
 return [
 
     'taskFiled' => [
-        'name'         => [
-            'name'   => 'Название задачи',
+        [
+            'name'   => 'name',
+            'lang'   => 'Название задачи',
             'access' => 0,
         ],
-        'project_id'   => [
-            'name'   => 'Имя проекта',
+        [
+            'name'   => 'project_id',
+            'lang'   => 'Имя проекта',
             'access' => 0,
         ],
-        'editor_id'    => [
-            'name'   => 'Редактор задачи',
+        [
+            'name'   => 'editor_id',
+            'lang'   => 'Редактор задачи',
             'access' => 0,
         ],
-        'author_id'    => [
-            'name'   => 'Автор задачи',
+        [
+            'name'   => 'author_id',
+            'lang'   => 'Автор задачи',
             'access' => 0,
         ],
-        'subject_id'   => [
-            'name'   => 'Тематика задачи',
+        [
+            'name'   => 'subject_id',
+            'lang'   => 'Тематика задачи',
             'access' => 0,
         ],
-        'date_end'     => [
-            'name'   => 'Дата исполнения задачи',
+        [
+            'name'   => 'date_end',
+            'lang'   => 'Дата исполнения задачи',
             'access' => 0,
         ],
-        'price'        => [
-            'name'   => 'Ставка',
+        [
+            'name'   => 'price',
+            'lang'   => 'Ставка',
             'access' => 0,
         ],
-        'title'        => [
-            'name'   => 'Title',
+        [
+            'name'   => 'title',
+            'lang'   => 'Title',
             'access' => 0,
         ],
-        'desc'         => [
-            'name'   => 'Описание задачи',
+        [
+            'name'   => 'desc',
+            'lang'   => 'Описание задачи',
             'access' => 0,
         ],
-        'words'        => [
-            'name'   => 'Ключевые фразы',
+        [
+            'name'   => 'words',
+            'lang'   => 'Ключевые фразы',
             'access' => 0,
         ],
-        'more_data'    => [
-            'name'   => 'Дополнительные требования',
+        [
+            'name'   => 'more_data',
+            'lang'   => 'Дополнительные требования',
             'access' => 0,
         ],
-        'task'         => [
-            'name'   => 'Задача',
+        [
+            'name'   => 'task',
+            'lang'   => 'Задача',
             'access' => 0,
         ],
-        'rule_text'    => [
-            'name'   => 'Правила написания текста',
+        [
+            'name'   => 'rule_text',
+            'lang'   => 'Правила написания текста',
             'access' => 0,
         ],
-        'text_body'    => [
-            'name'   => 'Текст статьи',
+        [
+            'name'   => 'text_body',
+            'lang'   => 'Текст статьи',
             'access' => 0,
         ],
-        'text_preview' => [
-            'name'   => 'Анонс к статье',
+        [
+            'name'   => 'text_preview',
+            'lang'   => 'Анонс к статье',
             'access' => 0,
         ],
-        'text_url'     => [
-            'name'   => 'URL опубликованной статьи',
+        [
+            'name'   => 'text_url',
+            'lang'   => 'URL опубликованной статьи',
             'access' => 0,
         ],
-        'text_min'     => [
-            'name'   => 'Объем текста min',
+        [
+            'name'   => 'text_min',
+            'lang'   => 'Объем текста min',
             'access' => 0,
         ],
-        'text_max'     => [
-            'name'   => 'Объем текста max',
+        [
+            'name'   => 'text_max',
+            'lang'   => 'Объем текста max',
             'access' => 0,
         ],
-        'text_unique'  => [
-            'name'   => 'Уникальность текста',
+        [
+            'name'   => 'text_unique',
+            'lang'   => 'Уникальность текста',
             'access' => 0,
         ],
     ],

@@ -31029,12 +31029,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        /**
+         * set access for field
+         * @param key
+         */
+        selectField: function selectField(key) {
+            gql.setItem('v2', 'ChangeAccessTaskFieldMutation', this.getData(this.stageAccess[key])).then(function (response) {
+                notify.make('success', response.data.data.ChangeAccessTaskFieldMutation.notify, 1);
+            });
+        },
+
+
+        /**
+         * get task fields
+         */
         getStageAccess: function getStageAccess() {
             var _this = this;
 
             gql.getRaw('getStageAccess', { stage: this.stage_id }).then(function (response) {
                 _this.stageAccess = response.data;
             });
+        },
+
+
+        /**
+         * get data for change access
+         * @param menu
+         * @return {string}
+         */
+        getData: function getData(stage) {
+            return '\n                access: ' + stage.access + ',\n                stage: ' + this.stage_id + ',\n                field: "' + stage.name + '"';
         }
     }
 });
@@ -31112,7 +31136,7 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(key + 1))]),
                     _vm._v(" "),
                     _c("td", { staticClass: "left" }, [
-                      _vm._v(_vm._s(val.name))
+                      _vm._v(_vm._s(val.lang))
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -31158,7 +31182,7 @@ var render = function() {
                               }
                             },
                             function($event) {
-                              _vm.selectMenu(key)
+                              _vm.selectField(key)
                             }
                           ]
                         }
@@ -31213,7 +31237,7 @@ var render = function() {
                               }
                             },
                             function($event) {
-                              _vm.selectMenu(key)
+                              _vm.selectField(key)
                             }
                           ]
                         }
@@ -31268,7 +31292,7 @@ var render = function() {
                               }
                             },
                             function($event) {
-                              _vm.selectMenu(key)
+                              _vm.selectField(key)
                             }
                           ]
                         }

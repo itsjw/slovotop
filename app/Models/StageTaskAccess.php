@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 class StageTaskAccess extends Model
 {
     /**
+     * @var array
+     */
+    protected $fillable = ['field'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stage()

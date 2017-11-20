@@ -37,15 +37,18 @@ class StageTaskController extends Controller
     public function getStageTaskAccess(Request $request)
     {
 
-        $stage  = StageTaskAccess::where('stage_id', $request->stage)->get();
+        $stage = StageTaskAccess::where('stage_id', $request->stage)->get();
         $fields = config('access.taskFiled');
 
-        foreach ($stage as $value) {
-            if (array_key_exists($value->field, $fields)) {
-                $fields[$value->field]['access'] = $value->access;
+        foreach ($fields as $value) {
+            foreach ($stage as $key) {
+                if (in_array($key->field, $value, true)) {
+                    $value['access'] = $key->access;
+                }
             }
+            $array[] = $value;
         }
 
-        return array_values($fields);
+        return $array;
     }
 }
