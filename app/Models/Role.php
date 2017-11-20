@@ -40,4 +40,12 @@ class Role extends Model
     {
         return $this->morphToMany(Menu::class, 'accessable');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function stage()
+    {
+        return $this->morphToMany(TaskStage::class, 'accessable');
+    }
 }

@@ -69,7 +69,11 @@ class DeleteTaskStageMutation extends Mutation
 
         $items = explode(',', $args['items']);
 
-        TaskStage::whereIn('id', $items)->delete();
+        $stage = TaskStage::whereIn('id', $items);
+        foreach ($stage->get() as $value) {
+            $value->roles()->detach();
+        }
+        $stage->delete();
 
         return [
             'id'     => 0,

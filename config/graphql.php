@@ -3,7 +3,7 @@ return [
     // The prefix for routes
     'prefix'          => 'apps',
     'routes'          => '{graphql_schema?}',
-    'controllers'     => \Rebing\GraphQL\GraphQLController::class.'@query',
+    'controllers'     => \Rebing\GraphQL\GraphQLController::class . '@query',
     'middleware'      => ['web'],
     'schemas'         => [
         'v1' => [
@@ -42,6 +42,7 @@ return [
                 'DeleteProjectMutation'     => App\GraphQL\Mutation\Project\DeletProjectMutation::class,
                 // access
                 'ChangeAccessMenuMutation'  => App\GraphQL\Mutation\Access\ChangeAccessMenuMutation::class,
+                'ChangeAccessStageMutation' => App\GraphQL\Mutation\Access\ChangeAccessStageMutation::class,
                 // doc
                 'AddDocMutation'            => App\GraphQL\Mutation\Doc\AddDocMutation::class,
                 'DeleteDocMutation'         => App\GraphQL\Mutation\Doc\DeleteDocMutation::class,

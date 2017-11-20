@@ -31034,7 +31034,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             gql.getRaw('getStageAccess', { stage: this.stage_id }).then(function (response) {
                 _this.stageAccess = response.data;
-                console.log(response.data);
             });
         }
     }
@@ -33563,7 +33562,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: {},
+    props: {
+        role: {}
+    },
 
     data: function data() {
         return {
@@ -33575,9 +33576,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         /**
          * select stage and save
-         * @param id
+         * @param key
          */
-        selectStage: function selectStage(id) {},
+        selectStage: function selectStage(key) {
+            gql.setItem('v2', 'ChangeAccessStageMutation', this.getData(this.stages[key])).then(function (response) {
+                notify.make('success', response.data.data.ChangeAccessStageMutation.notify, 1);
+            });
+        },
 
 
         /**
@@ -33586,9 +33591,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getStages: function getStages() {
             var _this = this;
 
-            gql.getItem('v2', 'TaskStageQuery', false, 'stage').then(function (response) {
+            gql.getItem('v2', 'TaskStageQuery', 'role_id:' + this.role, 'stage').then(function (response) {
                 _this.stages = response.data.data.TaskStageQuery;
             });
+        },
+
+
+        /**
+         * get data for change access
+         * @param stage
+         * @return {string}
+         */
+        getData: function getData(stage) {
+            return '\n                access: ' + stage.roles[0].access + ',\n                stage: ' + stage.id + ',\n                role: ' + this.role;
         }
     }
 });
@@ -33638,8 +33653,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: val.priority,
-                      expression: "val.priority"
+                      value: val.roles[0].access,
+                      expression: "val.roles[0].access"
                     }
                   ],
                   attrs: {
@@ -33649,29 +33664,29 @@ var render = function() {
                     "false-value": 0
                   },
                   domProps: {
-                    checked: Array.isArray(val.priority)
-                      ? _vm._i(val.priority, null) > -1
-                      : _vm._q(val.priority, 1)
+                    checked: Array.isArray(val.roles[0].access)
+                      ? _vm._i(val.roles[0].access, null) > -1
+                      : _vm._q(val.roles[0].access, 1)
                   },
                   on: {
                     change: [
                       function($event) {
-                        var $$a = val.priority,
+                        var $$a = val.roles[0].access,
                           $$el = $event.target,
                           $$c = $$el.checked ? 1 : 0
                         if (Array.isArray($$a)) {
                           var $$v = null,
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
-                            $$i < 0 && (val.priority = $$a.concat([$$v]))
+                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
                           } else {
                             $$i > -1 &&
-                              (val.priority = $$a
+                              (val.roles[0].access = $$a
                                 .slice(0, $$i)
                                 .concat($$a.slice($$i + 1)))
                           }
                         } else {
-                          _vm.$set(val, "priority", $$c)
+                          _vm.$set(val.roles[0], "access", $$c)
                         }
                       },
                       function($event) {

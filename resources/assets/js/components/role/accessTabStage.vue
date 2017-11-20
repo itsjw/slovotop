@@ -17,7 +17,7 @@
                 <td>
                     <input type="checkbox"
                            :id="'menuR'+key"
-                           v-model="val.priority"
+                           v-model="val.roles[0].access"
                            :true-value="1"
                            :false-value="0"
                            @change="selectStage(key)"/>
@@ -36,7 +36,9 @@
             this.getStages();
         },
 
-        props: {},
+        props: {
+            role: {}
+        },
 
         data() {
             return {
@@ -47,20 +49,35 @@
         methods: {
             /**
              * select stage and save
-             * @param id
+             * @param key
              */
-            selectStage(id) {
-
+            selectStage(key) {
+                gql.setItem('v2', 'ChangeAccessStageMutation', this.getData(this.stages[key]))
+                    .then(response => {
+                        notify.make('success', response.data.data.ChangeAccessStageMutation.notify, 1);
+                    });
             },
 
             /**
              * get all stages
              */
             getStages() {
-                gql.getItem('v2', 'TaskStageQuery', false, 'stage')
+                gql.getItem('v2', 'TaskStageQuery', 'role_id:' + this.role, 'stage')
                     .then(response => {
                         this.stages = response.data.data.TaskStageQuery;
                     })
+            },
+
+            /**
+             * get data for change access
+             * @param stage
+             * @return {string}
+             */
+            getData(stage) {
+                return `
+                    access: ${stage.roles[0].access},
+                    stage: ${stage.id},
+                    role: ${this.role}`;
             }
         }
     }
