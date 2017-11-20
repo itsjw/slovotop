@@ -131,6 +131,71 @@ define({ "api": [
   },
   {
     "version": "0.1.0",
+    "group": "Access",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "/apps/v2",
+    "title": "Change Access Task Field",
+    "name": "Change_Access_Task_Field",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,0-1",
+            "optional": false,
+            "field": "access",
+            "description": "<p>access</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,>=1",
+            "optional": false,
+            "field": "stage",
+            "description": "<p>stage ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "required",
+            "optional": false,
+            "field": "field",
+            "description": "<p>field name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { ChangeAccessTaskFieldMutation (access:1,stage:1,field:\"name\") { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Access/ChangeAccessTaskFieldMutation.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.1.0",
     "group": "Doc",
     "permission": [
       {
