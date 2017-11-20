@@ -66,6 +66,71 @@ define({ "api": [
   },
   {
     "version": "0.1.0",
+    "group": "Access",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "/apps/v2",
+    "title": "Change Access Stage",
+    "name": "Change_Access_Stage",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,0-1",
+            "optional": false,
+            "field": "access",
+            "description": "<p>access</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,>=1",
+            "optional": false,
+            "field": "stage",
+            "description": "<p>stage ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "required,>=1",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role ID</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"mutation { ChangeAccessStageMutation (access:1,stage:1,role:2) { id } }\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "id",
+            "description": "<p>['id' =&gt; id ,'notify' =&gt; trans('data.notifyOK')]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/GraphQL/Mutation/Access/ChangeAccessStageMutation.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.1.0",
     "group": "Doc",
     "permission": [
       {
