@@ -39,9 +39,13 @@ class TaskStageQuery extends Query
     public function args()
     {
         return [
-            'id' => [
+            'id'      => [
                 'name' => 'id',
                 'type' => Type::id(),
+            ],
+            'role_id' => [
+                'name' => 'role_id',
+                'type' => Type::int(),
             ],
         ];
     }
@@ -53,8 +57,9 @@ class TaskStageQuery extends Query
      * @api           {post} /apps/v2 TaskStage-Query
      * @apiName       TaskStage-Query
      * @apiParam {Integer} id
+     * @apiParam {Integer} role_id role_id
      * @apiParamExample {json} Request-Example:
-     * {"query":"{ TaskStageQuery ( id:1 ) { id,name...}"}
+     * {"query":"{ TaskStageQuery ( id:1,role_id:1 ) { id,name...}"}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} priority priority
@@ -62,7 +67,7 @@ class TaskStageQuery extends Query
      * @apiSuccess {Timestamp} created_at created_at
      * @apiSuccess {Timestamp} updated_at updated_at
      * @apiExample {json} Example usage:
-     * {"query":"{ TaskStageQuery { id,name,priority,created_at,updated_at } }"}
+     * {"query":"{ TaskStageQuery { id,name,priority,created_at,updated_at,roles{access} } }"}
      *
      * @param $root
      * @param $args
@@ -77,6 +82,16 @@ class TaskStageQuery extends Query
 
         if (isset($args['id'])) {
             $query->where('id', $args['id']);
+        }
+
+        if (isset($args['role_id'])) {
+            $this->role_id = $args['role_id'];
+
+            $query->with([
+                'roles' => function ($query) {
+                    $query->where('role_id', $this->role_id)->select('access');
+                },
+            ]);
         }
 
         return TaskStageSerialize::collection($query->get());

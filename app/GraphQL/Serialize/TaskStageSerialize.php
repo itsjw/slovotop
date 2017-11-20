@@ -24,6 +24,7 @@ class TaskStageSerialize extends Serialize
             'name'       => $taskStage->name,
             'priority'   => $taskStage->priority,
             'price'      => $taskStage->price,
+            'roles'      => count($taskStage->roles) > 0 ? $taskStage->roles : ['access' => 0],
             'created_at' => $taskStage->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $taskStage->updated_at->format('d-m-Y H:m:s'),
         ];

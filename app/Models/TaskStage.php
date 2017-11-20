@@ -12,5 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TaskStage extends Model
 {
-    //
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function roles()
+    {
+        return $this->morphToMany(Role::class, 'accessable');
+    }
 }

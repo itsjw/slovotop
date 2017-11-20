@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Type;
 
+use App\Models\TaskStage;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -19,6 +20,7 @@ class TaskStageType extends GraphQLType
     protected $attributes = [
         'name'        => 'TaskStageType',
         'description' => 'A type',
+        'model'       => TaskStage::class,
     ];
 
     /**
@@ -35,13 +37,17 @@ class TaskStageType extends GraphQLType
                 'type'        => Type::string(),
                 'description' => 'TaskStageType name',
             ],
-            'priority'      => [
+            'priority'   => [
                 'type'        => Type::int(),
                 'description' => 'TaskStageType priority',
             ],
             'price'      => [
                 'type'        => Type::int(),
                 'description' => 'TaskStageType price',
+            ],
+            'roles'      => [
+                'type'        => Type::listOf(\GraphQL::type('AccessType')),
+                'description' => 'TaskStageType roles',
             ],
             'created_at' => [
                 'type'        => Type::string(),

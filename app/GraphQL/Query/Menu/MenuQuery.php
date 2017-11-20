@@ -50,7 +50,7 @@ class MenuQuery extends Query
             ],
             'role_id' => [
                 'name' => 'role_id',
-                'type' => Type::id(),
+                'type' => Type::int(),
             ],
         ];
     }

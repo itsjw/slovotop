@@ -1016,13 +1016,20 @@
             "optional": false,
             "field": "id",
             "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "role_id",
+            "description": "<p>role_id</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\"query\":\"{ TaskStageQuery ( id:1 ) { id,name...}\"}",
+          "content": "{\"query\":\"{ TaskStageQuery ( id:1,role_id:1 ) { id,name...}\"}",
           "type": "json"
         }
       ]
@@ -1078,7 +1085,7 @@
     "examples": [
       {
         "title": "Example usage:",
-        "content": "{\"query\":\"{ TaskStageQuery { id,name,priority,created_at,updated_at } }\"}",
+        "content": "{\"query\":\"{ TaskStageQuery { id,name,priority,created_at,updated_at,roles{access} } }\"}",
         "type": "json"
       }
     ],
