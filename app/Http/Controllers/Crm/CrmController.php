@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Crm;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doc;
+use App\Models\Task;
 
 /**
  * Class CrmController
@@ -78,9 +79,9 @@ class CrmController extends Controller
      */
     public function taskEdit($id = null)
     {
-        //$task = Task::find($id);
+        $task = Task::find($id);
 
-        return view('crm.taskEdit');
+        return view('crm.taskEdit', ['task' => $task]);
     }
 
     /**
