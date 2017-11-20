@@ -69,6 +69,8 @@ return [
         'TaskSubjectType'     => App\GraphQL\Type\TaskSubjectType::class,
         'TaskStageType'       => App\GraphQL\Type\TaskStageType::class,
         'StageTaskAccessType' => App\GraphQL\Type\StageTaskAccessType::class,
+        'TaskStatusType'      => App\GraphQL\Type\TaskStatusType::class,
+        'TaskType'            => App\GraphQL\Type\TaskType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.
