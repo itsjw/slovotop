@@ -37233,16 +37233,195 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
 
-        /*this.editor = new Jodit(document.getElementById('editor'), {
-             height: 400,
-             buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
-                 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
-                 'hr', 'eraser', 'fullsize', 'copyformat']
-         });*/
+        this.editor = new Jodit(document.getElementById('editor'), {
+            height: 400,
+            buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|', 'hr', 'eraser', 'fullsize', 'copyformat']
+        });
 
         if (this.task_id > 0) {
             this.getTask();
@@ -37276,7 +37455,58 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui-grid-block" }, [
+    _c("div", { staticClass: "ui-grid-block ui-mb-3" }, [
+      _c("div", { staticClass: "ui-grid-6" }, [
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-blue hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.save")) +
+                "\n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-green hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.taskGet")) +
+                "\n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-orange hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.taskReturn")) +
+                "\n            "
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-6" })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "ui-grid-block top" }, [
       _c("div", { staticClass: "ui-grid-8" }, [
         _c("div", { staticClass: "ui-bg bg-wite ui-p-3 ui-shadow-hover" }, [
           _c("div", { staticClass: "ui-grid-block" }, [
@@ -37397,10 +37627,634 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-block" }, [
+              _c("div", { staticClass: "ui-grid-6 ui-pr-1" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                  },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.trans("data.taskWords")) +
+                        "\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.words,
+                      expression: "task.words"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.task.words },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.task, "words", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui-grid-6 ui-pl-1" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                  },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.trans("data.taskMoreData")) +
+                        "\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.more_data,
+                      expression: "task.more_data"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.task.more_data },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.task, "more_data", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12 ui-pl-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTask")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.task,
+                    expression: "task.task"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.task },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "task", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12 ui-pl-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskRuleText")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.rule_text,
+                    expression: "task.rule_text"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.rule_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "rule_text", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTextBody")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "editor" } })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTextPreview")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.text_preview,
+                    expression: "task.text_preview"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.text_preview },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "text_preview", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTextUrl")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.text_url,
+                    expression: "task.text_url"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "url" },
+                domProps: { value: _vm.task.text_url },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "text_url", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3 ui-shadow-hover" },
+          [
+            _c("div", { staticClass: "ui-grid-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.commentsTitle")) +
+                      "\n                    "
+                  )
+                ]
+              )
+            ])
+          ]
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "ui-grid-4" })
+      _c("div", { staticClass: "ui-grid-4" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "ui-grid-block ui-shadow-hover ui-ml-3 ui-bg bg-wite ui-p-3"
+          },
+          [
+            _c("div", { staticClass: "ui-grid-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskProject")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskEditor")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskAuthor")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskSubject")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTextMinMax")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui-grid-block" }, [
+                _c("div", { staticClass: "ui-grid-6 ui-pr-3" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.task.text_min,
+                        expression: "task.text_min"
+                      }
+                    ],
+                    staticClass: "ui-input green focus ui-fnt light size-1",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.task.text_min },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.task, "text_min", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui-grid-6 ui-pl-3" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.task.text_max,
+                        expression: "task.text_max"
+                      }
+                    ],
+                    staticClass: "ui-input green focus ui-fnt light size-1",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.task.text_max },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.task, "text_max", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskTextUnique")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.text_unique,
+                    expression: "task.text_unique"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "number" },
+                domProps: { value: _vm.task.text_unique },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "text_unique", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskPrice")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.price,
+                    expression: "task.price"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "number" },
+                domProps: { value: _vm.task.price },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "price", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.trans("data.taskDateEnd")) +
+                      "\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.date_end,
+                    expression: "task.date_end"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "date" },
+                domProps: { value: _vm.task.date_end },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "date_end", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "ui-grid-block ui-mt-3" }, [
+      _c("div", { staticClass: "ui-grid-6" }, [
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-blue hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.save")) +
+                "\n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-green hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.taskGet")) +
+                "\n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui-button bg-orange hover ui-color col-wite",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.taskReturn")) +
+                "\n            "
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-6" })
     ])
   ])
 }
@@ -37409,9 +38263,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3" }, [
-      _c("div", { staticClass: "ui-grid-block" })
-    ])
+    return _c(
+      "select",
+      { staticClass: "ui-input green focus ui-fnt light size-1" },
+      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "ui-input green focus ui-fnt light size-1" },
+      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "ui-input green focus ui-fnt light size-1" },
+      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "ui-input green focus ui-fnt light size-1" },
+      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
+    )
   }
 ]
 render._withStripped = true

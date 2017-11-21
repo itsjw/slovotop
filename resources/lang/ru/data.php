@@ -80,6 +80,7 @@ return [
     // Tasks
     'taskField'       => 'Поле задачи',
     'taskName'        => 'Имя задачи',
+    'taskProject'     => 'Проект',
     'taskOwner'       => 'Создатель задачи',
     'taskEditor'      => 'Редактор задачи',
     'taskAuthor'      => 'Автор задачи',
@@ -95,10 +96,11 @@ return [
     'taskTextBody'    => 'Текст статьи',
     'taskTextPreview' => 'Анонс к статье',
     'taskTextUrl'     => 'URL опубликованной статьи',
-    'taskTextMin'     => 'Объем текста min',
-    'taskTextMax'     => 'Объем текста max',
+    'taskTextMinMax'  => 'Объем текста',
     'taskTextUnique'  => 'Уникальность текста',
     'taskState'       => 'Статус задачи',
+    'taskGet'         => 'Сдать задачу',
+    'taskReturn'      => 'Вернуть на доработку',
 
     // Subjects
     'subjectName'     => 'Название тематики',
@@ -109,4 +111,7 @@ return [
     'stagePrice'      => 'Стоимость этапа',
     'stagePriority'   => 'Приоритет',
     'stageAccessTask' => 'Доступ к задаче',
+
+    // Comments
+    'commentsTitle'   => 'Коментарии',
 ];
