@@ -10,13 +10,13 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 // Vue
 window.Vue = require('vue');
 
-// notify
-import Notify from './helpers/notify';
-window.notify = new Notify();
+// Buefy
+import Buefy from 'buefy';
+Vue.use(Buefy);
 
-// query builder for graphQL
+// query builder
 import Query from './query/query';
-window.gql = new Query();
+window.Api = new Query();
 
 // lang from laravel trans
 Vue.prototype.trans = (key) => {
