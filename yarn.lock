@@ -995,6 +995,13 @@ browserslist@^2.1.2, browserslist@^2.5.1:
     caniuse-lite "^1.0.30000755"
     electron-to-chromium "^1.3.27"
 
+buefy@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.6.1.tgz#c618b9fef6fee1678c0a938c802be7a6b67a64a5"
+  dependencies:
+    bulma "^0.6.1"
+    vue "^2.5.2"
+
 buffer-crc32@~0.2.3:
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
@@ -1037,6 +1044,10 @@ builtin-modules@^1.0.0:
 builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
+
+bulma@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.6.1.tgz#5f21a77c0c06f7d80051c06628c23516081bd649"
 
 bytes@3.0.0:
   version "3.0.0"
@@ -6480,6 +6491,10 @@ vue-template-es2015-compiler@^1.6.0:
 vue@^2.1.10:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.2.tgz#fd367a87bae7535e47f9dc5c9ec3b496e5feb5a4"
+
+vue@^2.5.2:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.7.tgz#313ab26025915d9fdbc39db756548cb4bb50eb44"
 
 ware@^1.2.0:
   version "1.3.0"
