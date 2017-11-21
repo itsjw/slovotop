@@ -1,31 +1,35 @@
 @guest
-    <a href="{{ route('login') }}" class="ui-color col-greyBlueLL hover ui-grid-block right">
-        <div class="ui-fnt light ui-mr-2">
-            @lang('data.login')
-        </div>
-        <i class="ui-icon">perm_identity</i>
-    </a>
+    <div class="navbar-item">
+        <a class="button is-warning" href="{{ route('login') }}">
+            <span class="icon">
+                <i class="fa fa-sign-in"></i>
+            </span>
+            <span>@lang('data.login')</span>
+        </a>
+    </div>
 @endguest
 
 @auth
-    <div class="ui-grid-block">
-        <div class="ui-grid-6">
-            <a href="{{ route('crmHome') }}"
-               class="ui-color col-greyBlueLL hover ui-grid-block right">
-                <div class="ui-fnt light ui-mr-2">
+
+    <div class="navbar-item">
+        <div class="field is-grouped">
+            <a class="button is-primary control" href="{{ route('crmHome') }}">
+                <span class="icon">
+                    <i class="fa fa-user"></i>
+                </span>
+                <span>
                     {{ Auth::user()->name }}
-                </div>
-                <i class="ui-icon">person</i>
+                </span>
+            </a>
+
+            <a class="button" href="{{ route('logout') }}">
+            <span class="icon">
+                <i class="fa fa-sign-out"></i>
+            </span>
+                <span>@lang('data.logout')</span>
             </a>
         </div>
-        <div class="ui-grid-6">
-            <a href="{{ route('logout') }}" class="ui-color col-greyBlueLL hover ui-grid-block right">
-                <div class="ui-fnt light ui-mr-2">
-                    @lang('data.logout')
-                </div>
-                <i class="ui-icon">exit_to_app</i>
-            </a>
-        </div>
+
     </div>
 
 @endauth

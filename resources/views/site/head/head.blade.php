@@ -1,24 +1,15 @@
-<div class="ui-bg bg-greyBlue ui-pb-3 ui-pt-3">
-
-    <div class="ui-center ui-grid-block">
-
-        <div class="ui-grid-1">
-            <a href="{{ route('home') }}">
+<nav class="navbar is-link">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ route('home') }}">
                 Logo
             </a>
         </div>
 
-        <div class="ui-grid-8">
-
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                @include('site.head.right')
+            </div>
         </div>
-
-        <div class="ui-grid-3 right">
-
-            @include('site.head.right')
-
-        </div>
-
     </div>
-
-
-</div>
+</nav>
