@@ -1,16 +1,18 @@
-@foreach(App\Models\Menu::crm() as $menu)
 
-    <a href="@if ($menu->slug) /crm/{{$menu->slug}} @else  /  @endif"
-       title="{{ $menu->name }}"
-       class="ui-p-1 ui-color col-greyBlueLL hover admin-menu {{ explode('/',Request::getRequestUri())[2] === $menu->slug ? "active" : "" }} ">
+    @foreach(App\Models\Menu::crm() as $menu)
 
-        <div class="ui-icon">
-            {{ $menu->icon }}
-        </div>
-        <div class="ui-fnt thin size-0">
-            {{ $menu->name }}
-        </div>
+        <a href="@if ($menu->slug) /crm/{{$menu->slug}} @else  /  @endif"
+           title="{{ $menu->name }}"
+           class="ui-p-1 ui-color col-greyBlueLL hover admin-menu {{ explode('/',Request::getRequestUri())[2] === $menu->slug ? "active" : "" }} ">
 
-    </a>
+            <div class="ui-icon">
+                {{ $menu->icon }}
+            </div>
+            <div class="ui-fnt thin size-0">
+                {{ $menu->name }}
+            </div>
 
-@endforeach
+        </a>
+
+    @endforeach
+

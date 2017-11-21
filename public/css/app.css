@@ -16856,3 +16856,7 @@ label.panel-block:hover {
   background: rgba(255, 56, 96, 0.05);
 }
 
+.columns.is-fullheight {
+  min-height: 100vh;
+}
+

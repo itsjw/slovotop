@@ -1,7 +1,13 @@
 @import "icons/scss/font-awesome";
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
-
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+// customize
+.columns {
+  &.is-fullheight {
+    min-height: 100vh;
+  }
+}
