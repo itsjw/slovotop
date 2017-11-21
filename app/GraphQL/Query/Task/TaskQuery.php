@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query\Task;
 
-use App\GraphQL\Serialize\TasktSerialize;
+use App\GraphQL\Serialize\TaskSerialize;
 use App\Models\Task;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -98,6 +98,6 @@ class TaskQuery extends Query
             $query->where('id', $args['id']);
         }
 
-        return TasktSerialize::collection($query->get());
+        return TaskSerialize::collection($query->get());
     }
 }
