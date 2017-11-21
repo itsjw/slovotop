@@ -127,9 +127,10 @@
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                             {{ trans('data.taskProject') }}
                         </div>
-                        <select class="ui-input green focus ui-fnt light size-1">
-                            <option>1</option>
-                            <option>1</option>
+                        <select class="ui-input green focus ui-fnt light size-1" v-model="task.project.id">
+                            <option v-for="(val,key) in projects" :value="val.id">
+                                {{ val.name }}
+                            </option>
                         </select>
                     </div>
 
@@ -137,9 +138,10 @@
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                             {{ trans('data.taskEditor') }}
                         </div>
-                        <select class="ui-input green focus ui-fnt light size-1">
-                            <option>1</option>
-                            <option>1</option>
+                        <select class="ui-input green focus ui-fnt light size-1" v-model="task.editor.id">
+                            <option v-for="(val,key) in editors" :value="val.id">
+                                {{ val.name }}
+                            </option>
                         </select>
                     </div>
 
@@ -147,9 +149,10 @@
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                             {{ trans('data.taskAuthor') }}
                         </div>
-                        <select class="ui-input green focus ui-fnt light size-1">
-                            <option>1</option>
-                            <option>1</option>
+                        <select class="ui-input green focus ui-fnt light size-1" v-model="task.author.id">
+                            <option v-for="(val,key) in authors" :value="val.id">
+                                {{ val.name }}
+                            </option>
                         </select>
                     </div>
 
@@ -157,9 +160,10 @@
                         <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
                             {{ trans('data.taskSubject') }}
                         </div>
-                        <select class="ui-input green focus ui-fnt light size-1">
-                            <option>1</option>
-                            <option>1</option>
+                        <select class="ui-input green focus ui-fnt light size-1" v-model="task.subject.id">
+                            <option v-for="(val,key) in subjects" :value="val.id">
+                                {{ val.name }}
+                            </option>
                         </select>
                     </div>
 
@@ -239,6 +243,11 @@
             if (this.task_id > 0) {
                 this.getTask();
             }
+
+            this.getProject();
+            this.getUser('editors');
+            this.getUser('authors');
+            this.getSubject();
         },
 
         props: {
@@ -248,11 +257,51 @@
 
         data() {
             return {
-                task: {}
+                task: {
+                    project: {},
+                    editor: {},
+                    author: {},
+                    subject: {}
+                },
+                projects: {},
+                editors: {},
+                authors: {},
+                subjects: {}
             }
         },
 
         methods: {
+
+            /**
+             * get users
+             * @param role
+             */
+            getUser(role) {
+                gql.getItem('v2', 'UserQuery', false, 'user')
+                    .then(response => {
+                        this[role] = response.data.data.UserQuery;
+                    })
+            },
+
+            /**
+             * get projects
+             */
+            getProject() {
+                gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project')
+                    .then(response => {
+                        this.projects = response.data.data.ProjectQuery;
+                    })
+            },
+
+            /**
+             * get subjects
+             */
+            getSubject() {
+                gql.getItem('v2', 'TaskSubjectQuery', false, 'subject')
+                    .then(response => {
+                        this.subjects = response.data.data.TaskSubjectQuery;
+                    })
+            },
 
             getTask() {
 

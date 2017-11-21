@@ -37414,6 +37414,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37426,6 +37430,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (this.task_id > 0) {
             this.getTask();
         }
+
+        this.getProject();
+        this.getUser('editors');
+        this.getUser('authors');
+        this.getSubject();
     },
 
 
@@ -37436,12 +37445,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            task: {}
+            task: {
+                project: {},
+                editor: {},
+                author: {},
+                subject: {}
+            },
+            projects: {},
+            editors: {},
+            authors: {},
+            subjects: {}
         };
     },
 
 
     methods: {
+
+        /**
+         * get users
+         * @param role
+         */
+        getUser: function getUser(role) {
+            var _this = this;
+
+            gql.getItem('v2', 'UserQuery', false, 'user').then(function (response) {
+                _this[role] = response.data.data.UserQuery;
+            });
+        },
+
+
+        /**
+         * get projects
+         */
+        getProject: function getProject() {
+            var _this2 = this;
+
+            gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
+                _this2.projects = response.data.data.ProjectQuery;
+            });
+        },
+
+
+        /**
+         * get subjects
+         */
+        getSubject: function getSubject() {
+            var _this3 = this;
+
+            gql.getItem('v2', 'TaskSubjectQuery', false, 'subject').then(function (response) {
+                _this3.subjects = response.data.data.TaskSubjectQuery;
+            });
+        },
         getTask: function getTask() {}
     }
 });
@@ -37965,7 +38019,48 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(0)
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.project.id,
+                      expression: "task.project.id"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.task.project,
+                        "id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.projects, function(val, key) {
+                  return _c("option", { domProps: { value: val.id } }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(val.name) +
+                        "\n                        "
+                    )
+                  ])
+                })
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
@@ -37983,7 +38078,48 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1)
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.editor.id,
+                      expression: "task.editor.id"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.task.editor,
+                        "id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.editors, function(val, key) {
+                  return _c("option", { domProps: { value: val.id } }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(val.name) +
+                        "\n                        "
+                    )
+                  ])
+                })
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
@@ -38001,7 +38137,48 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(2)
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.author.id,
+                      expression: "task.author.id"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.task.author,
+                        "id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.authors, function(val, key) {
+                  return _c("option", { domProps: { value: val.id } }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(val.name) +
+                        "\n                        "
+                    )
+                  ])
+                })
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
@@ -38019,7 +38196,48 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(3)
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.task.subject.id,
+                      expression: "task.subject.id"
+                    }
+                  ],
+                  staticClass: "ui-input green focus ui-fnt light size-1",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.task.subject,
+                        "id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.subjects, function(val, key) {
+                  return _c("option", { domProps: { value: val.id } }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(val.name) +
+                        "\n                        "
+                    )
+                  ])
+                })
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ui-grid-12 ui-mt-2" }, [
@@ -38258,48 +38476,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "ui-input green focus ui-fnt light size-1" },
-      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "ui-input green focus ui-fnt light size-1" },
-      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "ui-input green focus ui-fnt light size-1" },
-      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "ui-input green focus ui-fnt light size-1" },
-      [_c("option", [_vm._v("1")]), _vm._v(" "), _c("option", [_vm._v("1")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
