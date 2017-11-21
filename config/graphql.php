@@ -27,6 +27,8 @@ return [
                 'TaskSubjectQuery' => App\GraphQL\Query\TaskSubject\TaskSubjectQuery::class,
                 // task stage
                 'TaskStageQuery'   => App\GraphQL\Query\TaskStage\TaskStageQuery::class,
+                // task
+                'TaskQuery'        => App\GraphQL\Query\Task\TaskQuery::class,
             ],
             'mutation'   => [
                 // user

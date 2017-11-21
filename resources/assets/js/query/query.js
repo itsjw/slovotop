@@ -17,6 +17,10 @@ export default class Query {
         this.doc = `id,name,body,created_at,updated_at,roles{id,name,access,role_id},user{id,name}`;
         this.subject = `id,name,price,created_at,updated_at`;
         this.stage = `id,name,priority,price,created_at,updated_at,roles{access}`;
+        this.task = `id,name,user{${this.user}},project{${this.project}},status{name},stage{${this.stage}},
+                        editor{${this.user}},author{${this.user}},author{${this.subject}},date_end,price,
+                        title,desc,words,more_data,rule_text,text_body,text_preview,text_url,text_min,text_max,
+                        text_unique,created_at,updated_at`;
     }
 
     /**
