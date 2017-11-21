@@ -81,7 +81,12 @@
         methods: {
             selectTasks(id) {
             },
+
+            /**
+             * gel all tasks
+             */
             getTasks() {
+
             },
 
             /**

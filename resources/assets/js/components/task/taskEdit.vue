@@ -245,8 +245,7 @@
             }
 
             this.getProject();
-            this.getUser('editors');
-            this.getUser('authors');
+            this.getUser();
             this.getSubject();
         },
 
@@ -279,7 +278,8 @@
             getUser(role) {
                 gql.getItem('v2', 'UserQuery', false, 'user')
                     .then(response => {
-                        this[role] = response.data.data.UserQuery;
+                        this.editors = response.data.data.UserQuery;
+                        this.authors = response.data.data.UserQuery;
                     })
             },
 
