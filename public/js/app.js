@@ -30080,6 +30080,7 @@ var Query = function () {
         this.doc = 'id,name,body,created_at,updated_at,roles{id,name,access,role_id},user{id,name}';
         this.subject = 'id,name,price,created_at,updated_at';
         this.stage = 'id,name,priority,price,created_at,updated_at,roles{access}';
+        this.task = 'id,name,user{' + this.user + '},project{' + this.project + '},status{name},stage{' + this.stage + '},\n                        editor{' + this.user + '},author{' + this.user + '},subject{' + this.subject + '},date_end,price,\n                        title,desc,words,more_data,rule_text,text_body,text_preview,text_url,text_min,text_max,\n                        text_unique,created_at,updated_at';
     }
 
     /**
@@ -36889,8 +36890,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getTasks();
+    },
 
 
     props: {
@@ -36907,7 +36909,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         selectTasks: function selectTasks(id) {},
-        getTasks: function getTasks() {},
+
+
+        /**
+         * gel all tasks
+         */
+        getTasks: function getTasks() {
+            var _this = this;
+
+            gql.getItem('v2', 'TaskQuery', false, 'task').then(function (response) {
+                _this.tasks = response.data.data.TaskQuery;
+            });
+        },
 
 
         /**
@@ -37432,8 +37445,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         this.getProject();
-        this.getUser('editors');
-        this.getUser('authors');
+        this.getUser();
         this.getSubject();
     },
 
@@ -37469,7 +37481,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             gql.getItem('v2', 'UserQuery', false, 'user').then(function (response) {
-                _this[role] = response.data.data.UserQuery;
+                _this.editors = response.data.data.UserQuery;
+                _this.authors = response.data.data.UserQuery;
             });
         },
 

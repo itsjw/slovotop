@@ -61,10 +61,8 @@
 <script>
     export default {
 
-        created() {
-        },
-
         mounted() {
+            this.getTasks();
         },
 
         props: {
@@ -86,7 +84,10 @@
              * gel all tasks
              */
             getTasks() {
-
+                gql.getItem('v2', 'TaskQuery', false, 'task')
+                    .then(response => {
+                        this.tasks = response.data.data.TaskQuery;
+                    })
             },
 
             /**
