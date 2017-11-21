@@ -12,7 +12,9 @@ window.Vue = require('vue');
 
 // Buefy
 import Buefy from 'buefy';
-Vue.use(Buefy);
+Vue.use(Buefy,{
+    defaultIconPack: 'fa'
+});
 
 // query builder
 import Query from './query/query';
