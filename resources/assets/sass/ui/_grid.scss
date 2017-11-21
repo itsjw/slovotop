@@ -24,6 +24,12 @@
   &.right {
     justify-content: flex-end;
   }
+  &.space {
+    justify-content: space-between;
+  }
+  &.shadow {
+    @include BlockShadow;
+  }
 }
 
 // data grid

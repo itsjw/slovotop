@@ -37195,6 +37195,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37218,7 +37256,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     data: function data() {
-        return {};
+        return {
+            task: {}
+        };
     },
 
 
@@ -37235,9 +37275,145 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\n    Edit task\n\n")])
+  return _c("div", [
+    _c("div", { staticClass: "ui-grid-block" }, [
+      _c("div", { staticClass: "ui-grid-8" }, [
+        _c("div", { staticClass: "ui-bg bg-wite ui-p-3 ui-shadow-hover" }, [
+          _c("div", { staticClass: "ui-grid-block" }, [
+            _c("div", { staticClass: "ui-grid-6 ui-pr-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(_vm.trans("data.taskName")) +
+                      "\n                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.name,
+                    expression: "task.name"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui-grid-6 ui-pl-1" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
+                },
+                [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(_vm.trans("data.taskTitle")) +
+                      "\n                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.title,
+                    expression: "task.title"
+                  }
+                ],
+                staticClass: "ui-input green focus ui-fnt light size-1",
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "title", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui-grid-12" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-mt-1"
+              },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.trans("data.taskDesc")) +
+                    "\n                    "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.task.desc,
+                  expression: "task.desc"
+                }
+              ],
+              staticClass: "ui-input green focus ui-fnt light size-1",
+              attrs: { type: "text" },
+              domProps: { value: _vm.task.desc },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.task, "desc", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui-grid-4" })
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui-bg bg-wite ui-p-3 ui-mt-3" }, [
+      _c("div", { staticClass: "ui-grid-block" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

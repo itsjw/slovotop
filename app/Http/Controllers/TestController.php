@@ -3,28 +3,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\StageTaskAccess;
+use App\Models\Role;
 
 class TestController extends Controller
 {
 
     public function index()
     {
+        $role = Role::where('id',1)->with('users.user');
 
-        $stage = StageTaskAccess::where('stage_id', 3)->get();
-        $fields = config('access.taskFiled');
-
-        foreach ($fields as $value) {
-            foreach ($stage as $key) {
-                if(in_array($key->field,$value,true)){
-                    $value['access'] = $key->access;
-                }
-            }
-            $arr[] = $value;
-        }
-
-        dd($arr);
-
+        dd($role->get()->toArray());
     }
 
 }
