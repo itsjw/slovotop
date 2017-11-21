@@ -1005,6 +1005,229 @@
   },
   {
     "version": "0.1.0",
+    "group": "Task",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "/apps/v2",
+    "title": "Task-Query",
+    "name": "Task_Query",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\"query\":\"{ TaskQuery ( id:1 ) { id,name...}\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>[User]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "project",
+            "description": "<p>[Project]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "status",
+            "description": "<p>[TaskStatus]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "stage",
+            "description": "<p>[TaskStage]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "editor",
+            "description": "<p>[User]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "author",
+            "description": "<p>[User]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "subject",
+            "description": "<p>[TaskSubject]</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "date_end",
+            "description": "<p>date_end</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "desc",
+            "description": "<p>desc</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "words",
+            "description": "<p>words</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "more_data",
+            "description": "<p>more_data</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "task",
+            "description": "<p>task</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "rule_text",
+            "description": "<p>rule_text</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "text_body",
+            "description": "<p>text_body</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "text_preview",
+            "description": "<p>text_preview</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "text_url",
+            "description": "<p>text_url</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "text_min",
+            "description": "<p>text_min</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "text_max",
+            "description": "<p>text_max</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "text_unique",
+            "description": "<p>text_unique</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Timestamp",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\"query\":\"{ TaskQuery { id,name,count,.....,created_at,updated_at } }\"}",
+        "type": "json"
+      }
+    ],
+    "filename": "/home/www/slovo.zz/app/GraphQL/Query/Task/TaskQuery.php",
+    "groupTitle": "Task"
+  },
+  {
+    "version": "0.1.0",
     "group": "Task_Stage",
     "permission": [
       {
