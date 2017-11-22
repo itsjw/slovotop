@@ -177,9 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // GraphQL
-        Rebing\GraphQL\GraphQLServiceProvider::class,
-
         // dev
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
@@ -231,9 +228,6 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
-
-        // GraphQL
-        'GraphQL'      => Rebing\GraphQL\Support\Facades\GraphQL::class,
     ],
 
 ];
