@@ -6,7 +6,7 @@ export default class Query {
 
     constructor() {
 
-        this.v1 = '/api/v1';
+        this.v1 = 'v1/';
 
     }
 
@@ -17,7 +17,7 @@ export default class Query {
      * @param params
      * @return {*|AxiosPromise}
      */
-    getRaw(point, url, params) {
-        return axios.post(this[point] + url, params)
+    getPost(point, section, action, params) {
+        return axios.post(this[point] + section + '/' + action, params)
     }
 }
