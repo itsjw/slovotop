@@ -1,19 +1,17 @@
-<div class="ui-grid-block">
-
-    <div class="ui-grid-10">
-        <div class="ui-ml-5">
+<nav class="navbar">
+    <div class="navbar-start">
+        <div class="navbar-item">
             @yield('HeadTitle')
         </div>
     </div>
-
-    <div class="ui-grid-2">
-
-        <a href="{{ route('logout') }}" class="ui-color col-greyBlue hover ui-grid-block right ui-pr-3">
-            <div class="ui-fnt light ui-mr-2">
-                {{ Auth::user()->name }}
-            </div>
-            <i class="ui-icon">exit_to_app</i>
-        </a>
-
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <a href="http://slovo.zz/logout" class="button is-info">
+                <span class="icon">
+                    <i class="fa fa-sign-out"></i>
+                </span>
+                <span>{{ \Auth::user()->name }}</span>
+            </a>
+        </div>
     </div>
-</div>
+</nav>

@@ -22,10 +22,10 @@
         </div>
 
         <div class="admin-content-wrap">
-            <div class="admin-head ui-pt-2 ui-pb-2">
+            <div class="admin-head">
                 @include('crm.head.head')
             </div>
-            <div class="admin-content ui-p-5">
+            <div class="admin-content">
                 @yield('content')
             </div>
             <div class="admin-footer">

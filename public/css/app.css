@@ -16902,10 +16902,6 @@ html {
   background: whitesmoke;
 }
 
-.admin-wrap .admin-content-wrap .admin-head {
-  background: whitesmoke;
-}
-
 .admin-wrap .admin-content-wrap .admin-content {
   -webkit-box-flex: 1;
       -ms-flex: 1 auto;
@@ -16914,7 +16910,6 @@ html {
 
 .admin-wrap .admin-content-wrap .admin-footer {
   height: 30px;
-  background: whitesmoke;
 }
 
 .admin-menu {
