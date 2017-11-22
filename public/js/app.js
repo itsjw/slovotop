@@ -29968,7 +29968,7 @@ var Query = function () {
     function Query() {
         _classCallCheck(this, Query);
 
-        this.v1 = '/api/v1';
+        this.v1 = 'v1/';
     }
 
     /**
@@ -29981,9 +29981,9 @@ var Query = function () {
 
 
     _createClass(Query, [{
-        key: 'getRaw',
-        value: function getRaw(point, url, params) {
-            return axios.post(this[point] + url, params);
+        key: 'getPost',
+        value: function getPost(point, section, action, params) {
+            return axios.post(this[point] + section + '/' + action, params);
         }
     }]);
 
@@ -34120,6 +34120,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(75));
 
@@ -34140,7 +34213,42 @@ Vue.component('addUser', __webpack_require__(75));
             queryParams: ['orderID:"asc"'],
             showSearchName: false,
             showSearchSurname: false,
-            showSearchEmail: false
+            showSearchEmail: false,
+            // table
+            isEmpty: false,
+            isHoverable: true,
+            isNarrowed: true,
+            tableDataSimple: [{
+                'id': 1,
+                'first_name': 'Jesse',
+                'last_name': 'Simmons',
+                'date': '2016-10-15 13:43:27',
+                'gender': 'Male'
+            }, {
+                'id': 2,
+                'first_name': 'John',
+                'last_name': 'Jacobs',
+                'date': '2016-12-15 06:00:53',
+                'gender': 'Male'
+            }, {
+                'id': 3,
+                'first_name': 'Tina',
+                'last_name': 'Gilbert',
+                'date': '2016-04-26 06:26:28',
+                'gender': 'Female'
+            }, {
+                'id': 4,
+                'first_name': 'Clarence',
+                'last_name': 'Flores',
+                'date': '2016-04-10 10:28:46',
+                'gender': 'Male'
+            }, {
+                'id': 5,
+                'first_name': 'Anne',
+                'last_name': 'Lee',
+                'date': '2016-12-06 14:38:38',
+                'gender': 'Female'
+            }]
         };
     },
 
@@ -35051,11 +35159,12 @@ var render = function() {
     "div",
     [
       _vm.accessMenu == 2
-        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
-            _c("ul", [
+        ? _c("nav", { staticClass: "navbar is-primary" }, [
+            _c("div", { staticClass: "navbar-start" }, [
               _c(
-                "li",
+                "a",
                 {
+                  staticClass: "navbar-item",
                   on: {
                     click: function($event) {
                       _vm.addUser()
@@ -35063,17 +35172,16 @@ var render = function() {
                   }
                 },
                 [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("person_add")
-                  ]),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
                 ]
               ),
               _vm._v(" "),
               _c(
-                "li",
+                "a",
                 {
+                  staticClass: "navbar-item",
                   on: {
                     click: function($event) {
                       _vm.editUser()
@@ -35081,15 +35189,16 @@ var render = function() {
                   }
                 },
                 [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
                 ]
               ),
               _vm._v(" "),
               _c(
-                "li",
+                "a",
                 {
+                  staticClass: "navbar-item",
                   on: {
                     click: function($event) {
                       _vm.approveUser()
@@ -35097,17 +35206,16 @@ var render = function() {
                   }
                 },
                 [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("touch_app")
-                  ]),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.approve")))])
                 ]
               ),
               _vm._v(" "),
               _c(
-                "li",
+                "a",
                 {
+                  staticClass: "navbar-item",
                   on: {
                     click: function($event) {
                       _vm.deleteUser()
@@ -35115,9 +35223,7 @@ var render = function() {
                   }
                 },
                 [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("delete")
-                  ]),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
                 ]
@@ -35125,6 +35231,231 @@ var render = function() {
             ])
           ])
         : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "section",
+        [
+          _c(
+            "b-table",
+            {
+              attrs: {
+                data: _vm.isEmpty ? [] : _vm.tableDataSimple,
+                hoverable: _vm.isHoverable,
+                narrowed: _vm.isNarrowed,
+                "checked-rows": _vm.selectUser,
+                checkable: ""
+              },
+              on: {
+                "update:checkedRows": function($event) {
+                  _vm.selectUser = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "id",
+                            label: "№",
+                            width: "40",
+                            numeric: "",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.id) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "first_name",
+                            label: _vm.trans("data.userName"),
+                            width: "20%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.first_name) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.userEmail"),
+                            width: "20%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.last_name) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.userTasks"),
+                            width: "5%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.userLastLogin"),
+                            width: "10%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.userConfirm"),
+                            width: "10%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.userRole"),
+                            width: "10%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.created_at"),
+                            width: "10%",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: "ID",
+                            width: "40",
+                            numeric: "",
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.gender) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            },
+            [
+              _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+                _c("section", { staticClass: "section" }, [
+                  _c(
+                    "div",
+                    { staticClass: "content has-text-grey has-text-centered" },
+                    [
+                      _c(
+                        "p",
+                        [
+                          _c("b-icon", {
+                            attrs: {
+                              icon: "sentiment_very_dissatisfied",
+                              size: "is-large"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Nothing here.")])
+                    ]
+                  )
+                ])
+              ])
+            ],
+            2
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("table", [
         _c("thead", [
@@ -35431,7 +35762,40 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-user-plus" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-thumbs-up" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-trash" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

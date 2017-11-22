@@ -1,26 +1,99 @@
 <template>
     <div>
 
-        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
-            <ul>
-                <li @click="addUser()">
-                    <i class="ui-icon ui-mr-2">person_add</i>
+        <nav class="navbar is-primary" v-if="accessMenu == 2">
+            <div class="navbar-start">
+                <a class="navbar-item" @click="addUser()">
+                    <span class="icon">
+                        <i class="fa fa-user-plus"></i>
+                    </span>
                     <span>{{ trans('data.add') }}</span>
-                </li>
-                <li @click="editUser()">
-                    <i class="ui-icon ui-mr-2">edit</i>
+                </a>
+
+                <a class="navbar-item" @click="editUser()">
+                    <span class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
                     <span>{{ trans('data.edit') }}</span>
-                </li>
-                <li @click="approveUser()">
-                    <i class="ui-icon ui-mr-2">touch_app</i>
+                </a>
+
+                <a class="navbar-item" @click="approveUser()">
+                    <span class="icon">
+                        <i class="fa fa-thumbs-up"></i>
+                    </span>
                     <span>{{ trans('data.approve') }}</span>
-                </li>
-                <li @click="deleteUser()">
-                    <i class="ui-icon ui-mr-2">delete</i>
+                </a>
+
+                <a class="navbar-item" @click="deleteUser()">
+                    <span class="icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
                     <span>{{ trans('data.delete') }}</span>
-                </li>
-            </ul>
-        </div>
+                </a>
+            </div>
+        </nav>
+
+        <section>
+            <b-table
+                    :data="isEmpty ? [] : tableDataSimple"
+                    :hoverable="isHoverable"
+                    :narrowed="isNarrowed"
+                    :checked-rows.sync="selectUser"
+                    checkable>
+
+                <template slot-scope="props">
+                    <b-table-column field="id" label="№" width="40" numeric sortable>
+                        {{ props.row.id }}
+                    </b-table-column>
+
+                    <b-table-column field="first_name" :label="trans('data.userName')" width="20%" sortable>
+                        {{ props.row.first_name }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userEmail')" width="20%" sortable>
+                        {{ props.row.last_name }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userTasks')" width="5%" sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userLastLogin')" width="10%" sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userConfirm')" width="10%" sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userRole')" width="10%" sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.created_at')" width="10%" sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+
+                    <b-table-column label="ID" width="40" numeric sortable>
+                        {{ props.row.gender }}
+                    </b-table-column>
+                </template>
+
+                <template slot="empty">
+                    <section class="section">
+                        <div class="content has-text-grey has-text-centered">
+                            <p>
+                                <b-icon
+                                        icon="sentiment_very_dissatisfied"
+                                        size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>Nothing here.</p>
+                        </div>
+                    </section>
+                </template>
+            </b-table>
+        </section>
 
         <table>
             <thead>
@@ -34,11 +107,11 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearchName"
-                            position="left"
-                            type="name"
-                            @submit="search"
-                            @close="closePopUp()"></search-pop>
+                                v-if="showSearchName"
+                                position="left"
+                                type="name"
+                                @submit="search"
+                                @close="closePopUp()"></search-pop>
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
                            @click="showSearchName=true">search</i>
@@ -53,11 +126,11 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearchEmail"
-                            position="left"
-                            type="email"
-                            @submit="search"
-                            @close="closePopUp()"></search-pop>
+                                v-if="showSearchEmail"
+                                position="left"
+                                type="email"
+                                @submit="search"
+                                @close="closePopUp()"></search-pop>
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
                            @click="showSearchEmail=true">search</i>
@@ -135,6 +208,47 @@
                 showSearchName: false,
                 showSearchSurname: false,
                 showSearchEmail: false,
+                // table
+                isEmpty: false,
+                isHoverable: true,
+                isNarrowed: true,
+                tableDataSimple: [
+                    {
+                        'id': 1,
+                        'first_name': 'Jesse',
+                        'last_name': 'Simmons',
+                        'date': '2016-10-15 13:43:27',
+                        'gender': 'Male'
+                    },
+                    {
+                        'id': 2,
+                        'first_name': 'John',
+                        'last_name': 'Jacobs',
+                        'date': '2016-12-15 06:00:53',
+                        'gender': 'Male'
+                    },
+                    {
+                        'id': 3,
+                        'first_name': 'Tina',
+                        'last_name': 'Gilbert',
+                        'date': '2016-04-26 06:26:28',
+                        'gender': 'Female'
+                    },
+                    {
+                        'id': 4,
+                        'first_name': 'Clarence',
+                        'last_name': 'Flores',
+                        'date': '2016-04-10 10:28:46',
+                        'gender': 'Male'
+                    },
+                    {
+                        'id': 5,
+                        'first_name': 'Anne',
+                        'last_name': 'Lee',
+                        'date': '2016-12-06 14:38:38',
+                        'gender': 'Female'
+                    }
+                ]
             }
         },
 
@@ -229,7 +343,7 @@
                     }
                     gql.setItem('v2', 'DeleteUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.DeleteUserMutation.notify,1);
+                            notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
                             this.getUsers();
                         })
                 }
@@ -244,7 +358,7 @@
                     select = ['items:"' + this.selectUser + '"'];
                     gql.setItem('v2', 'ApproveUserMutation', select)
                         .then(response => {
-                            notify.make('success', response.data.data.ApproveUserMutation.notify,1);
+                            notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
                             this.getUsers();
                         })
                 }

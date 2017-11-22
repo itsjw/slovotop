@@ -26,7 +26,9 @@
                 @include('crm.head.head')
             </div>
             <div class="admin-content">
-                @yield('content')
+                <div class="section">
+                    @yield('content')
+                </div>
             </div>
             <div class="admin-footer">
                 @include('crm.footer.footer')
