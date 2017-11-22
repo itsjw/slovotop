@@ -3,16 +3,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+
+use App\Models\User;
 
 class TestController extends Controller
 {
 
     public function index()
     {
-        $role = Role::where('id',1)->with('users.user');
+        $user = User::find(1);
 
-        dd($role->get()->toArray());
+
     }
 
 }
