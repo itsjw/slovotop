@@ -23,7 +23,7 @@ html {
   & .admin-left {
     max-width: 90px;
     width: 100%;
-    background: $colorGreyBlueDark;
+    background: $link;
     overflow: auto;
   }
 
@@ -31,10 +31,10 @@ html {
     display: flex;
     flex-direction: column;
     flex: auto;
-    background: $colorGreyBlue_050;
+    background: $light;
 
     & .admin-head {
-      background: $colorGrey_300;
+      background: $light;
     }
 
     & .admin-content {
@@ -43,7 +43,7 @@ html {
 
     & .admin-footer {
       height: 30px;
-      background: $colorGrey_300;
+      background: $light;
     }
   }
 }
@@ -53,9 +53,18 @@ html {
   display: block;
   text-align: center;
   word-wrap: break-word;
+  color: $white;
+  padding: 5px 0px;
+
+  &:hover{
+    background: $light;
+    transition: background-color 1s;
+    color: $dark;
+  }
 
   &.active {
-    color: $colorOrange;
+    background: $light;
+    color: $dark
   }
   & .ui-icon {
     font-size: 35px;
@@ -64,5 +73,5 @@ html {
 
 // title block
 .admin-title-block {
-  border-bottom: 2px solid $colorGrey_300;
+  border-bottom: 2px solid $danger;
 }

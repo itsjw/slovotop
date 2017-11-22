@@ -5,9 +5,4 @@
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-// customize
-.columns {
-  &.is-fullheight {
-    min-height: 100vh;
-  }
-}
+@import "admin/admin";

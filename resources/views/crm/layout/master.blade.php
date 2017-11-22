@@ -15,26 +15,25 @@
 <body>
 <div id="app">
 
-        <div class="columns is-gapless is-fullheight">
+    <div class="admin-wrap">
 
-            <div class="column is-narrow">
-                @include('crm.menu.menu')
-            </div>
-
-            <div class="column">
-                <nav class="navbar is-light">
-                    @include('crm.head.head')
-                </nav>
-                <div class="admin-content ui-p-5">
-                    @yield('content')
-                </div>
-                <div class="admin-footer">
-                    @include('crm.footer.footer')
-                </div>
-            </div>
-
+        <div class="admin-left">
+            @include('crm.menu.menu')
         </div>
 
+        <div class="admin-content-wrap">
+            <div class="admin-head ui-pt-2 ui-pb-2">
+                @include('crm.head.head')
+            </div>
+            <div class="admin-content ui-p-5">
+                @yield('content')
+            </div>
+            <div class="admin-footer">
+                @include('crm.footer.footer')
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
