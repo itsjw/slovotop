@@ -106,7 +106,7 @@
 
         <add-user v-if="showAddUser"
                   :user_id="selectUser[0]"
-                  v-on:close="closePopUp()"></add-user>
+                  @close="closePopUp()"></add-user>
     </div>
 </template>
 <script>
