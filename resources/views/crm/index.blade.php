@@ -6,7 +6,7 @@
 
 @section('HeadTitle')
 
-        <h1 class="title is-5">@lang('data.titleHome')</h1>
+    @lang('data.titleHome')
 
 @endsection()
 

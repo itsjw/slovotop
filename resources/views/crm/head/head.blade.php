@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="navbar-start">
         <div class="navbar-item">
-            @yield('HeadTitle')
+            <h1 class="title is-5">@yield('HeadTitle')</h1>
         </div>
     </div>
     <div class="navbar-end">

@@ -5,9 +5,9 @@
 @endsection()
 
 @section('HeadTitle')
-    <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleUser')
-    </div>
+
+    @lang('data.titleUser')
+
 @endsection()
 
 @section('content')
