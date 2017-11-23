@@ -6,7 +6,7 @@ export default class Query {
 
     constructor() {
 
-        this.v1 = 'v1/';
+        this.v1 = '/v1/';
 
     }
 

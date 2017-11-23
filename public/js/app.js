@@ -29968,7 +29968,7 @@ var Query = function () {
     function Query() {
         _classCallCheck(this, Query);
 
-        this.v1 = 'v1/';
+        this.v1 = '/v1/';
     }
 
     /**
@@ -34223,7 +34223,7 @@ Vue.component('addUser', __webpack_require__(75));
             var _this = this;
 
             this.selectUser = [];
-            gql.getItem('v2', 'UserQuery', this.queryParams, 'user').then(function (response) {
+            Api.getPost('v1', 'users', 'getUser').then(function (response) {
                 _this.users = response.data.data.UserQuery;
             });
         },

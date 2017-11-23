@@ -217,7 +217,7 @@
              */
             getUsers() {
                 this.selectUser = [];
-                gql.getItem('v2', 'UserQuery', this.queryParams, 'user')
+                Api.getPost('v1', 'users', 'getUser')
                     .then(response => {
                         this.users = response.data.data.UserQuery;
                     })
