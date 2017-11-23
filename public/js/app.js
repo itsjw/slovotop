@@ -34199,6 +34199,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(75));
 
@@ -34221,9 +34224,7 @@ Vue.component('addUser', __webpack_require__(75));
             showSearchSurname: false,
             showSearchEmail: false,
             // table
-            isEmpty: false,
-            isHoverable: true,
-            isNarrowed: true,
+            tableLoading: false,
             tableDataSimple: [{
                 'id': 1,
                 'first_name': 'Jesse',
@@ -35260,8 +35261,11 @@ var render = function() {
             {
               attrs: {
                 data: _vm.isEmpty ? [] : _vm.tableDataSimple,
-                hoverable: _vm.isHoverable,
-                narrowed: _vm.isNarrowed,
+                hoverable: true,
+                loading: _vm.tableLoading,
+                narrowed: true,
+                paginated: true,
+                "per-page": 5,
                 "checked-rows": _vm.selectUser,
                 checkable: ""
               },

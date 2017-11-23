@@ -42,8 +42,11 @@
         <section class="ui-mt-2">
             <b-table
                     :data="isEmpty ? [] : tableDataSimple"
-                    :hoverable="isHoverable"
-                    :narrowed="isNarrowed"
+                    :hoverable=true
+                    :loading='tableLoading'
+                    :narrowed=true
+                    :paginated=true
+                    :per-page=5
                     :checked-rows.sync="selectUser"
                     checkable>
 
@@ -215,9 +218,7 @@
                 showSearchSurname: false,
                 showSearchEmail: false,
                 // table
-                isEmpty: false,
-                isHoverable: true,
-                isNarrowed: true,
+                tableLoading: false,
                 tableDataSimple: [
                     {
                         'id': 1,
