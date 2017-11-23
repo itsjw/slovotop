@@ -34193,6 +34193,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 Vue.component('addUser', __webpack_require__(75));
 
@@ -35167,12 +35173,25 @@ var render = function() {
                   staticClass: "navbar-item",
                   on: {
                     click: function($event) {
+                      _vm.getUsers()
+                    }
+                  }
+                },
+                [_vm._m(0)]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "navbar-item",
+                  on: {
+                    click: function($event) {
                       _vm.addUser()
                     }
                   }
                 },
                 [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
                 ]
@@ -35189,7 +35208,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
                 ]
@@ -35206,7 +35225,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(2),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.approve")))])
                 ]
@@ -35223,7 +35242,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
                 ]
@@ -35763,6 +35782,14 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-refresh" })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

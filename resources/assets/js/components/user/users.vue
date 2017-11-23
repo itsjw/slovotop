@@ -3,6 +3,12 @@
 
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
+                <a class="navbar-item" @click="getUsers()">
+                    <span class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </a>
+
                 <a class="navbar-item" @click="addUser()">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
