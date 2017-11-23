@@ -35253,6 +35253,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "section",
+        { staticClass: "ui-mt-2" },
         [
           _c(
             "b-table",

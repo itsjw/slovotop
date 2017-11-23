@@ -39,7 +39,7 @@
             </div>
         </nav>
 
-        <section>
+        <section class="ui-mt-2">
             <b-table
                     :data="isEmpty ? [] : tableDataSimple"
                     :hoverable="isHoverable"
