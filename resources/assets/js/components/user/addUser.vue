@@ -54,7 +54,7 @@
                                     <b-icon pack="fa" icon="angle-up"></b-icon>
                                 </button>
 
-                                <b-dropdown-item v-for="(val,key) in roles" @click="addRole(key)">
+                                <b-dropdown-item v-for="(val,id) in roles" :key=val.id  @click="addRole(id)">
                                     {{ val.name }}
                                 </b-dropdown-item>
                             </b-dropdown>
@@ -72,10 +72,23 @@
                     </div>
 
                 </section>
+
+                <b-field :label="trans('data.userEmail')">
+                    <b-input
+                            type="number"
+                            v-model="user.up_price"
+                            :placeholder="trans('data.userUpPrice')">
+                    </b-input>
+                </b-field>
+
+                <b-field :label="trans('data.userNote')">
+                    <b-input maxlength="200" type="textarea" v-model="user.note"></b-input>
+                </b-field>
+
             </section>
             <footer class="modal-card-foot">
-                <button class="button" type="button" @click="$parent.close()">Close</button>
-                <button class="button is-primary">Login</button>
+                <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
+                <button class="button is-primary">{{ trans('data.save') }}</button>
             </footer>
         </div>
     </form>

@@ -34390,6 +34390,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -39582,13 +39595,14 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _vm._l(_vm.roles, function(val, key) {
+                        _vm._l(_vm.roles, function(val, id) {
                           return _c(
                             "b-dropdown-item",
                             {
+                              key: val.id,
                               on: {
                                 click: function($event) {
-                                  _vm.addRole(key)
+                                  _vm.addRole(id)
                                 }
                               }
                             },
@@ -39633,7 +39647,46 @@ var render = function() {
                   )
                 ])
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userEmail") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "number",
+                    placeholder: _vm.trans("data.userUpPrice")
+                  },
+                  model: {
+                    value: _vm.user.up_price,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "up_price", $$v)
+                    },
+                    expression: "user.up_price"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userNote") } },
+              [
+                _c("b-input", {
+                  attrs: { maxlength: "200", type: "textarea" },
+                  model: {
+                    value: _vm.user.note,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "note", $$v)
+                    },
+                    expression: "user.note"
+                  }
+                })
+              ],
+              1
+            )
           ],
           1
         ),
@@ -39650,10 +39703,12 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Close")]
+            [_vm._v(_vm._s(_vm.trans("data.cancel")))]
           ),
           _vm._v(" "),
-          _c("button", { staticClass: "button is-primary" }, [_vm._v("Login")])
+          _c("button", { staticClass: "button is-primary" }, [
+            _vm._v(_vm._s(_vm.trans("data.save")))
+          ])
         ])
       ],
       1
