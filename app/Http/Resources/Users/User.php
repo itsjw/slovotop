@@ -24,7 +24,7 @@ class User extends Resource
             'id'         => $this->id,
             'name'       => $this->name,
             'email'      => $this->email,
-            'confirm'    => $this->confirm ? trans('data.yes') : trans('data.no'),
+            'confirm'    => $this->confirm,
             'tasksCount' => $this->tasks()->count(),
             'lastLogin'  => $this->lastLogin->updated_at->format('d-m-Y H:m:s'),
             'roles'      => $this->transformRoles($this->roles),

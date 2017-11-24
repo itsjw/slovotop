@@ -68,7 +68,7 @@
                     </b-table-column>
 
                     <b-table-column field="confirm" :label="trans('data.userConfirm')" sortable centered>
-                        {{ props.row.confirm }}
+                        {{ props.row.confirm == 1 ? trans('data.yes') : trans('data.no') }}
                     </b-table-column>
 
                     <b-table-column :label="trans('data.userRole')">

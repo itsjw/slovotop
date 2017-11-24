@@ -34359,6 +34359,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34503,7 +34517,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("form", { attrs: { action: "" } }, [
     _c("div", { staticClass: "modal-card" }, [
-      _vm._m(0),
+      _vm.user_id == 0
+        ? _c("div", { staticClass: "notification is-warning" }, [
+            _c("button", { staticClass: "delete", attrs: { type: "button" } }),
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.trans("data.informUseAdd")) +
+                "\n        "
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "section",
@@ -34511,20 +34534,20 @@ var render = function() {
         [
           _c(
             "b-field",
-            { attrs: { label: "Email" } },
+            { attrs: { label: _vm.trans("data.userName") } },
             [
               _c("b-input", {
                 attrs: {
-                  type: "email",
-                  placeholder: "Your email",
+                  type: "text",
+                  placeholder: _vm.trans("data.userName"),
                   required: ""
                 },
                 model: {
-                  value: _vm.email,
+                  value: _vm.user.name,
                   callback: function($$v) {
-                    _vm.email = $$v
+                    _vm.$set(_vm.user, "name", $$v)
                   },
-                  expression: "email"
+                  expression: "user.name"
                 }
               })
             ],
@@ -34533,28 +34556,69 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-field",
-            { attrs: { label: "Password" } },
+            { attrs: { label: _vm.trans("data.userEmail") } },
             [
               _c("b-input", {
                 attrs: {
-                  type: "password",
-                  "password-reveal": "",
-                  placeholder: "Your password",
+                  type: "email",
+                  placeholder: _vm.trans("data.userEmail"),
                   required: ""
                 },
                 model: {
-                  value: _vm.password,
+                  value: _vm.user.email,
                   callback: function($$v) {
-                    _vm.password = $$v
+                    _vm.$set(_vm.user, "email", $$v)
                   },
-                  expression: "password"
+                  expression: "user.email"
                 }
               })
             ],
             1
           ),
           _vm._v(" "),
-          _c("b-checkbox", [_vm._v("Remember me")])
+          _c(
+            "b-field",
+            { attrs: { label: _vm.trans("data.userPassword") } },
+            [
+              _c("b-input", {
+                attrs: {
+                  type: "password",
+                  "password-reveal": "",
+                  placeholder: _vm.trans("data.userPassword"),
+                  required: ""
+                },
+                model: {
+                  value: _vm.user.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "password", $$v)
+                  },
+                  expression: "user.password"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-checkbox",
+            {
+              attrs: { "true-value": "1", "false-value": "0" },
+              model: {
+                value: _vm.user.confirm,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "confirm", $$v)
+                },
+                expression: "user.confirm"
+              }
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("data.userConfirm")) +
+                  "\n            "
+              )
+            ]
+          )
         ],
         1
       ),
@@ -34579,16 +34643,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Login")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -34808,7 +34863,11 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.confirm) +
+                            _vm._s(
+                              props.row.confirm == 1
+                                ? _vm.trans("data.yes")
+                                : _vm.trans("data.no")
+                            ) +
                             "\n                "
                         )
                       ]

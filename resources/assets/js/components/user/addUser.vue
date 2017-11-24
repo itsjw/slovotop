@@ -1,30 +1,44 @@
 <template>
     <form action="">
         <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Login</p>
-            </header>
+            <div class="notification is-warning" v-if="user_id == 0">
+                <button type="button" class="delete"></button>
+                {{ trans('data.informUseAdd') }}
+            </div>
             <section class="modal-card-body">
-                <b-field label="Email">
+                <b-field :label="trans('data.userName')">
+                    <b-input
+                            type="text"
+                            v-model="user.name"
+                            :placeholder="trans('data.userName')"
+                            required>
+                    </b-input>
+                </b-field>
+
+                <b-field :label="trans('data.userEmail')">
                     <b-input
                             type="email"
-                            v-model="email"
-                            placeholder="Your email"
+                            v-model="user.email"
+                            :placeholder="trans('data.userEmail')"
                             required>
                     </b-input>
                 </b-field>
 
-                <b-field label="Password">
+                <b-field :label="trans('data.userPassword')">
                     <b-input
                             type="password"
-                            v-model="password"
+                            v-model="user.password"
                             password-reveal
-                            placeholder="Your password"
+                            :placeholder="trans('data.userPassword')"
                             required>
                     </b-input>
                 </b-field>
 
-                <b-checkbox>Remember me</b-checkbox>
+                <b-checkbox v-model="user.confirm"
+                            true-value="1"
+                            false-value="0">
+                    {{ trans('data.userConfirm') }}
+                </b-checkbox>
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
@@ -126,7 +140,7 @@
                         if (response.data.errors) {
                             notify.make('alert', response.data.errors[0].validation);
                         } else {
-                            notify.make('success', response.data.data[point].notify,2);
+                            notify.make('success', response.data.data[point].notify, 2);
                             this.$emit('close');
                         }
                     });
