@@ -176,7 +176,7 @@
             getUsers() {
                 this.tableLoading = true;
                 this.selectUser = [];
-                Api.getPost('v1', 'users', 'getUsers')
+                Api.getPost('v1', 'getUsers')
                     .then(response => {
                         this.users = response.data.data;
                         this.tableLoading = false;

@@ -29968,7 +29968,7 @@ var Query = function () {
     function Query() {
         _classCallCheck(this, Query);
 
-        this.v1 = '/v1/';
+        this.v1 = '/v1';
     }
 
     /**
@@ -29982,8 +29982,8 @@ var Query = function () {
 
     _createClass(Query, [{
         key: 'getPost',
-        value: function getPost(point, section, action, params) {
-            return axios.post(this[point] + section + '/' + action, params);
+        value: function getPost(point, action, params) {
+            return axios.post(this[point] + '/' + action, params);
         }
     }]);
 
@@ -34190,7 +34190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.tableLoading = true;
             this.selectUser = [];
-            Api.getPost('v1', 'users', 'getUsers').then(function (response) {
+            Api.getPost('v1', 'getUsers').then(function (response) {
                 _this.users = response.data.data;
                 _this.tableLoading = false;
             });
@@ -34275,17 +34275,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(111)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(76)
 /* template */
-var __vue_template__ = __webpack_require__(77)
+var __vue_template__ = __webpack_require__(115)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-8600fdca"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -34379,12 +34383,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.user_id > 0) {
             this.getUser(this.user_id);
         }
+        this.getRoles();
     },
 
 
@@ -34415,9 +34439,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUser: function getUser(id) {
             var _this = this;
 
-            gql.getItem('v2', 'UserQuery', ['id:' + id], 'user').then(function (response) {
-                _this.user = response.data.data.UserQuery[0];
-                _this.getCleanRole();
+            Api.getPost('v1', 'getUsers', { id: id }).then(function (response) {
+                _this.user = response.data.data[0];
             });
         },
 
@@ -34428,9 +34451,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRoles: function getRoles() {
             var _this2 = this;
 
-            gql.getItem('v2', 'RoleQuery', null, 'role').then(function (response) {
-                _this2.roles = response.data.data.RoleQuery;
-                _this2.showRoles = true;
+            Api.getPost('v1', 'getRoles').then(function (response) {
+                _this2.roles = response.data.data;
             });
         },
 
@@ -34440,249 +34462,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param id
          */
         addRole: function addRole(id) {
-            this.showRoles = false;
-            if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
-                this.user.roles.push({
-                    'id': this.roles[id].id,
-                    'role': {
-                        'id': this.roles[id].id,
-                        'name': this.roles[id].name
-                    }
-                });
-            }
-            this.getCleanRole();
-        },
-
-
-        /**
-         * delete role
-         * @param id
-         */
-        deleteRole: function deleteRole(id) {
-            this.user.roles.splice(id, 1);
-            this.getCleanRole();
-        },
-
-
-        /**
-         * save user
-         */
-        saveUser: function saveUser() {
-            var _this3 = this;
-
-            var point = 'AddUserMutation';
-
-            if (this.user_id) {
-                point = 'UpdateUserMutation';
-            }
-
-            gql.setItem('v2', point, this.getUserData(this.user)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data[point].notify, 2);
-                    _this3.$emit('close');
-                }
-            });
-        },
-
-
-        /**
-         * get user data
-         * @param user
-         * @return {string}
-         */
-        getUserData: function getUserData(user) {
-
-            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
-        },
-
-
-        /**
-         * get clean role
-         * @param role
-         */
-        getCleanRole: function getCleanRole() {
-            var _vm = this;
-            this.cleanRole = [];
-
-            _.forEach(this.user.roles, function (value) {
-                _vm.cleanRole.push(value.role.id);
-            });
+            console.log(this.roles[id].id);
         }
+    },
+
+    /**
+     * delete role
+     * @param id
+     */
+    deleteRole: function deleteRole(id) {
+        this.user.roles.splice(id, 1);
+    },
+
+
+    /**
+     * save user
+     */
+    saveUser: function saveUser() {
+        var _this3 = this;
+
+        var point = 'AddUserMutation';
+
+        if (this.user_id) {
+            point = 'UpdateUserMutation';
+        }
+
+        gql.setItem('v2', point, this.getUserData(this.user)).then(function (response) {
+            if (response.data.errors) {
+                notify.make('alert', response.data.errors[0].validation);
+            } else {
+                notify.make('success', response.data.data[point].notify, 2);
+                _this3.$emit('close');
+            }
+        });
+    },
+
+
+    /**
+     * get user data
+     * @param user
+     * @return {string}
+     */
+    getUserData: function getUserData(user) {
+
+        return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
     }
 });
 
 /***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("form", { attrs: { action: "" } }, [
-    _c(
-      "div",
-      { staticClass: "modal-card" },
-      [
-        _c(
-          "b-message",
-          {
-            attrs: {
-              title: "Info",
-              type: "is-info",
-              "has-icon": "",
-              active: "user_id == 0"
-            }
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.trans("data.informUseAdd")) +
-                "\n        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("header", { staticClass: "modal-card-head" }, [
-          _c("p", { staticClass: "modal-card-title" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.trans("data.userUser")) +
-                "\n            "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "modal-card-body" },
-          [
-            _c(
-              "b-field",
-              { attrs: { label: _vm.trans("data.userName") } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    type: "text",
-                    placeholder: _vm.trans("data.userName"),
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.user.name,
-                    callback: function($$v) {
-                      _vm.$set(_vm.user, "name", $$v)
-                    },
-                    expression: "user.name"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { label: _vm.trans("data.userEmail") } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    type: "email",
-                    placeholder: _vm.trans("data.userEmail"),
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.user.email,
-                    callback: function($$v) {
-                      _vm.$set(_vm.user, "email", $$v)
-                    },
-                    expression: "user.email"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { label: _vm.trans("data.userPassword") } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    type: "password",
-                    "password-reveal": "",
-                    placeholder: _vm.trans("data.userPassword"),
-                    required: ""
-                  },
-                  model: {
-                    value: _vm.user.password,
-                    callback: function($$v) {
-                      _vm.$set(_vm.user, "password", $$v)
-                    },
-                    expression: "user.password"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-checkbox",
-              {
-                attrs: { "true-value": "1", "false-value": "0" },
-                model: {
-                  value: _vm.user.confirm,
-                  callback: function($$v) {
-                    _vm.$set(_vm.user, "confirm", $$v)
-                  },
-                  expression: "user.confirm"
-                }
-              },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.trans("data.userConfirm")) +
-                    "\n            "
-                )
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Close")]
-          ),
-          _vm._v(" "),
-          _c("button", { staticClass: "button is-primary" }, [_vm._v("Login")])
-        ])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8600fdca", module.exports)
-  }
-}
-
-/***/ }),
+/* 77 */,
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39218,6 +39046,612 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 102 */,
+/* 103 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(112);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(113)("d91fd398", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8600fdca\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./addUser.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8600fdca\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./addUser.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(103)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tag[data-v-8600fdca] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(114)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", { attrs: { action: "" } }, [
+    _c(
+      "div",
+      { staticClass: "modal-card" },
+      [
+        _c(
+          "b-message",
+          {
+            attrs: {
+              title: "Info",
+              type: "is-info",
+              "has-icon": "",
+              active: "user_id == 0"
+            }
+          },
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.trans("data.informUseAdd")) +
+                "\n        "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.userUser")) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.userName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "name", $$v)
+                    },
+                    expression: "user.name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userEmail") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "email",
+                    placeholder: _vm.trans("data.userEmail"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "email", $$v)
+                    },
+                    expression: "user.email"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userPassword") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "password",
+                    "password-reveal": "",
+                    placeholder: _vm.trans("data.userPassword"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.password,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "password", $$v)
+                    },
+                    expression: "user.password"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-checkbox",
+              {
+                attrs: { "true-value": "1", "false-value": "0" },
+                model: {
+                  value: _vm.user.confirm,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "confirm", $$v)
+                  },
+                  expression: "user.confirm"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("data.userConfirm")) +
+                    "\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "section",
+              { staticClass: "ui-mt-2" },
+              [
+                _c(
+                  "b-dropdown",
+                  { attrs: { position: "is-top-right" } },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button is-link",
+                        attrs: { slot: "trigger", type: "button" },
+                        slot: "trigger"
+                      },
+                      [
+                        _c("span", [
+                          _vm._v(_vm._s(_vm.trans("data.userRole")))
+                        ]),
+                        _vm._v(" "),
+                        _c("b-icon", {
+                          attrs: { pack: "fa", icon: "angle-up" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.roles, function(val, key) {
+                      return _c(
+                        "b-dropdown-item",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.addRole(key)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(val.name) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "button is-primary" }, [_vm._v("Login")])
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8600fdca", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
