@@ -34412,7 +34412,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.userProp.id > 0) {
-            this.user = this.userProp;
+            this.user = _.cloneDeep(this.userProp);
+            this.getCleanRole();
         }
         this.getRoles();
     },

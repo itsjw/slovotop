@@ -105,7 +105,8 @@
 
         mounted() {
             if (this.userProp.id > 0) {
-                this.user = this.userProp;
+                this.user = _.cloneDeep(this.userProp);
+                this.getCleanRole();
             }
             this.getRoles();
         },
