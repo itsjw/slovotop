@@ -34375,6 +34375,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34451,6 +34466,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         deleteRole: function deleteRole(id) {
             this.user.roles.splice(id, 1);
+            this.getCleanRole();
         },
 
 
@@ -39537,58 +39553,87 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "section",
-              { staticClass: "ui-mt-2" },
-              [
+            _c("section", { staticClass: "ui-mt-2" }, [
+              _c("div", { staticClass: "columns" }, [
                 _c(
-                  "b-dropdown",
-                  { attrs: { position: "is-top-right" } },
+                  "div",
+                  { staticClass: "column is-2" },
                   [
                     _c(
-                      "button",
-                      {
-                        staticClass: "button is-link",
-                        attrs: { slot: "trigger", type: "button" },
-                        slot: "trigger"
-                      },
+                      "b-dropdown",
+                      { attrs: { position: "is-top-right" } },
                       [
-                        _c("span", [
-                          _vm._v(_vm._s(_vm.trans("data.userRole")))
-                        ]),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button is-link",
+                            attrs: { slot: "trigger", type: "button" },
+                            slot: "trigger"
+                          },
+                          [
+                            _c("span", [
+                              _vm._v(_vm._s(_vm.trans("data.userRole")))
+                            ]),
+                            _vm._v(" "),
+                            _c("b-icon", {
+                              attrs: { pack: "fa", icon: "angle-up" }
+                            })
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
-                        _c("b-icon", {
-                          attrs: { pack: "fa", icon: "angle-up" }
+                        _vm._l(_vm.roles, function(val, key) {
+                          return _c(
+                            "b-dropdown-item",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.addRole(key)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(val.name) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
                         })
                       ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _vm._l(_vm.roles, function(val, key) {
-                      return _c(
-                        "b-dropdown-item",
-                        {
-                          on: {
-                            click: function($event) {
-                              _vm.addRole(key)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(val.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    })
+                      2
+                    )
                   ],
-                  2
-                )
-              ],
-              1
-            )
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "column" }, [
+                  _c(
+                    "div",
+                    { staticClass: "field is-grouped is-grouped-multiline" },
+                    _vm._l(_vm.user.roles, function(item, k) {
+                      return _c("div", { staticClass: "control" }, [
+                        _c("div", { staticClass: "tags has-addons" }, [
+                          _c("a", { staticClass: "tag is-warning" }, [
+                            _vm._v(_vm._s(item.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("a", {
+                            staticClass: "tag is-delete",
+                            on: {
+                              click: function($event) {
+                                _vm.deleteRole(k)
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    })
+                  )
+                ])
+              ])
+            ])
           ],
           1
         ),

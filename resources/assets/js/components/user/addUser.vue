@@ -45,16 +45,31 @@
                 </b-checkbox>
 
                 <section class="ui-mt-2">
-                    <b-dropdown position="is-top-right">
-                        <button type="button" class="button is-link" slot="trigger">
-                            <span>{{ trans('data.userRole') }}</span>
-                            <b-icon pack="fa" icon="angle-up"></b-icon>
-                        </button>
 
-                        <b-dropdown-item v-for="(val,key) in roles" @click="addRole(key)">
-                            {{ val.name }}
-                        </b-dropdown-item>
-                    </b-dropdown>
+                    <div class="columns">
+                        <div class="column is-2">
+                            <b-dropdown position="is-top-right">
+                                <button type="button" class="button is-link" slot="trigger">
+                                    <span>{{ trans('data.userRole') }}</span>
+                                    <b-icon pack="fa" icon="angle-up"></b-icon>
+                                </button>
+
+                                <b-dropdown-item v-for="(val,key) in roles" @click="addRole(key)">
+                                    {{ val.name }}
+                                </b-dropdown-item>
+                            </b-dropdown>
+                        </div>
+                        <div class="column">
+                            <div class="field is-grouped is-grouped-multiline">
+                                <div class="control" v-for="(item,k) in user.roles">
+                                    <div class="tags has-addons">
+                                        <a class="tag is-warning">{{ item.name }}</a>
+                                        <a class="tag is-delete" @click="deleteRole(k)"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </section>
             </section>
@@ -142,6 +157,7 @@
              */
             deleteRole(id) {
                 this.user.roles.splice(id, 1);
+                this.getCleanRole();
             },
 
             /**
