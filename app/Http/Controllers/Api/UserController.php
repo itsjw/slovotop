@@ -17,12 +17,22 @@ class UserController extends Controller
     /**
      * @param Request $request
      *
-     * @return UserResourse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUser(Request $request)
+    public function getUsers(Request $request)
     {
-        $user = User::find($request->id);
+        $users = User::query()->with('roles.role:id,name');
 
-        return new UserResourse($user);
+        if (isset($request->id)) {
+            $users->where('id', $request->id);
+        }
+        if (isset($request->name)) {
+            $users->where('name', 'like', '%' . $request->name . '%');
+        }
+        if (isset($request->email)) {
+            $users->where('email', 'like', '%' . $request->email . '%');
+        }
+
+        return UserResourse::collection($users->get());
     }
 }

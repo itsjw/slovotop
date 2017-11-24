@@ -17,7 +17,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     $router->group(['prefix' => 'users'], function (Router $router) {
 
-        $router->post('getUser', 'UserController@getUser');
+        $router->post('getUsers', 'UserController@getUsers');
 
     });
 

@@ -41,50 +41,48 @@
 
         <section class="ui-mt-2">
             <b-table
-                    :data="isEmpty ? [] : tableDataSimple"
+                    :data="users"
                     :hoverable=true
                     :loading='tableLoading'
                     :narrowed=true
                     :paginated=true
-                    :per-page=5
+                    :per-page=20
                     :checked-rows.sync="selectUser"
                     checkable>
 
                 <template slot-scope="props">
-                    <b-table-column field="id" label="№" width="40" numeric sortable>
+                    <b-table-column field="name" :label="trans('data.userName')" sortable>
+                        {{ props.row.name }}
+                    </b-table-column>
+
+                    <b-table-column field="email" :label="trans('data.userEmail')" sortable>
+                        {{ props.row.email }}
+                    </b-table-column>
+
+                    <b-table-column field="tasksCount" :label="trans('data.userTasks')" numeric sortable centered>
+                        {{ props.row.tasksCount }}
+                    </b-table-column>
+
+                    <b-table-column field="lastLogin" :label="trans('data.userLastLogin')" sortable>
+                        {{ props.row.lastLogin }}
+                    </b-table-column>
+
+                    <b-table-column field="confirm" :label="trans('data.userConfirm')" sortable centered>
+                        {{ props.row.confirm }}
+                    </b-table-column>
+
+                    <b-table-column :label="trans('data.userRole')">
+                        <span class="tag is-warning" v-for="(val,key) in props.row.roles">
+                            {{ val.name }}
+                        </span>
+                    </b-table-column>
+
+                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
+                        {{ props.row.created_at }}
+                    </b-table-column>
+
+                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
                         {{ props.row.id }}
-                    </b-table-column>
-
-                    <b-table-column field="first_name" :label="trans('data.userName')" width="20%" sortable>
-                        {{ props.row.first_name }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.userEmail')" width="20%" sortable>
-                        {{ props.row.last_name }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.userTasks')" width="5%" sortable>
-                        {{ props.row.gender }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.userLastLogin')" width="10%" sortable>
-                        {{ props.row.gender }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.userConfirm')" width="10%" sortable>
-                        {{ props.row.gender }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.userRole')" width="10%" sortable>
-                        {{ props.row.gender }}
-                    </b-table-column>
-
-                    <b-table-column :label="trans('data.created_at')" width="10%" sortable>
-                        {{ props.row.gender }}
-                    </b-table-column>
-
-                    <b-table-column label="ID" width="40" numeric sortable>
-                        {{ props.row.gender }}
                     </b-table-column>
                 </template>
 
@@ -104,13 +102,10 @@
             </b-table>
         </section>
 
-        <add-user v-if="showAddUser"
-                  :user_id="selectUser[0]"
-                  @close="closePopUp()"></add-user>
     </div>
 </template>
 <script>
-    Vue.component('addUser', require('./addUser.vue'));
+    import addUser from './addUser'
 
     export default {
 
@@ -123,7 +118,7 @@
         data() {
             return {
                 showAddUser: false,
-                users: {},
+                users: [],
                 selectUser: [],
                 order: 'asc',
                 queryParams: ['orderID:"asc"'],
@@ -132,43 +127,6 @@
                 showSearchEmail: false,
                 // table
                 tableLoading: false,
-                tableDataSimple: [
-                    {
-                        'id': 1,
-                        'first_name': 'Jesse',
-                        'last_name': 'Simmons',
-                        'date': '2016-10-15 13:43:27',
-                        'gender': 'Male'
-                    },
-                    {
-                        'id': 2,
-                        'first_name': 'John',
-                        'last_name': 'Jacobs',
-                        'date': '2016-12-15 06:00:53',
-                        'gender': 'Male'
-                    },
-                    {
-                        'id': 3,
-                        'first_name': 'Tina',
-                        'last_name': 'Gilbert',
-                        'date': '2016-04-26 06:26:28',
-                        'gender': 'Female'
-                    },
-                    {
-                        'id': 4,
-                        'first_name': 'Clarence',
-                        'last_name': 'Flores',
-                        'date': '2016-04-10 10:28:46',
-                        'gender': 'Male'
-                    },
-                    {
-                        'id': 5,
-                        'first_name': 'Anne',
-                        'last_name': 'Lee',
-                        'date': '2016-12-06 14:38:38',
-                        'gender': 'Female'
-                    }
-                ]
             }
         },
 
@@ -216,10 +174,12 @@
              * get all users
              */
             getUsers() {
+                this.tableLoading = true;
                 this.selectUser = [];
-                Api.getPost('v1', 'users', 'getUser')
+                Api.getPost('v1', 'users', 'getUsers')
                     .then(response => {
-                        this.users = response.data.data.UserQuery;
+                        this.users = response.data.data;
+                        this.tableLoading = false;
                     })
             },
 
@@ -240,7 +200,11 @@
              */
             addUser() {
                 this.selectUser = [];
-                this.showAddUser = true;
+                this.$modal.open({
+                    parent: this,
+                    component: addUser,
+                    hasModalCard: true
+                });
             },
 
             /**
