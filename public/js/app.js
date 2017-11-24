@@ -34373,6 +34373,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -34516,131 +34522,154 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", { attrs: { action: "" } }, [
-    _c("div", { staticClass: "modal-card" }, [
-      _vm.user_id == 0
-        ? _c("div", { staticClass: "notification is-warning" }, [
-            _c("button", { staticClass: "delete", attrs: { type: "button" } }),
+    _c(
+      "div",
+      { staticClass: "modal-card" },
+      [
+        _c(
+          "b-message",
+          {
+            attrs: {
+              title: "Info",
+              type: "is-info",
+              "has-icon": "",
+              active: "user_id == 0"
+            }
+          },
+          [
             _vm._v(
               "\n            " +
                 _vm._s(_vm.trans("data.informUseAdd")) +
                 "\n        "
             )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "section",
-        { staticClass: "modal-card-body" },
-        [
-          _c(
-            "b-field",
-            { attrs: { label: _vm.trans("data.userName") } },
-            [
-              _c("b-input", {
-                attrs: {
-                  type: "text",
-                  placeholder: _vm.trans("data.userName"),
-                  required: ""
-                },
-                model: {
-                  value: _vm.user.name,
-                  callback: function($$v) {
-                    _vm.$set(_vm.user, "name", $$v)
-                  },
-                  expression: "user.name"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-field",
-            { attrs: { label: _vm.trans("data.userEmail") } },
-            [
-              _c("b-input", {
-                attrs: {
-                  type: "email",
-                  placeholder: _vm.trans("data.userEmail"),
-                  required: ""
-                },
-                model: {
-                  value: _vm.user.email,
-                  callback: function($$v) {
-                    _vm.$set(_vm.user, "email", $$v)
-                  },
-                  expression: "user.email"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-field",
-            { attrs: { label: _vm.trans("data.userPassword") } },
-            [
-              _c("b-input", {
-                attrs: {
-                  type: "password",
-                  "password-reveal": "",
-                  placeholder: _vm.trans("data.userPassword"),
-                  required: ""
-                },
-                model: {
-                  value: _vm.user.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.user, "password", $$v)
-                  },
-                  expression: "user.password"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-checkbox",
-            {
-              attrs: { "true-value": "1", "false-value": "0" },
-              model: {
-                value: _vm.user.confirm,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "confirm", $$v)
-                },
-                expression: "user.confirm"
-              }
-            },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.trans("data.userConfirm")) +
-                  "\n            "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("footer", { staticClass: "modal-card-foot" }, [
-        _c(
-          "button",
-          {
-            staticClass: "button",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                _vm.$parent.close()
-              }
-            }
-          },
-          [_vm._v("Close")]
+          ]
         ),
         _vm._v(" "),
-        _c("button", { staticClass: "button is-primary" }, [_vm._v("Login")])
-      ])
-    ])
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.userUser")) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.userName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "name", $$v)
+                    },
+                    expression: "user.name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userEmail") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "email",
+                    placeholder: _vm.trans("data.userEmail"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "email", $$v)
+                    },
+                    expression: "user.email"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.userPassword") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "password",
+                    "password-reveal": "",
+                    placeholder: _vm.trans("data.userPassword"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.user.password,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "password", $$v)
+                    },
+                    expression: "user.password"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-checkbox",
+              {
+                attrs: { "true-value": "1", "false-value": "0" },
+                model: {
+                  value: _vm.user.confirm,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "confirm", $$v)
+                  },
+                  expression: "user.confirm"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("data.userConfirm")) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "button is-primary" }, [_vm._v("Login")])
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

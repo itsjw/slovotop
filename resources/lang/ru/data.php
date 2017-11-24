@@ -53,6 +53,7 @@ return [
     'roleStage'       => 'Доступ к этапам',
 
     // User
+    'userUser'        => 'Пользователь',
     'userLogin'       => 'Логин',
     'userEmail'       => 'Почта',
     'userPassword'    => 'Пароль',

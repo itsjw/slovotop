@@ -1,10 +1,14 @@
 <template>
     <form action="">
         <div class="modal-card">
-            <div class="notification is-warning" v-if="user_id == 0">
-                <button type="button" class="delete"></button>
+            <b-message title="Info" type="is-info" has-icon active="user_id == 0">
                 {{ trans('data.informUseAdd') }}
-            </div>
+            </b-message>
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    {{ trans('data.userUser') }}
+                </p>
+            </header>
             <section class="modal-card-body">
                 <b-field :label="trans('data.userName')">
                     <b-input
@@ -39,6 +43,8 @@
                             false-value="0">
                     {{ trans('data.userConfirm') }}
                 </b-checkbox>
+
+
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">Close</button>
