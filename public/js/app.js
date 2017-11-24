@@ -34140,32 +34140,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        /**
-         * close popup
-         */
-        closePopUp: function closePopUp() {
-            this.showAddUser = false;
-            this.showSearchName = false;
-            this.showSearchSurname = false;
-            this.showSearchEmail = false;
-            this.getUsers();
-        },
-
-
-        /**
-         * order by ID
-         */
-        orderByID: function orderByID() {
-            if (this.order === 'asc') {
-                this.queryParams.splice(0, 1, 'orderID:"desc"');
-                this.order = 'desc';
-            } else {
-                this.queryParams.splice(0, 1, 'orderID:"asc"');
-                this.order = 'asc';
-            }
-            this.getUsers();
-        },
-
 
         /**
          * search my type and value
@@ -34178,7 +34152,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (value) {
                 this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
             }
-            this.closePopUp();
         },
 
 
@@ -34462,51 +34435,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param id
          */
         addRole: function addRole(id) {
-            console.log(this.roles[id].id);
-        }
-    },
-
-    /**
-     * delete role
-     * @param id
-     */
-    deleteRole: function deleteRole(id) {
-        this.user.roles.splice(id, 1);
-    },
-
-
-    /**
-     * save user
-     */
-    saveUser: function saveUser() {
-        var _this3 = this;
-
-        var point = 'AddUserMutation';
-
-        if (this.user_id) {
-            point = 'UpdateUserMutation';
-        }
-
-        gql.setItem('v2', point, this.getUserData(this.user)).then(function (response) {
-            if (response.data.errors) {
-                notify.make('alert', response.data.errors[0].validation);
-            } else {
-                notify.make('success', response.data.data[point].notify, 2);
-                _this3.$emit('close');
+            if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
+                this.user.roles.push({
+                    'id': this.roles[id].id,
+                    'name': this.roles[id].name
+                });
             }
-        });
-    },
+            this.getCleanRole();
+        },
 
 
-    /**
-     * get user data
-     * @param user
-     * @return {string}
-     */
-    getUserData: function getUserData(user) {
+        /**
+         * delete role
+         * @param id
+         */
+        deleteRole: function deleteRole(id) {
+            this.user.roles.splice(id, 1);
+        },
 
-        return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
+
+        /**
+         * save user
+         */
+        saveUser: function saveUser() {},
+
+
+        /**
+         * get user data
+         * @param user
+         * @return {string}
+         */
+        getUserData: function getUserData(user) {
+
+            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
+        },
+
+
+        /**
+         * get clean role
+         * @param role
+         */
+        getCleanRole: function getCleanRole() {
+            var _vm = this;
+            this.cleanRole = [];
+            _.forEach(this.user.roles, function (value) {
+                _vm.cleanRole.push(value.id);
+            });
+        }
     }
+
 });
 
 /***/ }),
@@ -39444,24 +39421,19 @@ var render = function() {
       "div",
       { staticClass: "modal-card" },
       [
-        _c(
-          "b-message",
-          {
-            attrs: {
-              title: "Info",
-              type: "is-info",
-              "has-icon": "",
-              active: "user_id == 0"
-            }
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.trans("data.informUseAdd")) +
-                "\n        "
+        _vm.user_id == 0
+          ? _c(
+              "b-message",
+              { attrs: { title: "Info", type: "is-info", "has-icon": "" } },
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.trans("data.informUseAdd")) +
+                    "\n        "
+                )
+              ]
             )
-          ]
-        ),
+          : _vm._e(),
         _vm._v(" "),
         _c("header", { staticClass: "modal-card-head" }, [
           _c("p", { staticClass: "modal-card-title" }, [

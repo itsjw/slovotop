@@ -131,30 +131,6 @@
         },
 
         methods: {
-            /**
-             * close popup
-             */
-            closePopUp() {
-                this.showAddUser = false;
-                this.showSearchName = false;
-                this.showSearchSurname = false;
-                this.showSearchEmail = false;
-                this.getUsers();
-            },
-
-            /**
-             * order by ID
-             */
-            orderByID() {
-                if (this.order === 'asc') {
-                    this.queryParams.splice(0, 1, 'orderID:"desc"');
-                    this.order = 'desc';
-                } else {
-                    this.queryParams.splice(0, 1, 'orderID:"asc"');
-                    this.order = 'asc';
-                }
-                this.getUsers();
-            },
 
             /**
              * search my type and value
@@ -167,7 +143,6 @@
                 if (value) {
                     this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
                 }
-                this.closePopUp();
             },
 
             /**

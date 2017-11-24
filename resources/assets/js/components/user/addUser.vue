@@ -1,7 +1,7 @@
 <template>
     <form action="">
         <div class="modal-card">
-            <b-message title="Info" type="is-info" has-icon active="user_id == 0">
+            <b-message title="Info" type="is-info" has-icon v-if="user_id == 0">
                 {{ trans('data.informUseAdd') }}
             </b-message>
             <header class="modal-card-head">
@@ -127,47 +127,38 @@
              * @param id
              */
             addRole(id) {
-                console.log(this.roles[id].id);
-            }
-        },
+                if (this.cleanRole.indexOf(this.roles[id].id) == -1) {
+                    this.user.roles.push({
+                        'id': this.roles[id].id,
+                        'name': this.roles[id].name
+                    });
+                }
+                this.getCleanRole();
+            },
 
-        /**
-         * delete role
-         * @param id
-         */
-        deleteRole(id) {
-            this.user.roles.splice(id, 1);
-        },
+            /**
+             * delete role
+             * @param id
+             */
+            deleteRole(id) {
+                this.user.roles.splice(id, 1);
+            },
 
-        /**
-         * save user
-         */
-        saveUser() {
-            let point = 'AddUserMutation';
+            /**
+             * save user
+             */
+            saveUser() {
 
-            if (this.user_id) {
-                point = 'UpdateUserMutation';
-            }
+            },
 
-            gql.setItem('v2', point, this.getUserData(this.user))
-                .then(response => {
-                    if (response.data.errors) {
-                        notify.make('alert', response.data.errors[0].validation);
-                    } else {
-                        notify.make('success', response.data.data[point].notify, 2);
-                        this.$emit('close');
-                    }
-                });
-        },
+            /**
+             * get user data
+             * @param user
+             * @return {string}
+             */
+            getUserData(user) {
 
-        /**
-         * get user data
-         * @param user
-         * @return {string}
-         */
-        getUserData(user) {
-
-            return `
+                return `
                     id: ${this.user_id == 0 ? this.user_id : user.id},
                     name: "${user.name || ''}",
                     email: "${user.email || ''}",
@@ -176,7 +167,21 @@
                     role: "${this.cleanRole || ''}",
                     confirm: ${parseInt(user.confirm)},
                     password: "${user.password || ''}"`;
+            },
+
+            /**
+             * get clean role
+             * @param role
+             */
+            getCleanRole() {
+                let _vm = this;
+                this.cleanRole = [];
+                _.forEach(this.user.roles, function (value) {
+                    _vm.cleanRole.push(value.id);
+                });
+            }
         },
+
 
     }
 </script>
