@@ -187,7 +187,12 @@
              */
             editUser() {
                 if (this.selectUser.length > 0) {
-                    this.showAddUser = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: addUser,
+                        props: this.selectUser[0],
+                        hasModalCard: false
+                    });
                 }
             },
 

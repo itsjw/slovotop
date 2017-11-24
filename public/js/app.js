@@ -34201,7 +34201,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editUser: function editUser() {
             if (this.selectUser.length > 0) {
-                this.showAddUser = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_0__addUser___default.a,
+                    props: this.selectUser[0],
+                    hasModalCard: false
+                });
             }
         },
 
@@ -34406,21 +34411,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        if (this.user_id > 0) {
-            this.getUser(this.user_id);
+        if (this.userProp.id > 0) {
+            this.user = this.userProp;
         }
         this.getRoles();
     },
 
 
-    props: {
-        user_id: {
-            default: 0
-        }
-    },
+    props: {},
 
     data: function data() {
         return {
+            userProp: this.$parent.props || 0,
             showRoles: false,
             user: {
                 confirm: 1,
@@ -34434,26 +34436,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         /**
-         * get user
-         * @param id
-         */
-        getUser: function getUser(id) {
-            var _this = this;
-
-            Api.getPost('v1', 'getUsers', { id: id }).then(function (response) {
-                _this.user = response.data.data[0];
-            });
-        },
-
-
-        /**
          * get roles
          */
         getRoles: function getRoles() {
-            var _this2 = this;
+            var _this = this;
 
             Api.getPost('v1', 'getRoles').then(function (response) {
-                _this2.roles = response.data.data;
+                _this.roles = response.data.data;
             });
         },
 
@@ -34496,7 +34485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         getUserData: function getUserData(user) {
 
-            return '\n                id: ' + (this.user_id == 0 ? this.user_id : user.id) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
+            return '\n                id: ' + (user.id || 0) + ',\n                name: "' + (user.name || '') + '",\n                email: "' + (user.email || '') + '",\n                up_price: ' + (user.up_price || 0) + ',\n                note: "' + (_.unescape(user.note) || '') + '",\n                role: "' + (this.cleanRole || '') + '",\n                confirm: ' + parseInt(user.confirm) + ',\n                password: "' + (user.password || '') + '"';
         },
 
 
@@ -39450,7 +39439,7 @@ var render = function() {
       "div",
       { staticClass: "modal-card" },
       [
-        _vm.user_id == 0
+        _vm.userProp == 0
           ? _c(
               "b-message",
               { attrs: { title: "Info", type: "is-info", "has-icon": "" } },
@@ -39651,7 +39640,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "b-field",
-              { attrs: { label: _vm.trans("data.userEmail") } },
+              { attrs: { label: _vm.trans("data.userUpPrice") } },
               [
                 _c("b-input", {
                   attrs: {

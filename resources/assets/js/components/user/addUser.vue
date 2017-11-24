@@ -1,7 +1,7 @@
 <template>
     <form action="">
         <div class="modal-card">
-            <b-message title="Info" type="is-info" has-icon v-if="user_id == 0">
+            <b-message title="Info" type="is-info" has-icon v-if="userProp == 0">
                 {{ trans('data.informUseAdd') }}
             </b-message>
             <header class="modal-card-head">
@@ -73,7 +73,7 @@
 
                 </section>
 
-                <b-field :label="trans('data.userEmail')">
+                <b-field :label="trans('data.userUpPrice')">
                     <b-input
                             type="number"
                             v-model="user.up_price"
@@ -104,20 +104,17 @@
     export default {
 
         mounted() {
-            if (this.user_id > 0) {
-                this.getUser(this.user_id);
+            if (this.userProp.id > 0) {
+                this.user = this.userProp;
             }
             this.getRoles();
         },
 
-        props: {
-            user_id: {
-                default: 0,
-            }
-        },
+        props: {},
 
         data() {
             return {
+                userProp: this.$parent.props || 0,
                 showRoles: false,
                 user: {
                     confirm: 1,
@@ -129,17 +126,6 @@
         },
 
         methods: {
-            /**
-             * get user
-             * @param id
-             */
-            getUser(id) {
-                Api.getPost('v1', 'getUsers', {id: id})
-                    .then(response => {
-                        this.user = response.data.data[0];
-                    })
-            },
-
             /**
              * get roles
              */
@@ -188,7 +174,7 @@
             getUserData(user) {
 
                 return `
-                    id: ${this.user_id == 0 ? this.user_id : user.id},
+                    id: ${user.id || 0},
                     name: "${user.name || ''}",
                     email: "${user.email || ''}",
                     up_price: ${user.up_price || 0},
