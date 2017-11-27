@@ -30,6 +30,7 @@ class User extends Resource
             'roles'      => $this->transformRoles($this->roles),
             'created_at' => $this->created_at->format('d-m-Y H:m:s'),
             'up_price'   => $this->up_price,
+            'note'       => $this->note,
         ];
     }
 
