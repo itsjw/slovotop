@@ -61,15 +61,22 @@
              * save subject
              */
             saveSubject() {
-                gql.setItem('v2', 'AddTaskSubjectMutation', this.getSubjectData(this.subject))
+                Api.post('v1', 'saveSubject', this.getSubjectData(this.subject))
                     .then(response => {
-                        if (response.data.errors) {
-                            notify.make('alert', response.data.errors[0].validation);
-                        } else {
-                            notify.make('success', response.data.data.AddTaskSubjectMutation.notify, 2);
-                            this.$emit('close');
-                        }
-                    });
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.$parent.close();
+                        this.$root.$children[0].getSubjects();
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
+                    })
             },
 
             /**
@@ -78,7 +85,7 @@
              */
             getSubjectData(subject) {
                 return {
-                    id: this.subject_id == 0 ? this.subject_id : subject.id,
+                    id: subject.id || 0,
                     name: subject.name || '',
                     price: subject.price || 0
                 };

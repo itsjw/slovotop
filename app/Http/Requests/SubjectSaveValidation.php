@@ -13,7 +13,7 @@ class SubjectSaveValidation extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class SubjectSaveValidation extends FormRequest
     {
         return [
             'name'  => 'required',
-            'price' => 'required|numeric|not_in:0',
+            'price' => 'required|integer|not_in:0|min:0',
         ];
     }
 }

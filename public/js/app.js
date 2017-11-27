@@ -31837,13 +31837,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveSubject: function saveSubject() {
             var _this = this;
 
-            gql.setItem('v2', 'AddTaskSubjectMutation', this.getSubjectData(this.subject)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data.AddTaskSubjectMutation.notify, 2);
-                    _this.$emit('close');
-                }
+            Api.post('v1', 'saveSubject', this.getSubjectData(this.subject)).then(function (response) {
+                _this.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this.$parent.close();
+                _this.$root.$children[0].getSubjects();
+            }).catch(function (error) {
+                _this.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -31854,7 +31860,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         getSubjectData: function getSubjectData(subject) {
             return {
-                id: this.subject_id == 0 ? this.subject_id : subject.id,
+                id: subject.id || 0,
                 name: subject.name || '',
                 price: subject.price || 0
             };
