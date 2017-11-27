@@ -146,7 +146,7 @@
                         parent: this,
                         component: addProject,
                         hasModalCard: true,
-                        props: selectProject[0]
+                        props: this.selectProject[0]
                     });
                     this.selectProject = [];
                 }

@@ -27,7 +27,9 @@
                 </b-field>
 
                 <b-field :label="trans('data.projectUser')" v-if="isAdmin">
-                    <b-select :placeholder="trans('data.projectUser')" icon-pack="fa" icon="user" required>
+                    <b-select :placeholder="trans('data.projectUser')"
+                              v-model="project.user.id"
+                              icon-pack="fa" icon="user" required>
                         <option
                                 v-for="val in users"
                                 :value="val.id"
@@ -50,11 +52,11 @@
     export default {
 
         mounted() {
-            if (this.project_id > 0) {
-                this.getProject(this.project_id);
-            }
             this.getUsers();
 
+            if (this.projectProp.id > 0) {
+                this.project = _.cloneDeep(this.projectProp);
+            }
         },
 
         props: {
@@ -68,7 +70,10 @@
 
         data() {
             return {
-                project: [],
+                projectProp: this.$parent.props || 0,
+                project: {
+                    user: {}
+                },
                 users: []
             }
         },

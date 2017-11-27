@@ -35794,7 +35794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     parent: this,
                     component: __WEBPACK_IMPORTED_MODULE_0__addProject_vue___default.a,
                     hasModalCard: true,
-                    props: selectProject[0]
+                    props: this.selectProject[0]
                 });
                 this.selectProject = [];
             }
@@ -35939,13 +35939,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        if (this.project_id > 0) {
-            this.getProject(this.project_id);
-        }
         this.getUsers();
+
+        if (this.projectProp.id > 0) {
+            this.project = _.cloneDeep(this.projectProp);
+        }
     },
 
 
@@ -35960,7 +35963,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            project: [],
+            projectProp: this.$parent.props || 0,
+            project: {
+                user: {}
+            },
             users: []
         };
     },
@@ -36116,6 +36122,13 @@ var render = function() {
                           "icon-pack": "fa",
                           icon: "user",
                           required: ""
+                        },
+                        model: {
+                          value: _vm.project.user.id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.project.user, "id", $$v)
+                          },
+                          expression: "project.user.id"
                         }
                       },
                       _vm._l(_vm.users, function(val) {
