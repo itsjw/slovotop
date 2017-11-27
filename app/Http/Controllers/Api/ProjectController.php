@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ProjectSaveValidation;
 use App\Models\Project;
 use App\Http\Resources\Projects\Project as ProjectResource;
 use Illuminate\Http\Request;
@@ -31,11 +32,21 @@ class ProjectController extends Controller
     }
 
     /**
+     * @param ProjectSaveValidation $request
      *
+     * @return array
      */
-    public function saveProject()
+    public function saveProject(ProjectSaveValidation $request)
     {
+        $project = Project::findOrNew($request->id);
 
+        $project->name = $request->name;
+        $project->site = $request->site;
+        $project->user_id = $request->user;
+
+        $project->save();
+
+        return ['success' => trans('data.notifyOK')];
     }
 
     /**

@@ -130,7 +130,11 @@
              */
             addProject() {
                 this.selectProject = [];
-                this.showAddProject = true;
+                this.$modal.open({
+                    parent: this,
+                    component: addProject,
+                    hasModalCard: true,
+                });
             },
 
             /**
@@ -138,7 +142,13 @@
              */
             editProject() {
                 if (this.selectProject.length > 0) {
-                    this.showAddProject = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: addProject,
+                        hasModalCard: true,
+                        props: selectProject[0]
+                    });
+                    this.selectProject = [];
                 }
             },
 

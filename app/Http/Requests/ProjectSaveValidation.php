@@ -1,15 +1,14 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class SubjectSaveValidation
+ * Class ProjectSaveValidation
  * @package App\Http\Requests
  */
-class SubjectSaveValidation extends FormRequest
+class ProjectSaveValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +28,20 @@ class SubjectSaveValidation extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'price' => 'required|integer|not_in:0|min:0',
+            'name' => 'required',
+            'user' => 'required', Rule::unique('user_roles')->where(function ($query) {
+                $query->where('role_id', 1);
+            }),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'user.unique' => trans('data.projNoAdmin'),
         ];
     }
 }

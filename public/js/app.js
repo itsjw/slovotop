@@ -35777,7 +35777,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         addProject: function addProject() {
             this.selectProject = [];
-            this.showAddProject = true;
+            this.$modal.open({
+                parent: this,
+                component: __WEBPACK_IMPORTED_MODULE_0__addProject_vue___default.a,
+                hasModalCard: true
+            });
         },
 
 
@@ -35786,7 +35790,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editProject: function editProject() {
             if (this.selectProject.length > 0) {
-                this.showAddProject = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_0__addProject_vue___default.a,
+                    hasModalCard: true,
+                    props: selectProject[0]
+                });
+                this.selectProject = [];
             }
         },
 
