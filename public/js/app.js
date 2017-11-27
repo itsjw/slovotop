@@ -31692,6 +31692,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editSubject: function editSubject() {
             if (this.selectSubject.length > 0) {
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_0__addSubject_vue___default.a,
+                    hasModalCard: true,
+                    props: this.selectSubject[0]
+                });
                 this.selectSubject = [];
             }
         },
@@ -31810,20 +31816,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        if (this.subject_id > 0) {
-            this.getSubject(this.subject_id);
+        if (this.subjectProp.id > 0) {
+            this.subject = _.cloneDeep(this.subjectProp);
         }
     },
 
 
-    props: {
-        subject_id: {
-            default: 0
-        }
-    },
+    props: {},
 
     data: function data() {
         return {
+            subjectProp: this.$parent.props || 0,
             subject: {}
         };
     },

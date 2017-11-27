@@ -38,19 +38,16 @@
     export default {
 
         mounted() {
-            if (this.subject_id > 0) {
-                this.getSubject(this.subject_id);
+            if (this.subjectProp.id > 0) {
+                this.subject = _.cloneDeep(this.subjectProp);
             }
         },
 
-        props: {
-            subject_id: {
-                default: 0
-            }
-        },
+        props: {},
 
         data() {
             return {
+                subjectProp: this.$parent.props || 0,
                 subject: {}
             }
         },

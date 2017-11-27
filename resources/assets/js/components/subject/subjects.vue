@@ -136,6 +136,12 @@
              */
             editSubject() {
                 if (this.selectSubject.length > 0) {
+                    this.$modal.open({
+                        parent: this,
+                        component: addSubject,
+                        hasModalCard: true,
+                        props: this.selectSubject[0]
+                    });
                     this.selectSubject = [];
                 }
             },
