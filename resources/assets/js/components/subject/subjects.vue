@@ -11,7 +11,7 @@
 
                 <a class="navbar-item" @click="addSubject()">
                     <span class="icon">
-                        <i class="fa fa-user-plus"></i>
+                        <i class="fa fa-align-justify"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
