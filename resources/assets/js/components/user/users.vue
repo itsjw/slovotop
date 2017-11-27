@@ -30,7 +30,7 @@
                     <span>{{ trans('data.approve') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteUser()">
+                <a class="navbar-item" @click="confirmDeleteUser()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -202,14 +202,14 @@
             /**
              * popup delete user
              */
-            deleteUser() {
+            confirmDeleteUser() {
                 if (this.selectUser.length > 0) {
 
                     this.$dialog.confirm({
                         cancelText: this.trans('data.no'),
                         confirmText: this.trans('data.yes'),
                         message: this.trans('data.deleteAsk'),
-                        onConfirm: () => this.deletedUser()
+                        onConfirm: () => this.deleteUser()
                     });
                 }
             },
@@ -217,7 +217,7 @@
             /**
              * delete user
              */
-            deletedUser() {
+            deleteUser() {
                 Api.post('v1', 'deleteUser', {items: this.selectUser})
                     .then(response => {
                         this.$toast.open({
@@ -232,12 +232,13 @@
              * approve user
              */
             approveUser() {
-                let select;
                 if (this.selectUser.length > 0) {
-                    select = ['items:"' + this.selectUser + '"'];
-                    gql.setItem('v2', 'ApproveUserMutation', select)
+                    Api.post('v1', 'approveUser', {items: this.selectUser})
                         .then(response => {
-                            notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
+                            this.$toast.open({
+                                message: response.data.success,
+                                type: 'is-success'
+                            });
                             this.getUsers();
                         })
                 }

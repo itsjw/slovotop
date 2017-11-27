@@ -93,6 +93,24 @@ class UserController extends Controller
 
 
     /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function approveUser(Request $request)
+    {
+        foreach ($request->items as $item) {
+
+            $user = User::find($item['id']);
+            $user->confirm = $user->confirm ? false : true;
+            $user->save();
+
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
+
+    /**
      * @param $roles
      *
      * @return array
