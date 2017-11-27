@@ -204,7 +204,6 @@
              */
             confirmDeleteUser() {
                 if (this.selectUser.length > 0) {
-
                     this.$dialog.confirm({
                         cancelText: this.trans('data.no'),
                         confirmText: this.trans('data.yes'),

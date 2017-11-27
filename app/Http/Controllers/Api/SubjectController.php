@@ -55,7 +55,9 @@ class SubjectController extends Controller
      */
     public function deleteSubject(Request $request)
     {
-        TaskSubject::whereIn('id', $request->items)->delete();
+        foreach ($request->items as $item) {
+            TaskSubject::find($item['id'])->delete();
+        }
 
         return ['success' => trans('data.notifyOK')];
     }

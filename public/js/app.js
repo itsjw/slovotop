@@ -31704,21 +31704,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * delete subject
+         * popup delete subject
          */
-        deleteSubject: function deleteSubject() {
+        confirmDeleteSubject: function confirmDeleteSubject() {
             var _this2 = this;
 
             if (this.selectSubject.length > 0) {
-                if (confirm('Удалить?')) {
-                    var select = ['items:"' + this.selectSubject + '"'];
-
-                    gql.setItem('v2', 'DeleteTaskSubjectMutation', select).then(function (response) {
-                        notify.make('success', response.data.data.DeleteTaskSubjectMutation.notify, 1);
-                        _this2.getSubjects();
-                    });
-                }
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteSubject();
+                    }
+                });
             }
+        },
+
+
+        /**
+         * delete subject
+         */
+        deleteSubject: function deleteSubject() {
+            var _this3 = this;
+
+            Api.post('v1', 'deleteSubject', { items: this.selectSubject }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getSubjects();
+            });
         }
     }
 });
@@ -32052,7 +32068,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteSubject()
+                    _vm.confirmDeleteSubject()
                   }
                 }
               },
@@ -34193,7 +34209,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             if (this.selectUser.length > 0) {
-
                 this.$dialog.confirm({
                     cancelText: this.trans('data.no'),
                     confirmText: this.trans('data.yes'),

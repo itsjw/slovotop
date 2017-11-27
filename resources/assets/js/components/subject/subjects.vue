@@ -23,7 +23,7 @@
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteSubject()">
+                <a class="navbar-item" @click="confirmDeleteSubject()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -147,20 +147,31 @@
             },
 
             /**
+             * popup delete subject
+             */
+            confirmDeleteSubject() {
+                if (this.selectSubject.length > 0) {
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deleteSubject()
+                    });
+                }
+            },
+
+            /**
              * delete subject
              */
             deleteSubject() {
-                if (this.selectSubject.length > 0) {
-                    if (confirm('Удалить?')) {
-                        let select = ['items:"' + this.selectSubject + '"'];
-
-                        gql.setItem('v2', 'DeleteTaskSubjectMutation', select)
-                            .then(response => {
-                                notify.make('success', response.data.data.DeleteTaskSubjectMutation.notify, 1);
-                                this.getSubjects();
-                            })
-                    }
-                }
+                Api.post('v1', 'deleteSubject', {items: this.selectSubject})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getSubjects();
+                    })
             }
         }
     }
