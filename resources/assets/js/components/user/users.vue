@@ -152,11 +152,11 @@
              */
             getUsers() {
                 this.tableLoading = true;
-                this.selectUser = [];
                 Api.post('v1', 'getUsers')
                     .then(response => {
                         this.users = response.data.data;
                         this.tableLoading = false;
+                        this.selectUser = [];
                     })
             },
 
@@ -200,20 +200,32 @@
             },
 
             /**
-             * delete user
+             * popup delete user
              */
             deleteUser() {
-                let select;
                 if (this.selectUser.length > 0) {
-                    if (confirm('Удалить?')) {
-                        select = ['items:"' + this.selectUser + '"'];
-                    }
-                    gql.setItem('v2', 'DeleteUserMutation', select)
-                        .then(response => {
-                            notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
-                            this.getUsers();
-                        })
+
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deletedUser()
+                    });
                 }
+            },
+
+            /**
+             * delete user
+             */
+            deletedUser() {
+                Api.post('v1', 'deleteUser', {items: this.selectUser})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getUsers();
+                    })
             },
 
             /**

@@ -34184,10 +34184,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.tableLoading = true;
-            this.selectUser = [];
             Api.post('v1', 'getUsers').then(function (response) {
                 _this.users = response.data.data;
                 _this.tableLoading = false;
+                _this.selectUser = [];
             });
         },
 
@@ -34235,21 +34235,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * delete user
+         * popup delete user
          */
         deleteUser: function deleteUser() {
             var _this2 = this;
 
-            var select = void 0;
             if (this.selectUser.length > 0) {
-                if (confirm('Удалить?')) {
-                    select = ['items:"' + this.selectUser + '"'];
-                }
-                gql.setItem('v2', 'DeleteUserMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteUserMutation.notify, 1);
-                    _this2.getUsers();
+
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deletedUser();
+                    }
                 });
             }
+        },
+
+
+        /**
+         * delete user
+         */
+        deletedUser: function deletedUser() {
+            var _this3 = this;
+
+            Api.post('v1', 'deleteUser', { items: this.selectUser }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getUsers();
+            });
         },
 
 
@@ -34257,14 +34274,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * approve user
          */
         approveUser: function approveUser() {
-            var _this3 = this;
+            var _this4 = this;
 
             var select = void 0;
             if (this.selectUser.length > 0) {
                 select = ['items:"' + this.selectUser + '"'];
                 gql.setItem('v2', 'ApproveUserMutation', select).then(function (response) {
                     notify.make('success', response.data.data.ApproveUserMutation.notify, 1);
-                    _this3.getUsers();
+                    _this4.getUsers();
                 });
             }
         }

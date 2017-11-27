@@ -19,6 +19,7 @@ return [
     'write'           => 'Запись',
     'hide'            => 'Видимость',
     'access'          => 'Доступ',
+    'deleteAsk'       => 'Удалить ?',
 
     // notify
     'notifyOK'        => 'Успешно',

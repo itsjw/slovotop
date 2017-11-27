@@ -69,6 +69,28 @@ class UserController extends Controller
         return ['success' => trans('data.notifyOK')];
     }
 
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function deleteUser(Request $request)
+    {
+        foreach ($request->items as $item) {
+
+            $user = User::find($item['id']);
+
+            if (!$user->hasRole(1)) {
+                $user->delete();
+                $user->roles()->delete();
+            }
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
+
+
     /**
      * @param $roles
      *
