@@ -34884,6 +34884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this2.$parent.close();
+                _this2.$root.$children[0].getUsers();
             }).catch(function (error) {
                 _this2.$toast.open({
                     duration: 5000,
