@@ -32504,6 +32504,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('addRole', __webpack_require__(60));
 Vue.component('accessRole', __webpack_require__(63));
@@ -32518,36 +32541,14 @@ Vue.component('accessRole', __webpack_require__(63));
 
     data: function data() {
         return {
-            showAddRole: false,
-            showAccessRole: false,
-            roles: {},
-            selectRole: []
+            roles: [],
+            selectRole: [],
+            tableLoading: false
         };
     },
 
 
     methods: {
-        /**
-         * close popup
-         */
-        closePopUp: function closePopUp() {
-            this.showAccessRole = false;
-            this.showAddRole = false;
-            this.getRoles();
-        },
-
-
-        /**
-         * select roles
-         */
-        selectRoles: function selectRoles(id) {
-            if (this.selectRole.indexOf(id) == -1) {
-                this.selectRole.push(id);
-            } else {
-                this.selectRole.splice(this.selectRole.indexOf(id), 1);
-            }
-        },
-
 
         /**
          * get all roles
@@ -32555,9 +32556,11 @@ Vue.component('accessRole', __webpack_require__(63));
         getRoles: function getRoles() {
             var _this = this;
 
-            this.selectRole = [];
-            gql.getItem('v2', 'RoleQuery', false, 'role').then(function (response) {
-                _this.roles = response.data.data.RoleQuery;
+            this.tableLoading = true;
+            Api.post('v1', 'getRoles').then(function (response) {
+                _this.roles = response.data.data;
+                _this.selectRole = [];
+                _this.tableLoading = false;
             });
         },
 
@@ -33730,237 +33733,297 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.accessMenu == 2
-        ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
-            _c("ul", [
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.addRole()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("security")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.editRole()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.editAccess()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("fingerprint")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.access")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.deleteRole()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("delete")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
-                ]
-              )
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("table", [
-        _c("thead", [
-          _c(
-            "tr",
-            { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-            [
-              _c("th", { attrs: { width: "1%" } }, [
-                _c(
-                  "i",
-                  {
-                    staticClass: "ui-icon size-3 ui-color col-green hover",
-                    on: {
-                      click: function($event) {
-                        _vm.getRoles()
-                      }
-                    }
-                  },
-                  [_vm._v("autorenew")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "30%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.roleName")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "30%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.roleCount")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "15%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.created_at")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "15%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.updated_at")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.roles, function(val, key) {
-            return _c(
-              "tr",
+  return _c("div", [
+    _vm.accessMenu == 2
+      ? _c("nav", { staticClass: "navbar is-primary" }, [
+          _c("div", { staticClass: "navbar-start" }, [
+            _c(
+              "a",
               {
-                staticClass: "hover ui-fnt light size-1 ui-color col-black",
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.selectRoles(val.id)
+                    _vm.getRoles()
+                  }
+                }
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.addRole()
                   }
                 }
               },
               [
-                _c("td", [
-                  _vm.accessMenu == 2
-                    ? _c("div", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selectRole,
-                              expression: "selectRole"
-                            }
-                          ],
-                          attrs: { type: "checkbox", id: key },
-                          domProps: {
-                            value: val.id,
-                            checked: Array.isArray(_vm.selectRole)
-                              ? _vm._i(_vm.selectRole, val.id) > -1
-                              : _vm.selectRole
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.selectRole,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = val.id,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.selectRole = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.selectRole = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.selectRole = $$c
-                              }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", {
-                          staticClass: "ui-checkbox ui-color col-green hover",
-                          attrs: { for: key }
-                        })
-                      ])
-                    : _vm._e()
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(key + 1))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.editRole()
+                  }
+                }
+              },
+              [
+                _vm._m(2),
                 _vm._v(" "),
-                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.editAccess()
+                  }
+                }
+              },
+              [
+                _vm._m(3),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.count))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.access")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.deleteRole()
+                  }
+                }
+              },
+              [
+                _vm._m(4),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.created_at))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.updated_at))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.id))])
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
               ]
             )
-          })
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "section",
+      { staticClass: "ui-mt-2" },
+      [
+        _c(
+          "b-table",
+          {
+            attrs: {
+              data: _vm.roles,
+              hoverable: true,
+              loading: _vm.tableLoading,
+              narrowed: true,
+              paginated: true,
+              "per-page": 20,
+              "checked-rows": _vm.selectRole,
+              checkable: ""
+            },
+            on: {
+              "update:checkedRows": function($event) {
+                _vm.selectRole = $event
+              }
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "name",
+                          label: _vm.trans("data.roleName"),
+                          sortable: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "email",
+                          label: _vm.trans("data.roleCount"),
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.count) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "tasksCount",
+                          label: _vm.trans("data.created_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.created_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "lastLogin",
+                          label: _vm.trans("data.updated_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.updated_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "id",
+                          label: "ID",
+                          width: "40",
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.id) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              }
+            ])
+          },
+          [
+            _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+              _c("section", { staticClass: "section" }, [
+                _c(
+                  "div",
+                  { staticClass: "content has-text-grey has-text-centered" },
+                  [
+                    _c(
+                      "p",
+                      [
+                        _c("b-icon", {
+                          attrs: {
+                            icon: "sentiment_very_dissatisfied",
+                            size: "is-large"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Nothing here.")])
+                  ]
+                )
+              ])
+            ])
+          ],
+          2
         )
-      ]),
-      _vm._v(" "),
-      _vm.showAddRole
-        ? _c("add-role", {
-            attrs: { role_id: _vm.selectRole[0] },
-            on: {
-              close: function($event) {
-                _vm.closePopUp()
-              }
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showAccessRole
-        ? _c("access-role", {
-            attrs: { role_id: _vm.selectRole[0] },
-            on: {
-              close: function($event) {
-                _vm.closePopUp()
-              }
-            }
-          })
-        : _vm._e()
-    ],
-    1
-  )
+      ],
+      1
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-refresh" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-user-plus" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-thumbs-up" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-trash" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
