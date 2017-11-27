@@ -17,7 +17,24 @@ export default class Query {
      * @param params
      * @return {*|AxiosPromise}
      */
-    getPost(point, action, params) {
+    post(point, action, params) {
         return axios.post(this[point] + '/' + action, params)
+    };
+
+    /**
+     * serialize errors
+     * @param errors
+     * @returns {string}
+     */
+    errorSerializer(errors) {
+        let data = '<ul>';
+
+        for (let i in errors) {
+            data += '<li>' + errors[i] + '</li>';
+        }
+
+        data += '</ul>';
+
+        return data;
     }
 }

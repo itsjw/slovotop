@@ -16,6 +16,8 @@ $router->group(['namespace' => 'Crm', 'prefix' => 'api', 'middleware' => ['auth'
 $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']], function (Router $router) {
 
     $router->post('getUsers', 'UserController@getUsers');
+    $router->post('saveUser', 'UserController@saveUser');
+
     $router->post('getRoles', 'RoleController@getRoles');
 
 });

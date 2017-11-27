@@ -1,5 +1,5 @@
 <template>
-    <form action="">
+    <form @submit.prevent="saveUser()">
         <div class="modal-card">
             <b-message title="Info" type="is-info" has-icon v-if="userProp == 0">
                 {{ trans('data.informUseAdd') }}
@@ -54,7 +54,7 @@
                                     <b-icon pack="fa" icon="angle-up"></b-icon>
                                 </button>
 
-                                <b-dropdown-item v-for="(val,id) in roles" :key=val.id  @click="addRole(id)">
+                                <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">
                                     {{ val.name }}
                                 </b-dropdown-item>
                             </b-dropdown>
@@ -88,7 +88,7 @@
             </section>
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
-                <button class="button is-primary">{{ trans('data.save') }}</button>
+                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
             </footer>
         </div>
     </form>
@@ -131,7 +131,7 @@
              * get roles
              */
             getRoles() {
-                Api.getPost('v1', 'getRoles')
+                Api.post('v1', 'getRoles')
                     .then(response => {
                         this.roles = response.data.data;
                     })
@@ -164,7 +164,21 @@
              * save user
              */
             saveUser() {
-
+                Api.post('v1', 'saveUser', this.getUserData(this.user))
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.$parent.close();
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
+                    })
             },
 
             /**
@@ -174,15 +188,16 @@
              */
             getUserData(user) {
 
-                return `
-                    id: ${user.id || 0},
-                    name: "${user.name || ''}",
-                    email: "${user.email || ''}",
-                    up_price: ${user.up_price || 0},
-                    note: "${_.unescape(user.note) || ''}",
-                    role: "${this.cleanRole || ''}",
-                    confirm: ${parseInt(user.confirm)},
-                    password: "${user.password || ''}"`;
+                return {
+                    id: user.id || 0,
+                    name: user.name || '',
+                    email: user.email || '',
+                    up_price: user.up_price || 0,
+                    note: _.unescape(user.note) || '',
+                    role: this.cleanRole || '',
+                    confirm: parseInt(user.confirm),
+                    password: user.password || ''
+                };
             },
 
             /**

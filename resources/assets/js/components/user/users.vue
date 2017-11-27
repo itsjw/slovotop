@@ -72,9 +72,11 @@
                     </b-table-column>
 
                     <b-table-column :label="trans('data.userRole')">
-                        <span class="tag is-warning" v-for="(val,key) in props.row.roles">
-                            {{ val.name }}
-                        </span>
+                        <div class="tags">
+                            <span class="tag is-warning" v-for="(val,key) in props.row.roles">
+                                {{ val.name }}
+                            </span>
+                        </div>
                     </b-table-column>
 
                     <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
@@ -151,7 +153,7 @@
             getUsers() {
                 this.tableLoading = true;
                 this.selectUser = [];
-                Api.getPost('v1', 'getUsers')
+                Api.post('v1', 'getUsers')
                     .then(response => {
                         this.users = response.data.data;
                         this.tableLoading = false;
@@ -178,7 +180,7 @@
                 this.$modal.open({
                     parent: this,
                     component: addUser,
-                    hasModalCard: true
+                    hasModalCard: true,
                 });
             },
 
@@ -191,8 +193,9 @@
                         parent: this,
                         component: addUser,
                         props: this.selectUser[0],
-                        hasModalCard: false
+                        hasModalCard: true,
                     });
+                    this.selectUser = [];
                 }
             },
 
