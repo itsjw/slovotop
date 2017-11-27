@@ -33,8 +33,7 @@
                             type="password"
                             v-model="user.password"
                             password-reveal
-                            :placeholder="trans('data.userPassword')"
-                            required>
+                            :placeholder="trans('data.userPassword')">
                     </b-input>
                 </b-field>
 

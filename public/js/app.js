@@ -34823,7 +34823,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -35050,8 +35049,7 @@ var render = function() {
                     attrs: {
                       type: "password",
                       "password-reveal": "",
-                      placeholder: _vm.trans("data.userPassword"),
-                      required: ""
+                      placeholder: _vm.trans("data.userPassword")
                     },
                     model: {
                       value: _vm.user.password,

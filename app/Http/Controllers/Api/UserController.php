@@ -42,7 +42,7 @@ class UserController extends Controller
     /**
      * @param UserSaveValidation $request
      *
-     * @return UserResourse
+     * @return array
      */
     public function saveUser(UserSaveValidation $request)
     {
@@ -58,10 +58,11 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
         } else {
             $pass = str_random(8);
-            $user->password = bcrypt($pass);
+            $user->password = $user->password ?? bcrypt($pass);
         }
 
         $user->save();
+        $user->roles()->delete();
         $user->roles()->createMany($this->cleanRole($request->role));
 
         // $this->dispatch(new SendUserMailJob($user, $pass)); TODO send mail

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserSaveValidation extends FormRequest
 {
@@ -25,7 +26,7 @@ class UserSaveValidation extends FormRequest
     {
         return [
             'name'     => 'required',
-            'email'    => 'required|email|unique:users',
+            'email'    => 'required|email', Rule::unique('users')->ignore($this['id']),
             'role'     => 'required',
             'up_price' => 'integer',
         ];
