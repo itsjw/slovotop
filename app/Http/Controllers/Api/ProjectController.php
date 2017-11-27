@@ -8,8 +8,17 @@ use App\Http\Resources\Projects\Project as ProjectResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class ProjectController
+ * @package App\Http\Controllers\Api
+ */
 class ProjectController extends Controller
 {
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function getProjects(Request $request)
     {
         $project = Project::query();
