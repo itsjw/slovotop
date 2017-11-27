@@ -35939,11 +35939,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -35965,9 +35960,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            project: {
-                user: {}
-            },
+            project: [],
             users: []
         };
     },
@@ -35992,22 +35985,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
-            gql.getItem('v2', 'UserQuery', false, 'user').then(function (response) {
-                _this.users = response.data.data.UserQuery;
-            });
-        },
-
-
-        /**
-         * get project
-         * @param id
-         */
-        getProject: function getProject(id) {
-            var _this2 = this;
-
-            gql.getItem('v2', 'ProjectQuery', ['id:' + id], 'project').then(function (response) {
-                _this2.project = response.data.data.ProjectQuery[0];
-                _this2.project.site = _.unescape(response.data.data.ProjectQuery[0].site);
+            Api.post('v1', 'getUsers').then(function (response) {
+                _this.users = response.data.data;
             });
         },
 
@@ -36016,14 +35995,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * save project
          */
         saveProject: function saveProject() {
-            var _this3 = this;
+            var _this2 = this;
 
             gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
                     notify.make('success', response.data.data.AddProjectMutation.notify, 2);
-                    _this3.$emit('close');
+                    _this2.$emit('close');
                 }
             });
         },
@@ -36035,7 +36014,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @return {string}
          */
         getProjectData: function getProjectData(project) {
-            return '\n                id: ' + (this.project_id == 0 ? this.project_id : project.id) + ',\n                name: "' + (project.name || '') + '",\n                site: "' + (_.escape(project.site) || '') + '",\n                user_id: ' + this.getUser;
+            return {
+                id: project.id || 0,
+                name: project.name || '',
+                site: _.escape(project.site) || '',
+                user: this.getUser()
+            };
         }
     }
 
@@ -36049,219 +36033,137 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
+  return _c(
+    "form",
+    {
       on: {
-        click: function($event) {
-          _vm.$emit("close")
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.saveSubject()
         }
       }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.projectName")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.project.name,
-                  expression: "project.name"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.project.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.project, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.projectSite")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.project.site,
-                  expression: "project.site"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.project.site },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.project, "site", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm.isAdmin
-            ? _c("div", { staticClass: "ui-mb-2" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.trans("data.projectUser")) +
-                        "\n                "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.project.user.id,
-                        expression: "project.user.id"
-                      }
-                    ],
-                    staticClass: "ui-input green focus ui-fnt light size-1",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.project.user,
-                          "id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  _vm._l(_vm.users, function(val, key) {
-                    return _c("option", { domProps: { value: val.id } }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(val.name) +
-                          "\n                    "
-                      )
-                    ])
-                  })
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-5" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.saveProject()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.save")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("close")
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.cancel")) +
-                    "\n                "
-                )
-              ]
+    },
+    [
+      _c("div", { staticClass: "modal-card" }, [
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.projectProject")) +
+                "\n            "
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.projectName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.projectName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.project.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.project, "name", $$v)
+                    },
+                    expression: "project.name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.projectSite") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.projectSite"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.project.site,
+                    callback: function($$v) {
+                      _vm.$set(_vm.project, "site", $$v)
+                    },
+                    expression: "project.site"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.isAdmin
+              ? _c(
+                  "b-field",
+                  { attrs: { label: _vm.trans("data.projectUser") } },
+                  [
+                    _c(
+                      "b-select",
+                      {
+                        attrs: {
+                          placeholder: _vm.trans("data.projectUser"),
+                          "icon-pack": "fa",
+                          icon: "user",
+                          required: ""
+                        }
+                      },
+                      _vm._l(_vm.users, function(val) {
+                        return _c(
+                          "option",
+                          { key: val.id, domProps: { value: val.id } },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(val.name) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      })
+                    )
+                  ],
+                  1
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.trans("data.cancel")))]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "button is-primary", attrs: { type: "submit" } },
+            [_vm._v(_vm._s(_vm.trans("data.save")))]
+          )
         ])
-      ]
-    )
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
