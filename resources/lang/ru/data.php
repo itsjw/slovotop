@@ -105,6 +105,7 @@ return [
     'taskReturn'      => 'Вернуть на доработку',
 
     // Subjects
+    'subjectSubject'  => 'Тематика задач',
     'subjectName'     => 'Название тематики',
     'subjectPrice'    => 'Стоимость за 1000',
 

@@ -1,44 +1,38 @@
 <template>
-    <div>
+    <form @submit.prevent="saveSubject()">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    {{ trans('data.subjectSubject') }}
+                </p>
+            </header>
+            <section class="modal-card-body">
+                <b-field :label="trans('data.subjectName')">
+                    <b-input
+                            type="text"
+                            v-model="subject.name"
+                            :placeholder="trans('data.subjectName')"
+                            required>
+                    </b-input>
+                </b-field>
 
-        <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
-            <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
-            <div class="ui-p-3">
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.subjectName') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="text"
-                           v-model="subject.name">
-                </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.subjectPrice') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="number"
-                           v-model="subject.price">
-                </div>
+                <b-field :label="trans('data.subjectPrice')">
+                    <b-input
+                            type="number"
+                            v-model="subject.price"
+                            :placeholder="trans('data.subjectPrice')"
+                            required>
+                    </b-input>
+                </b-field>
+            </section>
 
-                <div class="ui-mt-5">
-                    <button type="button"
-                            class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
-                            @click="saveSubject()">
-                        {{ trans('data.save') }}
-                    </button>
-                    <button type="button"
-                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1"
-                            @click="$emit('close')">
-                        {{ trans('data.cancel') }}
-                    </button>
-                </div>
-
-            </div>
+            <footer class="modal-card-foot">
+                <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
+                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+            </footer>
         </div>
+    </form>
 
-    </div>
 </template>
 <script>
     export default {
@@ -62,15 +56,6 @@
         },
 
         methods: {
-            /**
-             * get subject
-             */
-            getSubject(id) {
-                gql.getItem('v2', 'TaskSubjectQuery', ['id:' + id], 'subject')
-                    .then(response => {
-                        this.subject = response.data.data.TaskSubjectQuery[0];
-                    })
-            },
 
             /**
              * save subject
@@ -92,10 +77,11 @@
              * @param subject
              */
             getSubjectData(subject) {
-                return `
-                    id: ${this.subject_id == 0 ? this.subject_id : subject.id},
-                    name: "${subject.name || ''}"
-                    price: ${subject.price || 0}`;
+                return {
+                    id: this.subject_id == 0 ? this.subject_id : subject.id,
+                    name: subject.name || '',
+                    price: subject.price || 0
+                };
             }
         }
     }

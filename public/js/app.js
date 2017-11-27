@@ -31548,6 +31548,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSubject_vue__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSubject_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addSubject_vue__);
 //
 //
 //
@@ -31634,7 +31636,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addSubject', __webpack_require__(54));
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31677,16 +31679,20 @@ Vue.component('addSubject', __webpack_require__(54));
          */
         addSubject: function addSubject() {
             this.selectSubject = [];
-            this.showAddSubject = true;
+            this.$modal.open({
+                parent: this,
+                component: __WEBPACK_IMPORTED_MODULE_0__addSubject_vue___default.a,
+                hasModalCard: true
+            });
         },
 
 
         /**
-         * edit sunbject
+         * edit subject
          */
         editSubject: function editSubject() {
             if (this.selectSubject.length > 0) {
-                this.showAddSubject = true;
+                this.selectSubject = [];
             }
         },
 
@@ -31801,12 +31807,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31830,30 +31830,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        /**
-         * get subject
-         */
-        getSubject: function getSubject(id) {
-            var _this = this;
-
-            gql.getItem('v2', 'TaskSubjectQuery', ['id:' + id], 'subject').then(function (response) {
-                _this.subject = response.data.data.TaskSubjectQuery[0];
-            });
-        },
-
 
         /**
          * save subject
          */
         saveSubject: function saveSubject() {
-            var _this2 = this;
+            var _this = this;
 
             gql.setItem('v2', 'AddTaskSubjectMutation', this.getSubjectData(this.subject)).then(function (response) {
                 if (response.data.errors) {
                     notify.make('alert', response.data.errors[0].validation);
                 } else {
                     notify.make('success', response.data.data.AddTaskSubjectMutation.notify, 2);
-                    _this2.$emit('close');
+                    _this.$emit('close');
                 }
             });
         },
@@ -31864,7 +31853,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param subject
          */
         getSubjectData: function getSubjectData(subject) {
-            return '\n                id: ' + (this.subject_id == 0 ? this.subject_id : subject.id) + ',\n                name: "' + (subject.name || '') + '"\n                price: ' + (subject.price || 0);
+            return {
+                id: this.subject_id == 0 ? this.subject_id : subject.id,
+                name: subject.name || '',
+                price: subject.price || 0
+            };
         }
     }
 });
@@ -31877,157 +31870,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
+  return _c(
+    "form",
+    {
       on: {
-        click: function($event) {
-          _vm.$emit("close")
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.saveSubject()
         }
       }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.subjectName")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.subject.name,
-                  expression: "subject.name"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.subject.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.subject, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.subjectPrice")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.subject.price,
-                  expression: "subject.price"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "number" },
-              domProps: { value: _vm.subject.price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.subject, "price", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-5" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.saveSubject()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.save")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("close")
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.cancel")) +
-                    "\n                "
-                )
-              ]
+    },
+    [
+      _c("div", { staticClass: "modal-card" }, [
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.subjectSubject")) +
+                "\n            "
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.subjectName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.subjectName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.subject.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.subject, "name", $$v)
+                    },
+                    expression: "subject.name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.subjectPrice") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "number",
+                    placeholder: _vm.trans("data.subjectPrice"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.subject.price,
+                    callback: function($$v) {
+                      _vm.$set(_vm.subject, "price", $$v)
+                    },
+                    expression: "subject.price"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.trans("data.cancel")))]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "button is-primary", attrs: { type: "submit" } },
+            [_vm._v(_vm._s(_vm.trans("data.save")))]
+          )
         ])
-      ]
-    )
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

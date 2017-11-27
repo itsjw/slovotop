@@ -84,7 +84,7 @@
     </div>
 </template>
 <script>
-    Vue.component('addSubject', require('./addSubject.vue'));
+    import addSubject from './addSubject.vue';
 
     export default {
 
@@ -124,15 +124,19 @@
              */
             addSubject() {
                 this.selectSubject = [];
-                this.showAddSubject = true;
+                this.$modal.open({
+                    parent: this,
+                    component: addSubject,
+                    hasModalCard: true,
+                });
             },
 
             /**
-             * edit sunbject
+             * edit subject
              */
             editSubject() {
                 if (this.selectSubject.length > 0) {
-                    this.showAddSubject = true;
+                    this.selectSubject = [];
                 }
             },
 
