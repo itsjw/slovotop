@@ -1,22 +1,85 @@
 <template>
     <div>
 
-        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
-            <ul>
-                <li @click="addSubject()">
-                    <i class="ui-icon ui-mr-2">subject</i>
+        <nav class="navbar is-primary" v-if="accessMenu == 2">
+            <div class="navbar-start">
+                <a class="navbar-item" @click="getSubjects()">
+                    <span class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </a>
+
+                <a class="navbar-item" @click="addSubject()">
+                    <span class="icon">
+                        <i class="fa fa-user-plus"></i>
+                    </span>
                     <span>{{ trans('data.add') }}</span>
-                </li>
-                <li @click="editSubject()">
-                    <i class="ui-icon ui-mr-2">edit</i>
+                </a>
+
+                <a class="navbar-item" @click="editSubject()">
+                    <span class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
                     <span>{{ trans('data.edit') }}</span>
-                </li>
-                <li @click="deleteSubject()">
-                    <i class="ui-icon ui-mr-2">delete</i>
+                </a>
+
+                <a class="navbar-item" @click="deleteSubject()">
+                    <span class="icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
                     <span>{{ trans('data.delete') }}</span>
-                </li>
-            </ul>
-        </div>
+                </a>
+            </div>
+        </nav>
+
+        <section class="ui-mt-2">
+            <b-table
+                    :data="subjects"
+                    :hoverable=true
+                    :loading='tableLoading'
+                    :narrowed=true
+                    :paginated=true
+                    :per-page=20
+                    :checked-rows.sync="selectSubject"
+                    checkable>
+
+                <template slot-scope="props">
+                    <b-table-column field="name" :label="trans('data.subjectName')" sortable>
+                        {{ props.row.name }}
+                    </b-table-column>
+
+                    <b-table-column field="price" :label="trans('data.subjectPrice')" numeric sortable centered>
+                        {{ props.row.price }}
+                    </b-table-column>
+
+                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
+                        {{ props.row.created_at }}
+                    </b-table-column>
+
+                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
+                        {{ props.row.updated_at }}
+                    </b-table-column>
+
+                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
+                        {{ props.row.id }}
+                    </b-table-column>
+                </template>
+
+                <template slot="empty">
+                    <section class="section">
+                        <div class="content has-text-grey has-text-centered">
+                            <p>
+                                <b-icon
+                                        icon="sentiment_very_dissatisfied"
+                                        size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>Nothing here.</p>
+                        </div>
+                    </section>
+                </template>
+            </b-table>
+        </section>
 
         <table>
             <thead>
@@ -30,11 +93,11 @@
                     <div class="ui-grid-block">
 
                         <search-pop
-                            v-if="showSearchName"
-                            position="left"
-                            type="searchName"
-                            @submit="search"
-                            @close="closePopUp()"></search-pop>
+                                v-if="showSearchName"
+                                position="left"
+                                type="searchName"
+                                @submit="search"
+                                @close="closePopUp()"></search-pop>
 
                         <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
                            @click="showSearchName=true">search</i>
@@ -77,10 +140,6 @@
             </tbody>
         </table>
 
-        <add-subject v-if="showAddSubject"
-                     :subject_id="selectSubject[0]"
-                     @close="closePopUp()"></add-subject>
-
     </div>
 </template>
 <script>
@@ -98,72 +157,24 @@
 
         data() {
             return {
-                queryParams: ['orderPrice:"asc"'],
-                order: 'asc',
-                showSearchName: false,
-                showAddSubject: false,
                 selectSubject: [],
-                subjects: {}
+                subjects: [],
+                tableLoading: false
             }
         },
 
         methods: {
-            /**
-             * close all popup
-             */
-            closePopUp() {
-                this.showSearchName = false;
-                this.showAddSubject = false;
-                this.getSubjects();
-            },
-
-            /**
-             * select subject
-             */
-            selectSubjects(id) {
-                if (this.selectSubject.indexOf(id) == -1) {
-                    this.selectSubject.push(id);
-                } else {
-                    this.selectSubject.splice(this.selectSubject.indexOf(id), 1);
-                }
-            },
-
-            /**
-             * order by ID
-             */
-            orderByID() {
-                if (this.order === 'asc') {
-                    this.queryParams.splice(0, 1, 'orderPrice:"desc"');
-                    this.order = 'desc';
-                } else {
-                    this.queryParams.splice(0, 1, 'orderPrice:"asc"');
-                    this.order = 'asc';
-                }
-                this.getSubjects();
-            },
-
-            /**
-             * search my type and value
-             * @param value
-             * @param type
-             */
-            search(value, type) {
-                this.queryParams.splice(1, 1);
-
-                if (value) {
-                    this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
-                }
-                this.closePopUp();
-            },
 
             /**
              * get all subjects
              */
             getSubjects() {
-                this.selectSubject = [];
-                gql.getItem('v2', 'TaskSubjectQuery', this.queryParams.length > 0 ? this.queryParams : false, 'subject')
+                this.tableLoading = true;
+                Api.post('v1', 'getSubjects')
                     .then(response => {
-                        this.subjects = response.data.data.TaskSubjectQuery;
+                        this.subjects = response.data.data;
+                        this.selectSubject = [];
+                        this.tableLoading = false;
                     })
             },
 

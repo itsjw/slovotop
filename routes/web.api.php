@@ -22,4 +22,6 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     $router->post('getRoles', 'RoleController@getRoles');
 
+    $router->post('getSubjects', 'SubjectController@getSubjects');
+
 });

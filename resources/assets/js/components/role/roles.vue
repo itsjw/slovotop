@@ -55,15 +55,15 @@
                         {{ props.row.name }}
                     </b-table-column>
 
-                    <b-table-column field="email" :label="trans('data.roleCount')" numeric sortable centered>
+                    <b-table-column field="count" :label="trans('data.roleCount')" numeric sortable centered>
                         {{ props.row.count }}
                     </b-table-column>
 
-                    <b-table-column field="tasksCount" :label="trans('data.created_at')" sortable centered>
+                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
                         {{ props.row.created_at }}
                     </b-table-column>
 
-                    <b-table-column field="lastLogin" :label="trans('data.updated_at')" sortable centered>
+                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
                         {{ props.row.updated_at }}
                     </b-table-column>
 
