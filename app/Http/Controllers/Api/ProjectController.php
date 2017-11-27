@@ -29,4 +29,26 @@ class ProjectController extends Controller
 
         return ProjectResource::collection($project->get());
     }
+
+    /**
+     *
+     */
+    public function saveProject()
+    {
+
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function deleteProject(Request $request)
+    {
+        foreach ($request->items as $item) {
+            Project::find($item['id'])->delete();
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
 }

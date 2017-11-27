@@ -28,4 +28,6 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     $router->post('getProjects', 'ProjectController@getProjects');
     $router->post('saveProjects', 'ProjectController@saveProjects');
+    $router->post('deleteProject', 'ProjectController@deleteProject');
+
 });

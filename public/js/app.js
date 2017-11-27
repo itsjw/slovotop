@@ -35792,21 +35792,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
+         * popup delete project
+         */
+        confirmDeleteSubject: function confirmDeleteSubject() {
+            var _this2 = this;
+
+            if (this.selectProject.length > 0) {
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteProject();
+                    }
+                });
+            }
+        },
+
+
+        /**
          * delete project
          */
         deleteProject: function deleteProject() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var select = void 0;
-            if (this.selectProject.length > 0) {
-                if (confirm('Удалить?')) {
-                    select = ['items:"' + this.selectProject + '"'];
-                    gql.setItem('v2', 'DeleteProjectMutation', select).then(function (response) {
-                        notify.make('success', response.data.data.DeleteProjectMutation.notify, 1);
-                        _this2.getProjects();
-                    });
-                }
-            }
+            Api.post('v1', 'deleteProject', { items: this.selectProject }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getProjects();
+            });
         }
     }
 });
@@ -36312,7 +36328,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteProject()
+                    _vm.confirmDeleteSubject()
                   }
                 }
               },
