@@ -19,8 +19,8 @@ class Subject extends Resource
             'id'         => $this->id,
             'name'       => $this->name,
             'price'      => $this->price,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->format('d-m-Y H:m:s'),
+            'updated_at' => $this->updated_at->format('d-m-Y H:m:s'),
         ];
     }
 }
