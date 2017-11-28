@@ -28,6 +28,11 @@ class DocController extends Controller
         if (isset($request->id)) {
             $doc->where('id', $request->id);
         }
+        if (!\Auth::user()->isAdmin()) {
+            $doc->whereHas('roles', function ($request) {
+                $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
+            });
+        }
 
         return DocResource::collection($doc->get());
     }
