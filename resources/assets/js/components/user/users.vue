@@ -46,11 +46,11 @@
                          icon-pack="fa"
                          icon="search">
                 </b-input>
-                <b-select placeholder="Select a name">
+                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
                     <option
-                            v-for="val in searchType"
-                            :value="val.id"
-                            :key="val.id">
+                            v-for="(val,key) in searchType"
+                            :value="key"
+                            :key="key">
                         {{ val.name }}
                     </option>
                 </b-select>
@@ -146,10 +146,12 @@
                 selectUser: [],
                 tableLoading: false,
                 tablePaginated: true,
+                // search
                 searchType: [
-                    { name: this.trans('data.userName') },
-                    { name: this.trans('data.userEmail') },
+                    {name: this.trans('data.userName')},
+                    {name: this.trans('data.userEmail')},
                 ],
+                searchId: null
             }
         },
 

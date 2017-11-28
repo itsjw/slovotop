@@ -34122,7 +34122,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             selectUser: [],
             tableLoading: false,
             tablePaginated: true,
-            searchType: [{ name: this.trans('data.userName') }, { name: this.trans('data.userEmail') }]
+            // search
+            searchType: [{ name: this.trans('data.userName') }, { name: this.trans('data.userEmail') }],
+            searchId: null
         };
     },
 
@@ -35327,19 +35329,24 @@ var render = function() {
             _vm._v(" "),
             _c(
               "b-select",
-              { attrs: { placeholder: "Select a name" } },
-              _vm._l(_vm.searchType, function(val) {
-                return _c(
-                  "option",
-                  { key: val.id, domProps: { value: val.id } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(val.name) +
-                        "\n                "
-                    )
-                  ]
-                )
+              {
+                attrs: { placeholder: _vm.trans("data.searchParam") },
+                model: {
+                  value: _vm.searchId,
+                  callback: function($$v) {
+                    _vm.searchId = $$v
+                  },
+                  expression: "searchId"
+                }
+              },
+              _vm._l(_vm.searchType, function(val, key) {
+                return _c("option", { key: key, domProps: { value: key } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
               })
             ),
             _vm._v(" "),

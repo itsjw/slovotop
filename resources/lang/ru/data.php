@@ -21,6 +21,7 @@ return [
     'deleteAsk'       => 'Удалить ?',
     'search'          => 'Поиск',
     'showAll'         => 'Показать всё',
+    'searchParam'     => 'Параметр поиска',
 
     // notify
     'notifyOK'        => 'Успешно',
