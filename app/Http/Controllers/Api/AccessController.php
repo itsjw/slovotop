@@ -28,7 +28,6 @@ class AccessController extends Controller
         } else {
             $role = Role::find($request->role);
             $menu->save($role, ['access' => $request->access]);
-
         }
 
         return ['success' => trans('data.notifyOK')];
