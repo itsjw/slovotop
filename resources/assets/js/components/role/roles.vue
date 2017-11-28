@@ -25,7 +25,7 @@
 
                 <a class="navbar-item" @click="editAccess()">
                     <span class="icon">
-                        <i class="fa fa-thumbs-up"></i>
+                        <i class="fa fa-shield"></i>
                     </span>
                     <span>{{ trans('data.access') }}</span>
                 </a>
