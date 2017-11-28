@@ -39187,7 +39187,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
-                          _vm.$parent.close()
+                          _vm.cancelDoc()
                         }
                       }
                     },

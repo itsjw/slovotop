@@ -54,7 +54,7 @@
                     </b-field>
 
                     <footer class="modal-card-foot">
-                        <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}
+                        <button class="button" type="button" @click="cancelDoc()">{{ trans('data.cancel') }}
                         </button>
                         <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
                     </footer>
