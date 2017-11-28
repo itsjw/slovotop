@@ -39,6 +39,52 @@
             </div>
         </nav>
 
+        <section class="ui-mt-2">
+            <b-table
+                    :data="stages"
+                    :hoverable=true
+                    :loading='tableLoading'
+                    :narrowed=true
+                    :paginated=true
+                    :per-page=20
+                    :checked-rows.sync="selectStage"
+                    checkable>
+
+                <template slot-scope="props">
+                    <b-table-column field="name" :label="trans('data.stageName')" sortable>
+                        {{ props.row.name }}
+                    </b-table-column>
+
+                    <b-table-column field="count" :label="trans('data.stagePriority')" numeric sortable centered>
+                        {{ props.row.priority }}
+                    </b-table-column>
+
+                    <b-table-column field="created_at" :label="trans('data.stagePrice')" numeric sortable centered>
+                        {{ props.row.price }}
+                    </b-table-column>
+
+                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
+                        {{ props.row.id }}
+                    </b-table-column>
+                </template>
+
+                <template slot="empty">
+                    <section class="section">
+                        <div class="content has-text-grey has-text-centered">
+                            <p>
+                                <b-icon
+                                        icon="ban"
+                                        icon-pack="fa"
+                                        size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>{{ trans('data.searchNull') }}</p>
+                        </div>
+                    </section>
+                </template>
+            </b-table>
+        </section>
+
     </div>
 </template>
 <script>

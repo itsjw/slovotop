@@ -30540,6 +30540,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31522,7 +31568,150 @@ var render = function() {
             )
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "section",
+      { staticClass: "ui-mt-2" },
+      [
+        _c(
+          "b-table",
+          {
+            attrs: {
+              data: _vm.stages,
+              hoverable: true,
+              loading: _vm.tableLoading,
+              narrowed: true,
+              paginated: true,
+              "per-page": 20,
+              "checked-rows": _vm.selectStage,
+              checkable: ""
+            },
+            on: {
+              "update:checkedRows": function($event) {
+                _vm.selectStage = $event
+              }
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "name",
+                          label: _vm.trans("data.stageName"),
+                          sortable: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "count",
+                          label: _vm.trans("data.stagePriority"),
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.priority) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "created_at",
+                          label: _vm.trans("data.stagePrice"),
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.price) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "id",
+                          label: "ID",
+                          width: "40",
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.id) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              }
+            ])
+          },
+          [
+            _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+              _c("section", { staticClass: "section" }, [
+                _c(
+                  "div",
+                  { staticClass: "content has-text-grey has-text-centered" },
+                  [
+                    _c(
+                      "p",
+                      [
+                        _c("b-icon", {
+                          attrs: {
+                            icon: "ban",
+                            "icon-pack": "fa",
+                            size: "is-large"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                  ]
+                )
+              ])
+            ])
+          ],
+          2
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
