@@ -185,7 +185,12 @@
              */
             editAccess() {
                 if (this.selectRole.length > 0) {
-                    this.showAccessRole = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: accessRole,
+                        hasModalCard: true,
+                        props: this.selectRole[0]
+                    });
                 }
             },
         }

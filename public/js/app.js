@@ -32670,7 +32670,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editAccess: function editAccess() {
             if (this.selectRole.length > 0) {
-                this.showAccessRole = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_1__accessRole_vue___default.a,
+                    hasModalCard: true,
+                    props: this.selectRole[0]
+                });
             }
         }
     }
@@ -32986,38 +32991,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 Vue.component('accessTabMenu', __webpack_require__(65));
 Vue.component('accessTabStage', __webpack_require__(68));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        this.getRole();
-    },
+    mounted: function mounted() {},
 
 
-    props: {
-        role_id: {}
-    },
+    props: {},
 
     data: function data() {
         return {
             tabs: ['active', ''],
-            role: {}
+            role: this.$parent.props || 0
         };
     },
 
@@ -33030,18 +33017,6 @@ Vue.component('accessTabStage', __webpack_require__(68));
         selectTab: function selectTab(key) {
             this.tabs = ['', ''];
             this.tabs.splice(key, 0, 'active');
-        },
-
-
-        /**
-         * get role by ID
-         */
-        getRole: function getRole() {
-            var _this = this;
-
-            gql.getItem('v2', 'RoleQuery', ['id:' + this.role_id], 'role').then(function (response) {
-                _this.role = response.data.data.RoleQuery[0];
-            });
         }
     }
 });
@@ -33144,7 +33119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        this.getMenus();
+        //this.getMenus();
     },
 
 
@@ -33451,7 +33426,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        this.getStages();
+        //this.getStages();
     },
 
 
@@ -33619,111 +33594,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
-      on: {
-        click: function($event) {
-          _vm.$emit("close")
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "ui-p-3" },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "ui-grid-block ui-fnt medium size-3 ui-color col-greyBlue ui-mb-5"
-              },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.trans("data.roleTitle")) +
-                    "\n                "
-                ),
-                _c(
-                  "span",
-                  { staticClass: "ui-color col-orange ui-fnt size-4 ui-ml-2" },
-                  [_vm._v(_vm._s(_vm.role.name))]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui-tabs-box" }, [
-              _c("ul", [
-                _c(
-                  "li",
-                  {
-                    class: _vm.tabs[0],
-                    on: {
-                      click: function($event) {
-                        _vm.selectTab(0)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("settings")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.titleMenu")))])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    class: _vm.tabs[1],
-                    on: {
-                      click: function($event) {
-                        _vm.selectTab(1)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                      _vm._v("navigate_next")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.trans("data.roleStage")))])
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _vm.tabs[0]
-              ? _c("access-tab-menu", { attrs: { role: _vm.role_id } })
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.tabs[1]
-              ? _c("access-tab-stage", { attrs: { role: _vm.role_id } })
-              : _vm._e()
-          ],
-          1
-        )
-      ]
-    )
+  return _c("section", [
+    _c("div", { staticClass: "modal-card bg bg-wite" }, [
+      _c(
+        "div",
+        { staticClass: "section" },
+        [
+          _c("header", { staticClass: "modal-card-head" }, [
+            _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.roleTitle")) +
+                  "\n                    "
+              ),
+              _c("strong", [_vm._v(_vm._s(_vm.role.name))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-tabs",
+            { staticClass: "ui-mt-3", attrs: { type: "is-boxed" } },
+            [
+              _c("b-tab-item", {
+                attrs: {
+                  label: _vm.trans("data.titleMenu"),
+                  "icon-pack": "fa",
+                  icon: "bars"
+                }
+              }),
+              _vm._v(" "),
+              _c("b-tab-item", {
+                attrs: {
+                  label: _vm.trans("data.roleStage"),
+                  "icon-pack": "fa",
+                  icon: "tasks"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []

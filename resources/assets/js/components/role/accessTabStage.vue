@@ -33,7 +33,7 @@
     export default {
 
         mounted() {
-            this.getStages();
+            //this.getStages();
         },
 
         props: {
