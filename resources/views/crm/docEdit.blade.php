@@ -14,8 +14,7 @@
 
     <admin-doc-edit
             doc_id="{{ $doc->id ?? 0 }}"
-            user_id="{{ \Auth::id() }}"
-            v-cloak>
+            user_id="{{ \Auth::id() }}">
     </admin-doc-edit>
 
 @endsection()
