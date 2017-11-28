@@ -33283,7 +33283,7 @@ var render = function() {
                               input: function($event) {
                                 _vm.selectMenu(
                                   props.row.id,
-                                  props.row.roles[0].access
+                                  props.row.roles.access
                                 )
                               }
                             },
