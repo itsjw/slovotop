@@ -33,12 +33,37 @@
         </nav>
 
         <section class="ui-mt-2">
+            <b-field grouped group-multiline>
+                <b-input :placeholder="trans('data.search')"
+                         type="search"
+                         icon-pack="fa"
+                         icon="search"
+                         v-model="searchText"
+                         @input="search">
+                </b-input>
+                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
+                    <option
+                            v-for="(val,key) in searchType"
+                            :value="key"
+                            :key="key">
+                        {{ val.name }}
+                    </option>
+                </b-select>
+                <div class="control is-flex">
+                    <b-switch :true-value="false" :false-value="true"
+                              type="is-info"
+                              v-model="tablePaginated">
+                        {{ trans('data.showAll') }}
+                    </b-switch>
+                </div>
+            </b-field>
+
             <b-table
                     :data="projects"
                     :hoverable=true
                     :loading='tableLoading'
                     :narrowed=true
-                    :paginated=true
+                    :paginated='tablePaginated'
                     :per-page=20
                     :checked-rows.sync="selectProject"
                     checkable>
@@ -106,18 +131,36 @@
             return {
                 projects: [],
                 selectProject: [],
-                tableLoading: false
+                // table
+                tableLoading: false,
+                tablePaginated: true,
+                // search
+                searchType: [
+                    {name: this.trans('data.userName'), type: 'name'},
+                ],
+                searchId: null,
+                searchText: ''
             }
         },
 
         methods: {
 
             /**
+             * search
+             */
+            search: _.debounce(function () {
+                if (this.searchId != null) {
+                    let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.getProjects(params);
+                }
+            }, 500),
+
+            /**
              * get all projects
              */
-            getProjects() {
+            getProjects(params = null) {
                 this.tableLoading = true;
-                Api.post('v1', 'getProjects')
+                Api.post('v1', 'getProjects', params)
                     .then(response => {
                         this.projects = response.data.data;
                         this.selectProject = [];
