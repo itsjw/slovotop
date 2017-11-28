@@ -1,49 +1,54 @@
 <template>
-    <div class="ui-grid-block ui-mt-5">
+    <section class="ui-mt-2">
 
-        <table>
-            <thead>
-            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="5%">№</th>
-                <th width="75%" class="left">{{ trans('data.titleMenu') }}</th>
-                <th width="10%">{{ trans('data.read') }}</th>
-                <th width="10%">{{ trans('data.write') }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="ui-fnt light size-1 ui-color col-black"
-                v-for="(val,key) in menus">
-                <td>{{ key + 1 }}</td>
-                <td class="left">{{ val.name }}</td>
-                <td>
-                    <input type="checkbox"
-                           :id="'menuR'+key"
-                           v-model="val.roles[0].access"
-                           :true-value="1"
-                           :false-value="0"
-                           @change="selectMenu(key)"/>
-                    <label :for="'menuR'+key" class="ui-checkbox ui-color col-green"></label>
-                </td>
-                <td>
-                    <input type="checkbox"
-                           :id="'menuW'+key"
-                           v-model="val.roles[0].access"
-                           :true-value="2"
-                           :false-value="0"
-                           @change="selectMenu(key)"/>
-                    <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <b-table
+                :data="menus"
+                :hoverable=true
+                :loading='tableLoading'
+                :narrowed=true
+                :paginated=false>
 
-    </div>
+            <template slot-scope="props">
+                <b-table-column field="name" :label="trans('data.titleMenu')" sortable>
+                    {{ props.row.name }}
+                </b-table-column>
+
+                <b-table-column :label="trans('data.read')" centered>
+                    <div class="field">
+                        <b-checkbox></b-checkbox>
+                    </div>
+                </b-table-column>
+
+                <b-table-column :label="trans('data.write')" centered>
+                    <div class="field">
+                        <b-checkbox></b-checkbox>
+                    </div>
+                </b-table-column>
+            </template>
+
+            <template slot="empty">
+                <section class="section">
+                    <div class="content has-text-grey has-text-centered">
+                        <p>
+                            <b-icon
+                                    icon="ban"
+                                    icon-pack="fa"
+                                    size="is-large">
+                            </b-icon>
+                        </p>
+                        <p>{{ trans('data.searchNull') }}</p>
+                    </div>
+                </section>
+            </template>
+        </b-table>
+
+    </section>
 </template>
 <script>
     export default {
 
         mounted() {
-            //this.getMenus();
+            this.getMenus();
         },
 
         props: {
@@ -52,7 +57,9 @@
 
         data() {
             return {
-                menus: {}
+                menus: [],
+                // table
+                tableLoading: false
             }
         },
 
@@ -61,9 +68,11 @@
              * get menus
              */
             getMenus() {
-                gql.getItem('v2', 'MenuQuery', 'role_id:' + this.role, 'menu')
+                this.tableLoading = true;
+                Api.post('v1', 'getMenus')
                     .then(response => {
-                        this.menus = response.data.data.MenuQuery;
+                        this.menus = response.data.data;
+                        this.tableLoading = false;
                     })
             },
 

@@ -77,11 +77,12 @@
                         <div class="content has-text-grey has-text-centered">
                             <p>
                                 <b-icon
-                                        icon="sentiment_very_dissatisfied"
+                                        icon="ban"
+                                        icon-pack="fa"
                                         size="is-large">
                                 </b-icon>
                             </p>
-                            <p>Nothing here.</p>
+                            <p>{{ trans('data.searchNull') }}</p>
                         </div>
                     </section>
                 </template>

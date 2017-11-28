@@ -32563,6 +32563,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -32676,6 +32677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     hasModalCard: true,
                     props: this.selectRole[0]
                 });
+                this.selectRole = [];
             }
         }
     }
@@ -33121,10 +33123,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        //this.getMenus();
+        this.getMenus();
     },
 
 
@@ -33134,7 +33141,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            menus: {}
+            menus: [],
+            // table
+            tableLoading: false
         };
     },
 
@@ -33146,8 +33155,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMenus: function getMenus() {
             var _this = this;
 
-            gql.getItem('v2', 'MenuQuery', 'role_id:' + this.role, 'menu').then(function (response) {
-                _this.menus = response.data.data.MenuQuery;
+            this.tableLoading = true;
+            Api.post('v1', 'getMenus').then(function (response) {
+                _this.menus = response.data.data;
+                _this.tableLoading = false;
             });
         },
 
@@ -33182,156 +33193,91 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-grid-block ui-mt-5" }, [
-    _c("table", [
-      _c("thead", [
-        _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "75%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.titleMenu")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.read")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.write")))
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
+  return _c(
+    "section",
+    { staticClass: "ui-mt-2" },
+    [
       _c(
-        "tbody",
-        _vm._l(_vm.menus, function(val, key) {
-          return _c(
-            "tr",
-            { staticClass: "ui-fnt light size-1 ui-color col-black" },
-            [
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
+        "b-table",
+        {
+          attrs: {
+            data: _vm.menus,
+            hoverable: true,
+            loading: _vm.tableLoading,
+            narrowed: true,
+            paginated: false
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(props) {
+                return [
+                  _c(
+                    "b-table-column",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: val.roles[0].access,
-                      expression: "val.roles[0].access"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "menuR" + key,
-                    "true-value": 1,
-                    "false-value": 0
-                  },
-                  domProps: {
-                    checked: Array.isArray(val.roles[0].access)
-                      ? _vm._i(val.roles[0].access, null) > -1
-                      : _vm._q(val.roles[0].access, 1)
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = val.roles[0].access,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? 1 : 0
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (val.roles[0].access = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.$set(val.roles[0], "access", $$c)
-                        }
-                      },
-                      function($event) {
-                        _vm.selectMenu(key)
+                      attrs: {
+                        field: "name",
+                        label: _vm.trans("data.titleMenu"),
+                        sortable: ""
                       }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.name) +
+                          "\n            "
+                      )
                     ]
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", {
-                  staticClass: "ui-checkbox ui-color col-green",
-                  attrs: { for: "menuR" + key }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: val.roles[0].access,
-                      expression: "val.roles[0].access"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "menuW" + key,
-                    "true-value": 2,
-                    "false-value": 0
-                  },
-                  domProps: {
-                    checked: Array.isArray(val.roles[0].access)
-                      ? _vm._i(val.roles[0].access, null) > -1
-                      : _vm._q(val.roles[0].access, 2)
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = val.roles[0].access,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? 2 : 0
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (val.roles[0].access = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.$set(val.roles[0], "access", $$c)
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.read"), centered: "" } },
+                    [_c("div", { staticClass: "field" }, [_c("b-checkbox")], 1)]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.write"), centered: "" } },
+                    [_c("div", { staticClass: "field" }, [_c("b-checkbox")], 1)]
+                  )
+                ]
+              }
+            }
+          ])
+        },
+        [
+          _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+            _c("section", { staticClass: "section" }, [
+              _c(
+                "div",
+                { staticClass: "content has-text-grey has-text-centered" },
+                [
+                  _c(
+                    "p",
+                    [
+                      _c("b-icon", {
+                        attrs: {
+                          icon: "ban",
+                          "icon-pack": "fa",
+                          size: "is-large"
                         }
-                      },
-                      function($event) {
-                        _vm.selectMenu(key)
-                      }
-                    ]
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", {
-                  staticClass: "ui-checkbox ui-color col-green",
-                  attrs: { for: "menuW" + key }
-                })
-              ])
-            ]
-          )
-        })
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                ]
+              )
+            ])
+          ])
+        ],
+        2
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33900,7 +33846,8 @@ var render = function() {
                       [
                         _c("b-icon", {
                           attrs: {
-                            icon: "sentiment_very_dissatisfied",
+                            icon: "ban",
+                            "icon-pack": "fa",
                             size: "is-large"
                           }
                         })
@@ -33908,7 +33855,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Nothing here.")])
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
                   ]
                 )
               ])
