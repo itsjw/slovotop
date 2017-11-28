@@ -33974,6 +33974,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addUser__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addUser__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -34120,11 +34124,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             users: [],
             selectUser: [],
+            // table
             tableLoading: false,
             tablePaginated: true,
             // search
-            searchType: [{ name: this.trans('data.userName') }, { name: this.trans('data.userEmail') }],
-            searchId: null
+            searchType: [{ name: this.trans('data.userName'), type: 'name' }, { name: this.trans('data.userEmail'), type: 'email' }],
+            searchId: null,
+            searchText: ''
         };
     },
 
@@ -34132,18 +34138,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         /**
-         * search my type and value
-         * @param value
-         * @param type
+         * search
          */
-        search: function search(value, type) {
-            this.queryParams.splice(1, 1);
-
-            if (value) {
-                this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+        search: _.debounce(function () {
+            if (this.searchId != null) {
+                var params = _defineProperty({}, this.searchType[this.searchId].type, this.searchText);
+                this.getUsers(params);
             }
-        },
-
+        }, 500),
 
         /**
          * get all users
@@ -34151,8 +34153,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getUsers: function getUsers() {
             var _this = this;
 
+            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
             this.tableLoading = true;
-            Api.post('v1', 'getUsers').then(function (response) {
+            Api.post('v1', 'getUsers', params).then(function (response) {
                 _this.users = response.data.data;
                 _this.tableLoading = false;
                 _this.selectUser = [];
@@ -35324,6 +35328,14 @@ var render = function() {
                 type: "search",
                 "icon-pack": "fa",
                 icon: "search"
+              },
+              on: { input: _vm.search },
+              model: {
+                value: _vm.searchText,
+                callback: function($$v) {
+                  _vm.searchText = $$v
+                },
+                expression: "searchText"
               }
             }),
             _vm._v(" "),

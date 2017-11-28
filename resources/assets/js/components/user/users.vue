@@ -44,7 +44,9 @@
                 <b-input :placeholder="trans('data.search')"
                          type="search"
                          icon-pack="fa"
-                         icon="search">
+                         icon="search"
+                         v-model="searchText"
+                         @input="search">
                 </b-input>
                 <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
                     <option
@@ -144,38 +146,37 @@
             return {
                 users: [],
                 selectUser: [],
+                // table
                 tableLoading: false,
                 tablePaginated: true,
                 // search
                 searchType: [
-                    {name: this.trans('data.userName')},
-                    {name: this.trans('data.userEmail')},
+                    {name: this.trans('data.userName'), type: 'name'},
+                    {name: this.trans('data.userEmail'), type: 'email'},
                 ],
-                searchId: null
+                searchId: null,
+                searchText: ''
             }
         },
 
         methods: {
 
             /**
-             * search my type and value
-             * @param value
-             * @param type
+             * search
              */
-            search(value, type) {
-                this.queryParams.splice(1, 1);
-
-                if (value) {
-                    this.queryParams.splice(1, 1, '' + type + ':"' + value + '"');
+            search: _.debounce(function () {
+                if (this.searchId != null) {
+                    let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.getUsers(params);
                 }
-            },
+            }, 500),
 
             /**
              * get all users
              */
-            getUsers() {
+            getUsers(params = null) {
                 this.tableLoading = true;
-                Api.post('v1', 'getUsers')
+                Api.post('v1', 'getUsers', params)
                     .then(response => {
                         this.users = response.data.data;
                         this.tableLoading = false;
