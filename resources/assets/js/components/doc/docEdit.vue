@@ -12,81 +12,66 @@
             </div>
         </div>
 
+        <div class="columns" v-if="accessMenu == 2">
+            <div class="column is-10 bg bg-wite">
 
-        <div class="ui-grid-block" v-if="accessMenu == 2">
-            <div class="ui-grid-10">
+                <form @submit.prevent="saveDoc()">
+                    <b-field :label="trans('data.docsName')">
+                        <b-input type="text" v-model="doc.name"></b-input>
+                    </b-field>
 
-                <div class="ui-grid-12 ui-mb-2">
-                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
-                        {{ trans('data.docsName') }}
-                    </div>
-                    <input class="ui-input green focus ui-bg bg-wite ui-fnt light size-1"
-                           type="text"
-                           v-model="doc.name">
-                </div>
+                    <section>
 
-                <div class="ui-grid-12 ui-mb-2">
-                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
-                        {{ trans('data.docsAccess') }}
-                    </div>
-                    <div class="ui-block-flex">
-                        <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex">
-                            <span class="ui-pr-2">{{ trans('data.userRole') }}</span>
-                            <i class="ui-icon size-5 ui-color col-green hover"
-                               @click="getRoles()">add_circle</i>
+                        <div class="columns ui-mt-2">
+                            <div class="column is-1">
+                                <b-dropdown>
+                                    <button type="button" class="button is-link" slot="trigger">
+                                        <span>{{ trans('data.userRole') }}</span>
+                                        <b-icon pack="fa" icon="angle-down"></b-icon>
+                                    </button>
 
-                            <div class="ui-popup-bg" @click="showRoles=false" v-if="showRoles"></div>
-                            <div class="ui-popup ui-bg bg-wite" v-if="showRoles">
-                                <table>
-                                    <tbody>
-                                    <tr v-for="(val,key) in roles"
-                                        class="hover ui-fnt regular size-1 ui-color col-blue">
-                                        <td class="left" @click="addRole(key)">{{ val.name }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                    <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">
+                                        {{ val.name }}
+                                    </b-dropdown-item>
+                                </b-dropdown>
                             </div>
-
+                            <div class="column">
+                                <div class="field is-grouped is-grouped-multiline">
+                                    <div class="control" v-for="(item,k) in doc.roles">
+                                        <div class="tags has-addons">
+                                            <a class="tag is-warning">{{ item.name }}</a>
+                                            <a class="tag is-delete" @click="deleteRole(k)"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div v-for="(item,k) in doc.roles"
-                             class="ui-tag bg-yellow hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn">
-                            {{ item.name }}
-                            <i class="ui-icon size-2 ui-ml-2 ui-color col-red hover"
-                               @click="deleteRole(k)">close</i>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="ui-grid-12 ui-mb-2">
-                    <div class="ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1">
-                        {{ trans('data.docsBody') }}
-                    </div>
-                    <textarea class="ui-input" id="editor"></textarea>
-                </div>
+                    </section>
 
-                <div class="ui-grid-12 ui-mb-2 ui-mt-3">
-                    <button type="button"
-                            class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
-                            @click="saveDoc()">
-                        {{ trans('data.save') }}
-                    </button>
-                    <button type="button"
-                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1"
-                            @click="cancelDoc()">
-                        {{ trans('data.cancel') }}
-                    </button>
-                </div>
+                    <b-field :label="trans('data.docsBody')" class="ui-mt-3">
+                        <textarea id="editor"></textarea>
+                    </b-field>
+
+                    <footer class="modal-card-foot">
+                        <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}
+                        </button>
+                        <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+                    </footer>
+
+                </form>
 
             </div>
-            <div class="ui-grid-2"></div>
-        </div>
+            <div class="column is-2"></div>
 
+        </div>
     </div>
 </template>
 <script>
     export default {
 
         mounted() {
+            this.getRoles();
 
             if (this.accessMenu == 2) {
                 this.editor = new Jodit(document.getElementById('editor'), {
@@ -135,10 +120,9 @@
              * get roles
              */
             getRoles() {
-                gql.getItem('v2', 'RoleQuery', null, 'role')
+                Api.post('v1', 'getRoles',)
                     .then(response => {
-                        this.roles = response.data.data.RoleQuery;
-                        this.showRoles = true;
+                        this.roles = response.data.data;
                     })
             },
 
@@ -184,10 +168,10 @@
              * get doc for edit
              */
             getDoc() {
-                gql.getItem('v2', 'DocQuery', ['id:' + this.doc_id], 'doc')
+                Api.post('v1', 'getDocs', {id: this.doc_id})
                     .then(response => {
-                        this.doc = response.data.data.DocQuery[0];
-                        this.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+                        this.doc = response.data.data[0];
+                        this.editor.setEditorValue(_.unescape(response.data.data[0].body));
                         this.getCleanRole();
                     })
             },
@@ -196,14 +180,21 @@
              * save doc
              */
             saveDoc() {
-                gql.setItem('v2', 'AddDocMutation', this.getDocData(this.doc))
+                Api.post('v1', 'saveDoc', this.getDocData(this.doc))
                     .then(response => {
-                        if (response.data.errors) {
-                            notify.make('alert', response.data.errors[0].validation);
-                        } else {
-                            notify.make('success', response.data.data.AddDocMutation.notify, 2);
-                            history.pushState(null, null, response.data.data.AddDocMutation.id);
-                        }
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        history.pushState(null, null, response.data.id);
+                        this.doc.id = response.data.id;
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
                     });
             },
 
@@ -213,12 +204,13 @@
             getDocData(doc) {
                 doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
 
-                return `
-                        id: ${this.doc_id == 0 ? this.doc_id : doc.id},
-                        name: "${_.escape(doc.name) || ''}",
-                        roles: "${this.cleanRole || ''}",
-                        user: ${this.user_id},
-                        body: "${_.escape(doc.body) || ''}"`;
+                return {
+                    id: doc.id || 0,
+                    name: _.escape(doc.name) || '',
+                    roles: this.cleanRole || '',
+                    user: this.user_id,
+                    body: _.escape(doc.body) || ''
+                };
             },
 
             /**

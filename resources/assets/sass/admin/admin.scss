@@ -1,3 +1,5 @@
+@import "mixin";
+
 [v-cloak]::before {
   content: " ";
   display: block;
@@ -55,7 +57,7 @@ html {
   color: $white;
   padding: 5px 0px;
 
-  &:hover{
+  &:hover {
     background: $light;
     transition: background-color 1s;
     color: $dark;
@@ -110,4 +112,8 @@ $distance: (
       #{$value}: $size
     }
   }
+}
+
+.bg {
+  @include Background;
 }

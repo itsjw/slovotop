@@ -1,9 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class DocSaveValidation
+ * @package App\Http\Requests
+ */
 class DocSaveValidation extends FormRequest
 {
     /**
@@ -13,7 +18,7 @@ class DocSaveValidation extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

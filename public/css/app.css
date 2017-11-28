@@ -17180,3 +17180,43 @@ html {
   padding-left: 30px;
 }
 
+.bg.bg-wite {
+  background: white;
+}
+
+.bg.bg-black {
+  background: #0a0a0a;
+}
+
+.bg.bg-light {
+  background: whitesmoke;
+}
+
+.bg.bg-dark {
+  background: #363636;
+}
+
+.bg.bg-primary {
+  background: #00d1b2;
+}
+
+.bg.bg-link {
+  background: #3273dc;
+}
+
+.bg.bg-info {
+  background: #209cee;
+}
+
+.bg.bg-success {
+  background: #23d160;
+}
+
+.bg.bg-warning {
+  background: #ffdd57;
+}
+
+.bg.bg-danger {
+  background: #ff3860;
+}
+

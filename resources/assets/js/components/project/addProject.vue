@@ -105,7 +105,7 @@
              * save project
              */
             saveProject() {
-                Api.post('v1', 'saveProjects', this.getProjectData(this.project))
+                Api.post('v1', 'saveProject', this.getProjectData(this.project))
                     .then(response => {
                         this.$toast.open({
                             message: response.data.success,

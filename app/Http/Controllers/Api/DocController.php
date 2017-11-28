@@ -52,7 +52,7 @@ class DocController extends Controller
             $doc->roles()->save($role, ['access' => 1]);
         }
 
-        return ['success' => trans('data.notifyOK')];
+        return ['success' => trans('data.notifyOK'), 'id' => $doc->id];
     }
 
     /**

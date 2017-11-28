@@ -36003,7 +36003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveProject: function saveProject() {
             var _this2 = this;
 
-            Api.post('v1', 'saveProjects', this.getProjectData(this.project)).then(function (response) {
+            Api.post('v1', 'saveProject', this.getProjectData(this.project)).then(function (response) {
                 _this2.$toast.open({
                     message: response.data.success,
                     type: 'is-success'
@@ -38841,25 +38841,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
+        this.getRoles();
 
         if (this.accessMenu == 2) {
             this.editor = new Jodit(document.getElementById('editor'), {
@@ -38911,9 +38896,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRoles: function getRoles() {
             var _this = this;
 
-            gql.getItem('v2', 'RoleQuery', null, 'role').then(function (response) {
-                _this.roles = response.data.data.RoleQuery;
-                _this.showRoles = true;
+            Api.post('v1', 'getRoles').then(function (response) {
+                _this.roles = response.data.data;
             });
         },
 
@@ -38964,9 +38948,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDoc: function getDoc() {
             var _this2 = this;
 
-            gql.getItem('v2', 'DocQuery', ['id:' + this.doc_id], 'doc').then(function (response) {
-                _this2.doc = response.data.data.DocQuery[0];
-                _this2.editor.setEditorValue(_.unescape(response.data.data.DocQuery[0].body));
+            Api.post('v1', 'getDocs', { id: this.doc_id }).then(function (response) {
+                _this2.doc = response.data.data[0];
+                _this2.editor.setEditorValue(_.unescape(response.data.data[0].body));
                 _this2.getCleanRole();
             });
         },
@@ -38976,13 +38960,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * save doc
          */
         saveDoc: function saveDoc() {
-            gql.setItem('v2', 'AddDocMutation', this.getDocData(this.doc)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data.AddDocMutation.notify, 2);
-                    history.pushState(null, null, response.data.data.AddDocMutation.id);
-                }
+            var _this3 = this;
+
+            Api.post('v1', 'saveDoc', this.getDocData(this.doc)).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                history.pushState(null, null, response.data.id);
+                _this3.doc.id = response.data.id;
+            }).catch(function (error) {
+                _this3.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -38993,7 +38985,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDocData: function getDocData(doc) {
             doc.body = this.editor.getEditorValue().replace(/\r\n|\r|\n/g, '<br>');
 
-            return '\n                    id: ' + (this.doc_id == 0 ? this.doc_id : doc.id) + ',\n                    name: "' + (_.escape(doc.name) || '') + '",\n                    roles: "' + (this.cleanRole || '') + '",\n                    user: ' + this.user_id + ',\n                    body: "' + (_.escape(doc.body) || '') + '"';
+            return {
+                id: doc.id || 0,
+                name: _.escape(doc.name) || '',
+                roles: this.cleanRole || '',
+                user: this.user_id,
+                body: _.escape(doc.body) || ''
+            };
         },
 
 
@@ -39041,241 +39039,165 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.accessMenu == 2
-      ? _c("div", { staticClass: "ui-grid-block" }, [
-          _c("div", { staticClass: "ui-grid-10" }, [
-            _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.docsName")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.doc.name,
-                    expression: "doc.name"
-                  }
-                ],
-                staticClass:
-                  "ui-input green focus ui-bg bg-wite ui-fnt light size-1",
-                attrs: { type: "text" },
-                domProps: { value: _vm.doc.name },
+      ? _c("div", { staticClass: "columns" }, [
+          _c("div", { staticClass: "column is-10 bg bg-wite" }, [
+            _c(
+              "form",
+              {
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.doc, "name", $event.target.value)
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.saveDoc()
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.docsAccess")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "ui-block-flex" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "ui-fnt regular size-2 ui-color col-grey ui-mb-1 ui-block-flex"
-                    },
-                    [
-                      _c("span", { staticClass: "ui-pr-2" }, [
-                        _vm._v(_vm._s(_vm.trans("data.userRole")))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "i",
-                        {
-                          staticClass:
-                            "ui-icon size-5 ui-color col-green hover",
-                          on: {
-                            click: function($event) {
-                              _vm.getRoles()
-                            }
-                          }
+              },
+              [
+                _c(
+                  "b-field",
+                  { attrs: { label: _vm.trans("data.docsName") } },
+                  [
+                    _c("b-input", {
+                      attrs: { type: "text" },
+                      model: {
+                        value: _vm.doc.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.doc, "name", $$v)
                         },
-                        [_vm._v("add_circle")]
-                      ),
-                      _vm._v(" "),
-                      _vm.showRoles
-                        ? _c("div", {
-                            staticClass: "ui-popup-bg",
-                            on: {
-                              click: function($event) {
-                                _vm.showRoles = false
-                              }
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.showRoles
-                        ? _c("div", { staticClass: "ui-popup ui-bg bg-wite" }, [
-                            _c("table", [
-                              _c(
-                                "tbody",
-                                _vm._l(_vm.roles, function(val, key) {
-                                  return _c(
-                                    "tr",
-                                    {
-                                      staticClass:
-                                        "hover ui-fnt regular size-1 ui-color col-blue"
-                                    },
-                                    [
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: "left",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.addRole(key)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(val.name))]
-                                      )
-                                    ]
-                                  )
+                        expression: "doc.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("section", [
+                  _c("div", { staticClass: "columns ui-mt-2" }, [
+                    _c(
+                      "div",
+                      { staticClass: "column is-1" },
+                      [
+                        _c(
+                          "b-dropdown",
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button is-link",
+                                attrs: { slot: "trigger", type: "button" },
+                                slot: "trigger"
+                              },
+                              [
+                                _c("span", [
+                                  _vm._v(_vm._s(_vm.trans("data.userRole")))
+                                ]),
+                                _vm._v(" "),
+                                _c("b-icon", {
+                                  attrs: { pack: "fa", icon: "angle-down" }
                                 })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.roles, function(val, id) {
+                              return _c(
+                                "b-dropdown-item",
+                                {
+                                  key: val.id,
+                                  on: {
+                                    click: function($event) {
+                                      _vm.addRole(id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(val.name) +
+                                      "\n                                "
+                                  )
+                                ]
                               )
+                            })
+                          ],
+                          2
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "field is-grouped is-grouped-multiline"
+                        },
+                        _vm._l(_vm.doc.roles, function(item, k) {
+                          return _c("div", { staticClass: "control" }, [
+                            _c("div", { staticClass: "tags has-addons" }, [
+                              _c("a", { staticClass: "tag is-warning" }, [
+                                _vm._v(_vm._s(item.name))
+                              ]),
+                              _vm._v(" "),
+                              _c("a", {
+                                staticClass: "tag is-delete",
+                                on: {
+                                  click: function($event) {
+                                    _vm.deleteRole(k)
+                                  }
+                                }
+                              })
                             ])
                           ])
-                        : _vm._e()
+                        })
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  {
+                    staticClass: "ui-mt-3",
+                    attrs: { label: _vm.trans("data.docsBody") }
+                  },
+                  [_c("textarea", { attrs: { id: "editor" } })]
+                ),
+                _vm._v(" "),
+                _c("footer", { staticClass: "modal-card-foot" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.$parent.close()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(_vm.trans("data.cancel")) +
+                          "\n                    "
+                      )
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.doc.roles, function(item, k) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "ui-tag bg-yellow hover ui-fnt regular size-1 ui-color col-greyBlue ui-block-flex ui-m-1 animated fadeIn"
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(item.name) +
-                            "\n                        "
-                        ),
-                        _c(
-                          "i",
-                          {
-                            staticClass:
-                              "ui-icon size-2 ui-ml-2 ui-color col-red hover",
-                            on: {
-                              click: function($event) {
-                                _vm.deleteRole(k)
-                              }
-                            }
-                          },
-                          [_vm._v("close")]
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-12 ui-mb-2" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui-fnt medium size-2 ui-color col-greyBlue ui-mb-1"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.docsBody")) +
-                      "\n                "
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v(_vm._s(_vm.trans("data.save")))]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("textarea", {
-                staticClass: "ui-input",
-                attrs: { id: "editor" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui-grid-12 ui-mb-2 ui-mt-3" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.saveDoc()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.save")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.cancelDoc()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("data.cancel")) +
-                      "\n                "
-                  )
-                ]
-              )
-            ])
+                ])
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "ui-grid-2" })
+          _c("div", { staticClass: "column is-2" })
         ])
       : _vm._e()
   ])
