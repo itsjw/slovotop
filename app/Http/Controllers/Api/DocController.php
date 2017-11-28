@@ -63,7 +63,7 @@ class DocController extends Controller
     public function deleteDoc(Request $request)
     {
         foreach ($request->items as $item) {
-            $doc = Doc::findOrfail($item);
+            $doc = Doc::findOrfail($item['id']);
             $doc->roles()->detach();
             $doc->delete();
         }

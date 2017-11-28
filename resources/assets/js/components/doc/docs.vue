@@ -23,7 +23,7 @@
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteDoc()">
+                <a class="navbar-item" @click="confirmDeleteDoc()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -134,20 +134,31 @@
             },
 
             /**
+             * popup delete doc
+             */
+            confirmDeleteDoc() {
+                if (this.selectDoc.length > 0) {
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deleteDoc()
+                    });
+                }
+            },
+
+            /**
              * delete doc
              */
             deleteDoc() {
-                let select;
-                if (this.selectDoc.length > 0) {
-                    if (confirm('Удалить?')) {
-                        select = ['items:"' + this.selectDoc + '"'];
-                    }
-                    gql.setItem('v2', 'DeleteDocMutation', select)
-                        .then(response => {
-                            notify.make('success', response.data.data.DeleteDocMutation.notify, 1);
-                            this.getDocs();
-                        })
-                }
+                Api.post('v1', 'deleteDoc', {items: this.selectDoc})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getDocs();
+                    });
             }
         }
     }

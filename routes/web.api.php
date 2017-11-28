@@ -32,6 +32,6 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     $router->post('getDocs', 'DocController@getDocs');
     $router->post('saveDoc', 'DocController@saveDoc');
-    $router->post('deleteDocs', 'DocController@deleteDocs');
+    $router->post('deleteDoc', 'DocController@deleteDoc');
 
 });

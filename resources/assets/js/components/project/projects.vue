@@ -23,7 +23,7 @@
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="confirmDeleteSubject()">
+                <a class="navbar-item" @click="confirmDeleteProject()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -155,7 +155,7 @@
             /**
              * popup delete project
              */
-            confirmDeleteSubject() {
+            confirmDeleteProject() {
                 if (this.selectProject.length > 0) {
                     this.$dialog.confirm({
                         cancelText: this.trans('data.no'),

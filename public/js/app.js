@@ -35804,7 +35804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         /**
          * popup delete project
          */
-        confirmDeleteSubject: function confirmDeleteSubject() {
+        confirmDeleteProject: function confirmDeleteProject() {
             var _this2 = this;
 
             if (this.selectProject.length > 0) {
@@ -36259,7 +36259,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.confirmDeleteSubject()
+                    _vm.confirmDeleteProject()
                   }
                 }
               },
@@ -38417,21 +38417,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
+         * popup delete doc
+         */
+        confirmDeleteDoc: function confirmDeleteDoc() {
+            var _this2 = this;
+
+            if (this.selectDoc.length > 0) {
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteDoc();
+                    }
+                });
+            }
+        },
+
+
+        /**
          * delete doc
          */
         deleteDoc: function deleteDoc() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var select = void 0;
-            if (this.selectDoc.length > 0) {
-                if (confirm('Удалить?')) {
-                    select = ['items:"' + this.selectDoc + '"'];
-                }
-                gql.setItem('v2', 'DeleteDocMutation', select).then(function (response) {
-                    notify.make('success', response.data.data.DeleteDocMutation.notify, 1);
-                    _this2.getDocs();
+            Api.post('v1', 'deleteDoc', { items: this.selectDoc }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
                 });
-            }
+                _this3.getDocs();
+            });
         }
     }
 });
@@ -38501,7 +38517,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteDoc()
+                    _vm.confirmDeleteDoc()
                   }
                 }
               },
