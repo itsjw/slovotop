@@ -91,8 +91,8 @@
     </div>
 </template>
 <script>
-    Vue.component('addRole', require('./addRole.vue'));
-    Vue.component('accessRole', require('./accessRole.vue'));
+    import addRole from './addRole.vue';
+    import accessRole from './accessRole.vue';
 
     export default {
 
@@ -130,7 +130,11 @@
              */
             addRole() {
                 this.selectRole = [];
-                this.showAddRole = true;
+                this.$modal.open({
+                    parent: this,
+                    component: addRole,
+                    hasModalCard: true,
+                });
             },
 
             /**
@@ -138,7 +142,13 @@
              */
             editRole() {
                 if (this.selectRole.length > 0) {
-                    this.showAddRole = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: addRole,
+                        hasModalCard: true,
+                        props: this.selectRole[0]
+                    });
+                    this.selectRole = [];
                 }
             },
 

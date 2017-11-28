@@ -47,6 +47,7 @@ return [
     'setTaskStage'    => 'Этапы задач',
 
     // roles
+    'roleRoles'       => 'Роль пользователя',
     'roleName'        => 'Имя роли',
     'roleCount'       => 'Количество пользователей',
     'roleAccess'      => 'Доступ к разделам',

@@ -1,84 +1,71 @@
 <template>
-    <div>
 
-        <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
-            <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
-            <div class="ui-p-3">
+    <form @submit.prevent="saveRole()">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    {{ trans('data.roleRoles') }}
+                </p>
+            </header>
+            <section class="modal-card-body">
+                <b-field :label="trans('data.roleName')">
+                    <b-input
+                            type="text"
+                            v-model="role.name"
+                            :placeholder="trans('data.roleName')"
+                            required>
+                    </b-input>
+                </b-field>
+            </section>
 
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.roleName') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="text"
-                           v-model="role.name">
-                </div>
-
-                <div class="ui-mt-5">
-                    <button type="button"
-                            class="ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2"
-                            @click="saveRole()">
-                        {{ trans('data.save') }}
-                    </button>
-                    <button type="button"
-                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2"
-                            @click="$emit('close')">
-                        {{ trans('data.cancel') }}
-                    </button>
-                </div>
-
-            </div>
+            <footer class="modal-card-foot">
+                <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
+                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+            </footer>
         </div>
+    </form>
 
-    </div>
 </template>
 <script>
     export default {
 
         mounted() {
-            if (this.role_id > 0) {
-                this.getRole(this.role_id);
+            if (this.roleProp.id > 0) {
+                this.role = _.cloneDeep(this.roleProp);
             }
         },
 
-        props: {
-            role_id: {
-                default: 0
-            }
-        },
+        props: {},
 
         data() {
             return {
+                roleProp: this.$parent.props || 0,
                 role: {},
             }
         },
 
         methods: {
-            /**
-             * get role
-             * @param id
-             */
-            getRole(id) {
-                gql.getItem('v2', 'RoleQuery', ['id:' + id], 'role')
-                    .then(response => {
-                        this.role = response.data.data.RoleQuery[0];
-                    })
-            },
 
             /**
              * save project
              */
             saveRole() {
-                gql.setItem('v2', 'AddRoleMutation', this.getRoleData(this.role))
+                Api.post('v1', 'saveRole', this.getRoleData(this.role))
                     .then(response => {
-                        if (response.data.errors) {
-                            notify.make('alert', response.data.errors[0].validation);
-                        } else {
-                            notify.make('success', response.data.data.AddRoleMutation.notify,2);
-                            this.$emit('close');
-                        }
-                    });
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.$parent.close();
+                        this.$root.$children[0].getRoles();
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
+                    })
             },
 
             /**
@@ -86,9 +73,10 @@
              * @param role
              */
             getRoleData(role) {
-                return `
-                    id: ${this.role_id == 0 ? this.role_id : role.id},
-                    name: "${role.name || ''}"`;
+                return {
+                    id: role.id || 0,
+                    name: role.name || ''
+                };
             }
         }
     }

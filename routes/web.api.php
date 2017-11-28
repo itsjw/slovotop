@@ -21,6 +21,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     $router->post('approveUser', 'UserController@approveUser');
 
     $router->post('getRoles', 'RoleController@getRoles');
+    $router->post('saveRole', 'RoleController@saveRole');
 
     $router->post('getSubjects', 'SubjectController@getSubjects');
     $router->post('saveSubject', 'SubjectController@saveSubject');

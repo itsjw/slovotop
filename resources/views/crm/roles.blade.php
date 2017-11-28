@@ -12,6 +12,6 @@
 
 @section('content')
 
-    <admin-roles v-cloak></admin-roles>
+    <admin-roles></admin-roles>
 
 @endsection()

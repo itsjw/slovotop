@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\RoleSaveValidation;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Resources\Roles\Role as RoleResource;
@@ -29,5 +30,20 @@ class RoleController extends Controller
         }
 
         return RoleResource::collection($role->get());
+    }
+
+    /**
+     * @param RoleSaveValidation $request
+     *
+     * @return array
+     */
+    public function saveRole(RoleSaveValidation $request)
+    {
+        $role = Role::findOrNew($request->id);
+
+        $role->name = $request->name;
+        $role->save();
+
+        return ['success' => trans('data.notifyOK')];
     }
 }

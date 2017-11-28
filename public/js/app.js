@@ -31829,6 +31829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -32340,6 +32341,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addRole_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addRole_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addRole_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessRole_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessRole_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__accessRole_vue__);
 //
 //
 //
@@ -32433,8 +32438,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addRole', __webpack_require__(60));
-Vue.component('accessRole', __webpack_require__(63));
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -32475,7 +32480,11 @@ Vue.component('accessRole', __webpack_require__(63));
          */
         addRole: function addRole() {
             this.selectRole = [];
-            this.showAddRole = true;
+            this.$modal.open({
+                parent: this,
+                component: __WEBPACK_IMPORTED_MODULE_0__addRole_vue___default.a,
+                hasModalCard: true
+            });
         },
 
 
@@ -32484,7 +32493,13 @@ Vue.component('accessRole', __webpack_require__(63));
          */
         editRole: function editRole() {
             if (this.selectRole.length > 0) {
-                this.showAddRole = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_0__addRole_vue___default.a,
+                    hasModalCard: true,
+                    props: this.selectRole[0]
+                });
+                this.selectRole = [];
             }
         },
 
@@ -32601,62 +32616,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        if (this.role_id > 0) {
-            this.getRole(this.role_id);
+        if (this.roleProp.id > 0) {
+            this.role = _.cloneDeep(this.roleProp);
         }
     },
 
 
-    props: {
-        role_id: {
-            default: 0
-        }
-    },
+    props: {},
 
     data: function data() {
         return {
+            roleProp: this.$parent.props || 0,
             role: {}
         };
     },
 
 
     methods: {
-        /**
-         * get role
-         * @param id
-         */
-        getRole: function getRole(id) {
-            var _this = this;
-
-            gql.getItem('v2', 'RoleQuery', ['id:' + id], 'role').then(function (response) {
-                _this.role = response.data.data.RoleQuery[0];
-            });
-        },
-
 
         /**
          * save project
          */
         saveRole: function saveRole() {
-            var _this2 = this;
+            var _this = this;
 
-            gql.setItem('v2', 'AddRoleMutation', this.getRoleData(this.role)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data.AddRoleMutation.notify, 2);
-                    _this2.$emit('close');
-                }
+            Api.post('v1', 'saveRole', this.getRoleData(this.role)).then(function (response) {
+                _this.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this.$parent.close();
+                _this.$root.$children[0].getRoles();
+            }).catch(function (error) {
+                _this.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -32666,7 +32665,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @param role
          */
         getRoleData: function getRoleData(role) {
-            return '\n                id: ' + (this.role_id == 0 ? this.role_id : role.id) + ',\n                name: "' + (role.name || '') + '"';
+            return {
+                id: role.id || 0,
+                name: role.name || ''
+            };
         }
     }
 });
@@ -32679,119 +32681,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
+  return _c(
+    "form",
+    {
       on: {
-        click: function($event) {
-          _vm.$emit("close")
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.saveRole()
         }
       }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.roleName")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.role.name,
-                  expression: "role.name"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.role.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.role, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-5" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-blue hover ui-color col-wite ui-fnt regular size-2",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.saveRole()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.save")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-2",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("close")
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.cancel")) +
-                    "\n                "
-                )
-              ]
+    },
+    [
+      _c("div", { staticClass: "modal-card" }, [
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.roleRoles")) +
+                "\n            "
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.roleName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.roleName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.role.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.role, "name", $$v)
+                    },
+                    expression: "role.name"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.trans("data.cancel")))]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "button is-primary", attrs: { type: "submit" } },
+            [_vm._v(_vm._s(_vm.trans("data.save")))]
+          )
         ])
-      ]
-    )
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
