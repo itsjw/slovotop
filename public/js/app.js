@@ -32991,6 +32991,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 Vue.component('accessTabMenu', __webpack_require__(65));
 Vue.component('accessTabStage', __webpack_require__(68));
@@ -33615,21 +33620,31 @@ var render = function() {
             "b-tabs",
             { staticClass: "ui-mt-3", attrs: { type: "is-boxed" } },
             [
-              _c("b-tab-item", {
-                attrs: {
-                  label: _vm.trans("data.titleMenu"),
-                  "icon-pack": "fa",
-                  icon: "bars"
-                }
-              }),
+              _c(
+                "b-tab-item",
+                {
+                  attrs: {
+                    label: _vm.trans("data.titleMenu"),
+                    "icon-pack": "fa",
+                    icon: "bars"
+                  }
+                },
+                [_c("access-tab-menu", { attrs: { role: _vm.role.id } })],
+                1
+              ),
               _vm._v(" "),
-              _c("b-tab-item", {
-                attrs: {
-                  label: _vm.trans("data.roleStage"),
-                  "icon-pack": "fa",
-                  icon: "tasks"
-                }
-              })
+              _c(
+                "b-tab-item",
+                {
+                  attrs: {
+                    label: _vm.trans("data.roleStage"),
+                    "icon-pack": "fa",
+                    icon: "tasks"
+                  }
+                },
+                [_c("access-tab-stage", { attrs: { role: _vm.role.id } })],
+                1
+              )
             ],
             1
           )
