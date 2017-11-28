@@ -34082,6 +34082,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -34095,16 +34118,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            showAddUser: false,
             users: [],
             selectUser: [],
-            order: 'asc',
-            queryParams: ['orderID:"asc"'],
-            showSearchName: false,
-            showSearchSurname: false,
-            showSearchEmail: false,
-            // table
-            tableLoading: false
+            tableLoading: false,
+            tablePaginated: true,
+            searchType: [{ name: this.trans('data.userName') }, { name: this.trans('data.userEmail') }]
         };
     },
 
@@ -35295,6 +35313,72 @@ var render = function() {
       { staticClass: "ui-mt-2" },
       [
         _c(
+          "b-field",
+          { attrs: { grouped: "", "group-multiline": "" } },
+          [
+            _c("b-input", {
+              attrs: {
+                placeholder: _vm.trans("data.search"),
+                type: "search",
+                "icon-pack": "fa",
+                icon: "search"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-select",
+              { attrs: { placeholder: "Select a name" } },
+              _vm._l(_vm.searchType, function(val) {
+                return _c(
+                  "option",
+                  { key: val.id, domProps: { value: val.id } },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(val.name) +
+                        "\n                "
+                    )
+                  ]
+                )
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control is-flex" },
+              [
+                _c(
+                  "b-switch",
+                  {
+                    attrs: {
+                      "true-value": false,
+                      "false-value": true,
+                      type: "is-info"
+                    },
+                    model: {
+                      value: _vm.tablePaginated,
+                      callback: function($$v) {
+                        _vm.tablePaginated = $$v
+                      },
+                      expression: "tablePaginated"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.showAll")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
           "b-table",
           {
             attrs: {
@@ -35302,7 +35386,7 @@ var render = function() {
               hoverable: true,
               loading: _vm.tableLoading,
               narrowed: true,
-              paginated: true,
+              paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectUser,
               checkable: ""
@@ -35379,7 +35463,8 @@ var render = function() {
                         attrs: {
                           field: "lastLogin",
                           label: _vm.trans("data.userLastLogin"),
-                          sortable: ""
+                          sortable: "",
+                          centered: ""
                         }
                       },
                       [

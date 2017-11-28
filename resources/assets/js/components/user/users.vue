@@ -40,12 +40,35 @@
         </nav>
 
         <section class="ui-mt-2">
+            <b-field grouped group-multiline>
+                <b-input :placeholder="trans('data.search')"
+                         type="search"
+                         icon-pack="fa"
+                         icon="search">
+                </b-input>
+                <b-select placeholder="Select a name">
+                    <option
+                            v-for="val in searchType"
+                            :value="val.id"
+                            :key="val.id">
+                        {{ val.name }}
+                    </option>
+                </b-select>
+                <div class="control is-flex">
+                    <b-switch :true-value="false" :false-value="true"
+                              type="is-info"
+                              v-model="tablePaginated">
+                        {{ trans('data.showAll') }}
+                    </b-switch>
+                </div>
+            </b-field>
+
             <b-table
                     :data="users"
                     :hoverable=true
                     :loading='tableLoading'
                     :narrowed=true
-                    :paginated=true
+                    :paginated=tablePaginated
                     :per-page=20
                     :checked-rows.sync="selectUser"
                     checkable>
@@ -63,7 +86,7 @@
                         {{ props.row.tasksCount }}
                     </b-table-column>
 
-                    <b-table-column field="lastLogin" :label="trans('data.userLastLogin')" sortable>
+                    <b-table-column field="lastLogin" :label="trans('data.userLastLogin')" sortable centered>
                         {{ props.row.lastLogin }}
                     </b-table-column>
 
@@ -119,16 +142,14 @@
 
         data() {
             return {
-                showAddUser: false,
                 users: [],
                 selectUser: [],
-                order: 'asc',
-                queryParams: ['orderID:"asc"'],
-                showSearchName: false,
-                showSearchSurname: false,
-                showSearchEmail: false,
-                // table
                 tableLoading: false,
+                tablePaginated: true,
+                searchType: [
+                    { name: this.trans('data.userName') },
+                    { name: this.trans('data.userEmail') },
+                ],
             }
         },
 

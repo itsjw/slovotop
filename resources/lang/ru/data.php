@@ -18,8 +18,9 @@ return [
     'read'            => 'Чтение',
     'write'           => 'Запись',
     'hide'            => 'Видимость',
-    'access'          => 'Доступ',
     'deleteAsk'       => 'Удалить ?',
+    'search'          => 'Поиск',
+    'showAll'         => 'Показать всё',
 
     // notify
     'notifyOK'        => 'Успешно',
