@@ -32921,17 +32921,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(115)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(117)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-026221b0"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -32970,6 +32974,15 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -33538,79 +33551,7 @@ if (false) {
 }
 
 /***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("div", { staticClass: "modal-card bg bg-wite" }, [
-      _c(
-        "div",
-        { staticClass: "section" },
-        [
-          _c("header", { staticClass: "modal-card-head" }, [
-            _c("p", { staticClass: "modal-card-title" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.trans("data.roleTitle")) +
-                  "\n                    "
-              ),
-              _c("strong", [_vm._v(_vm._s(_vm.role.name))])
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-tabs",
-            { staticClass: "ui-mt-3", attrs: { type: "is-boxed" } },
-            [
-              _c(
-                "b-tab-item",
-                {
-                  attrs: {
-                    label: _vm.trans("data.titleMenu"),
-                    "icon-pack": "fa",
-                    icon: "bars"
-                  }
-                },
-                [_c("access-tab-menu", { attrs: { role: _vm.role.id } })],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab-item",
-                {
-                  attrs: {
-                    label: _vm.trans("data.roleStage"),
-                    "icon-pack": "fa",
-                    icon: "tasks"
-                  }
-                },
-                [_c("access-tab-stage", { attrs: { role: _vm.role.id } })],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-026221b0", module.exports)
-  }
-}
-
-/***/ }),
+/* 71 */,
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34696,6 +34637,8 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -39780,6 +39723,127 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(116);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(79)("448bef89", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-026221b0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./accessRole.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-026221b0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./accessRole.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(78)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.section[data-v-026221b0] {\n    overflow: auto\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("div", { staticClass: "modal-card bg bg-wite" }, [
+      _c(
+        "div",
+        { staticClass: "section" },
+        [
+          _c("header", { staticClass: "modal-card-head" }, [
+            _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.trans("data.roleTitle")) +
+                  "\n                    "
+              ),
+              _c("strong", [_vm._v(_vm._s(_vm.role.name))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-tabs",
+            { staticClass: "ui-mt-3", attrs: { type: "is-boxed" } },
+            [
+              _c(
+                "b-tab-item",
+                {
+                  attrs: {
+                    label: _vm.trans("data.titleMenu"),
+                    "icon-pack": "fa",
+                    icon: "bars"
+                  }
+                },
+                [_c("access-tab-menu", { attrs: { role: _vm.role.id } })],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab-item",
+                {
+                  attrs: {
+                    label: _vm.trans("data.roleStage"),
+                    "icon-pack": "fa",
+                    icon: "tasks"
+                  }
+                },
+                [_c("access-tab-stage", { attrs: { role: _vm.role.id } })],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-026221b0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

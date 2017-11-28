@@ -1,5 +1,6 @@
 <template>
     <section>
+
         <div class="modal-card bg bg-wite">
             <div class="section">
                 <header class="modal-card-head">
@@ -24,8 +25,16 @@
                 </b-tabs>
             </div>
         </div>
+
     </section>
 </template>
+
+<style scoped>
+    .section {
+        overflow: auto
+    }
+</style>
+
 <script>
     Vue.component('accessTabMenu', require('./accessTabMenu.vue'));
     Vue.component('accessTabStage', require('./accessTabStage.vue'));

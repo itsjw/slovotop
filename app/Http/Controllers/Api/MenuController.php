@@ -26,6 +26,14 @@ class MenuController extends Controller
         if (isset($request->id)) {
             $menu->where('id', $request->id);
         }
+        if (isset($request->role)) {
+            $role = $request->role;
+            $menu->with([
+                'roles' => function ($query) use ($role) {
+                    $query->where('role_id', $role)->select('access');
+                },
+            ]);
+        }
 
         return MenuResource::collection($menu->get());
     }

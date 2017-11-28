@@ -1,4 +1,5 @@
 <template>
+
     <form @submit.prevent="saveUser()">
         <div class="modal-card">
             <b-message title="Info" type="is-info" has-icon v-if="userProp == 0">
@@ -91,6 +92,7 @@
             </footer>
         </div>
     </form>
+
 </template>
 
 <style scoped>
