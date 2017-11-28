@@ -33141,6 +33141,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33169,7 +33171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.tableLoading = true;
-            Api.post('v1', 'getMenus').then(function (response) {
+            Api.post('v1', 'getMenus', { role: this.role }).then(function (response) {
                 _this.menus = response.data.data;
                 _this.tableLoading = false;
             });
@@ -33180,20 +33182,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * select access menu
          * @param key
          */
-        selectMenu: function selectMenu(key) {
-            gql.setItem('v2', 'ChangeAccessMenuMutation', this.getData(this.menus[key])).then(function (response) {
-                notify.make('success', response.data.data.ChangeAccessMenuMutation.notify, 1);
+        selectMenu: function selectMenu(id, access) {
+            var _this2 = this;
+
+            var param = { menu: id, role: this.role, access: access };
+            Api.post('v1', 'saveAccessMenu', param).then(function (response) {
+                _this2.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
             });
-        },
-
-
-        /**
-         * get data for change access
-         * @param menu
-         * @return {string}
-         */
-        getData: function getData(menu) {
-            return '\n                access: ' + menu.roles[0].access + ',\n                menu: ' + menu.id + ',\n                role: ' + this.role;
         }
     }
 });
@@ -33246,13 +33244,61 @@ var render = function() {
                   _c(
                     "b-table-column",
                     { attrs: { label: _vm.trans("data.read"), centered: "" } },
-                    [_c("div", { staticClass: "field" }, [_c("b-checkbox")], 1)]
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "field" },
+                        [
+                          _c("b-checkbox", {
+                            attrs: {
+                              "true-value": "1",
+                              input:
+                                "selectMenu(props.row.id,props.row.roles[0].access)"
+                            },
+                            model: {
+                              value: props.row.roles[0].access,
+                              callback: function($$v) {
+                                _vm.$set(props.row.roles[0], "access", $$v)
+                              },
+                              expression: "props.row.roles[0].access"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-table-column",
                     { attrs: { label: _vm.trans("data.write"), centered: "" } },
-                    [_c("div", { staticClass: "field" }, [_c("b-checkbox")], 1)]
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "field" },
+                        [
+                          _c("b-checkbox", {
+                            attrs: { "true-value": "2" },
+                            on: {
+                              input: function($event) {
+                                _vm.selectMenu(
+                                  props.row.id,
+                                  props.row.roles[0].access
+                                )
+                              }
+                            },
+                            model: {
+                              value: props.row.roles[0].access,
+                              callback: function($$v) {
+                                _vm.$set(props.row.roles[0], "access", $$v)
+                              },
+                              expression: "props.row.roles[0].access"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
                   )
                 ]
               }

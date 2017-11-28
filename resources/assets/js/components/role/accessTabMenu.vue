@@ -15,13 +15,15 @@
 
                 <b-table-column :label="trans('data.read')" centered>
                     <div class="field">
-                        <b-checkbox></b-checkbox>
+                        <b-checkbox true-value="1" v-model="props.row.roles[0].access"
+                                    input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
                     </div>
                 </b-table-column>
 
                 <b-table-column :label="trans('data.write')" centered>
                     <div class="field">
-                        <b-checkbox></b-checkbox>
+                        <b-checkbox true-value="2" v-model="props.row.roles[0].access"
+                                    @input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
                     </div>
                 </b-table-column>
             </template>
@@ -69,7 +71,7 @@
              */
             getMenus() {
                 this.tableLoading = true;
-                Api.post('v1', 'getMenus')
+                Api.post('v1', 'getMenus', {role: this.role})
                     .then(response => {
                         this.menus = response.data.data;
                         this.tableLoading = false;
@@ -80,24 +82,16 @@
              * select access menu
              * @param key
              */
-            selectMenu(key) {
-                gql.setItem('v2', 'ChangeAccessMenuMutation', this.getData(this.menus[key]))
+            selectMenu(id, access) {
+                let param = {menu: id, role: this.role, access: access};
+                Api.post('v1', 'saveAccessMenu', param)
                     .then(response => {
-                        notify.make('success', response.data.data.ChangeAccessMenuMutation.notify, 1);
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
                     });
             },
-
-            /**
-             * get data for change access
-             * @param menu
-             * @return {string}
-             */
-            getData(menu) {
-                return `
-                    access: ${menu.roles[0].access},
-                    menu: ${menu.id},
-                    role: ${this.role}`;
-            }
         }
     }
 </script>

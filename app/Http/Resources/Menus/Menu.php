@@ -18,7 +18,7 @@ class Menu extends Resource
         return [
             'id'    => $this->id,
             'name'  => $this->name,
-            'roles' => $this->roles,
+            'roles' => count($this->roles) > 0 ? $this->roles : [['access' => 0]],
         ];
     }
 }
