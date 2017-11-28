@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="saveSubject()">
+    <form @submit.prevent="saveProject()">
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">
@@ -105,15 +105,22 @@
              * save project
              */
             saveProject() {
-                gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project))
+                Api.post('v1', 'saveProjects', this.getProjectData(this.project))
                     .then(response => {
-                        if (response.data.errors) {
-                            notify.make('alert', response.data.errors[0].validation);
-                        } else {
-                            notify.make('success', response.data.data.AddProjectMutation.notify, 2);
-                            this.$emit('close');
-                        }
-                    });
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.$parent.close();
+                        this.$root.$children[0].getProjects();
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
+                    })
             },
 
             /**
@@ -126,7 +133,7 @@
                     id: project.id || 0,
                     name: project.name || '',
                     site: _.escape(project.site) || '',
-                    user: this.getUser()
+                    user_id: this.getUser
                 }
             }
         }

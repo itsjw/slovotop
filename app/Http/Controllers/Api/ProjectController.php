@@ -42,7 +42,7 @@ class ProjectController extends Controller
 
         $project->name = $request->name;
         $project->site = $request->site;
-        $project->user_id = $request->user;
+        $project->user_id = $request->user_id;
 
         $project->save();
 

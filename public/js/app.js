@@ -36003,13 +36003,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveProject: function saveProject() {
             var _this2 = this;
 
-            gql.setItem('v2', 'AddProjectMutation', this.getProjectData(this.project)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data.AddProjectMutation.notify, 2);
-                    _this2.$emit('close');
-                }
+            Api.post('v1', 'saveProjects', this.getProjectData(this.project)).then(function (response) {
+                _this2.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this2.$parent.close();
+                _this2.$root.$children[0].getProjects();
+            }).catch(function (error) {
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -36024,7 +36030,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: project.id || 0,
                 name: project.name || '',
                 site: _.escape(project.site) || '',
-                user: this.getUser()
+                user_id: this.getUser
             };
         }
     }
@@ -36045,7 +36051,7 @@ var render = function() {
       on: {
         submit: function($event) {
           $event.preventDefault()
-          _vm.saveSubject()
+          _vm.saveProject()
         }
       }
     },

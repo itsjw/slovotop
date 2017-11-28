@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class ProjectSaveValidation
@@ -28,10 +29,13 @@ class ProjectSaveValidation extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'user' => 'required', Rule::unique('user_roles')->where(function ($query) {
-                $query->where('role_id', 1);
-            }),
+            'name'    => 'required',
+            'user_id' => [
+                'required',
+                Rule::unique('user_roles')->where(function ($query) {
+                    return $query->where('role_id', 1);
+                }),
+            ],
         ];
     }
 
@@ -41,7 +45,7 @@ class ProjectSaveValidation extends FormRequest
     public function messages()
     {
         return [
-            'user.unique' => trans('data.projNoAdmin'),
+            'user_id.unique' => trans('data.projNoAdmin'),
         ];
     }
 }

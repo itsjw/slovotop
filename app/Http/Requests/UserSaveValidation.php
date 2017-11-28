@@ -31,7 +31,11 @@ class UserSaveValidation extends FormRequest
     {
         return [
             'name'     => 'required',
-            'email'    => 'required|email', Rule::unique('users')->ignore($this['id']),
+            'email'    => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this['id']),
+            ],
             'role'     => 'required',
             'up_price' => 'integer',
         ];

@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('site');
+            $table->string('site')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });
