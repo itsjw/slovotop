@@ -114,11 +114,13 @@
              * get all stages
              */
             getStages() {
+                this.tableLoading = true;
                 Api.post('v1', 'getStages')
                     .then(response => {
                         this.stages = response.data.data;
+                        this.tableLoading = false;
                         this.selectStage = [];
-                    })
+                    });
             },
 
             /**
@@ -126,7 +128,11 @@
              */
             addStage() {
                 this.selectStage = [];
-                this.showAddStage = true;
+                this.$modal.open({
+                    parent: this,
+                    component: addStage,
+                    hasModalCard: true,
+                });
             },
 
             /**
@@ -134,7 +140,13 @@
              */
             editStage() {
                 if (this.selectStage.length > 0) {
-                    this.showAddStage = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: addStage,
+                        hasModalCard: true,
+                        props: this.selectStage[0]
+                    });
+                    this.selectStage = [];
                 }
             },
 

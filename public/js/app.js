@@ -30616,8 +30616,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getStages: function getStages() {
             var _this = this;
 
+            this.tableLoading = true;
             Api.post('v1', 'getStages').then(function (response) {
                 _this.stages = response.data.data;
+                _this.tableLoading = false;
                 _this.selectStage = [];
             });
         },
@@ -30628,7 +30630,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         addStage: function addStage() {
             this.selectStage = [];
-            this.showAddStage = true;
+            this.$modal.open({
+                parent: this,
+                component: __WEBPACK_IMPORTED_MODULE_0__addStage_vue___default.a,
+                hasModalCard: true
+            });
         },
 
 
@@ -30637,7 +30643,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editStage: function editStage() {
             if (this.selectStage.length > 0) {
-                this.showAddStage = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_0__addStage_vue___default.a,
+                    hasModalCard: true,
+                    props: this.selectStage[0]
+                });
+                this.selectStage = [];
             }
         },
 
@@ -30773,58 +30785,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        if (this.stage_id > 0) {
-            this.getStage(this.stage_id);
+        if (this.stageProp.id > 0) {
+            this.stage = _.cloneDeep(this.stageProp);
         }
     },
 
 
-    props: {
-        stage_id: {
-            default: 0
-        }
-    },
+    props: {},
 
     data: function data() {
         return {
+            stageProp: this.$parent.props || 0,
             stage: {}
         };
     },
 
 
     methods: {
-        /**
-         * get stage
-         * @param id
-         */
-        getStage: function getStage(id) {
-            var _this = this;
-
-            gql.getItem('v2', 'TaskStageQuery', ['id:' + id], 'stage').then(function (response) {
-                _this.stage = response.data.data.TaskStageQuery[0];
-            });
-        },
-
 
         /**
          * save stage
          */
         saveStage: function saveStage() {
-            var _this2 = this;
+            var _this = this;
 
-            gql.setItem('v2', 'AddTaskStageMutation', this.getStageData(this.stage)).then(function (response) {
-                if (response.data.errors) {
-                    notify.make('alert', response.data.errors[0].validation);
-                } else {
-                    notify.make('success', response.data.data.AddTaskStageMutation.notify, 2);
-                    _this2.$emit('close');
-                }
+            Api.post('v1', 'saveStage', this.getStageData(this.stage)).then(function (response) {
+                _this.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this.$parent.close();
+                _this.$root.$children[0].getStages();
+            }).catch(function (error) {
+                _this.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -30835,7 +30835,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * @return {string}
          */
         getStageData: function getStageData(stage) {
-            return '\n                id: ' + (this.stage_id == 0 ? this.stage_id : stage.id) + ',\n                name: "' + (stage.name || '') + '",\n                priority: ' + (stage.priority || 1) + ',\n                price: ' + (stage.price || 0);
+            return {
+                id: stage.id || 0,
+                name: stage.name || '',
+                priority: stage.priority || 0,
+                price: stage.price || 0
+            };
         }
     }
 });
@@ -30848,195 +30853,126 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
+  return _c(
+    "form",
+    {
       on: {
-        click: function($event) {
-          _vm.$emit("close")
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.saveStage()
         }
       }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w25 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.stageName")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.stage.name,
-                  expression: "stage.name"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "text" },
-              domProps: { value: _vm.stage.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.stage, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.stagePriority")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.stage.priority,
-                  expression: "stage.priority"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "number" },
-              domProps: { value: _vm.stage.priority },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.stage, "priority", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mb-2" }, [
-            _c(
-              "div",
-              {
-                staticClass: "ui-fnt regular size-2 ui-color col-grey ui-mb-1"
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.stagePrice")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.stage.price,
-                  expression: "stage.price"
-                }
-              ],
-              staticClass: "ui-input green focus ui-fnt light size-1",
-              attrs: { type: "number" },
-              domProps: { value: _vm.stage.price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.stage, "price", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui-mt-5" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-green hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.saveStage()
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.save")) +
-                    "\n                "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.$emit("close")
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.trans("data.cancel")) +
-                    "\n                "
-                )
-              ]
+    },
+    [
+      _c("div", { staticClass: "modal-card" }, [
+        _c("header", { staticClass: "modal-card-head" }, [
+          _c("p", { staticClass: "modal-card-title" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("data.stageName")) +
+                "\n            "
             )
           ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.stageName") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "text",
+                    placeholder: _vm.trans("data.stageName"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.stage.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.stage, "name", $$v)
+                    },
+                    expression: "stage.name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.stagePriority") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "number",
+                    min: "1",
+                    placeholder: _vm.trans("data.stagePriority"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.stage.priority,
+                    callback: function($$v) {
+                      _vm.$set(_vm.stage, "priority", $$v)
+                    },
+                    expression: "stage.priority"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.stagePrice") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "number",
+                    placeholder: _vm.trans("data.stagePrice"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.stage.price,
+                    callback: function($$v) {
+                      _vm.$set(_vm.stage, "price", $$v)
+                    },
+                    expression: "stage.price"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.trans("data.cancel")))]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "button is-primary", attrs: { type: "submit" } },
+            [_vm._v(_vm._s(_vm.trans("data.save")))]
+          )
         ])
-      ]
-    )
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

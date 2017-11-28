@@ -1,98 +1,89 @@
 <template>
-    <div>
 
-        <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w25 left animated fadeIn ui-bg bg-wite">
-            <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
-            <div class="ui-p-3">
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.stageName') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="text"
-                           v-model="stage.name">
-                </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.stagePriority') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="number"
-                           v-model="stage.priority">
-                </div>
-                <div class="ui-mb-2">
-                    <div class="ui-fnt regular size-2 ui-color col-grey ui-mb-1">
-                        {{ trans('data.stagePrice') }}
-                    </div>
-                    <input class="ui-input green focus ui-fnt light size-1"
-                           type="number"
-                           v-model="stage.price">
-                </div>
+    <form @submit.prevent="saveStage()">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    {{ trans('data.stageName') }}
+                </p>
+            </header>
+            <section class="modal-card-body">
+                <b-field :label="trans('data.stageName')">
+                    <b-input
+                            type="text"
+                            v-model="stage.name"
+                            :placeholder="trans('data.stageName')"
+                            required>
+                    </b-input>
+                </b-field>
 
-                <div class="ui-mt-5">
-                    <button type="button"
-                            class="ui-button bg-green hover ui-color col-wite ui-fnt regular size-1"
-                            @click="saveStage()">
-                        {{ trans('data.save') }}
-                    </button>
-                    <button type="button"
-                            class="ui-button bg-grey hover ui-color col-wite ui-fnt regular size-1"
-                            @click="$emit('close')">
-                        {{ trans('data.cancel') }}
-                    </button>
-                </div>
+                <b-field :label="trans('data.stagePriority')">
+                    <b-input
+                            type="number"
+                            v-model="stage.priority"
+                            min="1"
+                            :placeholder="trans('data.stagePriority')"
+                            required>
+                    </b-input>
+                </b-field>
 
-            </div>
+                <b-field :label="trans('data.stagePrice')">
+                    <b-input
+                            type="number"
+                            v-model="stage.price"
+                            :placeholder="trans('data.stagePrice')"
+                            required>
+                    </b-input>
+                </b-field>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
+                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+            </footer>
         </div>
+    </form>
 
-    </div>
 </template>
 <script>
     export default {
 
         mounted() {
-            if (this.stage_id > 0) {
-                this.getStage(this.stage_id);
+            if (this.stageProp.id > 0) {
+                this.stage = _.cloneDeep(this.stageProp);
             }
         },
 
-        props: {
-            stage_id: {
-                default: 0
-            }
-        },
+        props: {},
 
         data() {
             return {
+                stageProp: this.$parent.props || 0,
                 stage: {}
             }
         },
 
         methods: {
-            /**
-             * get stage
-             * @param id
-             */
-            getStage(id) {
-                gql.getItem('v2', 'TaskStageQuery', ['id:' + id], 'stage')
-                    .then(response => {
-                        this.stage = response.data.data.TaskStageQuery[0];
-                    })
-            },
 
             /**
              * save stage
              */
             saveStage() {
-                gql.setItem('v2', 'AddTaskStageMutation', this.getStageData(this.stage))
+                Api.post('v1', 'saveStage', this.getStageData(this.stage))
                     .then(response => {
-                        if (response.data.errors) {
-                            notify.make('alert', response.data.errors[0].validation);
-                        } else {
-                            notify.make('success', response.data.data.AddTaskStageMutation.notify, 2);
-                            this.$emit('close');
-                        }
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.$parent.close();
+                        this.$root.$children[0].getStages();
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
                     });
             },
 
@@ -102,11 +93,12 @@
              * @return {string}
              */
             getStageData(stage) {
-                return `
-                    id: ${this.stage_id == 0 ? this.stage_id : stage.id},
-                    name: "${stage.name || ''}",
-                    priority: ${stage.priority || 1},
-                    price: ${stage.price || 0}`;
+                return {
+                    id: stage.id || 0,
+                    name: stage.name || '',
+                    priority: stage.priority || 0,
+                    price: stage.price || 0
+                };
             }
         }
     }

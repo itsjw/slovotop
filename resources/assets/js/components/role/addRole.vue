@@ -65,7 +65,7 @@
                             message: Api.errorSerializer(error.response.data.errors),
                             type: 'is-danger'
                         });
-                    })
+                    });
             },
 
             /**
