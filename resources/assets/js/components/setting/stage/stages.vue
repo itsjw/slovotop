@@ -1,78 +1,51 @@
 <template>
-    <div class="ui-grid-block animated fadeIn">
+    <div class="ui-pt-2 bg bg-wite">
 
-        <div class="ui-navbar ui-mb-1 ui-mt-1" v-if="accessMenu == 2">
-            <ul>
-                <li @click="addStage()">
-                    <i class="ui-icon ui-mr-2">navigate_next</i>
+        <nav class="navbar is-primary" v-if="accessMenu == 2">
+            <div class="navbar-start">
+                <a class="navbar-item" @click="getStages()">
+                    <span class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </a>
+
+                <a class="navbar-item" @click="addStage()">
+                    <span class="icon">
+                        <i class="fa fa-tasks"></i>
+                    </span>
                     <span>{{ trans('data.add') }}</span>
-                </li>
-                <li @click="editStage()">
-                    <i class="ui-icon ui-mr-2">edit</i>
+                </a>
+
+                <a class="navbar-item" @click="editStage()">
+                    <span class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
                     <span>{{ trans('data.edit') }}</span>
-                </li>
-                <li @click="deleteStage()">
-                    <i class="ui-icon ui-mr-2">delete</i>
+                </a>
+
+                <a class="navbar-item" @click="deleteStage()">
+                    <span class="icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
                     <span>{{ trans('data.delete') }}</span>
-                </li>
-                <li @click="accessStage()">
-                    <i class="ui-icon ui-mr-2">fingerprint</i>
+                </a>
+
+                <a class="navbar-item" @click="accessStage()">
+                    <span class="icon">
+                        <i class="fa fa-shield"></i>
+                    </span>
                     <span>{{ trans('data.stageAccessTask') }}</span>
-                </li>
-            </ul>
-        </div>
-
-        <table>
-            <thead>
-            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="1%">
-                    <i class="ui-icon size-3 ui-color col-green hover"
-                       @click="getStages()">autorenew</i>
-                </th>
-                <th width="4%">№</th>
-                <th width="50%" class="left">{{ trans('data.stageName') }}</th>
-                <th width="20%">{{ trans('data.stagePriority') }}</th>
-                <th width="20%">{{ trans('data.stagePrice') }}</th>
-                <th width="5%">ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="hover ui-fnt light size-1 ui-color col-black"
-                v-for="(val,key) in stages"
-                @click="selectStages(val.id)">
-                <td>
-                    <div v-if="accessMenu == 2">
-                        <input type="checkbox" :id="key" :value="val.id" v-model="selectStage"/>
-                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
-                    </div>
-                </td>
-                <td>{{ key + 1 }}</td>
-                <td class="left">{{ val.name }}</td>
-                <td>{{ val.priority }}</td>
-                <td>{{ val.price }}</td>
-                <td>{{ val.id }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <add-stage v-if="showAddStage"
-                   :stage_id="selectStage[0]"
-                   @close="closePopUp()"></add-stage>
-
-        <access-task v-if="showAccessTask"
-                     :stage_id="selectStage[0]"
-                     @close="closePopUp()"></access-task>
+                </a>
+            </div>
+        </nav>
 
     </div>
 </template>
 <script>
-    Vue.component('addStage', require('./addStage.vue'));
-    Vue.component('accessTask', require('./accessTask.vue'));
+    import addStage from './addStage.vue';
+    import accessTask from './accessTask.vue';
 
     export default {
-
-        created() {
-        },
 
         mounted() {
             this.getStages();
@@ -82,43 +55,23 @@
 
         data() {
             return {
-                showAddStage: false,
-                showAccessTask: false,
                 selectStage: [],
-                stages: {}
+                stages: [],
+                // table
+                tableLoading: false
             }
         },
 
         methods: {
-            /**
-             * close all pop up
-             */
-            closePopUp() {
-                this.showAddStage = false;
-                this.showAccessTask = false;
-                this.getStages();
-            },
-
-            /**
-             * select stage
-             * @param id
-             */
-            selectStages(id) {
-                if (this.selectStage.indexOf(id) == -1) {
-                    this.selectStage.push(id);
-                } else {
-                    this.selectStage.splice(this.selectStage.indexOf(id), 1);
-                }
-            },
 
             /**
              * get all stages
              */
             getStages() {
-                this.selectStage = [];
-                gql.getItem('v2', 'TaskStageQuery', false, 'stage')
+                Api.post('v1', 'getStages')
                     .then(response => {
-                        this.stages = response.data.data.TaskStageQuery;
+                        this.stages = response.data.data;
+                        this.selectStage = [];
                     })
             },
 

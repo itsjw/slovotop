@@ -11,7 +11,7 @@
 
                 <a class="navbar-item" @click="addRole()">
                     <span class="icon">
-                        <i class="fa fa-user-plus"></i>
+                        <i class="fa fa-shield"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
@@ -25,7 +25,7 @@
 
                 <a class="navbar-item" @click="editAccess()">
                     <span class="icon">
-                        <i class="fa fa-shield"></i>
+                        <i class="fa fa-low-vision"></i>
                     </span>
                     <span>{{ trans('data.access') }}</span>
                 </a>
@@ -107,6 +107,7 @@
             return {
                 roles: [],
                 selectRole: [],
+                // table
                 tableLoading: false
             }
         },

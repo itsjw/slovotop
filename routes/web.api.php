@@ -40,5 +40,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     $router->post('getMenus', 'MenuController@getMenus');
     // access
     $router->post('saveAccessMenu', 'AccessController@saveAccessMenu');
+    // stage
+    $router->post('getStages', 'StageController@getStages');
 
 });

@@ -1,26 +1,19 @@
 <template>
-    <div>
+    <section>
 
-        <div class="ui-grid-block ui-bg bg-wite ui-p-3">
+        <b-tabs type="is-boxed">
+            <b-tab-item :label="trans('data.setTaskMain')"
+                        icon-pack="fa"
+                        icon="cogs"></b-tab-item>
 
-            <div class="ui-tabs-box">
-                <ul>
-                    <li :class="tabs[0]" @click="selectTab(0)">
-                        <i class="ui-icon ui-mr-2">settings</i>
-                        <span>{{ trans('data.setTaskMain') }}</span>
-                    </li>
-                    <li :class="tabs[1]" @click="selectTab(1)">
-                        <i class="ui-icon ui-mr-2">navigate_next</i>
-                        <span>{{ trans('data.setTaskStage') }}</span>
-                    </li>
-                </ul>
-            </div>
+            <b-tab-item :label="trans('data.setTaskStage')"
+                        icon-pack="fa"
+                        icon="tasks">
+                <setting-stages></setting-stages>
+            </b-tab-item>
+        </b-tabs>
 
-            <setting-stages v-if="tabs[1]"></setting-stages>
-
-        </div>
-
-    </div>
+    </section>
 </template>
 <script>
     Vue.component('settingStages', require('./stage/stages.vue'));

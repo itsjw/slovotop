@@ -30411,13 +30411,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 Vue.component('settingStages', __webpack_require__(44));
 
@@ -30500,30 +30493,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addStage_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addStage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addStage_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessTask_vue__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessTask_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__accessTask_vue__);
 //
 //
 //
@@ -30568,11 +30541,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-Vue.component('addStage', __webpack_require__(46));
-Vue.component('accessTask', __webpack_require__(49));
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
     mounted: function mounted() {
         this.getStages();
     },
@@ -30582,37 +30554,15 @@ Vue.component('accessTask', __webpack_require__(49));
 
     data: function data() {
         return {
-            showAddStage: false,
-            showAccessTask: false,
             selectStage: [],
-            stages: {}
+            stages: [],
+            // table
+            tableLoading: false
         };
     },
 
 
     methods: {
-        /**
-         * close all pop up
-         */
-        closePopUp: function closePopUp() {
-            this.showAddStage = false;
-            this.showAccessTask = false;
-            this.getStages();
-        },
-
-
-        /**
-         * select stage
-         * @param id
-         */
-        selectStages: function selectStages(id) {
-            if (this.selectStage.indexOf(id) == -1) {
-                this.selectStage.push(id);
-            } else {
-                this.selectStage.splice(this.selectStage.indexOf(id), 1);
-            }
-        },
-
 
         /**
          * get all stages
@@ -30620,9 +30570,9 @@ Vue.component('accessTask', __webpack_require__(49));
         getStages: function getStages() {
             var _this = this;
 
-            this.selectStage = [];
-            gql.getItem('v2', 'TaskStageQuery', false, 'stage').then(function (response) {
-                _this.stages = response.data.data.TaskStageQuery;
+            Api.post('v1', 'getStages').then(function (response) {
+                _this.stages = response.data.data;
+                _this.selectStage = [];
             });
         },
 
@@ -31486,234 +31436,137 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "ui-grid-block animated fadeIn" },
-    [
-      _vm.accessMenu == 2
-        ? _c("div", { staticClass: "ui-navbar ui-mb-1 ui-mt-1" }, [
-            _c("ul", [
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.addStage()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("navigate_next")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.editStage()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.deleteStage()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("delete")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.accessStage()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                    _vm._v("fingerprint")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _vm._v(_vm._s(_vm.trans("data.stageAccessTask")))
-                  ])
-                ]
-              )
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("table", [
-        _c("thead", [
-          _c(
-            "tr",
-            { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-            [
-              _c("th", { attrs: { width: "1%" } }, [
-                _c(
-                  "i",
-                  {
-                    staticClass: "ui-icon size-3 ui-color col-green hover",
-                    on: {
-                      click: function($event) {
-                        _vm.getStages()
-                      }
-                    }
-                  },
-                  [_vm._v("autorenew")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "left", attrs: { width: "50%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.stageName")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "20%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.stagePriority")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "20%" } }, [
-                _vm._v(_vm._s(_vm.trans("data.stagePrice")))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.stages, function(val, key) {
-            return _c(
-              "tr",
+  return _c("div", { staticClass: "ui-pt-2 bg bg-wite" }, [
+    _vm.accessMenu == 2
+      ? _c("nav", { staticClass: "navbar is-primary" }, [
+          _c("div", { staticClass: "navbar-start" }, [
+            _c(
+              "a",
               {
-                staticClass: "hover ui-fnt light size-1 ui-color col-black",
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.selectStages(val.id)
+                    _vm.getStages()
+                  }
+                }
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.addStage()
                   }
                 }
               },
               [
-                _c("td", [
-                  _vm.accessMenu == 2
-                    ? _c("div", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selectStage,
-                              expression: "selectStage"
-                            }
-                          ],
-                          attrs: { type: "checkbox", id: key },
-                          domProps: {
-                            value: val.id,
-                            checked: Array.isArray(_vm.selectStage)
-                              ? _vm._i(_vm.selectStage, val.id) > -1
-                              : _vm.selectStage
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.selectStage,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = val.id,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.selectStage = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.selectStage = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.selectStage = $$c
-                              }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", {
-                          staticClass: "ui-checkbox ui-color col-green hover",
-                          attrs: { for: key }
-                        })
-                      ])
-                    : _vm._e()
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(key + 1))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.editStage()
+                  }
+                }
+              },
+              [
+                _vm._m(2),
                 _vm._v(" "),
-                _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.deleteStage()
+                  }
+                }
+              },
+              [
+                _vm._m(3),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.priority))]),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.accessStage()
+                  }
+                }
+              },
+              [
+                _vm._m(4),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.price))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(val.id))])
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.stageAccessTask")))])
               ]
             )
-          })
-        )
-      ]),
-      _vm._v(" "),
-      _vm.showAddStage
-        ? _c("add-stage", {
-            attrs: { stage_id: _vm.selectStage[0] },
-            on: {
-              close: function($event) {
-                _vm.closePopUp()
-              }
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showAccessTask
-        ? _c("access-task", {
-            attrs: { stage_id: _vm.selectStage[0] },
-            on: {
-              close: function($event) {
-                _vm.closePopUp()
-              }
-            }
-          })
-        : _vm._e()
-    ],
-    1
-  )
+          ])
+        ])
+      : _vm._e()
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-refresh" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-tasks" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-trash" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-shield" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -31731,58 +31584,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "ui-grid-block ui-bg bg-wite ui-p-3" },
-      [
-        _c("div", { staticClass: "ui-tabs-box" }, [
-          _c("ul", [
-            _c(
-              "li",
-              {
-                class: _vm.tabs[0],
-                on: {
-                  click: function($event) {
-                    _vm.selectTab(0)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                  _vm._v("settings")
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskMain")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                class: _vm.tabs[1],
-                on: {
-                  click: function($event) {
-                    _vm.selectTab(1)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                  _vm._v("navigate_next")
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.setTaskStage")))])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _vm.tabs[1] ? _c("setting-stages") : _vm._e()
-      ],
-      1
-    )
-  ])
+  return _c(
+    "section",
+    [
+      _c(
+        "b-tabs",
+        { attrs: { type: "is-boxed" } },
+        [
+          _c("b-tab-item", {
+            attrs: {
+              label: _vm.trans("data.setTaskMain"),
+              "icon-pack": "fa",
+              icon: "cogs"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-tab-item",
+            {
+              attrs: {
+                label: _vm.trans("data.setTaskStage"),
+                "icon-pack": "fa",
+                icon: "tasks"
+              }
+            },
+            [_c("setting-stages")],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -32880,6 +32714,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             roles: [],
             selectRole: [],
+            // table
             tableLoading: false
         };
     },
@@ -34314,7 +34149,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-user-plus" })
+      _c("i", { staticClass: "fa fa-shield" })
     ])
   },
   function() {
@@ -34330,7 +34165,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-shield" })
+      _c("i", { staticClass: "fa fa-low-vision" })
     ])
   },
   function() {
