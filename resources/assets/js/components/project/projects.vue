@@ -103,7 +103,7 @@
                                         size="is-large">
                                 </b-icon>
                             </p>
-                            <p>Nothing here.</p>
+                            <p>{{ trans('data.searchNull') }}</p>
                         </div>
                     </section>
                 </template>
@@ -136,7 +136,7 @@
                 tablePaginated: true,
                 // search
                 searchType: [
-                    {name: this.trans('data.userName'), type: 'name'},
+                    {name: this.trans('data.projectName'), type: 'name'},
                 ],
                 searchId: null,
                 searchText: ''

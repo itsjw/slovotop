@@ -22,6 +22,7 @@ return [
     'search'          => 'Поиск',
     'showAll'         => 'Показать всё',
     'searchParam'     => 'Параметр поиска',
+    'searchNull'      => 'Данных нет',
 
     // notify
     'notifyOK'        => 'Успешно',

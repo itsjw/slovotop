@@ -31550,6 +31550,33 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSubject_vue__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSubject_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addSubject_vue__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31652,7 +31679,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             selectSubject: [],
             subjects: [],
-            tableLoading: false
+            // table
+            tableLoading: false,
+            tablePaginated: true,
+            // search
+            searchType: [{ name: this.trans('data.subjectName'), type: 'name' }],
+            searchId: null,
+            searchText: ''
         };
     },
 
@@ -31660,13 +31693,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         /**
+         * search
+         */
+        search: _.debounce(function () {
+            if (this.searchId != null) {
+                var params = _defineProperty({}, this.searchType[this.searchId].type, this.searchText);
+                this.getSubjects(params);
+            }
+        }, 500),
+
+        /**
          * get all subjects
          */
         getSubjects: function getSubjects() {
             var _this = this;
 
+            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
             this.tableLoading = true;
-            Api.post('v1', 'getSubjects').then(function (response) {
+            Api.post('v1', 'getSubjects', params).then(function (response) {
                 _this.subjects = response.data.data;
                 _this.selectSubject = [];
                 _this.tableLoading = false;
@@ -32088,6 +32133,85 @@ var render = function() {
       { staticClass: "ui-mt-2" },
       [
         _c(
+          "b-field",
+          { attrs: { grouped: "", "group-multiline": "" } },
+          [
+            _c("b-input", {
+              attrs: {
+                placeholder: _vm.trans("data.search"),
+                type: "search",
+                "icon-pack": "fa",
+                icon: "search"
+              },
+              on: { input: _vm.search },
+              model: {
+                value: _vm.searchText,
+                callback: function($$v) {
+                  _vm.searchText = $$v
+                },
+                expression: "searchText"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-select",
+              {
+                attrs: { placeholder: _vm.trans("data.searchParam") },
+                model: {
+                  value: _vm.searchId,
+                  callback: function($$v) {
+                    _vm.searchId = $$v
+                  },
+                  expression: "searchId"
+                }
+              },
+              _vm._l(_vm.searchType, function(val, key) {
+                return _c("option", { key: key, domProps: { value: key } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control is-flex" },
+              [
+                _c(
+                  "b-switch",
+                  {
+                    attrs: {
+                      "true-value": false,
+                      "false-value": true,
+                      type: "is-info"
+                    },
+                    model: {
+                      value: _vm.tablePaginated,
+                      callback: function($$v) {
+                        _vm.tablePaginated = $$v
+                      },
+                      expression: "tablePaginated"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.showAll")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
           "b-table",
           {
             attrs: {
@@ -32095,7 +32219,7 @@ var render = function() {
               hoverable: true,
               loading: _vm.tableLoading,
               narrowed: true,
-              paginated: true,
+              paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectSubject,
               checkable: ""
@@ -32231,7 +32355,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Nothing here.")])
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
                   ]
                 )
               ])
@@ -35606,7 +35730,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Nothing here.")])
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
                   ]
                 )
               ])
@@ -35865,7 +35989,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tableLoading: false,
             tablePaginated: true,
             // search
-            searchType: [{ name: this.trans('data.userName'), type: 'name' }],
+            searchType: [{ name: this.trans('data.projectName'), type: 'name' }],
             searchId: null,
             searchText: ''
         };
@@ -36649,7 +36773,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Nothing here.")])
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
                   ]
                 )
               ])

@@ -122,7 +122,7 @@
                                         size="is-large">
                                 </b-icon>
                             </p>
-                            <p>Nothing here.</p>
+                            <p>{{ trans('data.searchNull') }}</p>
                         </div>
                     </section>
                 </template>

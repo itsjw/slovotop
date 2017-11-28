@@ -33,12 +33,37 @@
         </nav>
 
         <section class="ui-mt-2">
+            <b-field grouped group-multiline>
+                <b-input :placeholder="trans('data.search')"
+                         type="search"
+                         icon-pack="fa"
+                         icon="search"
+                         v-model="searchText"
+                         @input="search">
+                </b-input>
+                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
+                    <option
+                            v-for="(val,key) in searchType"
+                            :value="key"
+                            :key="key">
+                        {{ val.name }}
+                    </option>
+                </b-select>
+                <div class="control is-flex">
+                    <b-switch :true-value="false" :false-value="true"
+                              type="is-info"
+                              v-model="tablePaginated">
+                        {{ trans('data.showAll') }}
+                    </b-switch>
+                </div>
+            </b-field>
+
             <b-table
                     :data="subjects"
                     :hoverable=true
                     :loading='tableLoading'
                     :narrowed=true
-                    :paginated=true
+                    :paginated='tablePaginated'
                     :per-page=20
                     :checked-rows.sync="selectSubject"
                     checkable>
@@ -74,7 +99,7 @@
                                         size="is-large">
                                 </b-icon>
                             </p>
-                            <p>Nothing here.</p>
+                            <p>{{ trans('data.searchNull') }}</p>
                         </div>
                     </section>
                 </template>
@@ -100,18 +125,36 @@
             return {
                 selectSubject: [],
                 subjects: [],
-                tableLoading: false
+                // table
+                tableLoading: false,
+                tablePaginated: true,
+                // search
+                searchType: [
+                    {name: this.trans('data.subjectName'), type: 'name'},
+                ],
+                searchId: null,
+                searchText: ''
             }
         },
 
         methods: {
 
             /**
+             * search
+             */
+            search: _.debounce(function () {
+                if (this.searchId != null) {
+                    let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.getSubjects(params);
+                }
+            }, 500),
+
+            /**
              * get all subjects
              */
-            getSubjects() {
+            getSubjects(params = null) {
                 this.tableLoading = true;
-                Api.post('v1', 'getSubjects')
+                Api.post('v1', 'getSubjects', params)
                     .then(response => {
                         this.subjects = response.data.data;
                         this.selectSubject = [];

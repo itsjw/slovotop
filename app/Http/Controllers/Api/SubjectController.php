@@ -27,6 +27,9 @@ class SubjectController extends Controller
         if (isset($request->id)) {
             $subject->where('id', $request->id);
         }
+        if (isset($request->name)) {
+            $subject->where('name', 'like', '%' . $request->name . '%');
+        }
 
         return Subject::collection($subject->get());
     }
