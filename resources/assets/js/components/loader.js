@@ -11,9 +11,6 @@ Vue.component('adminTaskEdit', require('./task/taskEdit.vue'));
 Vue.component('adminDocs', require('./doc/docs.vue'));
 Vue.component('adminDocEdit', require('./doc/docEdit.vue'));
 
-// search tip pop
-Vue.component('searchPop', require('./searchPop.vue'));
-
 // Mixins
 import Auth from '../mixin/Auth';
 
