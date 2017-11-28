@@ -191,6 +191,7 @@
                         hasModalCard: true,
                         props: this.selectRole[0]
                     });
+                    this.selectRole = [];
                 }
             },
         }
