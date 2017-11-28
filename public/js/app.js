@@ -31662,6 +31662,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -32347,7 +32348,8 @@ var render = function() {
                       [
                         _c("b-icon", {
                           attrs: {
-                            icon: "sentiment_very_dissatisfied",
+                            icon: "ban",
+                            "icon-pack": "fa",
                             size: "is-large"
                           }
                         })
@@ -34233,6 +34235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -35722,7 +35725,8 @@ var render = function() {
                       [
                         _c("b-icon", {
                           attrs: {
-                            icon: "sentiment_very_dissatisfied",
+                            icon: "ban",
+                            "icon-pack": "fa",
                             size: "is-large"
                           }
                         })
@@ -35852,6 +35856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addProject_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addProject_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -36765,7 +36770,8 @@ var render = function() {
                       [
                         _c("b-icon", {
                           attrs: {
-                            icon: "sentiment_very_dissatisfied",
+                            icon: "ban",
+                            "icon-pack": "fa",
                             size: "is-large"
                           }
                         })
