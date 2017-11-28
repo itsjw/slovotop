@@ -23,6 +23,7 @@ class Role extends Resource
         return [
             'id'         => $this->id,
             'name'       => $this->name,
+            'count'      => $this->users->count(),
             'created_at' => $this->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $this->updated_at->format('d-m-Y H:m:s'),
         ];

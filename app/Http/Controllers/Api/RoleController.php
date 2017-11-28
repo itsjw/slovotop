@@ -46,4 +46,21 @@ class RoleController extends Controller
 
         return ['success' => trans('data.notifyOK')];
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function deleteRole(Request $request)
+    {
+        foreach ($request->items as $key) {
+            $role = Role::find($key['id']);
+            if (!$role->users()->count()) {
+                $role->delete();
+            }
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
 }

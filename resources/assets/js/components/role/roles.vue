@@ -30,7 +30,7 @@
                     <span>{{ trans('data.access') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteRole()">
+                <a class="navbar-item" @click="confirmDeleteRole()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -153,20 +153,31 @@
             },
 
             /**
+             * popup delete role
+             */
+            confirmDeleteRole() {
+                if (this.selectRole.length > 0) {
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deleteRole()
+                    });
+                }
+            },
+
+            /**
              * delete role
              */
             deleteRole() {
-                if (this.selectRole.length > 0) {
-                    if (confirm('Удалить?')) {
-                        let select = ['items:"' + this.selectRole + '"'];
-
-                        gql.setItem('v2', 'DeleteRoleMutation', select)
-                            .then(response => {
-                                notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
-                                this.getRoles();
-                            })
-                    }
-                }
+                Api.post('v1', 'deleteRole', {items: this.selectRole})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getRoles();
+                    })
             },
 
             /**

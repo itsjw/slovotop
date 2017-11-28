@@ -32505,21 +32505,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * delete role
+         * popup delete role
          */
-        deleteRole: function deleteRole() {
+        confirmDeleteRole: function confirmDeleteRole() {
             var _this2 = this;
 
             if (this.selectRole.length > 0) {
-                if (confirm('Удалить?')) {
-                    var select = ['items:"' + this.selectRole + '"'];
-
-                    gql.setItem('v2', 'DeleteRoleMutation', select).then(function (response) {
-                        notify.make('success', response.data.data.DeleteRoleMutation.notify, 1);
-                        _this2.getRoles();
-                    });
-                }
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteRole();
+                    }
+                });
             }
+        },
+
+
+        /**
+         * delete role
+         */
+        deleteRole: function deleteRole() {
+            var _this3 = this;
+
+            Api.post('v1', 'deleteRole', { items: this.selectRole }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getRoles();
+            });
         },
 
 
@@ -33676,7 +33692,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteRole()
+                    _vm.confirmDeleteRole()
                   }
                 }
               },
