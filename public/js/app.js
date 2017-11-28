@@ -38350,22 +38350,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getDocs();
-        console.log(this.currentUser);
     },
 
 
-    props: {},
+    props: {
+        user_id: ''
+    },
 
     data: function data() {
         return {
-            queryParams: [],
-            showSearchName: false,
-            docs: {},
-            selectDoc: []
+            docs: [],
+            selectDoc: [],
+            tableLoading: false
         };
     },
 
@@ -38373,54 +38384,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         /**
-         * close all popup
-         */
-        closePopUp: function closePopUp() {
-            this.showSearchName = false;
-            this.getDocs();
-        },
-
-
-        /**
-         * select docs
-         */
-        selectDocs: function selectDocs(id) {
-            if (this.accessMenu == 2) {
-                if (this.selectDoc.indexOf(id) == -1) {
-                    this.selectDoc.push(id);
-                } else {
-                    this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
-                }
-            } else {
-                window.location = 'docs/doc/' + id;
-            }
-        },
-
-
-        /**
-         * search my type and value
-         * @param value
-         * @param type
-         */
-        search: function search(value, type) {
-            this.queryParams.splice(0, 1);
-
-            if (value) {
-                this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
-            }
-            this.closePopUp();
-        },
-
-
-        /**
          * get docs
          */
         getDocs: function getDocs() {
             var _this = this;
 
-            this.selectDoc = [];
-            gql.getItem('v2', 'DocQuery', this.queryParams.length > 0 ? this.queryParams : false, 'doc').then(function (response) {
-                _this.docs = response.data.data.DocQuery;
+            this.tableLoading = true;
+            Api.post('v1', 'getDocs').then(function (response) {
+                _this.docs = response.data.data;
+                _this.selectDoc = [];
+                _this.tableLoading = false;
             });
         },
 
@@ -38438,7 +38411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         editDoc: function editDoc() {
             if (this.selectDoc.length > 0) {
-                window.location = 'docs/doc/' + this.selectDoc[0];
+                window.location = 'docs/doc/' + this.selectDoc[0].id;
             }
         },
 
@@ -38473,11 +38446,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.accessMenu == 2
-      ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
-          _c("ul", [
+      ? _c("nav", { staticClass: "navbar is-primary" }, [
+          _c("div", { staticClass: "navbar-start" }, [
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.getDocs()
+                  }
+                }
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.addDoc()
@@ -38485,17 +38472,16 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                  _vm._v("note_add")
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
               ]
             ),
             _vm._v(" "),
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.editDoc()
@@ -38503,15 +38489,16 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
               ]
             ),
             _vm._v(" "),
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.deleteDoc()
@@ -38519,7 +38506,7 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("delete")]),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
               ]
@@ -38528,188 +38515,200 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("table", [
-      _c("thead", [
+    _c(
+      "section",
+      { staticClass: "ui-mt-2" },
+      [
         _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "1%" } }, [
-              _c(
-                "i",
-                {
-                  staticClass: "ui-icon size-3 ui-color col-green hover",
-                  on: {
-                    click: function($event) {
-                      _vm.getDocs()
-                    }
-                  }
-                },
-                [_vm._v("autorenew")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "60%" } }, [
-              _c(
-                "div",
-                { staticClass: "ui-grid-block" },
-                [
-                  _vm.showSearchName
-                    ? _c("search-pop", {
-                        attrs: { position: "left", type: "searchName" },
-                        on: {
-                          submit: _vm.search,
-                          close: function($event) {
-                            _vm.closePopUp()
-                          }
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "i",
-                    {
-                      staticClass:
-                        "ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1",
-                      on: {
-                        click: function($event) {
-                          _vm.showSearchName = true
-                        }
-                      }
-                    },
-                    [_vm._v("search")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "i",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.queryParams[0],
-                          expression: "queryParams[0]"
-                        }
-                      ],
-                      staticClass:
-                        "ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1",
-                      on: {
-                        click: function($event) {
-                          _vm.search()
-                        }
-                      }
-                    },
-                    [_vm._v("close")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.trans("data.docsName")))])
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.docsOwner")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.created_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.updated_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.docs, function(val, key) {
-          return _c(
-            "tr",
-            {
-              staticClass: "hover ui-fnt light size-1 ui-color col-black",
-              on: {
-                click: function($event) {
-                  _vm.selectDocs(val.id)
-                }
+          "b-table",
+          {
+            attrs: {
+              data: _vm.docs,
+              hoverable: true,
+              loading: _vm.tableLoading,
+              narrowed: true,
+              paginated: true,
+              "per-page": 20,
+              "checked-rows": _vm.selectDoc,
+              checkable: ""
+            },
+            on: {
+              "update:checkedRows": function($event) {
+                _vm.selectDoc = $event
               }
             },
-            [
-              _c("td", [
-                _vm.accessMenu > 1
-                  ? _c("div", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectDoc,
-                            expression: "selectDoc"
-                          }
-                        ],
-                        attrs: { type: "checkbox", id: key },
-                        domProps: {
-                          value: val.id,
-                          checked: Array.isArray(_vm.selectDoc)
-                            ? _vm._i(_vm.selectDoc, val.id) > -1
-                            : _vm.selectDoc
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.selectDoc,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = val.id,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.selectDoc = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.selectDoc = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.selectDoc = $$c
-                            }
-                          }
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "name",
+                          label: _vm.trans("data.docsName"),
+                          sortable: ""
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green hover",
-                        attrs: { for: key }
-                      })
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.user.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.created_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.updated_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.id))])
-            ]
-          )
-        })
-      )
-    ])
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "user.name",
+                          label: _vm.trans("data.docsOwner"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.user.name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "created_at",
+                          label: _vm.trans("data.created_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.created_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "updated_at",
+                          label: _vm.trans("data.updated_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.updated_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "id",
+                          label: "ID",
+                          width: "40",
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.id) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              }
+            ])
+          },
+          [
+            _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+              _c("section", { staticClass: "section" }, [
+                _c(
+                  "div",
+                  { staticClass: "content has-text-grey has-text-centered" },
+                  [
+                    _c(
+                      "p",
+                      [
+                        _c("b-icon", {
+                          attrs: {
+                            icon: "sentiment_very_dissatisfied",
+                            size: "is-large"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Nothing here.")])
+                  ]
+                )
+              ])
+            ])
+          ],
+          2
+        )
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-refresh" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-file-text" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-trash" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

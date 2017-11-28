@@ -1,74 +1,85 @@
 <template>
     <div>
 
-        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
-            <ul>
-                <li @click="addDoc()">
-                    <i class="ui-icon ui-mr-2">note_add</i>
+        <nav class="navbar is-primary" v-if="accessMenu == 2">
+            <div class="navbar-start">
+                <a class="navbar-item" @click="getDocs()">
+                    <span class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </a>
+
+                <a class="navbar-item" @click="addDoc()">
+                    <span class="icon">
+                        <i class="fa fa-file-text"></i>
+                    </span>
                     <span>{{ trans('data.add') }}</span>
-                </li>
-                <li @click="editDoc()">
-                    <i class="ui-icon ui-mr-2">edit</i>
+                </a>
+
+                <a class="navbar-item" @click="editDoc()">
+                    <span class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
                     <span>{{ trans('data.edit') }}</span>
-                </li>
-                <li @click="deleteDoc()">
-                    <i class="ui-icon ui-mr-2">delete</i>
+                </a>
+
+                <a class="navbar-item" @click="deleteDoc()">
+                    <span class="icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
                     <span>{{ trans('data.delete') }}</span>
-                </li>
-            </ul>
-        </div>
+                </a>
+            </div>
+        </nav>
 
-        <table>
-            <thead>
-            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="1%">
-                    <i class="ui-icon size-3 ui-color col-green hover"
-                       @click="getDocs()">autorenew</i>
-                </th>
-                <th width="4%">№</th>
-                <th width="60%" class="left">
-                    <div class="ui-grid-block">
-                        <search-pop
-                            v-if="showSearchName"
-                            position="left"
-                            type="searchName"
-                            @submit="search"
-                            @close="closePopUp()"></search-pop>
+        <section class="ui-mt-2">
+            <b-table
+                    :data="docs"
+                    :hoverable=true
+                    :loading='tableLoading'
+                    :narrowed=true
+                    :paginated=true
+                    :per-page=20
+                    :checked-rows.sync="selectDoc"
+                    checkable>
 
-                        <i class="ui-icon ui-color col-orange hover ui-fnt size-3 ui-mr-1"
-                           @click="showSearchName=true">search</i>
-                        <i class="ui-icon ui-color col-red hover ui-fnt size-3 ui-mr-1"
-                           v-show="queryParams[0]"
-                           @click="search()">close</i>
+                <template slot-scope="props">
+                    <b-table-column field="name" :label="trans('data.docsName')" sortable>
+                        {{ props.row.name }}
+                    </b-table-column>
 
-                        <span>{{ trans('data.docsName') }}</span>
-                    </div>
-                </th>
-                <th width="10%">{{ trans('data.docsOwner') }}</th>
-                <th width="10%">{{ trans('data.created_at') }}</th>
-                <th width="10%">{{ trans('data.updated_at') }}</th>
-                <th width="5%">ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="hover ui-fnt light size-1 ui-color col-black"
-                v-for="(val,key) in docs"
-                @click="selectDocs(val.id)">
-                <td>
-                    <div v-if="accessMenu > 1">
-                        <input type="checkbox" :id="key" :value="val.id" v-model="selectDoc"/>
-                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
-                    </div>
-                </td>
-                <td>{{ key + 1 }}</td>
-                <td class="left">{{ val.name }}</td>
-                <td>{{ val.user.name }}</td>
-                <td>{{ val.created_at }}</td>
-                <td>{{ val.updated_at }}</td>
-                <td>{{ val.id }}</td>
-            </tr>
-            </tbody>
-        </table>
+                    <b-table-column field="user.name" :label="trans('data.docsOwner')" sortable centered>
+                        {{ props.row.user.name }}
+                    </b-table-column>
+
+                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
+                        {{ props.row.created_at }}
+                    </b-table-column>
+
+                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
+                        {{ props.row.updated_at }}
+                    </b-table-column>
+
+                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
+                        {{ props.row.id }}
+                    </b-table-column>
+                </template>
+
+                <template slot="empty">
+                    <section class="section">
+                        <div class="content has-text-grey has-text-centered">
+                            <p>
+                                <b-icon
+                                        icon="sentiment_very_dissatisfied"
+                                        size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>Nothing here.</p>
+                        </div>
+                    </section>
+                </template>
+            </b-table>
+        </section>
 
     </div>
 </template>
@@ -77,67 +88,32 @@
 
         mounted() {
             this.getDocs();
-            console.log(this.currentUser);
         },
 
-        props: {},
+        props: {
+            user_id: ''
+        },
 
         data() {
             return {
-                queryParams: [],
-                showSearchName: false,
-                docs: {},
+                docs: [],
                 selectDoc: [],
+                tableLoading: false
             }
         },
 
         methods: {
 
             /**
-             * close all popup
-             */
-            closePopUp() {
-                this.showSearchName = false;
-                this.getDocs();
-            },
-
-            /**
-             * select docs
-             */
-            selectDocs(id) {
-                if (this.accessMenu == 2) {
-                    if (this.selectDoc.indexOf(id) == -1) {
-                        this.selectDoc.push(id);
-                    } else {
-                        this.selectDoc.splice(this.selectDoc.indexOf(id), 1);
-                    }
-                } else {
-                    window.location = 'docs/doc/' + id;
-                }
-            },
-
-            /**
-             * search my type and value
-             * @param value
-             * @param type
-             */
-            search(value, type) {
-                this.queryParams.splice(0, 1);
-
-                if (value) {
-                    this.queryParams.splice(0, 1, '' + type + ':"' + value + '"');
-                }
-                this.closePopUp();
-            },
-
-            /**
              * get docs
              */
             getDocs() {
-                this.selectDoc = [];
-                gql.getItem('v2', 'DocQuery', this.queryParams.length > 0 ? this.queryParams : false, 'doc')
+                this.tableLoading = true;
+                Api.post('v1', 'getDocs')
                     .then(response => {
-                        this.docs = response.data.data.DocQuery;
+                        this.docs = response.data.data;
+                        this.selectDoc = [];
+                        this.tableLoading = false;
                     })
             },
 
@@ -153,7 +129,7 @@
              */
             editDoc() {
                 if (this.selectDoc.length > 0) {
-                    window.location = 'docs/doc/' + this.selectDoc[0];
+                    window.location = 'docs/doc/' + this.selectDoc[0].id;
                 }
             },
 
