@@ -38614,6 +38614,34 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38714,7 +38742,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             docs: [],
             selectDoc: [],
-            tableLoading: false
+            // table
+            tableLoading: false,
+            tablePaginated: true,
+            // search
+            searchType: [{ name: this.trans('data.docsName'), type: 'name' }],
+            searchId: null,
+            searchText: ''
         };
     },
 
@@ -38722,13 +38756,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         /**
+         * search
+         */
+        search: _.debounce(function () {
+            if (this.searchId != null) {
+                var params = _defineProperty({}, this.searchType[this.searchId].type, this.searchText);
+                this.getDocs(params);
+            }
+        }, 500),
+
+        /**
          * get docs
          */
         getDocs: function getDocs() {
             var _this = this;
 
+            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
             this.tableLoading = true;
-            Api.post('v1', 'getDocs').then(function (response) {
+            Api.post('v1', 'getDocs', params).then(function (response) {
                 _this.docs = response.data.data;
                 _this.selectDoc = [];
                 _this.tableLoading = false;
@@ -38874,6 +38920,85 @@ var render = function() {
       { staticClass: "ui-mt-2" },
       [
         _c(
+          "b-field",
+          { attrs: { grouped: "", "group-multiline": "" } },
+          [
+            _c("b-input", {
+              attrs: {
+                placeholder: _vm.trans("data.search"),
+                type: "search",
+                "icon-pack": "fa",
+                icon: "search"
+              },
+              on: { input: _vm.search },
+              model: {
+                value: _vm.searchText,
+                callback: function($$v) {
+                  _vm.searchText = $$v
+                },
+                expression: "searchText"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-select",
+              {
+                attrs: { placeholder: _vm.trans("data.searchParam") },
+                model: {
+                  value: _vm.searchId,
+                  callback: function($$v) {
+                    _vm.searchId = $$v
+                  },
+                  expression: "searchId"
+                }
+              },
+              _vm._l(_vm.searchType, function(val, key) {
+                return _c("option", { key: key, domProps: { value: key } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control is-flex" },
+              [
+                _c(
+                  "b-switch",
+                  {
+                    attrs: {
+                      "true-value": false,
+                      "false-value": true,
+                      type: "is-info"
+                    },
+                    model: {
+                      value: _vm.tablePaginated,
+                      callback: function($$v) {
+                        _vm.tablePaginated = $$v
+                      },
+                      expression: "tablePaginated"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.showAll")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
           "b-table",
           {
             attrs: {
@@ -38881,7 +39006,7 @@ var render = function() {
               hoverable: true,
               loading: _vm.tableLoading,
               narrowed: true,
-              paginated: true,
+              paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectDoc,
               checkable: ""
@@ -39008,7 +39133,8 @@ var render = function() {
                       [
                         _c("b-icon", {
                           attrs: {
-                            icon: "sentiment_very_dissatisfied",
+                            icon: "ban",
+                            "icon-pack": "fa",
                             size: "is-large"
                           }
                         })
@@ -39016,7 +39142,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("p", [_vm._v("Nothing here.")])
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
                   ]
                 )
               ])

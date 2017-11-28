@@ -33,12 +33,37 @@
         </nav>
 
         <section class="ui-mt-2">
+            <b-field grouped group-multiline>
+                <b-input :placeholder="trans('data.search')"
+                         type="search"
+                         icon-pack="fa"
+                         icon="search"
+                         v-model="searchText"
+                         @input="search">
+                </b-input>
+                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
+                    <option
+                            v-for="(val,key) in searchType"
+                            :value="key"
+                            :key="key">
+                        {{ val.name }}
+                    </option>
+                </b-select>
+                <div class="control is-flex">
+                    <b-switch :true-value="false" :false-value="true"
+                              type="is-info"
+                              v-model="tablePaginated">
+                        {{ trans('data.showAll') }}
+                    </b-switch>
+                </div>
+            </b-field>
+
             <b-table
                     :data="docs"
                     :hoverable=true
                     :loading='tableLoading'
                     :narrowed=true
-                    :paginated=true
+                    :paginated='tablePaginated'
                     :per-page=20
                     :checked-rows.sync="selectDoc"
                     checkable>
@@ -70,11 +95,12 @@
                         <div class="content has-text-grey has-text-centered">
                             <p>
                                 <b-icon
-                                        icon="sentiment_very_dissatisfied"
+                                        icon="ban"
+                                        icon-pack="fa"
                                         size="is-large">
                                 </b-icon>
                             </p>
-                            <p>Nothing here.</p>
+                            <p>{{ trans('data.searchNull') }}</p>
                         </div>
                     </section>
                 </template>
@@ -98,18 +124,36 @@
             return {
                 docs: [],
                 selectDoc: [],
-                tableLoading: false
+                // table
+                tableLoading: false,
+                tablePaginated: true,
+                // search
+                searchType: [
+                    {name: this.trans('data.docsName'), type: 'name'},
+                ],
+                searchId: null,
+                searchText: ''
             }
         },
 
         methods: {
 
             /**
+             * search
+             */
+            search: _.debounce(function () {
+                if (this.searchId != null) {
+                    let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.getDocs(params);
+                }
+            }, 500),
+
+            /**
              * get docs
              */
-            getDocs() {
+            getDocs(params = null) {
                 this.tableLoading = true;
-                Api.post('v1', 'getDocs')
+                Api.post('v1', 'getDocs', params)
                     .then(response => {
                         this.docs = response.data.data;
                         this.selectDoc = [];

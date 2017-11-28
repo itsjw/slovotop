@@ -33,6 +33,9 @@ class DocController extends Controller
                 $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
             });
         }
+        if (isset($request->name)) {
+            $doc->where('name', 'like', '%' . $request->name . '%');
+        }
 
         return DocResource::collection($doc->get());
     }
