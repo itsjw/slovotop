@@ -23,7 +23,7 @@
                 <b-table-column :label="trans('data.write')" centered>
                     <div class="field">
                         <b-checkbox true-value="2" v-model="props.row.roles[0].access"
-                                    @input="selectMenu(props.row.id,props.row.roles.access)"></b-checkbox>
+                                    @input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
                     </div>
                 </b-table-column>
             </template>
