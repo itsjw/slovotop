@@ -1,15 +1,9 @@
 <template>
     <div>
 
-        <div class="ui-grid-block" v-if="accessMenu != 2">
-            <div class="ui-grid-10">
-                <div class="ui-fnt medium size-3 ui-color col-greyBlue ui-mb-5">
-                    {{ doc.name }}
-                </div>
-                <div class="ui-fnt regular size-2 ui-color col-black ui-mb-2 ui-bg bg-wite ui-p-3"
-                     v-html="converToHtml(doc.body)">
-                </div>
-            </div>
+        <div class="content" v-if="accessMenu != 2">
+            <h1>{{ doc.name }}</h1>
+            <p v-html="converToHtml(doc.body)"></p>
         </div>
 
         <div class="columns" v-if="accessMenu == 2">

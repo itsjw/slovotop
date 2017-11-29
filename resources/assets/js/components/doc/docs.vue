@@ -65,8 +65,9 @@
                     :narrowed=true
                     :paginated='tablePaginated'
                     :per-page=20
+                    @click="view"
                     :checked-rows.sync="selectDoc"
-                    checkable>
+                    :checkable="accessMenu == 2">
 
                 <template slot-scope="props">
                     <b-table-column field="name" :label="trans('data.docsName')" sortable>
@@ -139,6 +140,15 @@
         },
 
         methods: {
+
+            /**
+             * only view doc
+             */
+            view(row) {
+                if (this.accessMenu != 2) {
+                    window.location = 'docs/doc/' + row.id;
+                }
+            },
 
             /**
              * search

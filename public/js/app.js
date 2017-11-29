@@ -38459,6 +38459,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38488,6 +38489,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
     methods: {
+
+        /**
+         * only view doc
+         */
+        view: function view(row) {
+            if (this.accessMenu != 2) {
+                window.location = 'docs/doc/' + row.id;
+            }
+        },
+
 
         /**
          * search
@@ -38743,9 +38754,10 @@ var render = function() {
               paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectDoc,
-              checkable: ""
+              checkable: _vm.accessMenu == 2
             },
             on: {
+              click: _vm.view,
               "update:checkedRows": function($event) {
                 _vm.selectDoc = $event
               }
@@ -39049,12 +39061,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -39228,27 +39234,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.accessMenu != 2
-      ? _c("div", { staticClass: "ui-grid-block" }, [
-          _c("div", { staticClass: "ui-grid-10" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "ui-fnt medium size-3 ui-color col-greyBlue ui-mb-5"
-              },
-              [
-                _vm._v(
-                  "\n                " + _vm._s(_vm.doc.name) + "\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", {
-              staticClass:
-                "ui-fnt regular size-2 ui-color col-black ui-mb-2 ui-bg bg-wite ui-p-3",
-              domProps: { innerHTML: _vm._s(_vm.converToHtml(_vm.doc.body)) }
-            })
-          ])
+      ? _c("div", { staticClass: "content" }, [
+          _c("h1", [_vm._v(_vm._s(_vm.doc.name))]),
+          _vm._v(" "),
+          _c("p", {
+            domProps: { innerHTML: _vm._s(_vm.converToHtml(_vm.doc.body)) }
+          })
         ])
       : _vm._e(),
     _vm._v(" "),
