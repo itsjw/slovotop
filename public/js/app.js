@@ -30657,21 +30657,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * delete stage
+         * popup delete role
          */
-        deleteStage: function deleteStage() {
+        confirmDeleteStage: function confirmDeleteStage() {
             var _this2 = this;
 
             if (this.selectStage.length > 0) {
-                if (confirm('Удалить')) {
-                    var select = ['items:"' + this.selectStage + '"'];
-
-                    gql.setItem('v2', 'DeleteTaskStageMutation', select).then(function (response) {
-                        notify.make('success', response.data.data.DeleteTaskStageMutation.notify, 1);
-                        _this2.getStages();
-                    });
-                }
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteStage();
+                    }
+                });
             }
+        },
+
+
+        /**
+         * delete stage
+         */
+        deleteStage: function deleteStage() {
+            var _this3 = this;
+
+            Api.post('v1', 'deleteStage', { items: this.selectStage }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getStages();
+            });
         },
 
 
@@ -31143,7 +31159,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var param = { field: field, stage: this.stage, access: access };
 
-            Api.post('v1', 'saveStageTaskAccess', param).then(function (response) {
+            Api.post('v1', 'saveTaskFieldAccess', param).then(function (response) {
                 _this.$toast.open({
                     message: response.data.success,
                     type: 'is-success'
@@ -31239,7 +31255,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteStage()
+                    _vm.confirmDeleteStage()
                   }
                 }
               },

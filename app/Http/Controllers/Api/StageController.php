@@ -50,4 +50,20 @@ class StageController extends Controller
         return ['success' => trans('data.notifyOK')];
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function deleteStage(Request $request)
+    {
+        foreach ($request->items as $item) {
+            $stage = TaskStage::find($item['id']);
+            $stage->roles()->detach();
+            $stage->task()->delete();
+            $stage->delete();
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
 }

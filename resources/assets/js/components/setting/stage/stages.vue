@@ -23,7 +23,7 @@
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteStage()">
+                <a class="navbar-item" @click="confirmDeleteStage()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -153,20 +153,31 @@
             },
 
             /**
+             * popup delete role
+             */
+            confirmDeleteStage() {
+                if (this.selectStage.length > 0) {
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deleteStage()
+                    });
+                }
+            },
+
+            /**
              * delete stage
              */
             deleteStage() {
-                if (this.selectStage.length > 0) {
-                    if (confirm('Удалить')) {
-                        let select = ['items:"' + this.selectStage + '"'];
-
-                        gql.setItem('v2', 'DeleteTaskStageMutation', select)
-                            .then(response => {
-                                notify.make('success', response.data.data.DeleteTaskStageMutation.notify, 1);
-                                this.getStages();
-                            })
-                    }
-                }
+                Api.post('v1', 'deleteStage', {items: this.selectStage})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getStages();
+                    })
             },
 
             /**

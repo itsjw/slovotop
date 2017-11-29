@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class TaskStage
  *
  * @package App\Models
+ * @property mixed $task
+ * @property mixed $roles
  */
 class TaskStage extends Model
 {
@@ -18,5 +20,13 @@ class TaskStage extends Model
     public function roles()
     {
         return $this->morphToMany(Role::class, 'accessable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function task()
+    {
+        return $this->hasMany(StageTaskAccess::class, 'stage_id', 'id');
     }
 }

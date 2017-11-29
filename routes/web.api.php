@@ -39,5 +39,6 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     // stage
     $router->post('getStages', 'StageController@getStages');
     $router->post('saveStage', 'StageController@saveStage');
+    $router->post('deleteStage', 'StageController@deleteStage');
 
 });
