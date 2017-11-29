@@ -1,62 +1,65 @@
 <template>
-    <div>
+    <section>
+        <div class="modal-card bg bg-wite">
+            <div class="section">
+                <b-table
+                        :data="stageAccess"
+                        :hoverable=true
+                        :loading='tableLoading'
+                        :narrowed=true
+                        :paginated=false>
 
-        <div class="ui-popup-bg" @click="$emit('close')"></div>
-        <div class="ui-popup top w50 left animated fadeIn ui-bg bg-wite">
-            <div class="ui-popup-close col-red hover ui-icon" @click="$emit('close')">close</div>
-            <div class="ui-p-3">
+                    <template slot-scope="props">
+                        <b-table-column field="name" :label="trans('data.taskField')" sortable>
+                            {{ props.row.lang }}
+                        </b-table-column>
 
-                <table>
-                    <thead>
-                    <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                        <th width="5%">№</th>
-                        <th width="65%" class="left">{{ trans('data.taskField') }}</th>
-                        <th width="10%">{{ trans('data.read') }}</th>
-                        <th width="10%">{{ trans('data.write') }}</th>
-                        <th width="10%">{{ trans('data.hide') }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="ui-fnt light size-1 ui-color col-black"
-                        v-for="(val,key) in stageAccess">
-                        <td>{{ key + 1 }}</td>
-                        <td class="left">{{ val.lang }}</td>
-                        <td>
-                            <input type="checkbox"
-                                   :id="'menuR'+key"
-                                   v-model="val.access"
-                                   :true-value="1"
-                                   :false-value="0"
-                                   @change="selectField(key)"/>
-                            <label :for="'menuR'+key" class="ui-checkbox ui-color col-green"></label>
-                        </td>
-                        <td>
-                            <input type="checkbox"
-                                   :id="'menuW'+key"
-                                   v-model="val.access"
-                                   :true-value="2"
-                                   :false-value="0"
-                                   @change="selectField(key)"/>
-                            <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
-                        </td>
-                        <td>
-                            <input type="checkbox"
-                                   :id="'menuW'+key"
-                                   v-model="val.access"
-                                   :true-value="0"
-                                   :false-value="0"
-                                   @change="selectField(key)"/>
-                            <label :for="'menuW'+key" class="ui-checkbox ui-color col-green"></label>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        <b-table-column :label="trans('data.read')" centered>
+                            <div class="field">
+                                <b-checkbox true-value="1" v-model="props.row.access"
+                                            @input="selectField(props.row.name,props.row.access)"></b-checkbox>
+                            </div>
+                        </b-table-column>
 
+                        <b-table-column :label="trans('data.write')" centered>
+                            <div class="field">
+                                <b-checkbox true-value="2" v-model="props.row.access"></b-checkbox>
+                            </div>
+                        </b-table-column>
+
+                        <b-table-column :label="trans('data.hide')" centered>
+                            <div class="field">
+                                <b-checkbox true-value="0" v-model="props.row.access"></b-checkbox>
+                            </div>
+                        </b-table-column>
+                    </template>
+
+                    <template slot="empty">
+                        <section class="section">
+                            <div class="content has-text-grey has-text-centered">
+                                <p>
+                                    <b-icon
+                                            icon="ban"
+                                            icon-pack="fa"
+                                            size="is-large">
+                                    </b-icon>
+                                </p>
+                                <p>{{ trans('data.searchNull') }}</p>
+                            </div>
+                        </section>
+                    </template>
+                </b-table>
             </div>
         </div>
-
-    </div>
+    </section>
 </template>
+
+<style scoped>
+    .section {
+        overflow: auto
+    }
+</style>
+
 <script>
     export default {
 
@@ -64,25 +67,40 @@
             this.getStageAccess();
         },
 
-        props: {
-            stage_id: {}
-        },
+        props: {},
 
         data() {
             return {
-                stageAccess: {}
+                stage: this.$parent.props.id,
+                stageAccess: [],
+                // table
+                tableLoading: false
             }
         },
 
         methods: {
+
             /**
-             * set access for field
-             * @param key
+             * set access stage task field
+             * @param field
+             * @param access
              */
-            selectField(key) {
-                gql.setItem('v2', 'ChangeAccessTaskFieldMutation', this.getData(this.stageAccess[key]))
+            selectField(field, access) {
+                let param = {field: field, stage: this.stage, access: access};
+
+                Api.post('v1', 'saveStageTaskAccess', param)
                     .then(response => {
-                        notify.make('success', response.data.data.ChangeAccessTaskFieldMutation.notify, 1);
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
                     });
             },
 
@@ -90,23 +108,13 @@
              * get task fields
              */
             getStageAccess() {
-                gql.getRaw('getStageAccess', {stage: this.stage_id})
+                this.tableLoading = true;
+                Api.post('v1', 'getStageTaskAccess', {stage: this.stage})
                     .then(response => {
                         this.stageAccess = response.data;
+                        this.tableLoading = false;
                     })
             },
-
-            /**
-             * get data for change access
-             * @param menu
-             * @return {string}
-             */
-            getData(stage) {
-                return `
-                    access: ${stage.access},
-                    stage: ${this.stage_id},
-                    field: "${stage.name}"`;
-            }
         }
     }
 </script>

@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\StageTaskAccessSaveValidation;
 use App\Models\Menu;
 use App\Models\Role;
+use App\Models\StageTaskAccess;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,6 +31,47 @@ class AccessController extends Controller
             $role = Role::find($request->role);
             $menu->save($role, ['access' => $request->access]);
         }
+
+        return ['success' => trans('data.notifyOK')];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function getStageTaskAccess(Request $request)
+    {
+
+        $stage = StageTaskAccess::where('stage_id', $request->stage)->get();
+        $fields = config('access.taskFiled');
+
+        foreach ($fields as $value) {
+            foreach ($stage as $key) {
+                if (in_array($key->field, $value, true)) {
+                    $value['access'] = $key->access;
+                }
+            }
+            $array[] = $value;
+        }
+
+        return $array;
+    }
+
+    /**
+     * @param StageTaskAccessSaveValidation $request
+     *
+     * @return array
+     */
+    public function saveStageTaskAccess(StageTaskAccessSaveValidation $request)
+    {
+        $stage = StageTaskAccess::firstOrNew(['field' => $request->field]);
+
+        $stage->stage_id = $request->stage;
+        $stage->field = $request->field;
+        $stage->access = $request->access;
+
+        $stage->save();
 
         return ['success' => trans('data.notifyOK')];
     }

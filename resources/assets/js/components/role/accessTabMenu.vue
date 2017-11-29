@@ -16,14 +16,13 @@
                 <b-table-column :label="trans('data.read')" centered>
                     <div class="field">
                         <b-checkbox true-value="1" v-model="props.row.roles[0].access"
-                                    input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
+                                    @input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
                     </div>
                 </b-table-column>
 
                 <b-table-column :label="trans('data.write')" centered>
                     <div class="field">
-                        <b-checkbox true-value="2" v-model="props.row.roles[0].access"
-                                    @input="selectMenu(props.row.id,props.row.roles[0].access)"></b-checkbox>
+                        <b-checkbox true-value="2" v-model="props.row.roles[0].access"></b-checkbox>
                     </div>
                 </b-table-column>
             </template>
@@ -79,8 +78,9 @@
             },
 
             /**
-             * select access menu
-             * @param key
+             * set access menu
+             * @param id
+             * @param access
              */
             selectMenu(id, access) {
                 let param = {menu: id, role: this.role, access: access};

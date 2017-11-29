@@ -30997,17 +30997,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(114)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(116)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-74ce9e28"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -31105,6 +31109,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31112,25 +31119,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: {
-        stage_id: {}
-    },
+    props: {},
 
     data: function data() {
         return {
-            stageAccess: {}
+            stage: this.$parent.props.id,
+            stageAccess: [],
+            // table
+            tableLoading: false
         };
     },
 
 
     methods: {
+
         /**
-         * set access for field
-         * @param key
+         * set access stage task field
+         * @param field
+         * @param access
          */
-        selectField: function selectField(key) {
-            gql.setItem('v2', 'ChangeAccessTaskFieldMutation', this.getData(this.stageAccess[key])).then(function (response) {
-                notify.make('success', response.data.data.ChangeAccessTaskFieldMutation.notify, 1);
+        selectField: function selectField(field, access) {
+            var _this = this;
+
+            var param = { field: field, stage: this.stage, access: access };
+
+            Api.post('v1', 'saveStageTaskAccess', param).then(function (response) {
+                _this.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+            }).catch(function (error) {
+                _this.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         },
 
@@ -31139,286 +31162,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * get task fields
          */
         getStageAccess: function getStageAccess() {
-            var _this = this;
+            var _this2 = this;
 
-            gql.getRaw('getStageAccess', { stage: this.stage_id }).then(function (response) {
-                _this.stageAccess = response.data;
+            this.tableLoading = true;
+            Api.post('v1', 'getStageTaskAccess', { stage: this.stage }).then(function (response) {
+                _this2.stageAccess = response.data;
+                _this2.tableLoading = false;
             });
-        },
-
-
-        /**
-         * get data for change access
-         * @param menu
-         * @return {string}
-         */
-        getData: function getData(stage) {
-            return '\n                access: ' + stage.access + ',\n                stage: ' + this.stage_id + ',\n                field: "' + stage.name + '"';
         }
     }
 });
 
 /***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {
-      staticClass: "ui-popup-bg",
-      on: {
-        click: function($event) {
-          _vm.$emit("close")
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui-popup top w50 left animated fadeIn ui-bg bg-wite" },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "ui-popup-close col-red hover ui-icon",
-            on: {
-              click: function($event) {
-                _vm.$emit("close")
-              }
-            }
-          },
-          [_vm._v("close")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ui-p-3" }, [
-          _c("table", [
-            _c("thead", [
-              _c(
-                "tr",
-                { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-                [
-                  _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
-                  _vm._v(" "),
-                  _c("th", { staticClass: "left", attrs: { width: "65%" } }, [
-                    _vm._v(_vm._s(_vm.trans("data.taskField")))
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { width: "10%" } }, [
-                    _vm._v(_vm._s(_vm.trans("data.read")))
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { width: "10%" } }, [
-                    _vm._v(_vm._s(_vm.trans("data.write")))
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { width: "10%" } }, [
-                    _vm._v(_vm._s(_vm.trans("data.hide")))
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.stageAccess, function(val, key) {
-                return _c(
-                  "tr",
-                  { staticClass: "ui-fnt light size-1 ui-color col-black" },
-                  [
-                    _c("td", [_vm._v(_vm._s(key + 1))]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "left" }, [
-                      _vm._v(_vm._s(val.lang))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: val.access,
-                            expression: "val.access"
-                          }
-                        ],
-                        attrs: {
-                          type: "checkbox",
-                          id: "menuR" + key,
-                          "true-value": 1,
-                          "false-value": 0
-                        },
-                        domProps: {
-                          checked: Array.isArray(val.access)
-                            ? _vm._i(val.access, null) > -1
-                            : _vm._q(val.access, 1)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = val.access,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? 1 : 0
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 && (val.access = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (val.access = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.$set(val, "access", $$c)
-                              }
-                            },
-                            function($event) {
-                              _vm.selectField(key)
-                            }
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green",
-                        attrs: { for: "menuR" + key }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: val.access,
-                            expression: "val.access"
-                          }
-                        ],
-                        attrs: {
-                          type: "checkbox",
-                          id: "menuW" + key,
-                          "true-value": 2,
-                          "false-value": 0
-                        },
-                        domProps: {
-                          checked: Array.isArray(val.access)
-                            ? _vm._i(val.access, null) > -1
-                            : _vm._q(val.access, 2)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = val.access,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? 2 : 0
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 && (val.access = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (val.access = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.$set(val, "access", $$c)
-                              }
-                            },
-                            function($event) {
-                              _vm.selectField(key)
-                            }
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green",
-                        attrs: { for: "menuW" + key }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: val.access,
-                            expression: "val.access"
-                          }
-                        ],
-                        attrs: {
-                          type: "checkbox",
-                          id: "menuW" + key,
-                          "true-value": 0,
-                          "false-value": 0
-                        },
-                        domProps: {
-                          checked: Array.isArray(val.access)
-                            ? _vm._i(val.access, null) > -1
-                            : _vm._q(val.access, 0)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = val.access,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? 0 : 0
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 && (val.access = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (val.access = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.$set(val, "access", $$c)
-                              }
-                            },
-                            function($event) {
-                              _vm.selectField(key)
-                            }
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green",
-                        attrs: { for: "menuW" + key }
-                      })
-                    ])
-                  ]
-                )
-              })
-            )
-          ])
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-74ce9e28", module.exports)
-  }
-}
-
-/***/ }),
+/* 51 */,
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33487,7 +33243,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33524,8 +33279,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-         * select access menu
-         * @param key
+         * set access menu
+         * @param id
+         * @param access
          */
         selectMenu: function selectMenu(id, access) {
             var _this2 = this;
@@ -33595,10 +33351,14 @@ var render = function() {
                         { staticClass: "field" },
                         [
                           _c("b-checkbox", {
-                            attrs: {
-                              "true-value": "1",
-                              input:
-                                "selectMenu(props.row.id,props.row.roles[0].access)"
+                            attrs: { "true-value": "1" },
+                            on: {
+                              input: function($event) {
+                                _vm.selectMenu(
+                                  props.row.id,
+                                  props.row.roles[0].access
+                                )
+                              }
                             },
                             model: {
                               value: props.row.roles[0].access,
@@ -33624,14 +33384,6 @@ var render = function() {
                         [
                           _c("b-checkbox", {
                             attrs: { "true-value": "2" },
-                            on: {
-                              input: function($event) {
-                                _vm.selectMenu(
-                                  props.row.id,
-                                  props.row.roles[0].access
-                                )
-                              }
-                            },
                             model: {
                               value: props.row.roles[0].access,
                               callback: function($$v) {
@@ -39684,6 +39436,239 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(115);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("6dd84811", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-74ce9e28\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./accessTask.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-74ce9e28\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./accessTask.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.section[data-v-74ce9e28] {\n    overflow: auto\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("div", { staticClass: "modal-card bg bg-wite" }, [
+      _c(
+        "div",
+        { staticClass: "section" },
+        [
+          _c(
+            "b-table",
+            {
+              attrs: {
+                data: _vm.stageAccess,
+                hoverable: true,
+                loading: _vm.tableLoading,
+                narrowed: true,
+                paginated: false
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "name",
+                            label: _vm.trans("data.taskField"),
+                            sortable: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(props.row.lang) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: { label: _vm.trans("data.read"), centered: "" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "field" },
+                            [
+                              _c("b-checkbox", {
+                                attrs: { "true-value": "1" },
+                                on: {
+                                  input: function($event) {
+                                    _vm.selectField(
+                                      props.row.name,
+                                      props.row.access
+                                    )
+                                  }
+                                },
+                                model: {
+                                  value: props.row.access,
+                                  callback: function($$v) {
+                                    _vm.$set(props.row, "access", $$v)
+                                  },
+                                  expression: "props.row.access"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            label: _vm.trans("data.write"),
+                            centered: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "field" },
+                            [
+                              _c("b-checkbox", {
+                                attrs: { "true-value": "2" },
+                                model: {
+                                  value: props.row.access,
+                                  callback: function($$v) {
+                                    _vm.$set(props.row, "access", $$v)
+                                  },
+                                  expression: "props.row.access"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: { label: _vm.trans("data.hide"), centered: "" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "field" },
+                            [
+                              _c("b-checkbox", {
+                                attrs: { "true-value": "0" },
+                                model: {
+                                  value: props.row.access,
+                                  callback: function($$v) {
+                                    _vm.$set(props.row, "access", $$v)
+                                  },
+                                  expression: "props.row.access"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            },
+            [
+              _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+                _c("section", { staticClass: "section" }, [
+                  _c(
+                    "div",
+                    { staticClass: "content has-text-grey has-text-centered" },
+                    [
+                      _c(
+                        "p",
+                        [
+                          _c("b-icon", {
+                            attrs: {
+                              icon: "ban",
+                              "icon-pack": "fa",
+                              size: "is-large"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                    ]
+                  )
+                ])
+              ])
+            ],
+            2
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-74ce9e28", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

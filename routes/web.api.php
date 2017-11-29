@@ -7,12 +7,6 @@ use Illuminate\Routing\Router;
  * @var Router $router
  */
 
-$router->group(['namespace' => 'Crm', 'prefix' => 'api', 'middleware' => ['auth']], function (Router $router) {
-
-    $router->post('getStageAccess', 'StageTaskController@getStageTaskAccess');
-
-});
-
 $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']], function (Router $router) {
 
     // user
@@ -40,6 +34,8 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     $router->post('getMenus', 'MenuController@getMenus');
     // access
     $router->post('saveAccessMenu', 'AccessController@saveAccessMenu');
+    $router->post('getStageTaskAccess', 'AccessController@getStageTaskAccess');
+    $router->post('saveStageTaskAccess', 'AccessController@saveStageTaskAccess');
     // stage
     $router->post('getStages', 'StageController@getStages');
     $router->post('saveStage', 'StageController@saveStage');
