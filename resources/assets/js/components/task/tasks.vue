@@ -1,62 +1,123 @@
 <template>
-    <div>
+    <section>
+        <nav class="navbar is-primary" v-if="accessMenu == 2">
+            <div class="navbar-start">
+                <a class="navbar-item" @click="getTasks()">
+                    <span class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </a>
 
-        <div class="ui-navbar ui-mb-5" v-if="accessMenu == 2">
-            <ul>
-                <li @click="addTask()">
-                    <i class="ui-icon ui-mr-2">receipt</i>
+                <a class="navbar-item" @click="addTask()">
+                    <span class="icon">
+                        <i class="fa fa-tasks"></i>
+                    </span>
                     <span>{{ trans('data.add') }}</span>
-                </li>
-                <li @click="editTask()">
-                    <i class="ui-icon ui-mr-2">edit</i>
+                </a>
+
+                <a class="navbar-item" @click="editTask()">
+                    <span class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
                     <span>{{ trans('data.edit') }}</span>
-                </li>
-                <li @click="deleteTask()">
-                    <i class="ui-icon ui-mr-2">delete</i>
+                </a>
+
+                <a class="navbar-item" @click="deleteTask()">
+                    <span class="icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
                     <span>{{ trans('data.delete') }}</span>
-                </li>
-            </ul>
-        </div>
+                </a>
+            </div>
+        </nav>
 
-        <table>
-            <thead>
-            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="1%">
-                    <i class="ui-icon size-3 ui-color col-green hover"
-                       @click="getTasks()">autorenew</i>
-                </th>
-                <th width="4%">№</th>
-                <th width="20%" class="left">{{ trans('data.taskName') }}</th>
-                <th width="20%">{{ trans('data.projectName') }}</th>
-                <th width="10%">{{ trans('data.taskState') }}</th>
-                <th width="10%">{{ trans('data.taskUser') }}</th>
-                <th width="10%">{{ trans('data.taskOwner') }}</th>
-                <th width="10%">{{ trans('data.created_at') }}</th>
-                <th width="10%">{{ trans('data.updated_at') }}</th>
-                <th width="5%">ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="hover ui-fnt light size-1 ui-color col-black"
-                v-for="(val,key) in tasks"
-                @click="selectTasks(val.id)">
-                <td>
-                    <div v-if="isAdmin">
-                        <input type="checkbox" :id="key" :value="val.id" v-model="selectTask"/>
-                        <label :for="key" class="ui-checkbox ui-color col-green hover"></label>
-                    </div>
-                </td>
-                <td>{{ key + 1 }}</td>
-                <td class="left">{{ val.name }}</td>
-                <td>{{ val.count }}</td>
-                <td>{{ val.created_at }}</td>
-                <td>{{ val.updated_at }}</td>
-                <td>{{ val.id }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <section class="ui-mt-2">
+            <b-field grouped group-multiline>
+                <b-input :placeholder="trans('data.search')"
+                         type="search"
+                         icon-pack="fa"
+                         icon="search"
+                         v-model="searchText"
+                         @input="search">
+                </b-input>
+                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
+                    <option
+                            v-for="(val,key) in searchType"
+                            :value="key"
+                            :key="key">
+                        {{ val.name }}
+                    </option>
+                </b-select>
+                <div class="control is-flex">
+                    <b-switch :true-value="false" :false-value="true"
+                              type="is-info"
+                              v-model="tablePaginated">
+                        {{ trans('data.showAll') }}
+                    </b-switch>
+                </div>
+            </b-field>
 
-    </div>
+            <b-table
+                    :data="tasks"
+                    :hoverable=true
+                    :loading='tableLoading'
+                    :narrowed=true
+                    :paginated='tablePaginated'
+                    :per-page=20
+                    :checked-rows.sync="selectTask"
+                    checkable>
+
+                <template slot-scope="props">
+                    <b-table-column field="name" :label="trans('data.taskName')" sortable>
+                        {{ props.row.name }}
+                    </b-table-column>
+
+                    <b-table-column field="project" :label="trans('data.projectName')" sortable>
+                        {{ props.row.project }}
+                    </b-table-column>
+
+                    <b-table-column field="state" :label="trans('data.taskState')" sortable centered>
+                        {{ props.row.state }}
+                    </b-table-column>
+
+                    <b-table-column field="user" :label="trans('data.taskUser')" sortable centered>
+                        {{ props.row.user }}
+                    </b-table-column>
+
+                    <b-table-column field="owner" :label="trans('data.taskOwner')" sortable centered>
+                        {{ props.row.owner }}
+                    </b-table-column>
+
+                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
+                        {{ props.row.created_at }}
+                    </b-table-column>
+
+                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
+                        {{ props.row.updated_at }}
+                    </b-table-column>
+
+                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
+                        {{ props.row.id }}
+                    </b-table-column>
+                </template>
+
+                <template slot="empty">
+                    <section class="section">
+                        <div class="content has-text-grey has-text-centered">
+                            <p>
+                                <b-icon
+                                        icon="ban"
+                                        icon-pack="fa"
+                                        size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>{{ trans('data.searchNull') }}</p>
+                        </div>
+                    </section>
+                </template>
+            </b-table>
+        </section>
+    </section>
 </template>
 <script>
     export default {
@@ -72,22 +133,37 @@
         data() {
             return {
                 selectTask: [],
-                tasks: {}
+                tasks: [],
+                // tables
+                tableLoading: false,
+                tablePaginated: true,
+                // search
+                searchType: [
+                    {name: this.trans('data.taskName'), type: 'name'},
+                    {name: this.trans('data.projectName'), type: 'project'},
+                    {name: this.trans('data.taskUser'), type: 'user'},
+                    {name: this.trans('data.taskOwner'), type: 'owner'},
+                ],
+                searchId: null,
+                searchText: ''
             }
         },
 
         methods: {
-            selectTasks(id) {
-            },
+            /**
+             * search
+             */
+            search: _.debounce(function () {
+                if (this.searchId != null) {
+                    let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.getTasks(params);
+                }
+            }, 500),
 
             /**
              * gel all tasks
              */
-            getTasks() {
-                gql.getItem('v2', 'TaskQuery', false, 'task')
-                    .then(response => {
-                        this.tasks = response.data.data.TaskQuery;
-                    })
+            getTasks(params = null) {
             },
 
             /**
@@ -96,6 +172,7 @@
             addTask() {
                 window.location = '/crm/tasks/task/';
             },
+
             editTask() {
             },
             deleteTask() {

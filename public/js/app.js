@@ -31700,8 +31700,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -32099,7 +32097,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("section", [
     _vm.accessMenu == 2
       ? _c("nav", { staticClass: "navbar is-primary" }, [
           _c("div", { staticClass: "navbar-start" }, [
@@ -36614,6 +36612,69 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36688,24 +36749,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             selectTask: [],
-            tasks: {}
+            tasks: [],
+            // tables
+            tableLoading: false,
+            tablePaginated: true,
+            // search
+            searchType: [{ name: this.trans('data.taskName'), type: 'name' }, { name: this.trans('data.projectName'), type: 'project' }, { name: this.trans('data.taskUser'), type: 'user' }, { name: this.trans('data.taskOwner'), type: 'owner' }],
+            searchId: null,
+            searchText: ''
         };
     },
 
 
     methods: {
-        selectTasks: function selectTasks(id) {},
-
+        /**
+         * search
+         */
+        search: _.debounce(function () {
+            if (this.searchId != null) {
+                var params = _defineProperty({}, this.searchType[this.searchId].type, this.searchText);
+                this.getTasks(params);
+            }
+        }, 500),
 
         /**
          * gel all tasks
          */
         getTasks: function getTasks() {
-            var _this = this;
-
-            gql.getItem('v2', 'TaskQuery', false, 'task').then(function (response) {
-                _this.tasks = response.data.data.TaskQuery;
-            });
+            var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         },
 
 
@@ -36728,13 +36799,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("section", [
     _vm.accessMenu == 2
-      ? _c("div", { staticClass: "ui-navbar ui-mb-5" }, [
-          _c("ul", [
+      ? _c("nav", { staticClass: "navbar is-primary" }, [
+          _c("div", { staticClass: "navbar-start" }, [
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.getTasks()
+                  }
+                }
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.addTask()
@@ -36742,17 +36827,16 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [
-                  _vm._v("receipt")
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
               ]
             ),
             _vm._v(" "),
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.editTask()
@@ -36760,15 +36844,16 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("edit")]),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
               ]
             ),
             _vm._v(" "),
             _c(
-              "li",
+              "a",
               {
+                staticClass: "navbar-item",
                 on: {
                   click: function($event) {
                     _vm.deleteTask()
@@ -36776,7 +36861,7 @@ var render = function() {
                 }
               },
               [
-                _c("i", { staticClass: "ui-icon ui-mr-2" }, [_vm._v("delete")]),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
               ]
@@ -36785,145 +36870,336 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("table", [
-      _c("thead", [
+    _c(
+      "section",
+      { staticClass: "ui-mt-2" },
+      [
         _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
+          "b-field",
+          { attrs: { grouped: "", "group-multiline": "" } },
           [
-            _c("th", { attrs: { width: "1%" } }, [
-              _c(
-                "i",
-                {
-                  staticClass: "ui-icon size-3 ui-color col-green hover",
-                  on: {
-                    click: function($event) {
-                      _vm.getTasks()
-                    }
-                  }
+            _c("b-input", {
+              attrs: {
+                placeholder: _vm.trans("data.search"),
+                type: "search",
+                "icon-pack": "fa",
+                icon: "search"
+              },
+              on: { input: _vm.search },
+              model: {
+                value: _vm.searchText,
+                callback: function($$v) {
+                  _vm.searchText = $$v
                 },
-                [_vm._v("autorenew")]
-              )
-            ]),
+                expression: "searchText"
+              }
+            }),
             _vm._v(" "),
-            _c("th", { attrs: { width: "4%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "20%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.taskName")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "20%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.projectName")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.taskState")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.taskUser")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.taskOwner")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.created_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.updated_at")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("ID")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.tasks, function(val, key) {
-          return _c(
-            "tr",
-            {
-              staticClass: "hover ui-fnt light size-1 ui-color col-black",
-              on: {
-                click: function($event) {
-                  _vm.selectTasks(val.id)
+            _c(
+              "b-select",
+              {
+                attrs: { placeholder: _vm.trans("data.searchParam") },
+                model: {
+                  value: _vm.searchId,
+                  callback: function($$v) {
+                    _vm.searchId = $$v
+                  },
+                  expression: "searchId"
                 }
+              },
+              _vm._l(_vm.searchType, function(val, key) {
+                return _c("option", { key: key, domProps: { value: key } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control is-flex" },
+              [
+                _c(
+                  "b-switch",
+                  {
+                    attrs: {
+                      "true-value": false,
+                      "false-value": true,
+                      type: "is-info"
+                    },
+                    model: {
+                      value: _vm.tablePaginated,
+                      callback: function($$v) {
+                        _vm.tablePaginated = $$v
+                      },
+                      expression: "tablePaginated"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("data.showAll")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-table",
+          {
+            attrs: {
+              data: _vm.tasks,
+              hoverable: true,
+              loading: _vm.tableLoading,
+              narrowed: true,
+              paginated: _vm.tablePaginated,
+              "per-page": 20,
+              "checked-rows": _vm.selectTask,
+              checkable: ""
+            },
+            on: {
+              "update:checkedRows": function($event) {
+                _vm.selectTask = $event
               }
             },
-            [
-              _c("td", [
-                _vm.isAdmin
-                  ? _c("div", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectTask,
-                            expression: "selectTask"
-                          }
-                        ],
-                        attrs: { type: "checkbox", id: key },
-                        domProps: {
-                          value: val.id,
-                          checked: Array.isArray(_vm.selectTask)
-                            ? _vm._i(_vm.selectTask, val.id) > -1
-                            : _vm.selectTask
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.selectTask,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = val.id,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.selectTask = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.selectTask = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.selectTask = $$c
-                            }
-                          }
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "name",
+                          label: _vm.trans("data.taskName"),
+                          sortable: ""
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", {
-                        staticClass: "ui-checkbox ui-color col-green hover",
-                        attrs: { for: key }
-                      })
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.count))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.created_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.updated_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(val.id))])
-            ]
-          )
-        })
-      )
-    ])
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "project",
+                          label: _vm.trans("data.projectName"),
+                          sortable: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.project) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "state",
+                          label: _vm.trans("data.taskState"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.state) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "user",
+                          label: _vm.trans("data.taskUser"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.user) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "owner",
+                          label: _vm.trans("data.taskOwner"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.owner) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "created_at",
+                          label: _vm.trans("data.created_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.created_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "updated_at",
+                          label: _vm.trans("data.updated_at"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.updated_at) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "id",
+                          label: "ID",
+                          width: "40",
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.id) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              }
+            ])
+          },
+          [
+            _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+              _c("section", { staticClass: "section" }, [
+                _c(
+                  "div",
+                  { staticClass: "content has-text-grey has-text-centered" },
+                  [
+                    _c(
+                      "p",
+                      [
+                        _c("b-icon", {
+                          attrs: {
+                            icon: "ban",
+                            "icon-pack": "fa",
+                            size: "is-large"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                  ]
+                )
+              ])
+            ])
+          ],
+          2
+        )
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-refresh" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-tasks" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-trash" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

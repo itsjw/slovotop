@@ -1,6 +1,5 @@
 <template>
-    <div>
-
+    <section>
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getSubjects()">
@@ -106,8 +105,7 @@
                 </template>
             </b-table>
         </section>
-
-    </div>
+    </section>
 </template>
 <script>
     import addSubject from './addSubject.vue';

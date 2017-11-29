@@ -88,6 +88,7 @@ return [
     'taskField'       => 'Поле задачи',
     'taskName'        => 'Имя задачи',
     'taskProject'     => 'Проект',
+    'taskUser'        => 'Исполнитель задачи',
     'taskOwner'       => 'Создатель задачи',
     'taskEditor'      => 'Редактор задачи',
     'taskAuthor'      => 'Автор задачи',
