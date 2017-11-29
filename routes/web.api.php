@@ -11,10 +11,8 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     $router->group(['middleware' => 'accessRoute:settings'], function (Router $router) {
         // access
-        $router->post('saveAccessMenu', 'AccessController@saveAccessMenu');
         $router->post('getTaskField', 'AccessController@getTaskField');
         $router->post('saveTaskFieldAccess', 'AccessController@saveTaskFieldAccess');
-        $router->post('saveStageRoleAccess', 'AccessController@saveStageRoleAccess');
         // stage
         $router->post('getStages', 'StageController@getStages');
         $router->post('saveStage', 'StageController@saveStage');
@@ -41,6 +39,8 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
         $router->post('getRoles', 'RoleController@getRoles');
         $router->post('saveRole', 'RoleController@saveRole');
         $router->post('deleteRole', 'RoleController@deleteRole');
+        $router->post('saveAccessMenu', 'AccessController@saveAccessMenu');
+        $router->post('saveStageRoleAccess', 'AccessController@saveStageRoleAccess');
     });
 
     $router->group(['middleware' => 'accessRoute:projects'], function (Router $router) {
@@ -51,6 +51,8 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     });
 
     $router->group(['middleware' => 'accessRoute:tasks'], function (Router $router) {
+        // task
+
     });
 
     $router->group(['middleware' => 'accessRoute:docs'], function (Router $router) {
@@ -61,8 +63,9 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     });
 
     $router->group(['middleware' => 'accessRoute:reports'], function (Router $router) {
-    });
+        // report
 
+    });
 
     // menu
     $router->post('getMenus', 'MenuController@getMenus');
