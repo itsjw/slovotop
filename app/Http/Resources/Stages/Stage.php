@@ -14,6 +14,12 @@ class Stage extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'         => $this->id,
+            'name'       => $this->name,
+            'priority'   => $this->priority,
+            'price'      => $this->price,
+            'roles'      => count($this->roles) > 0 ? $this->roles : [['access' => 0]],
+        ];
     }
 }

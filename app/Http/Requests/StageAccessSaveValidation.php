@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StageTaskAccessSaveValidation extends FormRequest
+class StageAccessSaveValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StageTaskAccessSaveValidation extends FormRequest
         return [
             'access' => 'required',
             'stage'  => 'required|not_in:0',
-            'field'  => 'required',
+            'role'   => 'required|not_in:0',
         ];
     }
 }

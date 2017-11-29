@@ -28,6 +28,14 @@ class StageController extends Controller
         if (isset($request->id)) {
             $stage->where('id', $request->id);
         }
+        if (isset($request->role)) {
+            $role = $request->role;
+            $stage->with([
+                'roles' => function ($query) use ($role) {
+                    $query->where('role_id', $role)->select('access');
+                },
+            ]);
+        }
 
         return Stage::collection($stage->get());
     }

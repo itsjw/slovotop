@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StageTaskAccessSaveValidation;
+use App\Http\Requests\StageAccessSaveValidation;
+use App\Http\Requests\TaskFiledAccessSaveValidation;
 use App\Models\Menu;
 use App\Models\Role;
 use App\Models\StageTaskAccess;
+use App\Models\TaskStage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -59,11 +61,11 @@ class AccessController extends Controller
     }
 
     /**
-     * @param StageTaskAccessSaveValidation $request
+     * @param TaskFiledAccessSaveValidation $request
      *
      * @return array
      */
-    public function saveTaskFieldAccess(StageTaskAccessSaveValidation $request)
+    public function saveTaskFieldAccess(TaskFiledAccessSaveValidation $request)
     {
         $stage = StageTaskAccess::firstOrNew(['field' => $request->field]);
 
@@ -72,6 +74,25 @@ class AccessController extends Controller
         $stage->access = $request->access;
 
         $stage->save();
+
+        return ['success' => trans('data.notifyOK')];
+    }
+
+    /**
+     * @param StageAccessSaveValidation $request
+     *
+     * @return array
+     */
+    public function saveStageRoleAccess(StageAccessSaveValidation $request)
+    {
+        $stage = TaskStage::find($request->stage)->roles()->where('role_id', $request->role);
+
+        if ($stage->exists()) {
+            $stage->updateExistingPivot($request->role, ['access' => $request->access]);
+        } else {
+            $role = Role::find($request->role);
+            $stage->save($role, ['access' => $request->access]);
+        }
 
         return ['success' => trans('data.notifyOK')];
     }

@@ -33258,7 +33258,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -33342,13 +33341,7 @@ var render = function() {
                 return [
                   _c(
                     "b-table-column",
-                    {
-                      attrs: {
-                        field: "name",
-                        label: _vm.trans("data.titleMenu"),
-                        sortable: ""
-                      }
-                    },
+                    { attrs: { label: _vm.trans("data.titleMenu") } },
                     [
                       _vm._v(
                         "\n                " +
@@ -33546,10 +33539,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        //this.getStages();
+        this.getStages();
     },
 
 
@@ -33559,19 +33561,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            stages: {}
+            stages: [],
+            // table
+            tableLoading: false
         };
     },
 
 
     methods: {
+
         /**
-         * select stage and save
-         * @param key
+         * save stage access
+         * @param id
+         * @param access
          */
-        selectStage: function selectStage(key) {
-            gql.setItem('v2', 'ChangeAccessStageMutation', this.getData(this.stages[key])).then(function (response) {
-                notify.make('success', response.data.data.ChangeAccessStageMutation.notify, 1);
+        setStage: function setStage(id, access) {
+            var _this = this;
+
+            var param = { stage: id, role: this.role, access: access };
+            Api.post('v1', 'saveStageRoleAccess', param).then(function (response) {
+                _this.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
             });
         },
 
@@ -33580,21 +33592,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * get all stages
          */
         getStages: function getStages() {
-            var _this = this;
+            var _this2 = this;
 
-            gql.getItem('v2', 'TaskStageQuery', 'role_id:' + this.role, 'stage').then(function (response) {
-                _this.stages = response.data.data.TaskStageQuery;
+            this.tableLoading = true;
+            Api.post('v1', 'getStages', { role: this.role }).then(function (response) {
+                _this2.stages = response.data.data;
+                _this2.tableLoading = false;
+                _this2.selectStage = [];
             });
-        },
-
-
-        /**
-         * get data for change access
-         * @param stage
-         * @return {string}
-         */
-        getData: function getData(stage) {
-            return '\n                access: ' + stage.roles[0].access + ',\n                stage: ' + stage.id + ',\n                role: ' + this.role;
         }
     }
 });
@@ -33607,97 +33612,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-grid-block ui-mt-5" }, [
-    _c("table", [
-      _c("thead", [
-        _c(
-          "tr",
-          { staticClass: "ui-fnt regular size-1 ui-color col-greyBlue" },
-          [
-            _c("th", { attrs: { width: "5%" } }, [_vm._v("№")]),
-            _vm._v(" "),
-            _c("th", { staticClass: "left", attrs: { width: "85%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.stageName")))
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { width: "10%" } }, [
-              _vm._v(_vm._s(_vm.trans("data.access")))
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
+  return _c(
+    "section",
+    { staticClass: "ui-mt-2" },
+    [
       _c(
-        "tbody",
-        _vm._l(_vm.stages, function(val, key) {
-          return _c(
-            "tr",
-            { staticClass: "ui-fnt light size-1 ui-color col-black" },
-            [
-              _c("td", [_vm._v(_vm._s(key + 1))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "left" }, [_vm._v(_vm._s(val.name))]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: val.roles[0].access,
-                      expression: "val.roles[0].access"
-                    }
-                  ],
-                  attrs: {
-                    type: "checkbox",
-                    id: "menuR" + key,
-                    "true-value": 1,
-                    "false-value": 0
-                  },
-                  domProps: {
-                    checked: Array.isArray(val.roles[0].access)
-                      ? _vm._i(val.roles[0].access, null) > -1
-                      : _vm._q(val.roles[0].access, 1)
-                  },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$a = val.roles[0].access,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? 1 : 0
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (val.roles[0].access = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (val.roles[0].access = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.$set(val.roles[0], "access", $$c)
-                        }
-                      },
-                      function($event) {
-                        _vm.selectStage(key)
-                      }
+        "b-table",
+        {
+          attrs: {
+            data: _vm.stages,
+            hoverable: true,
+            loading: _vm.tableLoading,
+            narrowed: true,
+            paginated: false
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(props) {
+                return [
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.stageName") } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.name) +
+                          "\n            "
+                      )
                     ]
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", {
-                  staticClass: "ui-checkbox ui-color col-green",
-                  attrs: { for: "menuR" + key }
-                })
-              ])
-            ]
-          )
-        })
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-table-column",
+                    {
+                      attrs: { label: _vm.trans("data.access"), centered: "" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "field" },
+                        [
+                          _c("b-checkbox", {
+                            attrs: { "true-value": "1", "false-value": "0" },
+                            on: {
+                              input: function($event) {
+                                _vm.setStage(
+                                  props.row.id,
+                                  props.row.roles[0].access
+                                )
+                              }
+                            },
+                            model: {
+                              value: props.row.roles[0].access,
+                              callback: function($$v) {
+                                _vm.$set(props.row.roles[0], "access", $$v)
+                              },
+                              expression: "props.row.roles[0].access"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ])
+        },
+        [
+          _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+            _c("section", { staticClass: "section" }, [
+              _c(
+                "div",
+                { staticClass: "content has-text-grey has-text-centered" },
+                [
+                  _c(
+                    "p",
+                    [
+                      _c("b-icon", {
+                        attrs: {
+                          icon: "ban",
+                          "icon-pack": "fa",
+                          size: "is-large"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                ]
+              )
+            ])
+          ])
+        ],
+        2
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

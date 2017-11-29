@@ -1,6 +1,5 @@
 <template>
     <section class="ui-mt-2">
-
         <b-table
                 :data="menus"
                 :hoverable=true
@@ -9,7 +8,7 @@
                 :paginated=false>
 
             <template slot-scope="props">
-                <b-table-column field="name" :label="trans('data.titleMenu')" sortable>
+                <b-table-column :label="trans('data.titleMenu')">
                     {{ props.row.name }}
                 </b-table-column>
 
@@ -42,9 +41,9 @@
                 </section>
             </template>
         </b-table>
-
     </section>
 </template>
+
 <script>
     export default {
 

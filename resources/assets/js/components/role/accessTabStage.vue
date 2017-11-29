@@ -1,39 +1,48 @@
 <template>
-    <div class="ui-grid-block ui-mt-5">
+    <section class="ui-mt-2">
+        <b-table
+                :data="stages"
+                :hoverable=true
+                :loading='tableLoading'
+                :narrowed=true
+                :paginated=false>
 
-        <table>
-            <thead>
-            <tr class="ui-fnt regular size-1 ui-color col-greyBlue">
-                <th width="5%">№</th>
-                <th width="85%" class="left">{{ trans('data.stageName') }}</th>
-                <th width="10%">{{ trans('data.access') }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="ui-fnt light size-1 ui-color col-black"
-                v-for="(val,key) in stages">
-                <td>{{ key + 1 }}</td>
-                <td class="left">{{ val.name }}</td>
-                <td>
-                    <input type="checkbox"
-                           :id="'menuR'+key"
-                           v-model="val.roles[0].access"
-                           :true-value="1"
-                           :false-value="0"
-                           @change="selectStage(key)"/>
-                    <label :for="'menuR'+key" class="ui-checkbox ui-color col-green"></label>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+            <template slot-scope="props">
+                <b-table-column :label="trans('data.stageName')">
+                    {{ props.row.name }}
+                </b-table-column>
 
-    </div>
+                <b-table-column :label="trans('data.access')" centered>
+                    <div class="field">
+                        <b-checkbox true-value="1" false-value="0" v-model="props.row.roles[0].access"
+                                    @input="setStage(props.row.id,props.row.roles[0].access)"></b-checkbox>
+                    </div>
+                </b-table-column>
+
+            </template>
+
+            <template slot="empty">
+                <section class="section">
+                    <div class="content has-text-grey has-text-centered">
+                        <p>
+                            <b-icon
+                                    icon="ban"
+                                    icon-pack="fa"
+                                    size="is-large">
+                            </b-icon>
+                        </p>
+                        <p>{{ trans('data.searchNull') }}</p>
+                    </div>
+                </section>
+            </template>
+        </b-table>
+    </section>
 </template>
 <script>
     export default {
 
         mounted() {
-            //this.getStages();
+            this.getStages();
         },
 
         props: {
@@ -42,19 +51,27 @@
 
         data() {
             return {
-                stages: {}
+                stages: [],
+                // table
+                tableLoading: false
             }
         },
 
         methods: {
+
             /**
-             * select stage and save
-             * @param key
+             * save stage access
+             * @param id
+             * @param access
              */
-            selectStage(key) {
-                gql.setItem('v2', 'ChangeAccessStageMutation', this.getData(this.stages[key]))
+            setStage(id, access) {
+                let param = {stage: id, role: this.role, access: access};
+                Api.post('v1', 'saveStageRoleAccess', param)
                     .then(response => {
-                        notify.make('success', response.data.data.ChangeAccessStageMutation.notify, 1);
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
                     });
             },
 
@@ -62,23 +79,15 @@
              * get all stages
              */
             getStages() {
-                gql.getItem('v2', 'TaskStageQuery', 'role_id:' + this.role, 'stage')
+                this.tableLoading = true;
+                Api.post('v1', 'getStages', {role: this.role})
                     .then(response => {
-                        this.stages = response.data.data.TaskStageQuery;
-                    })
-            },
-
-            /**
-             * get data for change access
-             * @param stage
-             * @return {string}
-             */
-            getData(stage) {
-                return `
-                    access: ${stage.roles[0].access},
-                    stage: ${stage.id},
-                    role: ${this.role}`;
+                        this.stages = response.data.data;
+                        this.tableLoading = false;
+                        this.selectStage = [];
+                    });
             }
+
         }
     }
 </script>
