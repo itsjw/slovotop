@@ -174,7 +174,13 @@
              */
             accessStage() {
                 if (this.selectStage.length > 0) {
-                    this.showAccessTask = true;
+                    this.$modal.open({
+                        parent: this,
+                        component: accessTask,
+                        hasModalCard: true,
+                        props: this.selectStage[0]
+                    });
+                    this.selectStage = [];
                 }
             }
         }

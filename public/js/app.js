@@ -30680,7 +30680,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         accessStage: function accessStage() {
             if (this.selectStage.length > 0) {
-                this.showAccessTask = true;
+                this.$modal.open({
+                    parent: this,
+                    component: __WEBPACK_IMPORTED_MODULE_1__accessTask_vue___default.a,
+                    hasModalCard: true,
+                    props: this.selectStage[0]
+                });
+                this.selectStage = [];
             }
         }
     }
