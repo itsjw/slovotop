@@ -59,14 +59,7 @@
             }
         },
 
-        props: {
-            project_id: {
-                default: 0
-            },
-            user_id: {
-                default: 0
-            }
-        },
+        props: {},
 
         data() {
             return {
@@ -86,7 +79,7 @@
                 if (this.isAdmin) {
                     return this.project.user.id || 0;
                 }
-                return this.user_id;
+                return this.userID;
             }
         },
 

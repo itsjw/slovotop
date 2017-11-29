@@ -54,6 +54,7 @@
 
     window.ACCESS = @json(\App\Models\Menu::getAccessMenu());
     window.ROLE = @json(\Auth::user()->getRoles());
+    window.ID = @json(\Auth::user()->id);
 </script>
 
 @stack('scripts')

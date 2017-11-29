@@ -35942,14 +35942,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: {
-        project_id: {
-            default: 0
-        },
-        user_id: {
-            default: 0
-        }
-    },
+    props: {},
 
     data: function data() {
         return {
@@ -35970,7 +35963,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.isAdmin) {
                 return this.project.user.id || 0;
             }
-            return this.user_id;
+            return this.userID;
         }
     },
 
@@ -39449,6 +39442,14 @@ if (false) {
                 return false;
             }
             return true;
+        },
+
+        /**
+         * user ID
+         * @returns {*}
+         */
+        userID: function userID() {
+            return ID;
         }
     }
 });

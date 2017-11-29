@@ -23,6 +23,13 @@ export default {
                 return false;
             }
             return true;
+        },
+        /**
+         * user ID
+         * @returns {*}
+         */
+        userID() {
+            return ID;
         }
     },
 };

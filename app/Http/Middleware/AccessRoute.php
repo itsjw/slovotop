@@ -21,9 +21,10 @@ class AccessRoute
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $param = null)
     {
-        $slug = explode('/', $request->route()->uri())[1];
+
+        $slug = $param ?? explode('/', $request->route()->uri())[1];
 
         $query = Menu::query()->where('refer', 1)->where('slug', $slug);
 
@@ -31,7 +32,7 @@ class AccessRoute
             $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
         });
 
-        if ($query->get()->isEmpty()&& ! \Auth::user()->isAdmin()) {
+        if ($query->get()->isEmpty() && !\Auth::user()->isAdmin()) {
             return redirect()->route('home');
         }
 

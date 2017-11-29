@@ -27,6 +27,9 @@ class ProjectController extends Controller
         if (isset($request->id)) {
             $project->where('id', $request->id);
         }
+        if (!\Auth::user()->isAdmin()) {
+            $project->where('user_id', \Auth::id());
+        }
         if (isset($request->name)) {
             $project->where('name', 'like', '%' . $request->name . '%');
         }
