@@ -14,8 +14,7 @@
 
     <admin-task-edit
             task_id="{{ $task->id ?? 0 }}"
-            user_id="{{ \Auth::id() }}"
-            v-cloak></admin-task-edit>
+            user_id="{{ \Auth::id() }}"></admin-task-edit>
 
 @endsection()
 

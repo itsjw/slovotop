@@ -12,6 +12,6 @@
 
 @section('content')
 
-    <admin-setting v-cloak></admin-setting>
+    <admin-setting></admin-setting>
 
 @endsection()
