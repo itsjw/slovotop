@@ -88,7 +88,7 @@
             selectField(field, access) {
                 let param = {field: field, stage: this.stage, access: access};
 
-                Api.post('v1', 'saveStageTaskAccess', param)
+                Api.post('v1', 'saveTaskFieldAccess', param)
                     .then(response => {
                         this.$toast.open({
                             message: response.data.success,
@@ -109,7 +109,7 @@
              */
             getStageAccess() {
                 this.tableLoading = true;
-                Api.post('v1', 'getStageTaskAccess', {stage: this.stage})
+                Api.post('v1', 'getTaskField', {stage: this.stage})
                     .then(response => {
                         this.stageAccess = response.data;
                         this.tableLoading = false;

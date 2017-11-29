@@ -40,7 +40,7 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function getStageTaskAccess(Request $request)
+    public function getTaskField(Request $request)
     {
 
         $stage = StageTaskAccess::where('stage_id', $request->stage)->get();
@@ -63,7 +63,7 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function saveStageTaskAccess(StageTaskAccessSaveValidation $request)
+    public function saveTaskFieldAccess(StageTaskAccessSaveValidation $request)
     {
         $stage = StageTaskAccess::firstOrNew(['field' => $request->field]);
 

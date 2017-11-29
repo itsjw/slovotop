@@ -31165,7 +31165,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.tableLoading = true;
-            Api.post('v1', 'getStageTaskAccess', { stage: this.stage }).then(function (response) {
+            Api.post('v1', 'getTaskField', { stage: this.stage }).then(function (response) {
                 _this2.stageAccess = response.data;
                 _this2.tableLoading = false;
             });
