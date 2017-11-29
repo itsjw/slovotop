@@ -112,7 +112,7 @@
                             type: 'is-success'
                         });
                         this.$parent.close();
-                        this.$root.$children[0].getProjects();
+                        this.$root.$emit('getProjects');
                     })
                     .catch(error => {
                         this.$toast.open({

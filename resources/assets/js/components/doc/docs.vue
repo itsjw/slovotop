@@ -114,6 +114,8 @@
 
         mounted() {
             this.getDocs();
+
+            this.$root.$on('getDocs', this.getDocs);
         },
 
         props: {

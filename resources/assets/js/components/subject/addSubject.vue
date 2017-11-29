@@ -66,7 +66,7 @@
                             type: 'is-success'
                         });
                         this.$parent.close();
-                        this.$root.$children[0].getSubjects();
+                        this.$root.$emit('getSubjects');
                     })
                     .catch(error => {
                         this.$toast.open({

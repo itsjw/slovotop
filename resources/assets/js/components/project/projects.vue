@@ -120,6 +120,8 @@
 
         mounted() {
             this.getProjects()
+
+            this.$root.$on('getProjects', this.getProjects);
         },
 
         props: {

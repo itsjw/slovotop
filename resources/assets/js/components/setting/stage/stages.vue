@@ -95,6 +95,8 @@
 
         mounted() {
             this.getStages();
+
+            this.$root.$on('getStages', this.getStages);
         },
 
         props: {},

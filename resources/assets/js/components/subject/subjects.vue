@@ -116,6 +116,8 @@
 
         mounted() {
             this.getSubjects();
+
+            this.$root.$on('getSubjects', this.getSubjects);
         },
 
         props: {

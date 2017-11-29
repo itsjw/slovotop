@@ -172,7 +172,7 @@
                             type: 'is-success'
                         });
                         this.$parent.close();
-                        this.$root.$children[0].getUsers();
+                        this.$root.$emit('getUsers');
                     })
                     .catch(error => {
                         this.$toast.open({

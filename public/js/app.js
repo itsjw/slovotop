@@ -30593,6 +30593,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getStages();
+
+        this.$root.$on('getStages', this.getStages);
     },
 
 
@@ -30818,7 +30820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this.$parent.close();
-                _this.$root.$children[0].getStages();
+                _this.$root.$emit('getStages');
             }).catch(function (error) {
                 _this.$toast.open({
                     duration: 5000,
@@ -31928,6 +31930,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getSubjects();
+
+        this.$root.$on('getSubjects', this.getSubjects);
     },
 
 
@@ -32168,7 +32172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this.$parent.close();
-                _this.$root.$children[0].getSubjects();
+                _this.$root.$emit('getSubjects');
             }).catch(function (error) {
                 _this.$toast.open({
                     duration: 5000,
@@ -32830,6 +32834,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getRoles();
+
+        this.$root.$on('getRoles', this.getRoles);
     },
 
 
@@ -33058,7 +33064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this.$parent.close();
-                _this.$root.$children[0].getRoles();
+                _this.$root.$emit('getRoles');
             }).catch(function (error) {
                 _this.$toast.open({
                     duration: 5000,
@@ -34509,6 +34515,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getUsers();
+
+        this.$root.$on('getUsers', this.getUsers);
     },
 
 
@@ -34932,7 +34940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this2.$parent.close();
-                _this2.$root.$children[0].getUsers();
+                _this2.$root.$emit('getUsers');
             }).catch(function (error) {
                 _this2.$toast.open({
                     duration: 5000,
@@ -35910,6 +35918,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getProjects();
+
+        this.$root.$on('getProjects', this.getProjects);
     },
 
 
@@ -36200,7 +36210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     type: 'is-success'
                 });
                 _this2.$parent.close();
-                _this2.$root.$children[0].getProjects();
+                _this2.$root.$emit('getProjects');
             }).catch(function (error) {
                 _this2.$toast.open({
                     duration: 5000,
@@ -38664,6 +38674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         this.getDocs();
+
+        this.$root.$on('getDocs', this.getDocs);
     },
 
 

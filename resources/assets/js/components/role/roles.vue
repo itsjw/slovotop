@@ -99,6 +99,8 @@
 
         mounted() {
             this.getRoles();
+
+            this.$root.$on('getRoles', this.getRoles);
         },
 
         props: [],

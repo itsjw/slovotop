@@ -76,7 +76,7 @@
                             type: 'is-success'
                         });
                         this.$parent.close();
-                        this.$root.$children[0].getStages();
+                        this.$root.$emit('getStages');
                     })
                     .catch(error => {
                         this.$toast.open({

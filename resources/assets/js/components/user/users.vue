@@ -139,6 +139,8 @@
 
         mounted() {
             this.getUsers();
+
+            this.$root.$on('getUsers', this.getUsers);
         },
 
         props: [],

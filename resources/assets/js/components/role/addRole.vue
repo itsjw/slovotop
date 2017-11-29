@@ -57,7 +57,7 @@
                             type: 'is-success'
                         });
                         this.$parent.close();
-                        this.$root.$children[0].getRoles();
+                        this.$root.$emit('getRoles');
                     })
                     .catch(error => {
                         this.$toast.open({
