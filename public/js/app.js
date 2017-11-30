@@ -39551,6 +39551,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -39596,7 +39601,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             Api.post('v1', 'getGeneralSetting').then(function (response) {
-                _this2.roles = response.data.data;
+                _this2.generals = response.data.data;
             });
         }
     }
@@ -39622,6 +39627,19 @@ var render = function() {
                   _vm._s(_vm.trans("data.setGroupEdAth")) +
                   "\n                    "
               )
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "card-header-icon" }, [
+              _c("span", { staticClass: "icon" }, [
+                _c("i", {
+                  staticClass: "fa fa-refresh",
+                  on: {
+                    click: function($event) {
+                      _vm.getGenerals()
+                    }
+                  }
+                })
+              ])
             ])
           ]),
           _vm._v(" "),

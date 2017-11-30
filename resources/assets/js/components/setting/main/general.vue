@@ -7,6 +7,11 @@
                         <p class="card-header-title">
                             {{ trans('data.setGroupEdAth') }}
                         </p>
+                        <a class="card-header-icon">
+                          <span class="icon">
+                            <i class="fa fa-refresh" @click="getGenerals()"></i>
+                          </span>
+                        </a>
                     </header>
                     <div class="card-content">
                         <div class="level">
@@ -104,7 +109,7 @@
             getGenerals(){
                 Api.post('v1', 'getGeneralSetting')
                     .then(response => {
-                        this.roles = response.data.data;
+                        this.generals = response.data.data;
                     })
             }
 
