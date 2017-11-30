@@ -48,6 +48,8 @@ return [
     // settings
     'setTaskMain'     => 'Общие параметры',
     'setTaskStage'    => 'Этапы задач',
+    'setEditor'       => 'Выбор группы "Редактор"',
+    'setAuthor'       => 'Выбор группы "Автор"',
 
     // roles
     'roleRoles'       => 'Роль пользователя',

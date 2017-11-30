@@ -4,7 +4,9 @@
         <b-tabs type="is-boxed">
             <b-tab-item :label="trans('data.setTaskMain')"
                         icon-pack="fa"
-                        icon="cogs"></b-tab-item>
+                        icon="cogs">
+                <setting-general></setting-general>
+            </b-tab-item>
 
             <b-tab-item :label="trans('data.setTaskStage')"
                         icon-pack="fa"
@@ -17,6 +19,7 @@
 </template>
 <script>
     Vue.component('settingStages', require('./stage/stages.vue'));
+    Vue.component('settingGeneral', require('./main/general'));
 
     export default {
 

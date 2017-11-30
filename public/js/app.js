@@ -30415,8 +30415,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 Vue.component('settingStages', __webpack_require__(44));
+Vue.component('settingGeneral', __webpack_require__(116));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {},
@@ -31459,7 +31462,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-pt-2 bg bg-wite" }, [
+  return _c("div", { staticClass: "ui-p-3 bg bg-wite" }, [
     _vm.accessMenu == 2
       ? _c("nav", { staticClass: "navbar is-primary" }, [
           _c("div", { staticClass: "navbar-start" }, [
@@ -31757,13 +31760,18 @@ var render = function() {
         "b-tabs",
         { attrs: { type: "is-boxed" } },
         [
-          _c("b-tab-item", {
-            attrs: {
-              label: _vm.trans("data.setTaskMain"),
-              "icon-pack": "fa",
-              icon: "cogs"
-            }
-          }),
+          _c(
+            "b-tab-item",
+            {
+              attrs: {
+                label: _vm.trans("data.setTaskMain"),
+                "icon-pack": "fa",
+                icon: "cogs"
+              }
+            },
+            [_c("setting-general")],
+            1
+          ),
           _vm._v(" "),
           _c(
             "b-tab-item",
@@ -39412,6 +39420,270 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(119)
+/* template */
+var __vue_template__ = __webpack_require__(121)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/setting/main/general.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0002f3c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-0002f3c4", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 117 */,
+/* 118 */,
+/* 119 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    name: "general",
+
+    mounted: function mounted() {},
+
+
+    props: {},
+
+    data: function data() {
+        return {
+            roles: []
+        };
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 120 */,
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "ui-p-3 bg bg-wite" }, [
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column is-4" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "level" }, [
+              _c("div", { staticClass: "level-left" }, [
+                _c("p", [_vm._v(_vm._s(_vm.trans("data.setEditor")))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "level-right" },
+                [
+                  _c(
+                    "b-field",
+                    [
+                      _c(
+                        "b-select",
+                        {
+                          attrs: {
+                            placeholder: "Client",
+                            icon: "user",
+                            "icon-pack": "fa"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Option 1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Option 2")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "level" }, [
+              _c("div", { staticClass: "level-left" }, [
+                _c("p", [_vm._v(_vm._s(_vm.trans("data.setAuthor")))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "level-right" },
+                [
+                  _c(
+                    "b-field",
+                    [
+                      _c(
+                        "b-select",
+                        {
+                          attrs: {
+                            placeholder: "Client",
+                            icon: "user",
+                            "icon-pack": "fa"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Option 1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Option 2")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-4" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-4" })
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "card-header-title" }, [
+        _vm._v("\n                        Component\n                    ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0002f3c4", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

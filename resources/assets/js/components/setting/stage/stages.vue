@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-pt-2 bg bg-wite">
+    <div class="ui-p-3 bg bg-wite">
 
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
