@@ -17,6 +17,27 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      User
+     * @apiPermission auth
+     * @api           {post} getUsers getUser(s)
+     * @apiName       getUser
+     * @apiParam {Integer} id ID if need getUser
+     * @apiParam {String} name Search name
+     * @apiParam {String} email Search email
+     * @apiParamExample {json} Request-Example:
+     * {id: 1,name:'xxx',email:'xxx'}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {String} email email
+     * @apiSuccess {Integer} confirm confirm
+     * @apiSuccess {Integer} tasksCount tasksCount
+     * @apiSuccess {Datetime} lastLogin lastLogin format('d-m-Y H:m:s')
+     * @apiSuccess {Object} roles roles{id,name}
+     * @apiSuccess {Datetime} created_at created_at format('d-m-Y H:m:s')
+     * @apiSuccess {Integer} up_price price
+     * @apiSuccess {String} note note
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection

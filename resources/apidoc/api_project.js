@@ -1,14 +1,15 @@
 define({
   "name": "Api Documentation Slovo Project",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Api Documentation Slovo Project",
+  "url": "/v1/",
   "description": "",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2017-11-21T09:41:57.715Z",
+    "time": "2017-11-30T08:21:41.702Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }
