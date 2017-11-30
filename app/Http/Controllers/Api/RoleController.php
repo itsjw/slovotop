@@ -47,6 +47,17 @@ class RoleController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Role
+     * @apiPermission auth
+     * @api           {post} saveRole saveRole
+     * @apiName       saveRole
+     * @apiParam {String{Required}} name name
+     * @apiParamExample {json} Request-Example:
+     * {name:'xxx'}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param RoleSaveValidation $request
      *
      * @return array
