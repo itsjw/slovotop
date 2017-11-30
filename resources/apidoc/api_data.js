@@ -77,6 +77,84 @@ define({ "api": [
   },
   {
     "version": "0.2.0",
+    "group": "Stage",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "saveStage",
+    "title": "saveStage",
+    "name": "saveStage",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Required,Unique,Integer,Min:0",
+            "optional": false,
+            "field": "priority",
+            "description": "<p>priority</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Integer,Min:0",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{name:'xxx',priority:1,price:100}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>errors{name:'error xxx',...}</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/StageController.php",
+    "groupTitle": "Stage"
+  },
+  {
+    "version": "0.2.0",
     "group": "Subject",
     "permission": [
       {

@@ -55,6 +55,19 @@ class StageController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Stage
+     * @apiPermission auth
+     * @api           {post} saveStage saveStage
+     * @apiName       saveStage
+     * @apiParam {String{Required}} name name
+     * @apiParam {Integer{Required,Unique,Integer,Min:0}} priority priority
+     * @apiParam {Integer{Integer,Min:0}} price price
+     * @apiParamExample {json} Request-Example:
+     * {name:'xxx',priority:1,price:100}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param StageSaveValidation $request
      *
      * @return array
