@@ -86,6 +86,16 @@ class StageController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Stage
+     * @apiPermission auth
+     * @api           {post} deleteStage deleteStage(s)
+     * @apiName       deleteStage
+     * @apiParam {Array} items subject's ID [1,2,3...]
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array

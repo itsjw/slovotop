@@ -8,6 +8,54 @@ define({ "api": [
       }
     ],
     "type": "post",
+    "url": "deleteStage",
+    "title": "deleteStage(s)",
+    "name": "deleteStage",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "items",
+            "description": "<p>subject's ID [1,2,3...]</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{items:{1,2,3}}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/StageController.php",
+    "groupTitle": "Stage"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Stage",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
     "url": "getStages",
     "title": "getStage(s)",
     "name": "getStages",
