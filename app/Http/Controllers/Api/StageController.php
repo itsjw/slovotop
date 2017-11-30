@@ -15,8 +15,22 @@ use App\Http\Controllers\Controller;
  */
 class StageController extends Controller
 {
-    //
+
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Stage
+     * @apiPermission auth
+     * @api           {post} getStages getStage(s)
+     * @apiName       getStages
+     * @apiParam {Integer} id ID if need one
+     * @apiParamExample {json} Request-Example:
+     * {id: 1}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {Integer} priority priority
+     * @apiSuccess {Integer} price price
+     * @apiSuccess {Array} roles roles{access}
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection

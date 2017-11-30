@@ -21,7 +21,7 @@ class SubjectController extends Controller
      * @apiPermission auth
      * @api           {post} getSubjects getSubject(s)
      * @apiName       getSubjects
-     * @apiParam {Integer} id ID if need getUser
+     * @apiParam {Integer} id ID if need one
      * @apiParam {String} name Search name
      * @apiParamExample {json} Request-Example:
      * {id: 1,name:'xxx',email:'xxx'}
