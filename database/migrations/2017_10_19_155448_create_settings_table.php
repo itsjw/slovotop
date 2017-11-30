@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -20,9 +21,11 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('value');
+            $table->integer('value')->nullable();
             $table->timestamps();
         });
+
+        $this->seedMenu();
     }
 
     /**
@@ -33,5 +36,18 @@ class CreateSettingsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('settings');
+    }
+
+    /**
+     * add menus
+     */
+    private function seedMenu()
+    {
+        Setting::create([
+            'name' => 'editor',
+        ]);
+        Setting::create([
+            'name' => 'author',
+        ]);
     }
 }
