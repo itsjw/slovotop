@@ -5,7 +5,7 @@
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            Component
+                            {{ trans('data.setGroupEdAth') }}
                         </p>
                     </header>
                     <div class="card-content">

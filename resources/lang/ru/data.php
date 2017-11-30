@@ -48,6 +48,7 @@ return [
     // settings
     'setTaskMain'     => 'Общие параметры',
     'setTaskStage'    => 'Этапы задач',
+    'setGroupEdAth'   => 'Выбор роли для групп',
     'setEditor'       => 'Выбор группы "Редактор"',
     'setAuthor'       => 'Выбор группы "Автор"',
 
