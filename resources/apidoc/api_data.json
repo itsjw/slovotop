@@ -84,6 +84,76 @@
   },
   {
     "version": "0.2.0",
+    "group": "Subject",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "saveSubject",
+    "title": "saveSubject",
+    "name": "saveSubject",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required,Integer,Not_in:0,Min:0",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{name:'xxx',price:100}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>errors{name:'error xxx',...}</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/SubjectController.php",
+    "groupTitle": "Subject"
+  },
+  {
+    "version": "0.2.0",
     "group": "User",
     "permission": [
       {

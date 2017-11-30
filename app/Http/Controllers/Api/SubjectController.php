@@ -50,6 +50,18 @@ class SubjectController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Subject
+     * @apiPermission auth
+     * @api           {post} saveSubject saveSubject
+     * @apiName       saveSubject
+     * @apiParam {String{Required}} name name
+     * @apiParam {String{Required,Integer,Not_in:0,Min:0}} price price
+     * @apiParamExample {json} Request-Example:
+     * {name:'xxx',price:100}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param SubjectSaveValidation $request
      *
      * @return array
