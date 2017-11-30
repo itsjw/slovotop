@@ -19,7 +19,7 @@
                                             :placeholder="trans('data.roleRoles')"
                                             icon="users"
                                             icon-pack="fa"
-                                            v-model="editor">
+                                            v-model="generals.editor">
                                         <option
                                                 v-for="(val,key) in roles"
                                                 :value="val.id"
@@ -40,7 +40,7 @@
                                             :placeholder="trans('data.roleRoles')"
                                             icon="users"
                                             icon-pack="fa"
-                                            v-model="author">
+                                            v-model="generals.author">
                                         <option
                                                 v-for="(val,key) in roles"
                                                 :value="val.id"
@@ -71,14 +71,17 @@
 
         mounted() {
             this.getRoles();
+            this.getGenerals();
         },
 
         props: {},
 
         data() {
             return {
-                editor: null,
-                author: null,
+                generals: {
+                    editor: null,
+                    author: null,
+                },
                 roles: []
             }
         },
@@ -94,6 +97,17 @@
                         this.roles = response.data.data;
                     })
             },
+
+            /**
+            * get all general settings
+            */
+            getGenerals(){
+                Api.post('v1', 'getGeneralSetting')
+                    .then(response => {
+                        this.roles = response.data.data;
+                    })
+            }
+
 
         }
     }

@@ -39558,6 +39558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         this.getRoles();
+        this.getGenerals();
     },
 
 
@@ -39565,8 +39566,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            editor: null,
-            author: null,
+            generals: {
+                editor: null,
+                author: null
+            },
             roles: []
         };
     },
@@ -39582,6 +39585,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             Api.post('v1', 'getRoles').then(function (response) {
                 _this.roles = response.data.data;
+            });
+        },
+
+
+        /**
+        * get all general settings
+        */
+        getGenerals: function getGenerals() {
+            var _this2 = this;
+
+            Api.post('v1', 'getGeneralSetting').then(function (response) {
+                _this2.roles = response.data.data;
             });
         }
     }
@@ -39632,11 +39647,11 @@ var render = function() {
                             "icon-pack": "fa"
                           },
                           model: {
-                            value: _vm.editor,
+                            value: _vm.generals.editor,
                             callback: function($$v) {
-                              _vm.editor = $$v
+                              _vm.$set(_vm.generals, "editor", $$v)
                             },
-                            expression: "editor"
+                            expression: "generals.editor"
                           }
                         },
                         _vm._l(_vm.roles, function(val, key) {
@@ -39682,11 +39697,11 @@ var render = function() {
                             "icon-pack": "fa"
                           },
                           model: {
-                            value: _vm.author,
+                            value: _vm.generals.author,
                             callback: function($$v) {
-                              _vm.author = $$v
+                              _vm.$set(_vm.generals, "author", $$v)
                             },
-                            expression: "author"
+                            expression: "generals.author"
                           }
                         },
                         _vm._l(_vm.roles, function(val, key) {
