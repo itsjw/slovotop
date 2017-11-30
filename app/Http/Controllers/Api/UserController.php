@@ -74,6 +74,7 @@ class UserController extends Controller
      * @apiParam {String} password password
      * @apiParamExample {json} Request-Example:
      * {name:'xxx',email:'xxx',up_price:1,note:'xxx',role:{1,2,3},password:'xxx'}
+     * @apiSuccess {String} success trans('data.notifyOK')
      *
      * @param UserSaveValidation $request
      *

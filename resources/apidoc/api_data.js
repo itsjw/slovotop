@@ -194,6 +194,19 @@ define({ "api": [
         }
       ]
     },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
     "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/UserController.php",
     "groupTitle": "User"
   }
