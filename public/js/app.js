@@ -39541,24 +39541,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     name: "general",
 
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getRoles();
+    },
 
 
     props: {},
 
     data: function data() {
         return {
+            editor: null,
+            author: null,
             roles: []
         };
     },
 
 
-    methods: {}
+    methods: {
+
+        /**
+         * get all roles
+         */
+        getRoles: function getRoles() {
+            var _this = this;
+
+            Api.post('v1', 'getRoles').then(function (response) {
+                _this.roles = response.data.data;
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -39593,20 +39619,31 @@ var render = function() {
                         "b-select",
                         {
                           attrs: {
-                            placeholder: "Client",
-                            icon: "user",
+                            placeholder: _vm.trans("data.roleRoles"),
+                            icon: "users",
                             "icon-pack": "fa"
+                          },
+                          model: {
+                            value: _vm.editor,
+                            callback: function($$v) {
+                              _vm.editor = $$v
+                            },
+                            expression: "editor"
                           }
                         },
-                        [
-                          _c("option", { attrs: { value: "1" } }, [
-                            _vm._v("Option 1")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "2" } }, [
-                            _vm._v("Option 2")
-                          ])
-                        ]
+                        _vm._l(_vm.roles, function(val, key) {
+                          return _c(
+                            "option",
+                            { key: key, domProps: { value: val.id } },
+                            [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(val.name) +
+                                  "\n                                    "
+                              )
+                            ]
+                          )
+                        })
                       )
                     ],
                     1
@@ -39632,20 +39669,31 @@ var render = function() {
                         "b-select",
                         {
                           attrs: {
-                            placeholder: "Client",
-                            icon: "user",
+                            placeholder: _vm.trans("data.roleRoles"),
+                            icon: "users",
                             "icon-pack": "fa"
+                          },
+                          model: {
+                            value: _vm.author,
+                            callback: function($$v) {
+                              _vm.author = $$v
+                            },
+                            expression: "author"
                           }
                         },
-                        [
-                          _c("option", { attrs: { value: "1" } }, [
-                            _vm._v("Option 1")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "2" } }, [
-                            _vm._v("Option 2")
-                          ])
-                        ]
+                        _vm._l(_vm.roles, function(val, key) {
+                          return _c(
+                            "option",
+                            { key: key, domProps: { value: val.id } },
+                            [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(val.name) +
+                                  "\n                                    "
+                              )
+                            ]
+                          )
+                        })
                       )
                     ],
                     1

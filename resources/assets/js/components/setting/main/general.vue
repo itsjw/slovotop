@@ -16,11 +16,16 @@
                             <div class="level-right">
                                 <b-field>
                                     <b-select
-                                            placeholder="Client"
-                                            icon="user"
-                                            icon-pack="fa">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
+                                            :placeholder="trans('data.roleRoles')"
+                                            icon="users"
+                                            icon-pack="fa"
+                                            v-model="editor">
+                                        <option
+                                                v-for="(val,key) in roles"
+                                                :value="val.id"
+                                                :key="key">
+                                            {{ val.name }}
+                                        </option>
                                     </b-select>
                                 </b-field>
                             </div>
@@ -32,11 +37,16 @@
                             <div class="level-right">
                                 <b-field>
                                     <b-select
-                                            placeholder="Client"
-                                            icon="user"
-                                            icon-pack="fa">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
+                                            :placeholder="trans('data.roleRoles')"
+                                            icon="users"
+                                            icon-pack="fa"
+                                            v-model="author">
+                                        <option
+                                                v-for="(val,key) in roles"
+                                                :value="val.id"
+                                                :key="key">
+                                            {{ val.name }}
+                                        </option>
                                     </b-select>
                                 </b-field>
                             </div>
@@ -60,16 +70,31 @@
         name: "general",
 
         mounted() {
+            this.getRoles();
         },
 
         props: {},
 
         data() {
             return {
+                editor: null,
+                author: null,
                 roles: []
             }
         },
 
-        methods: {}
+        methods: {
+
+            /**
+             * get all roles
+             */
+            getRoles() {
+                Api.post('v1', 'getRoles')
+                    .then(response => {
+                        this.roles = response.data.data;
+                    })
+            },
+
+        }
     }
 </script>
