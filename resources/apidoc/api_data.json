@@ -1,6 +1,89 @@
 [
   {
     "version": "0.2.0",
+    "group": "Subject",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "getSubjects",
+    "title": "getSubject(s)",
+    "name": "getSubjects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID if need getUser</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Search name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{id: 1,name:'xxx',email:'xxx'}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "price",
+            "description": "<p>price</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at format('d-m-Y H:m:s')</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at format('d-m-Y H:m:s')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/SubjectController.php",
+    "groupTitle": "Subject"
+  },
+  {
+    "version": "0.2.0",
     "group": "User",
     "permission": [
       {

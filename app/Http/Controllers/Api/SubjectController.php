@@ -16,6 +16,21 @@ use App\Http\Controllers\Controller;
 class SubjectController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Subject
+     * @apiPermission auth
+     * @api           {post} getSubjects getSubject(s)
+     * @apiName       getSubjects
+     * @apiParam {Integer} id ID if need getUser
+     * @apiParam {String} name Search name
+     * @apiParamExample {json} Request-Example:
+     * {id: 1,name:'xxx',email:'xxx'}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {Integer} price price
+     * @apiSuccess {Datetime} created_at created_at format('d-m-Y H:m:s')
+     * @apiSuccess {Datetime} updated_at updated_at format('d-m-Y H:m:s')
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
