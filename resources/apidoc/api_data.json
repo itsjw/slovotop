@@ -123,5 +123,78 @@
     },
     "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/UserController.php",
     "groupTitle": "User"
+  },
+  {
+    "version": "0.2.0",
+    "group": "User",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "saveUser",
+    "title": "saveUser",
+    "name": "saveUser",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required,Unique",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "up_price",
+            "description": "<p>up_price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "note",
+            "description": "<p>note</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "size": "Required",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{name:'xxx',email:'xxx',up_price:1,note:'xxx',role:{1,2,3},password:'xxx'}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/UserController.php",
+    "groupTitle": "User"
   }
 ]
