@@ -1,6 +1,82 @@
 [
   {
     "version": "0.2.0",
+    "group": "Role",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "getRoles",
+    "title": "getRole(s)",
+    "name": "getRoles",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID if need one</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{id: 1}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "count",
+            "description": "<p>count</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at format('d-m-Y H:m:s')</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at format('d-m-Y H:m:s')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/RoleController.php",
+    "groupTitle": "Role"
+  },
+  {
+    "version": "0.2.0",
     "group": "Stage",
     "permission": [
       {

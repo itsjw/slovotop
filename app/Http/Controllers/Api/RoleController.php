@@ -17,6 +17,20 @@ class RoleController extends Controller
 {
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Role
+     * @apiPermission auth
+     * @api           {post} getRoles getRole(s)
+     * @apiName       getRoles
+     * @apiParam {Integer} id ID if need one
+     * @apiParamExample {json} Request-Example:
+     * {id: 1}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {Integer} count count
+     * @apiSuccess {Datetime} created_at created_at format('d-m-Y H:m:s')
+     * @apiSuccess {Datetime} updated_at updated_at format('d-m-Y H:m:s')
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
