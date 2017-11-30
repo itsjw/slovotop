@@ -70,11 +70,12 @@ class UserController extends Controller
      * @apiParam {String{Required,Unique}} email email
      * @apiParam {Integer} up_price up_price
      * @apiParam {String} note note
-     * @apiParam {Array{Required}} role role
+     * @apiParam {Array{Required}} role role's ID [1,2,3..]
      * @apiParam {String} password password
      * @apiParamExample {json} Request-Example:
      * {name:'xxx',email:'xxx',up_price:1,note:'xxx',role:{1,2,3},password:'xxx'}
      * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
      *
      * @param UserSaveValidation $request
      *
@@ -108,6 +109,16 @@ class UserController extends Controller
 
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      User
+     * @apiPermission auth
+     * @api           {post} deleteUser deleteUser(s)
+     * @apiName       deleteUser
+     * @apiParam {Array} items users's ID [1,2,3...]
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array
@@ -129,6 +140,16 @@ class UserController extends Controller
 
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      User
+     * @apiPermission auth
+     * @api           {post} approveUser approveUser(s)
+     * @apiName       approveUser
+     * @apiParam {Array} items users's ID [1,2,3...]
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array
