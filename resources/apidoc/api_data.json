@@ -8,6 +8,54 @@
       }
     ],
     "type": "post",
+    "url": "deleteRole",
+    "title": "deleteRole(s)",
+    "name": "deleteRole",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "items",
+            "description": "<p>subject's ID [1,2,3...]</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{items:{1,2,3}}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/RoleController.php",
+    "groupTitle": "Role"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Role",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "type": "post",
     "url": "getRoles",
     "title": "getRole(s)",
     "name": "getRoles",

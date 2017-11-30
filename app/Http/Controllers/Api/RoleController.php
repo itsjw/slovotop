@@ -73,6 +73,16 @@ class RoleController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Role
+     * @apiPermission auth
+     * @api           {post} deleteRole deleteRole(s)
+     * @apiName       deleteRole
+     * @apiParam {Array} items subject's ID [1,2,3...]
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array
