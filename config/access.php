@@ -44,7 +44,7 @@ return [
         ],
         [
             'name'   => 'desc',
-            'lang'   => 'Описание задачи',
+            'lang'   => 'Description',
             'access' => 0,
         ],
         [
@@ -60,11 +60,6 @@ return [
         [
             'name'   => 'task',
             'lang'   => 'Задача',
-            'access' => 0,
-        ],
-        [
-            'name'   => 'rule_text',
-            'lang'   => 'Правила написания текста',
             'access' => 0,
         ],
         [

@@ -37646,16 +37646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37877,65 +37867,23 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "columns" }, [
-            _c(
-              "div",
-              { staticClass: "column is-6" },
-              [
-                _c(
-                  "b-field",
-                  { attrs: { label: _vm.trans("data.taskTask") } },
-                  [
-                    _c("b-input", {
-                      attrs: {
-                        type: "textarea",
-                        minlength: "10",
-                        maxlength: "100"
-                      },
-                      model: {
-                        value: _vm.task.task,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task, "task", $$v)
-                        },
-                        expression: "task.task"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "column is-6" },
-              [
-                _c(
-                  "b-field",
-                  { attrs: { label: _vm.trans("data.taskRuleText") } },
-                  [
-                    _c("b-input", {
-                      attrs: {
-                        type: "textarea",
-                        minlength: "10",
-                        maxlength: "100"
-                      },
-                      model: {
-                        value: _vm.task.rule_text,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task, "rule_text", $$v)
-                        },
-                        expression: "task.rule_text"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ]),
+          _c(
+            "b-field",
+            { attrs: { label: _vm.trans("data.taskTask") } },
+            [
+              _c("b-input", {
+                attrs: { type: "textarea", minlength: "10", maxlength: "100" },
+                model: {
+                  value: _vm.task.task,
+                  callback: function($$v) {
+                    _vm.$set(_vm.task, "task", $$v)
+                  },
+                  expression: "task.task"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "columns" }, [
             _c(

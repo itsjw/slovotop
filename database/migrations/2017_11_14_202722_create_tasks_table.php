@@ -30,7 +30,6 @@ class CreateTasksTable extends Migration
             $table->text('words');
             $table->text('more_data')->nullable();
             $table->text('task');
-            $table->text('rule_text');
             $table->longText('text_body')->nullable();
             $table->text('text_preview')->nullable();
             $table->string('text_url')->nullable();

@@ -36,20 +36,10 @@
                     </div>
                 </div>
 
-                <div class="columns">
-                    <div class="column is-6">
-                        <b-field :label="trans('data.taskTask')">
-                            <b-input type="textarea" minlength="10" maxlength="100"
-                                     v-model="task.task"></b-input>
-                        </b-field>
-                    </div>
-                    <div class="column is-6">
-                        <b-field :label="trans('data.taskRuleText')">
-                            <b-input type="textarea" minlength="10" maxlength="100"
-                                     v-model="task.rule_text"></b-input>
-                        </b-field>
-                    </div>
-                </div>
+                <b-field :label="trans('data.taskTask')">
+                    <b-input type="textarea" minlength="10" maxlength="100"
+                             v-model="task.task"></b-input>
+                </b-field>
 
                 <div class="columns">
                     <div class="column is-12">
