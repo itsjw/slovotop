@@ -13,7 +13,12 @@ window.Vue = require('vue');
 // Buefy
 import Buefy from 'buefy';
 Vue.use(Buefy,{
-    defaultIconPack: 'fa'
+    defaultIconPack: 'fa',
+    defaultTimeFormatter: 'HH:mm',
+    defaultTimeParser: 'HH:mm',
+    defaultDayNames: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    defaultMonthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+        'Октябрь', 'Ноябрь', 'Декабрь']
 });
 
 // query builder

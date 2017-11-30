@@ -7,7 +7,7 @@
         </div>
 
         <div class="columns">
-            <div class="column is-10">
+            <div class="column is-9">
                 <b-field :label="trans('data.taskName')">
                     <b-input v-model="task.name"></b-input>
                 </b-field>
@@ -73,7 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-2">
+
+            <div class="column is-3">
                 <b-field :label="trans('data.taskProject')">
                     <b-select :placeholder="trans('data.taskProject')"
                               icon-pack="fa"
@@ -135,6 +136,22 @@
                             <b-input placeholder="max" type="number" min="0" v-model="task.text_max"></b-input>
                         </div>
                     </div>
+                </b-field>
+
+                <b-field :label="trans('data.taskTextUnique')">
+                    <b-input type="number" min="0" v-model="task.text_unique"></b-input>
+                </b-field>
+
+                <b-field :label="trans('data.taskPrice')">
+                    <b-input type="number" min="0" v-model="task.price"></b-input>
+                </b-field>
+
+                <b-field :label="trans('data.taskDateEnd')">
+                    <b-datepicker
+                            icon-pack="fa"
+                            icon="calendar"
+                            :min-date="new Date()"
+                            v-model="task.date_end"></b-datepicker>
                 </b-field>
             </div>
         </div>
