@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="saveStage()">
+    <form @submit.prevent.once="saveStage()">
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">

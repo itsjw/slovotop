@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="saveRole()">
+    <form @submit.prevent.once="saveRole()">
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">

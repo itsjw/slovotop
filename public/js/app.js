@@ -30885,7 +30885,7 @@ var render = function() {
     "form",
     {
       on: {
-        submit: function($event) {
+        "~submit": function($event) {
           $event.preventDefault()
           _vm.saveStage()
         }
@@ -32246,7 +32246,7 @@ var render = function() {
     "form",
     {
       on: {
-        submit: function($event) {
+        "~submit": function($event) {
           $event.preventDefault()
           _vm.saveSubject()
         }
@@ -33137,7 +33137,7 @@ var render = function() {
     "form",
     {
       on: {
-        submit: function($event) {
+        "~submit": function($event) {
           $event.preventDefault()
           _vm.saveRole()
         }
@@ -35013,7 +35013,7 @@ var render = function() {
     "form",
     {
       on: {
-        submit: function($event) {
+        "~submit": function($event) {
           $event.preventDefault()
           _vm.saveUser()
         }
@@ -36258,7 +36258,7 @@ var render = function() {
     "form",
     {
       on: {
-        submit: function($event) {
+        "~submit": function($event) {
           $event.preventDefault()
           _vm.saveProject()
         }
@@ -37696,12 +37696,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * get users
          * @param role
          */
-        getUser: function getUser(role) {
+        getUser: function getUser() {
             var _this = this;
 
-            gql.getItem('v2', 'UserQuery', false, 'user').then(function (response) {
-                _this.editors = response.data.data.UserQuery;
-                _this.authors = response.data.data.UserQuery;
+            Api.post('v1', 'getUsers').then(function (response) {
+                _this.editors = response.data.data;
+                _this.authors = response.data.data;
             });
         },
 
@@ -37712,8 +37712,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProject: function getProject() {
             var _this2 = this;
 
-            gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project').then(function (response) {
-                _this2.projects = response.data.data.ProjectQuery;
+            Api.post('v1', 'getProjects').then(function (response) {
+                _this2.projects = response.data.data;
             });
         },
 
@@ -37724,11 +37724,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getSubject: function getSubject() {
             var _this3 = this;
 
-            gql.getItem('v2', 'TaskSubjectQuery', false, 'subject').then(function (response) {
-                _this3.subjects = response.data.data.TaskSubjectQuery;
+            Api.post('v1', 'getSubjects').then(function (response) {
+                _this3.subjects = response.data.data;
             });
-        },
-        getTask: function getTask() {}
+        }
     }
 });
 
@@ -39038,6 +39037,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -39071,7 +39078,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             editor: {},
             doc: {
                 roles: []
-            }
+            },
+            // save button
+            isDisabled: false
         };
     },
 
@@ -39159,6 +39168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveDoc: function saveDoc() {
             var _this3 = this;
 
+            this.isDisabled = true;
             Api.post('v1', 'saveDoc', this.getDocData(this.doc)).then(function (response) {
                 _this3.$toast.open({
                     message: response.data.success,
@@ -39166,12 +39176,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
                 history.pushState(null, null, response.data.id);
                 _this3.doc.id = response.data.id;
+                _this3.isDisabled = false;
             }).catch(function (error) {
                 _this3.$toast.open({
                     duration: 5000,
                     message: Api.errorSerializer(error.response.data.errors),
                     type: 'is-danger'
                 });
+                _this3.isDisabled = false;
             });
         },
 
@@ -39225,14 +39237,6 @@ var render = function() {
           _c("div", { staticClass: "column is-10 bg bg-wite" }, [
             _c(
               "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    _vm.saveDoc()
-                  }
-                }
-              },
               [
                 _c(
                   "b-field",
@@ -39369,9 +39373,26 @@ var render = function() {
                     "button",
                     {
                       staticClass: "button is-primary",
-                      attrs: { type: "submit" }
+                      attrs: { type: "button", disabled: _vm.isDisabled },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.saveDoc()
+                        }
+                      }
                     },
-                    [_vm._v(_vm._s(_vm.trans("data.save")))]
+                    [
+                      _c("b-icon", {
+                        attrs: {
+                          pack: "fa",
+                          icon: _vm.isDisabled ? "refresh" : "check",
+                          "custom-class": _vm.isDisabled ? "fa-spin" : ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+                    ],
+                    1
                   )
                 ])
               ],

@@ -204,11 +204,11 @@
              * get users
              * @param role
              */
-            getUser(role) {
-                gql.getItem('v2', 'UserQuery', false, 'user')
+            getUser() {
+                Api.post('v1', 'getUsers')
                     .then(response => {
-                        this.editors = response.data.data.UserQuery;
-                        this.authors = response.data.data.UserQuery;
+                        this.editors = response.data.data;
+                        this.authors = response.data.data;
                     })
             },
 
@@ -216,9 +216,9 @@
              * get projects
              */
             getProject() {
-                gql.getItem('v2', 'ProjectQuery', this.queryParams, 'project')
+                Api.post('v1', 'getProjects')
                     .then(response => {
-                        this.projects = response.data.data.ProjectQuery;
+                        this.projects = response.data.data;
                     })
             },
 
@@ -226,15 +226,12 @@
              * get subjects
              */
             getSubject() {
-                gql.getItem('v2', 'TaskSubjectQuery', false, 'subject')
+                Api.post('v1', 'getSubjects')
                     .then(response => {
-                        this.subjects = response.data.data.TaskSubjectQuery;
+                        this.subjects = response.data.data;
                     })
             },
 
-            getTask() {
-
-            }
         }
     }
 </script>

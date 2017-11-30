@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="saveUser()">
+    <form @submit.prevent.once="saveUser()">
         <div class="modal-card">
             <b-message title="Info" type="is-info" has-icon v-if="userProp == 0">
                 {{ trans('data.informUseAdd') }}

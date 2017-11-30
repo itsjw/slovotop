@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent="saveSubject()">
+    <form @submit.prevent.once="saveSubject()">
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">

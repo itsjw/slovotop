@@ -9,7 +9,7 @@
         <div class="columns" v-if="accessMenu == 2">
             <div class="column is-10 bg bg-wite">
 
-                <form @submit.prevent="saveDoc()">
+                <form>
                     <b-field :label="trans('data.docsName')">
                         <b-input type="text" v-model="doc.name"></b-input>
                     </b-field>
@@ -50,7 +50,15 @@
                     <footer class="modal-card-foot">
                         <button class="button" type="button" @click="cancelDoc()">{{ trans('data.cancel') }}
                         </button>
-                        <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+                        <button class="button is-primary" type="button" @click.prevent="saveDoc()"
+                                :disabled="isDisabled">
+                            <b-icon
+                                    pack="fa"
+                                    :icon="isDisabled ? 'refresh' : 'check'"
+                                    :custom-class="isDisabled ? 'fa-spin' : ''">
+                            </b-icon>
+                            <span>{{ trans('data.save') }}</span>
+                        </button>
                     </footer>
 
                 </form>
@@ -96,7 +104,9 @@
                 editor: {},
                 doc: {
                     roles: []
-                }
+                },
+                // save button
+                isDisabled: false
             }
         },
 
@@ -174,6 +184,7 @@
              * save doc
              */
             saveDoc() {
+                this.isDisabled = true;
                 Api.post('v1', 'saveDoc', this.getDocData(this.doc))
                     .then(response => {
                         this.$toast.open({
@@ -182,6 +193,7 @@
                         });
                         history.pushState(null, null, response.data.id);
                         this.doc.id = response.data.id;
+                        this.isDisabled = false;
                     })
                     .catch(error => {
                         this.$toast.open({
@@ -189,6 +201,7 @@
                             message: Api.errorSerializer(error.response.data.errors),
                             type: 'is-danger'
                         });
+                        this.isDisabled = false;
                     });
             },
 
