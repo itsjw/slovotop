@@ -5,7 +5,7 @@
             <div class="navbar-start">
                 <a class="navbar-item" @click="getStages()">
                     <span class="icon">
-                        <i class="fa fa-refresh"></i>
+                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
                     </span>
                 </a>
 
