@@ -719,6 +719,20 @@ define({ "api": [
             "optional": false,
             "field": "email",
             "description": "<p>Search email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "editor",
+            "description": "<p>get all editors</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "author",
+            "description": "<p>get all authors</p>"
           }
         ]
       },
