@@ -1,9 +1,31 @@
 <template>
     <section>
         <div class="field is-grouped">
-            <button type="button" class="button is-primary control">{{ trans('data.save') }}</button>
-            <button type="button" class="button is-link control">{{ trans('data.taskGet') }}</button>
-            <button type="button" class="button is-warning control">{{ trans('data.taskReturn') }}</button>
+            <button class="button is-primary control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        :icon="isRefresh ? 'refresh' : 'check'"
+                        :custom-class="isRefresh ? 'fa-spin' : ''">
+                </b-icon>
+                <span>{{ trans('data.save') }}</span>
+            </button>
+            <button class="button is-link control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-right">
+                </b-icon>
+                <span>{{ trans('data.taskGet') }}</span>
+            </button>
+            <button class="button is-warning control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-left">
+                </b-icon>
+                <span>{{ trans('data.taskReturn') }}</span>
+            </button>
         </div>
 
         <div class="columns">
@@ -138,7 +160,7 @@
                     <b-select :placeholder="trans('data.taskSubject')"
                               icon-pack="fa"
                               icon="align-justify"
-                              v-mpdel="task.subject.data"
+                              v-model="task.subject.data"
                               :disabled="task.subject.access == 1">
                         <option
                                 v-for="(val,key) in subjects"
@@ -194,9 +216,31 @@
         </div>
 
         <div class="field is-grouped ui-mt-5">
-            <button type="button" class="button is-primary control">{{ trans('data.save') }}</button>
-            <button type="button" class="button is-link control">{{ trans('data.taskGet') }}</button>
-            <button type="button" class="button is-warning control">{{ trans('data.taskReturn') }}</button>
+            <button class="button is-primary control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        :icon="isRefresh ? 'refresh' : 'check'"
+                        :custom-class="isRefresh ? 'fa-spin' : ''">
+                </b-icon>
+                <span>{{ trans('data.save') }}</span>
+            </button>
+            <button class="button is-link control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-right">
+                </b-icon>
+                <span>{{ trans('data.taskGet') }}</span>
+            </button>
+            <button class="button is-warning control" type="button"
+                    :disabled="isRefresh">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-left">
+                </b-icon>
+                <span>{{ trans('data.taskReturn') }}</span>
+            </button>
         </div>
     </section>
 </template>
@@ -205,11 +249,13 @@
 
         mounted() {
 
-            this.editor = new Jodit(document.getElementById('editor'), {
-                buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
-                    'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
-                    'hr', 'eraser', 'fullsize', 'copyformat']
-            });
+            if (this.task.textBody.access == 2) {
+                this.editor = new Jodit(document.getElementById('editor'), {
+                    buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
+                        'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
+                        'hr', 'eraser', 'fullsize', 'copyformat']
+                });
+            }
 
             if (this.task_id > 0) {
                 this.getTask();
@@ -301,6 +347,7 @@
                         access: 2
                     }
                 },
+                isRefresh: false,
                 projects: [],
                 editors: [],
                 authors: [],

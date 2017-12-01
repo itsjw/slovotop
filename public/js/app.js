@@ -38100,13 +38100,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
 
-        this.editor = new Jodit(document.getElementById('editor'), {
-            buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|', 'hr', 'eraser', 'fullsize', 'copyformat']
-        });
+        if (this.task.textBody.access == 2) {
+            this.editor = new Jodit(document.getElementById('editor'), {
+                buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|', 'hr', 'eraser', 'fullsize', 'copyformat']
+            });
+        }
 
         if (this.task_id > 0) {
             this.getTask();
@@ -38199,6 +38245,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     access: 2
                 }
             },
+            isRefresh: false,
             projects: [],
             editors: [],
             authors: [],
@@ -38260,20 +38307,50 @@ var render = function() {
     _c("div", { staticClass: "field is-grouped" }, [
       _c(
         "button",
-        { staticClass: "button is-primary control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.save")))]
+        {
+          staticClass: "button is-primary control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", {
+            attrs: {
+              pack: "fa",
+              icon: _vm.isRefresh ? "refresh" : "check",
+              "custom-class": _vm.isRefresh ? "fa-spin" : ""
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "button is-link control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.taskGet")))]
+        {
+          staticClass: "button is-link control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "button is-warning control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.taskReturn")))]
+        {
+          staticClass: "button is-warning control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
+        ],
+        1
       )
     ]),
     _vm._v(" "),
@@ -38659,19 +38736,18 @@ var render = function() {
                   _c(
                     "b-select",
                     {
-                      directives: [
-                        {
-                          name: "mpdel",
-                          rawName: "v-mpdel",
-                          value: _vm.task.subject.data,
-                          expression: "task.subject.data"
-                        }
-                      ],
                       attrs: {
                         placeholder: _vm.trans("data.taskSubject"),
                         "icon-pack": "fa",
                         icon: "align-justify",
                         disabled: _vm.task.subject.access == 1
+                      },
+                      model: {
+                        value: _vm.task.subject.data,
+                        callback: function($$v) {
+                          _vm.$set(_vm.task.subject, "data", $$v)
+                        },
+                        expression: "task.subject.data"
                       }
                     },
                     _vm._l(_vm.subjects, function(val, key) {
@@ -38833,20 +38909,50 @@ var render = function() {
     _c("div", { staticClass: "field is-grouped ui-mt-5" }, [
       _c(
         "button",
-        { staticClass: "button is-primary control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.save")))]
+        {
+          staticClass: "button is-primary control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", {
+            attrs: {
+              pack: "fa",
+              icon: _vm.isRefresh ? "refresh" : "check",
+              "custom-class": _vm.isRefresh ? "fa-spin" : ""
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "button is-link control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.taskGet")))]
+        {
+          staticClass: "button is-link control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "button is-warning control", attrs: { type: "button" } },
-        [_vm._v(_vm._s(_vm.trans("data.taskReturn")))]
+        {
+          staticClass: "button is-warning control",
+          attrs: { type: "button", disabled: _vm.isRefresh }
+        },
+        [
+          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
+        ],
+        1
       )
     ])
   ])
