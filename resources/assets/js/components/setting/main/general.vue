@@ -57,6 +57,20 @@
                                 </b-field>
                             </div>
                         </div>
+                        <div class="level">
+                            <div class="level-left"></div>
+                            <div class="level-right">
+                                <button class="button is-primary" type="button" @click.prevent="saveSetting()"
+                                        :disabled="isRefresh">
+                                    <b-icon
+                                            pack="fa"
+                                            :icon="isRefresh ? 'refresh' : 'check'"
+                                            :custom-class="isRefresh ? 'fa-spin' : ''">
+                                    </b-icon>
+                                    <span>{{ trans('data.save') }}</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,8 +90,8 @@
         name: "general",
 
         mounted() {
-            this.getRoles();
             this.getGenerals();
+            this.getRoles();
         },
 
         props: {},
@@ -85,10 +99,7 @@
         data() {
             return {
                 isRefresh: false,
-                generals: {
-                    editor: null,
-                    author: null,
-                },
+                generals: {},
                 roles: []
 
             }
@@ -107,17 +118,40 @@
             },
 
             /**
-            * get all general settings
-            */
-            getGenerals(){
+             * get all general settings
+             */
+            getGenerals() {
                 this.isRefresh = true;
                 Api.post('v1', 'getGeneralSetting')
                     .then(response => {
                         this.generals = response.data.data;
                         this.isRefresh = false;
                     })
-            }
+            },
 
+            /**
+             * save general setting
+             */
+            saveSetting() {
+                this.isRefresh = true;
+                Api.post('v1', 'saveGeneralSetting', {generals: this.generals})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getGenerals();
+                        this.isRefresh = false;
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
+                        this.isRefresh = false;
+                    });
+            }
 
         }
     }

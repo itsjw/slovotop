@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GeneralSettingSaveValidation;
 use App\Http\Resources\Settings\General;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -26,5 +27,22 @@ class SettingController extends Controller
         });
 
         return new General($setting);
+    }
+
+    /**
+     * @param GeneralSettingSaveValidation $request
+     *
+     * @return array|void
+     */
+    public function saveGeneralSetting(GeneralSettingSaveValidation $request)
+    {
+        foreach ($request->generals as $key => $val) {
+            $setting = Setting::where('name', $key)->first();
+
+            $setting->value = $val;
+            $setting->save();
+        }
+
+        return ['success' => trans('data.notifyOK')];
     }
 }

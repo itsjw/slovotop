@@ -31870,14 +31870,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     name: "general",
 
     mounted: function mounted() {
-        this.getRoles();
         this.getGenerals();
+        this.getRoles();
     },
 
 
@@ -31886,10 +31900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             isRefresh: false,
-            generals: {
-                editor: null,
-                author: null
-            },
+            generals: {},
             roles: []
 
         };
@@ -31911,8 +31922,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         /**
-        * get all general settings
-        */
+         * get all general settings
+         */
         getGenerals: function getGenerals() {
             var _this2 = this;
 
@@ -31920,6 +31931,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Api.post('v1', 'getGeneralSetting').then(function (response) {
                 _this2.generals = response.data.data;
                 _this2.isRefresh = false;
+            });
+        },
+
+
+        /**
+         * save general setting
+         */
+        saveSetting: function saveSetting() {
+            var _this3 = this;
+
+            this.isRefresh = true;
+            Api.post('v1', 'saveGeneralSetting', { generals: this.generals }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getGenerals();
+                _this3.isRefresh = false;
+            }).catch(function (error) {
+                _this3.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
+                _this3.isRefresh = false;
             });
         }
     }
@@ -32060,6 +32096,38 @@ var render = function() {
                 ],
                 1
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "level" }, [
+              _c("div", { staticClass: "level-left" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-right" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-primary",
+                    attrs: { type: "button", disabled: _vm.isRefresh },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.saveSetting()
+                      }
+                    }
+                  },
+                  [
+                    _c("b-icon", {
+                      attrs: {
+                        pack: "fa",
+                        icon: _vm.isRefresh ? "refresh" : "check",
+                        "custom-class": _vm.isRefresh ? "fa-spin" : ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+                  ],
+                  1
+                )
+              ])
             ])
           ])
         ])
