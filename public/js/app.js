@@ -38146,6 +38146,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38297,6 +38299,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
         /**
+         * save task
+         */
+        saveTask: function saveTask() {
+            console.log(this.getTaskData(this.task));
+        },
+
+
+        /**
          * get task data fo save
          * @param task
          * @returns {{author: null|string, dateEnd: null|string, desc: null|string, editor: null|string, moreData: null|string, name: null|string, price: null|string, project: null|string, subject: null|string, task: null|string, textBody: null|string, textMax: null|string, textMin: null|string, textPreview: null|string, textUnique: null|string, textUrl: null|string, title: null|string, words: null|string}}
@@ -38304,6 +38314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
+                user: this.userID,
                 author: task.author.data || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',
@@ -38341,7 +38352,12 @@ var render = function() {
         "button",
         {
           staticClass: "button is-primary control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
+          attrs: { type: "button", disabled: _vm.isRefresh },
+          on: {
+            click: function($event) {
+              _vm.saveTask()
+            }
+          }
         },
         [
           _c("b-icon", {
@@ -38944,7 +38960,12 @@ var render = function() {
         "button",
         {
           staticClass: "button is-primary control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
+          attrs: { type: "button", disabled: _vm.isRefresh },
+          on: {
+            click: function($event) {
+              _vm.saveTask()
+            }
+          }
         },
         [
           _c("b-icon", {

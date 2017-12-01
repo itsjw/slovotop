@@ -2,7 +2,8 @@
     <section>
         <div class="field is-grouped">
             <button class="button is-primary control" type="button"
-                    :disabled="isRefresh">
+                    :disabled="isRefresh"
+                    @click="saveTask()">
                 <b-icon
                         pack="fa"
                         :icon="isRefresh ? 'refresh' : 'check'"
@@ -217,7 +218,8 @@
 
         <div class="field is-grouped ui-mt-5">
             <button class="button is-primary control" type="button"
-                    :disabled="isRefresh">
+                    :disabled="isRefresh"
+                    @click="saveTask()">
                 <b-icon
                         pack="fa"
                         :icon="isRefresh ? 'refresh' : 'check'"
@@ -390,6 +392,13 @@
             },
 
             /**
+             * save task
+             */
+            saveTask() {
+                console.log(this.getTaskData(this.task));
+            },
+
+            /**
              * get task data fo save
              * @param task
              * @returns {{author: null|string, dateEnd: null|string, desc: null|string, editor: null|string, moreData: null|string, name: null|string, price: null|string, project: null|string, subject: null|string, task: null|string, textBody: null|string, textMax: null|string, textMin: null|string, textPreview: null|string, textUnique: null|string, textUrl: null|string, title: null|string, words: null|string}}
@@ -397,6 +406,7 @@
             getTaskData(task) {
 
                 return {
+                    user: this.userID,
                     author: task.author.data || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',
