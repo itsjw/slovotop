@@ -31869,6 +31869,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -31884,11 +31885,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            isRefresh: false,
             generals: {
                 editor: null,
                 author: null
             },
             roles: []
+
         };
     },
 
@@ -31913,8 +31916,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getGenerals: function getGenerals() {
             var _this2 = this;
 
+            this.isRefresh = true;
             Api.post('v1', 'getGeneralSetting').then(function (response) {
                 _this2.generals = response.data.data;
+                _this2.isRefresh = false;
             });
         }
     }
@@ -31945,6 +31950,7 @@ var render = function() {
               _c("span", { staticClass: "icon" }, [
                 _c("i", {
                   staticClass: "fa fa-refresh",
+                  class: _vm.isRefresh ? "fa-spin" : "",
                   on: {
                     click: function($event) {
                       _vm.getGenerals()

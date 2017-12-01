@@ -9,7 +9,8 @@
                         </p>
                         <a class="card-header-icon">
                           <span class="icon">
-                            <i class="fa fa-refresh" @click="getGenerals()"></i>
+                            <i class="fa fa-refresh" :class="isRefresh ? 'fa-spin' : ''"
+                               @click="getGenerals()"></i>
                           </span>
                         </a>
                     </header>
@@ -83,11 +84,13 @@
 
         data() {
             return {
+                isRefresh: false,
                 generals: {
                     editor: null,
                     author: null,
                 },
                 roles: []
+
             }
         },
 
@@ -107,9 +110,11 @@
             * get all general settings
             */
             getGenerals(){
+                this.isRefresh = true;
                 Api.post('v1', 'getGeneralSetting')
                     .then(response => {
                         this.generals = response.data.data;
+                        this.isRefresh = false;
                     })
             }
 

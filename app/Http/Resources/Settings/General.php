@@ -15,8 +15,6 @@ class General extends Resource
      */
     public function toArray($request)
     {
-        return [
-            $this->name => $this->value,
-        ];
+        return parent::toArray($request);
     }
 }

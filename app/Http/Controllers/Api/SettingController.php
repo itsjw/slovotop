@@ -17,12 +17,14 @@ class SettingController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return General
      */
     public function getGeneralSetting(Request $request)
     {
-        $setting = Setting::query();
+        $setting = Setting::all()->mapWithKeys(function ($item) {
+            return [$item['name'] => $item['value']];
+        });
 
-        return General::collection($setting->get());
+        return new General($setting);
     }
 }
