@@ -131,7 +131,7 @@
                               v-model="task.editor.data"
                               :disabled="task.editor.access == 1">
                         <option
-                                v-for="(val,key) in editors"
+                                v-for="(val,key) in editor"
                                 :value="val.id"
                                 :key="key">
                             {{ val.name }}
@@ -147,7 +147,7 @@
                               v-model="task.author.data"
                               :disabled="task.author.access == 1">
                         <option
-                                v-for="(val,key) in authors"
+                                v-for="(val,key) in author"
                                 :value="val.id"
                                 :key="key">
                             {{ val.name }}
@@ -262,7 +262,8 @@
             }
 
             this.getProject();
-            this.getUser();
+            this.getUser('editor');
+            this.getUser('author');
             this.getSubject();
         },
 
@@ -349,8 +350,8 @@
                 },
                 isRefresh: false,
                 projects: [],
-                editors: [],
-                authors: [],
+                editor: [],
+                author: [],
                 subjects: []
             }
         },
@@ -361,11 +362,10 @@
              * get users
              * @param role
              */
-            getUser() {
-                Api.post('v1', 'getUsers')
+            getUser(param) {
+                Api.post('v1', 'getUsers', {[param]: param})
                     .then(response => {
-                        this.editors = response.data.data;
-                        this.authors = response.data.data;
+                        this[param] = response.data.data;
                     })
             },
 

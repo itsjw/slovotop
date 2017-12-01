@@ -37898,6 +37898,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -38159,7 +38161,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         this.getProject();
-        this.getUser();
+        this.getUser('editor');
+        this.getUser('author');
         this.getSubject();
     },
 
@@ -38247,8 +38250,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             isRefresh: false,
             projects: [],
-            editors: [],
-            authors: [],
+            editor: [],
+            author: [],
             subjects: []
         };
     },
@@ -38260,12 +38263,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * get users
          * @param role
          */
-        getUser: function getUser() {
+        getUser: function getUser(param) {
             var _this = this;
 
-            Api.post('v1', 'getUsers').then(function (response) {
-                _this.editors = response.data.data;
-                _this.authors = response.data.data;
+            Api.post('v1', 'getUsers', _defineProperty({}, param, param)).then(function (response) {
+                _this[param] = response.data.data;
             });
         },
 
@@ -38668,7 +38670,7 @@ var render = function() {
                         expression: "task.editor.data"
                       }
                     },
-                    _vm._l(_vm.editors, function(val, key) {
+                    _vm._l(_vm.editor, function(val, key) {
                       return _c(
                         "option",
                         { key: key, domProps: { value: val.id } },
@@ -38709,7 +38711,7 @@ var render = function() {
                         expression: "task.author.data"
                       }
                     },
-                    _vm._l(_vm.authors, function(val, key) {
+                    _vm._l(_vm.author, function(val, key) {
                       return _c(
                         "option",
                         { key: key, domProps: { value: val.id } },
