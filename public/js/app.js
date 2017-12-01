@@ -38293,6 +38293,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             Api.post('v1', 'getSubjects').then(function (response) {
                 _this3.subjects = response.data.data;
             });
+        },
+
+
+        /**
+         * get task data fo save
+         * @param task
+         * @returns {{author: null|string, dateEnd: null|string, desc: null|string, editor: null|string, moreData: null|string, name: null|string, price: null|string, project: null|string, subject: null|string, task: null|string, textBody: null|string, textMax: null|string, textMin: null|string, textPreview: null|string, textUnique: null|string, textUrl: null|string, title: null|string, words: null|string}}
+         */
+        getTaskData: function getTaskData(task) {
+
+            return {
+                author: task.author.data || '',
+                dateEnd: task.dateEnd.data || '',
+                desc: task.desc.data || '',
+                editor: task.editor.data || '',
+                moreData: task.moreData.data || '',
+                name: task.name.data || '',
+                price: task.price.data || '',
+                project: task.project.data || '',
+                subject: task.subject.data || '',
+                task: task.task.data || '',
+                textBody: task.textBody.data || '',
+                textMax: task.textMax.data || '',
+                textMin: task.textMin.data || '',
+                textPreview: task.textPreview.data || '',
+                textUnique: task.textUnique.data || '',
+                textUrl: task.textUrl.data || '',
+                title: task.title.data || '',
+                words: task.words.data || ''
+            };
         }
     }
 });
@@ -38840,6 +38870,7 @@ var render = function() {
                     attrs: {
                       type: "number",
                       min: "0",
+                      max: "100",
                       disabled: _vm.task.textUnique.access == 1
                     },
                     model: {
