@@ -1,5 +1,4 @@
 <template>
-    <b-loading :active="isLoading"></b-loading>
     <section>
         <div class="field is-grouped">
             <button class="button is-primary control" type="button"
@@ -30,7 +29,8 @@
             </button>
         </div>
 
-        <div class="columns" v-if="isLoading">
+        <b-loading :active="isLoading"></b-loading>
+        <div class="columns" v-if="!isLoading">
             <div class="column is-9">
                 <b-field :label="trans('data.taskName')"
                          v-if="task.name.access >= 1">
