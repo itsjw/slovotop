@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskSaveValidation;
 use App\Models\Task;
+use App\Http\Resources\Task\Task as TaskResource;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ class TaskController extends Controller
 {
     /**
      * @param Request $request
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function getTasks(Request $request)
     {
@@ -25,6 +28,21 @@ class TaskController extends Controller
         if (isset($request->id)) {
             $task->where('id', $request->id);
         }
+        if (isset($request->name)) {
+            $task->where('name', 'like', '%' . $request->name . '%');
+        }
+        if (isset($request->project)) {
+            $task->where('email', 'like', '%' . $request->email . '%');
+        }
+        if (isset($request->author)) {
+            $task->where('email', 'like', '%' . $request->email . '%');
+        }
+        if (isset($request->user)) {
+            $task->where('email', 'like', '%' . $request->email . '%');
+        }
+
+
+        return TaskResource::collection($task->get());
     }
 
     /**

@@ -72,20 +72,20 @@
                         {{ props.row.name }}
                     </b-table-column>
 
-                    <b-table-column field="project" :label="trans('data.projectName')" sortable>
-                        {{ props.row.project }}
+                    <b-table-column field="project.name" :label="trans('data.projectName')" sortable>
+                        {{ props.row.project.name }}
                     </b-table-column>
 
-                    <b-table-column field="state" :label="trans('data.taskState')" sortable centered>
-                        {{ props.row.state }}
+                    <b-table-column field="status" :label="trans('data.taskState')" sortable centered>
+                        {{ props.row.status }}
                     </b-table-column>
 
                     <b-table-column field="user" :label="trans('data.taskUser')" sortable centered>
                         {{ props.row.user }}
                     </b-table-column>
 
-                    <b-table-column field="owner" :label="trans('data.taskOwner')" sortable centered>
-                        {{ props.row.owner }}
+                    <b-table-column field="owner.name" :label="trans('data.taskOwner')" sortable centered>
+                        {{ props.row.owner.name }}
                     </b-table-column>
 
                     <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
@@ -164,6 +164,13 @@
              * gel all tasks
              */
             getTasks(params = null) {
+                this.tableLoading = true;
+                Api.post('v1', 'getTasks', params)
+                    .then(response => {
+                        this.tasks = response.data.data;
+                        this.selectTask = [];
+                        this.tableLoading = false;
+                    })
             },
 
             /**

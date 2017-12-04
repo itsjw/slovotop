@@ -37414,7 +37414,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
          * gel all tasks
          */
         getTasks: function getTasks() {
+            var _this = this;
+
             var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            this.tableLoading = true;
+            Api.post('v1', 'getTasks', params).then(function (response) {
+                _this.tasks = response.data.data;
+                _this.selectTask = [];
+                _this.tableLoading = false;
+            });
         },
 
 
@@ -37643,7 +37652,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "project",
+                          field: "project.name",
                           label: _vm.trans("data.projectName"),
                           sortable: ""
                         }
@@ -37651,7 +37660,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.project) +
+                            _vm._s(props.row.project.name) +
                             "\n                "
                         )
                       ]
@@ -37661,7 +37670,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "state",
+                          field: "status",
                           label: _vm.trans("data.taskState"),
                           sortable: "",
                           centered: ""
@@ -37670,7 +37679,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.state) +
+                            _vm._s(props.row.status) +
                             "\n                "
                         )
                       ]
@@ -37699,7 +37708,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "owner",
+                          field: "owner.name",
                           label: _vm.trans("data.taskOwner"),
                           sortable: "",
                           centered: ""
@@ -37708,7 +37717,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.owner) +
+                            _vm._s(props.row.owner.name) +
                             "\n                "
                         )
                       ]
