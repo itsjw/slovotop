@@ -37392,7 +37392,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tableLoading: false,
             tablePaginated: true,
             // search
-            searchType: [{ name: this.trans('data.taskName'), type: 'name' }, { name: this.trans('data.projectName'), type: 'project' }, { name: this.trans('data.taskUser'), type: 'user' }, { name: this.trans('data.taskOwner'), type: 'owner' }],
+            searchType: [{ name: this.trans('data.taskName'), type: 'name' }, { name: this.trans('data.projectName'), type: 'project' }, { name: this.trans('data.taskUser'), type: 'author' }, { name: this.trans('data.taskOwner'), type: 'owner' }],
             searchId: null,
             searchText: ''
         };
@@ -37434,7 +37434,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             window.location = '/crm/tasks/task/';
         },
         editTask: function editTask() {},
-        deleteTask: function deleteTask() {}
+
+
+        /**
+         * popup delete task
+         */
+        confirmDeleteTask: function confirmDeleteTask() {
+            var _this2 = this;
+
+            if (this.selectTask.length > 0) {
+                this.$dialog.confirm({
+                    cancelText: this.trans('data.no'),
+                    confirmText: this.trans('data.yes'),
+                    message: this.trans('data.deleteAsk'),
+                    onConfirm: function onConfirm() {
+                        return _this2.deleteTask();
+                    }
+                });
+            }
+        },
+
+
+        /**
+         * delete task
+         */
+        deleteTask: function deleteTask() {
+            var _this3 = this;
+
+            Api.post('v1', 'deleteTask', { items: this.selectTask }).then(function (response) {
+                _this3.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                _this3.getTasks();
+            });
+        }
     }
 });
 
@@ -37510,7 +37544,7 @@ var render = function() {
                 staticClass: "navbar-item",
                 on: {
                   click: function($event) {
-                    _vm.deleteTask()
+                    _vm.confirmDeleteTask()
                   }
                 }
               },
@@ -38342,7 +38376,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
-                user_id: 2, //this.userID,
+                user_id: this.userID,
                 author: task.author.data || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',

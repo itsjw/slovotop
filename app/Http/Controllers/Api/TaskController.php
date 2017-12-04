@@ -89,4 +89,18 @@ class TaskController extends Controller
 
         return ['success' => trans('data.notifyOK'), 'id' => $task->id];
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function deleteTask(Request $request)
+    {
+        foreach ($request->items as $item) {
+            Task::find($item['id'])->delete();
+        }
+
+        return ['success' => trans('data.notifyOK')];
+    }
 }

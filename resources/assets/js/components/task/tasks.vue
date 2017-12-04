@@ -22,7 +22,7 @@
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
-                <a class="navbar-item" @click="deleteTask()">
+                <a class="navbar-item" @click="confirmDeleteTask()">
                     <span class="icon">
                         <i class="fa fa-trash"></i>
                     </span>
@@ -182,7 +182,33 @@
 
             editTask() {
             },
+
+            /**
+             * popup delete task
+             */
+            confirmDeleteTask() {
+                if (this.selectTask.length > 0) {
+                    this.$dialog.confirm({
+                        cancelText: this.trans('data.no'),
+                        confirmText: this.trans('data.yes'),
+                        message: this.trans('data.deleteAsk'),
+                        onConfirm: () => this.deleteTask()
+                    });
+                }
+            },
+
+            /**
+             * delete task
+             */
             deleteTask() {
+                Api.post('v1', 'deleteTask', {items: this.selectTask})
+                    .then(response => {
+                        this.$toast.open({
+                            message: response.data.success,
+                            type: 'is-success'
+                        });
+                        this.getTasks();
+                    })
             }
         }
     }

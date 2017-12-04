@@ -424,7 +424,7 @@
             getTaskData(task) {
 
                 return {
-                    user_id: 2, //this.userID,
+                    user_id: this.userID,
                     author: task.author.data || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',
