@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskSaveValidation;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -19,14 +20,14 @@ class TaskController extends Controller
         $task = Task::findOrNew($request->id);
 
         $task->name = $request->name;
-        $task->user_id = $request->user;
+        $task->user_id = $request->user_id;
         $task->project_id = $request->project;
-        $task->status_id = $request->status;
-        $task->stage_id = ''; // TODO
+        $task->status_id = $request->status ?? 1; // TODO
+        $task->stage_id = $request->stage ?? 1; // TODO
         $task->editor_id = $request->editor;
         $task->author_id = $request->author;
         $task->subject_id = $request->subject;
-        $task->date_end = $request->dateEnd;
+        $task->date_end = Carbon::parse($request->dateEnd);
         $task->price = $request->price;
         $task->title = $request->title;
         $task->desc = $request->desc;

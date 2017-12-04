@@ -108,6 +108,16 @@
             </div>
 
             <div class="column is-3">
+                <b-field :label="trans('data.taskDateEnd')"
+                         v-if="task.dateEnd.access >= 1">
+                    <b-datepicker
+                            icon-pack="fa"
+                            icon="calendar"
+                            :min-date="new Date()"
+                            v-model="task.dateEnd.data"
+                            :disabled="task.dateEnd.access == 1"></b-datepicker>
+                </b-field>
+
                 <b-field :label="trans('data.taskProject')"
                          v-if="task.project.access >= 1">
                     <b-select :placeholder="trans('data.taskProject')"
@@ -204,15 +214,6 @@
                              :disabled="task.price.access == 1"></b-input>
                 </b-field>
 
-                <b-field :label="trans('data.taskDateEnd')"
-                         v-if="task.dateEnd.access >= 1">
-                    <b-datepicker
-                            icon-pack="fa"
-                            icon="calendar"
-                            :min-date="new Date()"
-                            v-model="task.dateEnd.data"
-                            :disabled="task.dateEnd.access == 1"></b-datepicker>
-                </b-field>
             </div>
         </div>
 
@@ -424,7 +425,7 @@
             getTaskData(task) {
 
                 return {
-                    user_id: this.userID,
+                    user_id: 2, //this.userID,
                     author: task.author.data || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',
@@ -435,7 +436,7 @@
                     project: task.project.data || '',
                     subject: task.subject.data || '',
                     task: task.task.data || '',
-                    textBody: task.textBody.data || '',
+                    textBody: _.escape(task.textBody.data || ''),
                     textMax: task.textMax.data || '',
                     textMin: task.textMin.data || '',
                     textPreview: task.textPreview.data || '',

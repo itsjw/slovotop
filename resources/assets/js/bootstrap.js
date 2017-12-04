@@ -12,7 +12,8 @@ window.Vue = require('vue');
 
 // Buefy
 import Buefy from 'buefy';
-Vue.use(Buefy,{
+
+Vue.use(Buefy, {
     defaultIconPack: 'fa',
     defaultTimeFormatter: 'HH:mm',
     defaultTimeParser: 'HH:mm',
@@ -23,6 +24,7 @@ Vue.use(Buefy,{
 
 // query builder
 import Query from './query/query';
+
 window.Api = new Query();
 
 // lang from laravel trans

@@ -1476,6 +1476,7 @@ window.Vue = __webpack_require__(37);
 
 // Buefy
 
+
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a, {
     defaultIconPack: 'fa',
     defaultTimeFormatter: 'HH:mm',
@@ -1485,6 +1486,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a, {
 });
 
 // query builder
+
 
 window.Api = new __WEBPACK_IMPORTED_MODULE_1__query_query__["a" /* default */]();
 
@@ -38148,6 +38150,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38331,7 +38334,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
-                user_id: this.userID,
+                user_id: 2, //this.userID,
                 author: task.author.data || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',
@@ -38342,7 +38345,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 project: task.project.data || '',
                 subject: task.subject.data || '',
                 task: task.task.data || '',
-                textBody: task.textBody.data || '',
+                textBody: _.escape(task.textBody.data || ''),
                 textMax: task.textMax.data || '',
                 textMin: task.textMin.data || '',
                 textPreview: task.textPreview.data || '',
@@ -38670,6 +38673,31 @@ var render = function() {
         "div",
         { staticClass: "column is-3" },
         [
+          _vm.task.dateEnd.access >= 1
+            ? _c(
+                "b-field",
+                { attrs: { label: _vm.trans("data.taskDateEnd") } },
+                [
+                  _c("b-datepicker", {
+                    attrs: {
+                      "icon-pack": "fa",
+                      icon: "calendar",
+                      "min-date": new Date(),
+                      disabled: _vm.task.dateEnd.access == 1
+                    },
+                    model: {
+                      value: _vm.task.dateEnd.data,
+                      callback: function($$v) {
+                        _vm.$set(_vm.task.dateEnd, "data", $$v)
+                      },
+                      expression: "task.dateEnd.data"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _vm.task.project.access >= 1
             ? _c(
                 "b-field",
@@ -38936,31 +38964,6 @@ var render = function() {
                         _vm.$set(_vm.task.price, "data", $$v)
                       },
                       expression: "task.price.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.dateEnd.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskDateEnd") } },
-                [
-                  _c("b-datepicker", {
-                    attrs: {
-                      "icon-pack": "fa",
-                      icon: "calendar",
-                      "min-date": new Date(),
-                      disabled: _vm.task.dateEnd.access == 1
-                    },
-                    model: {
-                      value: _vm.task.dateEnd.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.dateEnd, "data", $$v)
-                      },
-                      expression: "task.dateEnd.data"
                     }
                   })
                 ],

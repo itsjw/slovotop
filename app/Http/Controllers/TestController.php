@@ -7,20 +7,17 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use App\Models\User;
 use App\Http\Resources\Users\User as UserResourse;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
 
     public function index()
     {
-        $users = User::query()->with('roles.role:id,name');
+        $date = '2017-12-04T17:00:00.000Z';
 
-        $users->whereHas('roles', function ($query) {
-            $query->where('role_id', \DB::table('settings')
-                ->where('name', 'editor')->first()->value);
-        });
+        dd(Carbon::parse($date));
 
-        return UserResourse::collection($users->get());
     }
 
 }
