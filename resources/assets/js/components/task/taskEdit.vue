@@ -395,7 +395,25 @@
              * save task
              */
             saveTask() {
-                console.log(this.getTaskData(this.task));
+                this.isRefresh = true,
+                    Api.post('v1', 'saveTask', this.getTaskData(this.task))
+                        .then(response => {
+                            this.$toast.open({
+                                message: response.data.success,
+                                type: 'is-success'
+                            });
+                            history.pushState(null, null, response.data.id);
+                            this.task.id = response.data.id;
+                            this.isRefresh = false;
+                        })
+                        .catch(error => {
+                            this.$toast.open({
+                                duration: 5000,
+                                message: Api.errorSerializer(error.response.data.errors),
+                                type: 'is-danger'
+                            });
+                            this.isRefresh = false;
+                        });
             },
 
             /**
@@ -406,7 +424,7 @@
             getTaskData(task) {
 
                 return {
-                    user: this.userID,
+                    user_id: this.userID,
                     author: task.author.data || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',

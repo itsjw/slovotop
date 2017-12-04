@@ -38302,7 +38302,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
          * save task
          */
         saveTask: function saveTask() {
-            console.log(this.getTaskData(this.task));
+            var _this4 = this;
+
+            this.isRefresh = true, Api.post('v1', 'saveTask', this.getTaskData(this.task)).then(function (response) {
+                _this4.$toast.open({
+                    message: response.data.success,
+                    type: 'is-success'
+                });
+                history.pushState(null, null, response.data.id);
+                _this4.task.id = response.data.id;
+                _this4.isRefresh = false;
+            }).catch(function (error) {
+                _this4.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
+                _this4.isRefresh = false;
+            });
         },
 
 
@@ -38314,7 +38331,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
-                user: this.userID,
+                user_id: this.userID,
                 author: task.author.data || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',
