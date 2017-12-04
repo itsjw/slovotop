@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\SubjectSaveValidation;
 use App\Http\Resources\Subjects\Subject;
+use App\Http\Resources\Subjects\SubjectLittle;
 use App\Models\TaskSubject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,6 +48,14 @@ class SubjectController extends Controller
         }
 
         return Subject::collection($subject->get());
+    }
+
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function getSubjectList()
+    {
+        return SubjectLittle::collection(TaskSubject::all());
     }
 
     /**

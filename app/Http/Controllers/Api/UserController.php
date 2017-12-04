@@ -75,11 +75,28 @@ class UserController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUserList()
+    public function getUserList(Request $request)
     {
-        return UserLittle::collection(User::all());
+        $users = User::query()->with('roles.role:id,name');
+
+        if (isset($request->editor)) {
+            $users->whereHas('roles', function ($query) {
+                $query->where('role_id', \DB::table('settings')
+                    ->where('name', 'editor')->first()->value);
+            });
+        }
+        if (isset($request->author)) {
+            $users->whereHas('roles', function ($query) {
+                $query->where('role_id', \DB::table('settings')
+                    ->where('name', 'author')->first()->value);
+            });
+        }
+
+        return UserLittle::collection($users->get());
     }
 
     /**

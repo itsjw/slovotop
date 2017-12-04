@@ -33,10 +33,11 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     // subject
     $router->group(['middleware' => 'accessRoute:subjects'], function (Router $router) {
+        $router->post('getSubjects', 'SubjectController@getSubjects');
         $router->post('saveSubject', 'SubjectController@saveSubject');
         $router->post('deleteSubject', 'SubjectController@deleteSubject');
     });
-    $router->post('getSubjects', 'SubjectController@getSubjects');
+    $router->post('getSubjectList', 'SubjectController@getSubjectList');
 
     // role
     $router->group(['middleware' => 'accessRoute:roles'], function (Router $router) {

@@ -38375,7 +38375,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getUser: function getUser(param) {
             var _this = this;
 
-            Api.post('v1', 'getUsers', _defineProperty({}, param, param)).then(function (response) {
+            Api.post('v1', 'getUserList', _defineProperty({}, param, param)).then(function (response) {
                 _this[param] = response.data.data;
             });
         },
@@ -38399,7 +38399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getSubject: function getSubject() {
             var _this3 = this;
 
-            Api.post('v1', 'getSubjects').then(function (response) {
+            Api.post('v1', 'getSubjectList').then(function (response) {
                 _this3.subjects = response.data.data;
             });
         },

@@ -365,7 +365,7 @@
              * @param role
              */
             getUser(param) {
-                Api.post('v1', 'getUsers', {[param]: param})
+                Api.post('v1', 'getUserList', {[param]: param})
                     .then(response => {
                         this[param] = response.data.data;
                     })
@@ -385,7 +385,7 @@
              * get subjects
              */
             getSubject() {
-                Api.post('v1', 'getSubjects')
+                Api.post('v1', 'getSubjectList')
                     .then(response => {
                         this.subjects = response.data.data;
                     })
