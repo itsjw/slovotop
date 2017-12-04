@@ -24,11 +24,12 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
 
     // user
     $router->group(['middleware' => 'accessRoute:users'], function (Router $router) {
+        $router->post('getUsers', 'UserController@getUsers');
         $router->post('saveUser', 'UserController@saveUser');
         $router->post('deleteUser', 'UserController@deleteUser');
         $router->post('approveUser', 'UserController@approveUser');
     });
-    $router->post('getUsers', 'UserController@getUsers');
+    $router->post('getUserList', 'UserController@getUserList');
 
     // subject
     $router->group(['middleware' => 'accessRoute:subjects'], function (Router $router) {

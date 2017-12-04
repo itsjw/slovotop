@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserSaveValidation;
 use App\Http\Resources\Users\User as UserResourse;
+use App\Http\Resources\Users\UserLittle;
 use App\Jobs\SendUserMailJob;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -73,6 +74,13 @@ class UserController extends Controller
         return UserResourse::collection($users->get());
     }
 
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function getUserList()
+    {
+        return UserLittle::collection(User::all());
+    }
 
     /**
      * @apiVersion    0.2.0
