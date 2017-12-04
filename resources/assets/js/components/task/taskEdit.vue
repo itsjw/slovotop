@@ -1,4 +1,5 @@
 <template>
+    <b-loading :active="isLoading"></b-loading>
     <section>
         <div class="field is-grouped">
             <button class="button is-primary control" type="button"
@@ -29,7 +30,7 @@
             </button>
         </div>
 
-        <div class="columns">
+        <div class="columns" v-if="isLoading">
             <div class="column is-9">
                 <b-field :label="trans('data.taskName')"
                          v-if="task.name.access >= 1">
@@ -122,7 +123,7 @@
                     <b-select :placeholder="trans('data.taskProject')"
                               icon-pack="fa"
                               icon="th-list"
-                              v-model="task.project.data"
+                              v-model="task.project.data.id"
                               :disabled="task.project.access == 1">
                         <option
                                 v-for="(val,key) in projects"
@@ -314,7 +315,9 @@
                         access: 0
                     },
                     project: {
-                        data: null,
+                        data: {
+                            id: null
+                        },
                         access: 2
                     },
                     editor: {
@@ -350,7 +353,9 @@
                         access: 2
                     }
                 },
+                //
                 isRefresh: false,
+                isLoading: false,
                 projects: [],
                 editor: [],
                 author: [],
@@ -359,6 +364,18 @@
         },
 
         methods: {
+
+            /**
+             * get task by ID
+             */
+            getTask() {
+                this.isLoading = true;
+                Api.post('v1', 'getTask', {id: this.task_id})
+                    .then(response => {
+                        this.task = response.data.data;
+                        this.isLoading = false;
+                    })
+            },
 
             /**
              * get users

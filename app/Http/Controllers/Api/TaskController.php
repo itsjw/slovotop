@@ -56,6 +56,18 @@ class TaskController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
+     * @return TaskResource
+     */
+    public function getTask(Request $request)
+    {
+        $task = Task::find($request->id);
+
+        return new TaskResource($task);
+    }
+
+    /**
      * @param TaskSaveValidation $request
      *
      * @return array

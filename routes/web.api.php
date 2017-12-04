@@ -58,6 +58,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     // task
     $router->group(['middleware' => 'accessRoute:tasks'], function (Router $router) {
         $router->post('getTasks', 'TaskController@getTasks');
+        $router->post('getTask', 'TaskController@getTask');
         $router->post('saveTask', 'TaskController@saveTask');
         $router->post('deleteTask', 'TaskController@deleteTask');
     });

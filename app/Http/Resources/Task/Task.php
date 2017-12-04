@@ -33,7 +33,7 @@ class Task extends Resource
                 'access' => $stageTask->where('field', 'name')->first()->access ?? 0,
             ],
             'project'     => [
-                'data'   => new ProjectLittle($this->editor),
+                'data'   => new ProjectLittle($this->project),
                 'access' => $stageTask->where('field', 'project_id')->first()->access ?? 0,
             ],
             'status'      => $this->status_id,

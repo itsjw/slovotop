@@ -38255,6 +38255,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38321,7 +38322,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     access: 0
                 },
                 project: {
-                    data: null,
+                    data: {
+                        id: null
+                    },
                     access: 2
                 },
                 editor: {
@@ -38357,7 +38360,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     access: 2
                 }
             },
+            //
             isRefresh: false,
+            isLoading: false,
             projects: [],
             editor: [],
             author: [],
@@ -38369,14 +38374,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     methods: {
 
         /**
+         * get task by ID
+         */
+        getTask: function getTask() {
+            var _this = this;
+
+            this.isLoading = true;
+            Api.post('v1', 'getTask', { id: this.task_id }).then(function (response) {
+                _this.task = response.data.data;
+                _this.isLoading = false;
+            });
+        },
+
+
+        /**
          * get users
          * @param role
          */
         getUser: function getUser(param) {
-            var _this = this;
+            var _this2 = this;
 
             Api.post('v1', 'getUserList', _defineProperty({}, param, param)).then(function (response) {
-                _this[param] = response.data.data;
+                _this2[param] = response.data.data;
             });
         },
 
@@ -38385,10 +38404,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
          * get projects
          */
         getProject: function getProject() {
-            var _this2 = this;
+            var _this3 = this;
 
             Api.post('v1', 'getProjects').then(function (response) {
-                _this2.projects = response.data.data;
+                _this3.projects = response.data.data;
             });
         },
 
@@ -38397,10 +38416,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
          * get subjects
          */
         getSubject: function getSubject() {
-            var _this3 = this;
+            var _this4 = this;
 
             Api.post('v1', 'getSubjectList').then(function (response) {
-                _this3.subjects = response.data.data;
+                _this4.subjects = response.data.data;
             });
         },
 
@@ -38409,23 +38428,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
          * save task
          */
         saveTask: function saveTask() {
-            var _this4 = this;
+            var _this5 = this;
 
             this.isRefresh = true, Api.post('v1', 'saveTask', this.getTaskData(this.task)).then(function (response) {
-                _this4.$toast.open({
+                _this5.$toast.open({
                     message: response.data.success,
                     type: 'is-success'
                 });
                 history.pushState(null, null, response.data.id);
-                _this4.task.id = response.data.id;
-                _this4.isRefresh = false;
+                _this5.task.id = response.data.id;
+                _this5.isRefresh = false;
             }).catch(function (error) {
-                _this4.$toast.open({
+                _this5.$toast.open({
                     duration: 5000,
                     message: Api.errorSerializer(error.response.data.errors),
                     type: 'is-danger'
                 });
-                _this4.isRefresh = false;
+                _this5.isRefresh = false;
             });
         },
 
@@ -38469,678 +38488,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("div", { staticClass: "field is-grouped" }, [
-      _c(
-        "button",
-        {
-          staticClass: "button is-primary control",
-          attrs: { type: "button", disabled: _vm.isRefresh },
-          on: {
-            click: function($event) {
-              _vm.saveTask()
-            }
-          }
-        },
-        [
-          _c("b-icon", {
-            attrs: {
-              pack: "fa",
-              icon: _vm.isRefresh ? "refresh" : "check",
-              "custom-class": _vm.isRefresh ? "fa-spin" : ""
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button is-link control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
-        },
-        [
-          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button is-warning control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
-        },
-        [
-          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "columns" }, [
-      _c(
-        "div",
-        { staticClass: "column is-9" },
-        [
-          _vm.task.name.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskName") } },
-                [
-                  _c("b-input", {
-                    attrs: { disabled: _vm.task.name.access == 1 },
-                    model: {
-                      value: _vm.task.name.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.name, "data", $$v)
-                      },
-                      expression: "task.name.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.title.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTitle") } },
-                [
-                  _c("b-input", {
-                    attrs: { disabled: _vm.task.title.access == 1 },
-                    model: {
-                      value: _vm.task.title.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.title, "data", $$v)
-                      },
-                      expression: "task.title.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.desc.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskDesc") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "textarea",
-                      minlength: "10",
-                      maxlength: "100",
-                      disabled: _vm.task.desc.access == 1
-                    },
-                    model: {
-                      value: _vm.task.desc.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.desc, "data", $$v)
-                      },
-                      expression: "task.desc.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "columns" }, [
-            _c(
-              "div",
-              { staticClass: "column is-6" },
-              [
-                _vm.task.words.access >= 1
-                  ? _c(
-                      "b-field",
-                      { attrs: { label: _vm.trans("data.taskWords") } },
-                      [
-                        _c("b-input", {
-                          attrs: {
-                            type: "textarea",
-                            minlength: "10",
-                            maxlength: "100",
-                            disabled: _vm.task.words.access == 1
-                          },
-                          model: {
-                            value: _vm.task.words.data,
-                            callback: function($$v) {
-                              _vm.$set(_vm.task.words, "data", $$v)
-                            },
-                            expression: "task.words.data"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "column is-6" },
-              [
-                _vm.task.moreData.access >= 1
-                  ? _c(
-                      "b-field",
-                      { attrs: { label: _vm.trans("data.taskMoreData") } },
-                      [
-                        _c("b-input", {
-                          attrs: {
-                            type: "textarea",
-                            minlength: "10",
-                            maxlength: "100",
-                            disabled: _vm.task.moreData.access == 1
-                          },
-                          model: {
-                            value: _vm.task.moreData.data,
-                            callback: function($$v) {
-                              _vm.$set(_vm.task.moreData, "data", $$v)
-                            },
-                            expression: "task.moreData.data"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _vm.task.task.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTask") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "textarea",
-                      minlength: "10",
-                      maxlength: "100",
-                      disabled: _vm.task.task.access == 1
-                    },
-                    model: {
-                      value: _vm.task.task.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.task, "data", $$v)
-                      },
-                      expression: "task.task.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "columns" }, [
-            _c(
-              "div",
-              { staticClass: "column is-12" },
-              [
-                _vm.task.textBody.access >= 1
-                  ? _c("b-field", {
-                      attrs: { label: _vm.trans("data.taskTextBody") }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.task.textBody.access == 2
-                  ? _c("div", { attrs: { id: "editor" } })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.task.textBody.access == 1
-                  ? _c("div", {
-                      domProps: { innerHTML: _vm._s(_vm.task.textBody.data) }
-                    })
-                  : _vm._e()
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _vm.task.textPreview.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTextPreview") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "textarea",
-                      minlength: "10",
-                      maxlength: "100",
-                      disabled: _vm.task.textPreview.access == 1
-                    },
-                    model: {
-                      value: _vm.task.textPreview.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.textPreview, "data", $$v)
-                      },
-                      expression: "task.textPreview.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.textUrl.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTextUrl") } },
-                [
-                  _c("b-input", {
-                    attrs: { disabled: _vm.task.textUrl.access == 1 },
-                    model: {
-                      value: _vm.task.textUrl.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.textUrl, "data", $$v)
-                      },
-                      expression: "task.textUrl.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "columns" }, [
-            _c(
-              "div",
-              { staticClass: "column is-12" },
-              [
-                _c("b-field", {
-                  attrs: { label: _vm.trans("data.commentsTitle") }
-                })
-              ],
-              1
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "column is-3" },
-        [
-          _vm.task.dateEnd.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskDateEnd") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "date",
-                      "icon-pack": "fa",
-                      icon: "calendar",
-                      disabled: _vm.task.dateEnd.access == 1
-                    },
-                    model: {
-                      value: _vm.task.dateEnd.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.dateEnd, "data", $$v)
-                      },
-                      expression: "task.dateEnd.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.project.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskProject") } },
-                [
-                  _c(
-                    "b-select",
-                    {
-                      attrs: {
-                        placeholder: _vm.trans("data.taskProject"),
-                        "icon-pack": "fa",
-                        icon: "th-list",
-                        disabled: _vm.task.project.access == 1
-                      },
-                      model: {
-                        value: _vm.task.project.data,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task.project, "data", $$v)
-                        },
-                        expression: "task.project.data"
-                      }
-                    },
-                    _vm._l(_vm.projects, function(val, key) {
-                      return _c(
-                        "option",
-                        { key: key, domProps: { value: val.id } },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(val.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    })
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.editor.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskEditor") } },
-                [
-                  _c(
-                    "b-select",
-                    {
-                      attrs: {
-                        placeholder: _vm.trans("data.taskEditor"),
-                        "icon-pack": "fa",
-                        icon: "users",
-                        disabled: _vm.task.editor.access == 1
-                      },
-                      model: {
-                        value: _vm.task.editor.data,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task.editor, "data", $$v)
-                        },
-                        expression: "task.editor.data"
-                      }
-                    },
-                    _vm._l(_vm.editor, function(val, key) {
-                      return _c(
-                        "option",
-                        { key: key, domProps: { value: val.id } },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(val.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    })
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.author.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskAuthor") } },
-                [
-                  _c(
-                    "b-select",
-                    {
-                      attrs: {
-                        placeholder: _vm.trans("data.taskAuthor"),
-                        "icon-pack": "fa",
-                        icon: "users",
-                        disabled: _vm.task.author.access == 1
-                      },
-                      model: {
-                        value: _vm.task.author.data,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task.author, "data", $$v)
-                        },
-                        expression: "task.author.data"
-                      }
-                    },
-                    _vm._l(_vm.author, function(val, key) {
-                      return _c(
-                        "option",
-                        { key: key, domProps: { value: val.id } },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(val.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    })
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.subject.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskSubject") } },
-                [
-                  _c(
-                    "b-select",
-                    {
-                      attrs: {
-                        placeholder: _vm.trans("data.taskSubject"),
-                        "icon-pack": "fa",
-                        icon: "align-justify",
-                        disabled: _vm.task.subject.access == 1
-                      },
-                      model: {
-                        value: _vm.task.subject.data,
-                        callback: function($$v) {
-                          _vm.$set(_vm.task.subject, "data", $$v)
-                        },
-                        expression: "task.subject.data"
-                      }
-                    },
-                    _vm._l(_vm.subjects, function(val, key) {
-                      return _c(
-                        "option",
-                        { key: key, domProps: { value: val.id } },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(val.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    })
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.textMin.access >= 1 || _vm.task.textMax.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTextMinMax") } },
-                [
-                  _c("div", { staticClass: "columns" }, [
-                    _c(
-                      "div",
-                      { staticClass: "column is-6" },
-                      [
-                        _vm.task.textMin.access >= 1
-                          ? _c("b-input", {
-                              attrs: {
-                                placeholder: "min",
-                                type: "number",
-                                min: "0",
-                                disabled: _vm.task.textMin.access == 1
-                              },
-                              model: {
-                                value: _vm.task.textMin.data,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.task.textMin, "data", $$v)
-                                },
-                                expression: "task.textMin.data"
-                              }
-                            })
-                          : _vm._e()
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "column is-6" },
-                      [
-                        _vm.task.textMax.access >= 1
-                          ? _c("b-input", {
-                              attrs: {
-                                placeholder: "max",
-                                type: "number",
-                                min: "0",
-                                disabled: _vm.task.textMax.access == 1
-                              },
-                              model: {
-                                value: _vm.task.textMax.data,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.task.textMax, "data", $$v)
-                                },
-                                expression: "task.textMax.data"
-                              }
-                            })
-                          : _vm._e()
-                      ],
-                      1
-                    )
-                  ])
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.textUnique.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskTextUnique") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "number",
-                      min: "0",
-                      max: "100",
-                      disabled: _vm.task.textUnique.access == 1
-                    },
-                    model: {
-                      value: _vm.task.textUnique.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.textUnique, "data", $$v)
-                      },
-                      expression: "task.textUnique.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.task.price.access >= 1
-            ? _c(
-                "b-field",
-                { attrs: { label: _vm.trans("data.taskPrice") } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      type: "number",
-                      min: "0",
-                      disabled: _vm.task.price.access == 1
-                    },
-                    model: {
-                      value: _vm.task.price.data,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task.price, "data", $$v)
-                      },
-                      expression: "task.price.data"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e()
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-grouped ui-mt-5" }, [
-      _c(
-        "button",
-        {
-          staticClass: "button is-primary control",
-          attrs: { type: "button", disabled: _vm.isRefresh },
-          on: {
-            click: function($event) {
-              _vm.saveTask()
-            }
-          }
-        },
-        [
-          _c("b-icon", {
-            attrs: {
-              pack: "fa",
-              icon: _vm.isRefresh ? "refresh" : "check",
-              "custom-class": _vm.isRefresh ? "fa-spin" : ""
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button is-link control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
-        },
-        [
-          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button is-warning control",
-          attrs: { type: "button", disabled: _vm.isRefresh }
-        },
-        [
-          _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
