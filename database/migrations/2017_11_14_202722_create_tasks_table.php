@@ -23,7 +23,7 @@ class CreateTasksTable extends Migration
             $table->integer('editor_id')->nullable();
             $table->integer('author_id')->nullable();
             $table->integer('subject_id');
-            $table->timestamp('date_end')->nullable();
+            $table->timestamp('date_end');
             $table->integer('price');
             $table->string('title')->nullable();
             $table->text('desc')->nullable();
@@ -35,7 +35,7 @@ class CreateTasksTable extends Migration
             $table->string('text_url')->nullable();
             $table->integer('text_min')->nullable();
             $table->integer('text_max')->nullable();
-            $table->text('text_unique');
+            $table->text('text_unique')->nullable();
             $table->timestamps();
         });
     }
