@@ -71,16 +71,16 @@
                     @details-open="(row, index)">
 
                 <template slot-scope="props">
-                    <b-table-column field="name.data" :label="trans('data.taskName')" sortable>
-                        {{ props.row.name.data }}
+                    <b-table-column field="name" :label="trans('data.taskName')" sortable>
+                        {{ props.row.name }}
                     </b-table-column>
 
-                    <b-table-column field="project.data.name" :label="trans('data.projectName')" sortable>
-                        {{ props.row.project.data.name }}
+                    <b-table-column field="project.name" :label="trans('data.projectName')" sortable>
+                        {{ props.row.project.name }}
                     </b-table-column>
 
-                    <b-table-column field="author.data.name" :label="trans('data.taskUser')" sortable centered>
-                        {{ props.row.author.data.name }}
+                    <b-table-column field="author.name" :label="trans('data.taskUser')" sortable centered>
+                        {{ props.row.author.name }}
                     </b-table-column>
 
                     <b-table-column field="owner.name" :label="trans('data.taskOwner')" sortable centered>
@@ -100,7 +100,28 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>{{ props.row.name }} {{ props.row.name }}</strong>
+                                <strong>{{ trans('data.taskName') }} :</strong>
+                                <small>{{ props.row.name }}</small>
+                            </p>
+                            <p>
+                                <strong>{{ trans('data.taskDateEnd') }} :</strong>
+                                <small>{{ props.row.dateEnd }}</small>
+                            </p>
+                            <p>
+                                <strong>{{ trans('data.taskEditor') }} :</strong>
+                                <small>{{ props.row.editor.name }}</small>
+                            </p>
+                            <p>
+                                <strong>{{ trans('data.taskSubject') }} :</strong>
+                                <small>{{ props.row.subject.name }}</small>
+                            </p>
+                            <p>
+                                <strong>{{ trans('data.taskPrice') }} :</strong>
+                                <small>{{ props.row.price }}</small>
+                            </p>
+                            <p>
+                                <strong>{{ trans('data.taskTask') }} :</strong>
+                                <small>{{ props.row.task }}</small>
                             </p>
                         </div>
                     </div>

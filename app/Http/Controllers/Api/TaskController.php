@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskSaveValidation;
+use App\Http\Resources\Task\TaskList;
 use App\Models\Task;
 use App\Http\Resources\Task\Task as TaskResource;
 use App\Models\TaskStage;
@@ -51,8 +52,7 @@ class TaskController extends Controller
             });
         }
 
-
-        return TaskResource::collection($task->get());
+        return TaskList::collection($task->get());
     }
 
     /**

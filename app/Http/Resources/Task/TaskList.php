@@ -37,9 +37,6 @@ class TaskList extends Resource
             'dateEnd'    => $this->date_end->format('d-m-Y'),
             'price'      => $this->price,
             'task'       => $this->task,
-            'textMin'    => $this->text_min,
-            'textMax'    => $this->text_max,
-            'textUnique' => $this->text_unique,
             'created_at' => $this->created_at->format('d-m-Y H:m:s'),
             'updated_at' => $this->updated_at->format('d-m-Y H:m:s'),
         ];

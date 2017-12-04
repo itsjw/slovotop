@@ -37378,6 +37378,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37689,7 +37710,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "name.data",
+                          field: "name",
                           label: _vm.trans("data.taskName"),
                           sortable: ""
                         }
@@ -37697,7 +37718,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.name.data) +
+                            _vm._s(props.row.name) +
                             "\n                "
                         )
                       ]
@@ -37707,7 +37728,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "project.data.name",
+                          field: "project.name",
                           label: _vm.trans("data.projectName"),
                           sortable: ""
                         }
@@ -37715,7 +37736,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.project.data.name) +
+                            _vm._s(props.row.project.name) +
                             "\n                "
                         )
                       ]
@@ -37725,7 +37746,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "author.data.name",
+                          field: "author.name",
                           label: _vm.trans("data.taskUser"),
                           sortable: "",
                           centered: ""
@@ -37734,7 +37755,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.author.data.name) +
+                            _vm._s(props.row.author.name) +
                             "\n                "
                         )
                       ]
@@ -37809,12 +37830,50 @@ var render = function() {
                       _c("div", { staticClass: "content" }, [
                         _c("p", [
                           _c("strong", [
-                            _vm._v(
-                              _vm._s(props.row.name) +
-                                " " +
-                                _vm._s(props.row.name)
-                            )
-                          ])
+                            _vm._v(_vm._s(_vm.trans("data.taskName")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.name))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(_vm._s(_vm.trans("data.taskDateEnd")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.dateEnd))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(_vm._s(_vm.trans("data.taskEditor")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.editor.name))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(_vm._s(_vm.trans("data.taskSubject")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.subject.name))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(_vm._s(_vm.trans("data.taskPrice")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.price))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(_vm._s(_vm.trans("data.taskTask")) + " :")
+                          ]),
+                          _vm._v(" "),
+                          _c("small", [_vm._v(_vm._s(props.row.task))])
                         ])
                       ])
                     ])
