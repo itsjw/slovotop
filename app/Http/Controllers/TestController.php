@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Setting;
+use App\Models\TaskStage;
 use App\Models\User;
 use App\Http\Resources\Users\User as UserResourse;
 use Carbon\Carbon;
@@ -14,9 +15,11 @@ class TestController extends Controller
 
     public function index()
     {
-        $date = '2017-12-04T17:00:00.000Z';
+        $stage = 4;
 
-        dd(Carbon::parse($date));
+        $data = TaskStage::min('priority');
+
+        dd($data);
 
     }
 

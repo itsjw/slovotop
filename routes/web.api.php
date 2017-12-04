@@ -22,23 +22,23 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
         $router->post('saveGeneralSetting', 'SettingController@saveGeneralSetting');
     });
 
+    // user
     $router->group(['middleware' => 'accessRoute:users'], function (Router $router) {
-        // user
-        $router->post('getUsers', 'UserController@getUsers');
         $router->post('saveUser', 'UserController@saveUser');
         $router->post('deleteUser', 'UserController@deleteUser');
         $router->post('approveUser', 'UserController@approveUser');
     });
+    $router->post('getUsers', 'UserController@getUsers');
 
+    // subject
     $router->group(['middleware' => 'accessRoute:subjects'], function (Router $router) {
-        // subject
-        $router->post('getSubjects', 'SubjectController@getSubjects');
         $router->post('saveSubject', 'SubjectController@saveSubject');
         $router->post('deleteSubject', 'SubjectController@deleteSubject');
     });
+    $router->post('getSubjects', 'SubjectController@getSubjects');
 
+    // role
     $router->group(['middleware' => 'accessRoute:roles'], function (Router $router) {
-        // role
         $router->post('getRoles', 'RoleController@getRoles');
         $router->post('saveRole', 'RoleController@saveRole');
         $router->post('deleteRole', 'RoleController@deleteRole');
@@ -46,22 +46,22 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
         $router->post('saveStageRoleAccess', 'AccessController@saveStageRoleAccess');
     });
 
+    // project
     $router->group(['middleware' => 'accessRoute:projects'], function (Router $router) {
-        // project
         $router->post('getProjects', 'ProjectController@getProjects');
         $router->post('saveProject', 'ProjectController@saveProject');
         $router->post('deleteProject', 'ProjectController@deleteProject');
     });
 
+    // task
     $router->group(['middleware' => 'accessRoute:tasks'], function (Router $router) {
-        // task
         $router->post('getTasks', 'TaskController@getTasks');
         $router->post('saveTask', 'TaskController@saveTask');
         $router->post('deleteTask', 'TaskController@deleteTask');
     });
 
+    // doc
     $router->group(['middleware' => 'accessRoute:docs'], function (Router $router) {
-        // doc
         $router->post('getDocs', 'DocController@getDocs');
         $router->post('saveDoc', 'DocController@saveDoc');
         $router->post('deleteDoc', 'DocController@deleteDoc');

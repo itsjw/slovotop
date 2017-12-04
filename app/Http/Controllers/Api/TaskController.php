@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskSaveValidation;
 use App\Models\Task;
 use App\Http\Resources\Task\Task as TaskResource;
+use App\Models\TaskStage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -66,8 +67,8 @@ class TaskController extends Controller
         $task->name = $request->name;
         $task->user_id = $request->user_id;
         $task->project_id = $request->project;
-        $task->status_id = $request->status ?? 1; // TODO
-        $task->stage_id = $request->stage ?? 1; // TODO
+        $task->status_id = $request->status;
+        $task->stage_id = $this->getStage($request->stage, $request->stageDirection);
         $task->editor_id = $request->editor;
         $task->author_id = $request->author;
         $task->subject_id = $request->subject;
@@ -88,6 +89,24 @@ class TaskController extends Controller
         $task->save();
 
         return ['success' => trans('data.notifyOK'), 'id' => $task->id];
+    }
+
+    /**
+     * @param $stage
+     * @param $stageDirection
+     *
+     * @return mixed
+     */
+    private function getStage($stage, $stageDirection)
+    {
+        if ($stageDirection == 1 && $stage) {
+            return TaskStage::where('priority', '>', $stage)->orderBy('priority', 'asc')->first();
+        }
+        if ($stageDirection == 0 && $stage) {
+            return TaskStage::where('priority', '<', $stage)->orderBy('priority', 'desc')->first();
+        }
+
+        return TaskStage::min('priority');
     }
 
     /**

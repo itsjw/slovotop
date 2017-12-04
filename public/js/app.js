@@ -37433,7 +37433,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         addTask: function addTask() {
             window.location = '/crm/tasks/task/';
         },
-        editTask: function editTask() {},
+
+
+        /**
+         * edit task
+         */
+        editTask: function editTask() {
+            if (this.selectTask.length > 0) {
+                window.location = '/crm/tasks/task/' + this.selectTask[0].id;
+            }
+        },
 
 
         /**
@@ -38394,8 +38403,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 textUnique: task.textUnique.data || '',
                 textUrl: task.textUrl.data || '',
                 title: task.title.data || '',
-                words: task.words.data || ''
-
+                words: task.words.data || '',
+                status: task.status || 1,
+                stage: task.stage || 0,
+                stageDirection: 1
             };
         }
     }

@@ -180,7 +180,13 @@
                 window.location = '/crm/tasks/task/';
             },
 
+            /**
+             * edit task
+             */
             editTask() {
+                if (this.selectTask.length > 0) {
+                    window.location = '/crm/tasks/task/' + this.selectTask[0].id;
+                }
             },
 
             /**

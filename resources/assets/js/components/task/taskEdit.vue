@@ -443,7 +443,9 @@
                     textUrl: task.textUrl.data || '',
                     title: task.title.data || '',
                     words: task.words.data || '',
-
+                    status: task.status || 1,
+                    stage: task.stage || 0,
+                    stageDirection: 1,
                 }
             }
 
