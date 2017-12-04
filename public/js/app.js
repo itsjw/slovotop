@@ -38150,7 +38150,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38353,6 +38352,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 textUrl: task.textUrl.data || '',
                 title: task.title.data || '',
                 words: task.words.data || ''
+
             };
         }
     }
@@ -38678,11 +38678,11 @@ var render = function() {
                 "b-field",
                 { attrs: { label: _vm.trans("data.taskDateEnd") } },
                 [
-                  _c("b-datepicker", {
+                  _c("b-input", {
                     attrs: {
+                      type: "date",
                       "icon-pack": "fa",
                       icon: "calendar",
-                      "min-date": new Date(),
                       disabled: _vm.task.dateEnd.access == 1
                     },
                     model: {

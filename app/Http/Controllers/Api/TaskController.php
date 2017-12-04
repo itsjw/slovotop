@@ -7,14 +7,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskSaveValidation;
 use App\Models\Task;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
+/**
+ * Class TaskController
+ * @package App\Http\Controllers\Api
+ */
 class TaskController extends Controller
 {
-    public function getTasks()
+    /**
+     * @param Request $request
+     */
+    public function getTasks(Request $request)
     {
+        $task = Task::query();
 
+        if (isset($request->id)) {
+            $task->where('id', $request->id);
+        }
     }
 
+    /**
+     * @param TaskSaveValidation $request
+     *
+     * @return array
+     */
     public function saveTask(TaskSaveValidation $request)
     {
         $task = Task::findOrNew($request->id);

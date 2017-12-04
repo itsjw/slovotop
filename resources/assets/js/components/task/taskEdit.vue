@@ -110,12 +110,11 @@
             <div class="column is-3">
                 <b-field :label="trans('data.taskDateEnd')"
                          v-if="task.dateEnd.access >= 1">
-                    <b-datepicker
-                            icon-pack="fa"
-                            icon="calendar"
-                            :min-date="new Date()"
-                            v-model="task.dateEnd.data"
-                            :disabled="task.dateEnd.access == 1"></b-datepicker>
+                    <b-input type="date"
+                             icon-pack="fa"
+                             icon="calendar"
+                             v-model="task.dateEnd.data"
+                             :disabled="task.dateEnd.access == 1"></b-input>
                 </b-field>
 
                 <b-field :label="trans('data.taskProject')"
@@ -444,6 +443,7 @@
                     textUrl: task.textUrl.data || '',
                     title: task.title.data || '',
                     words: task.words.data || '',
+
                 }
             }
 
