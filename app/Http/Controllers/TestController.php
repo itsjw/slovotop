@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Setting;
+use App\Models\StageTaskAccess;
 use App\Models\TaskStage;
 use App\Models\User;
 use App\Http\Resources\Users\User as UserResourse;
@@ -15,11 +16,17 @@ class TestController extends Controller
 
     public function index()
     {
-        $stage = 4;
+        $stage = 'name';
 
-        $data = TaskStage::min('priority');
+        $t = StageTaskAccess::where('stage_id', 1)->select('field', 'access')->get();
 
-        dd($data);
+        foreach ($t as $item) {
+            if($item->field == 'name'){
+                echo $item->access;
+            }
+        }
+
+        dd($t->where('field','name')->first()->access);
 
     }
 

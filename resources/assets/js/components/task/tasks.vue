@@ -65,23 +65,22 @@
                     :paginated='tablePaginated'
                     :per-page=20
                     :checked-rows.sync="selectTask"
-                    checkable>
+                    checkable
+                    detailed
+                    detail-key="id"
+                    @details-open="(row, index)">
 
                 <template slot-scope="props">
-                    <b-table-column field="name" :label="trans('data.taskName')" sortable>
-                        {{ props.row.name }}
+                    <b-table-column field="name.data" :label="trans('data.taskName')" sortable>
+                        {{ props.row.name.data }}
                     </b-table-column>
 
-                    <b-table-column field="project.name" :label="trans('data.projectName')" sortable>
-                        {{ props.row.project.name }}
+                    <b-table-column field="project.data.name" :label="trans('data.projectName')" sortable>
+                        {{ props.row.project.data.name }}
                     </b-table-column>
 
-                    <b-table-column field="status" :label="trans('data.taskState')" sortable centered>
-                        {{ props.row.status }}
-                    </b-table-column>
-
-                    <b-table-column field="user" :label="trans('data.taskUser')" sortable centered>
-                        {{ props.row.user }}
+                    <b-table-column field="author.data.name" :label="trans('data.taskUser')" sortable centered>
+                        {{ props.row.author.data.name }}
                     </b-table-column>
 
                     <b-table-column field="owner.name" :label="trans('data.taskOwner')" sortable centered>
@@ -92,13 +91,19 @@
                         {{ props.row.created_at }}
                     </b-table-column>
 
-                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
-                        {{ props.row.updated_at }}
-                    </b-table-column>
-
                     <b-table-column field="id" label="ID" width="40" numeric sortable centered>
                         {{ props.row.id }}
                     </b-table-column>
+                </template>
+
+                <template slot="detail" slot-scope="props">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>{{ props.row.name }} {{ props.row.name }}</strong>
+                            </p>
+                        </div>
+                    </div>
                 </template>
 
                 <template slot="empty">
@@ -137,6 +142,8 @@
                 // tables
                 tableLoading: false,
                 tablePaginated: true,
+                row: '',
+                index: '',
                 // search
                 searchType: [
                     {name: this.trans('data.taskName'), type: 'name'},

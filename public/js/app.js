@@ -37373,6 +37373,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37391,6 +37396,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             // tables
             tableLoading: false,
             tablePaginated: true,
+            row: '',
+            index: '',
             // search
             searchType: [{ name: this.trans('data.taskName'), type: 'name' }, { name: this.trans('data.projectName'), type: 'project' }, { name: this.trans('data.taskUser'), type: 'author' }, { name: this.trans('data.taskOwner'), type: 'owner' }],
             searchId: null,
@@ -37661,11 +37668,16 @@ var render = function() {
               paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectTask,
-              checkable: ""
+              checkable: "",
+              detailed: "",
+              "detail-key": "id"
             },
             on: {
               "update:checkedRows": function($event) {
                 _vm.selectTask = $event
+              },
+              "details-open": function($event) {
+                _vm.row, _vm.index
               }
             },
             scopedSlots: _vm._u([
@@ -37677,7 +37689,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "name",
+                          field: "name.data",
                           label: _vm.trans("data.taskName"),
                           sortable: ""
                         }
@@ -37685,7 +37697,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.name) +
+                            _vm._s(props.row.name.data) +
                             "\n                "
                         )
                       ]
@@ -37695,7 +37707,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "project.name",
+                          field: "project.data.name",
                           label: _vm.trans("data.projectName"),
                           sortable: ""
                         }
@@ -37703,7 +37715,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.project.name) +
+                            _vm._s(props.row.project.data.name) +
                             "\n                "
                         )
                       ]
@@ -37713,26 +37725,7 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "status",
-                          label: _vm.trans("data.taskState"),
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.status) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "user",
+                          field: "author.data.name",
                           label: _vm.trans("data.taskUser"),
                           sortable: "",
                           centered: ""
@@ -37741,7 +37734,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.user) +
+                            _vm._s(props.row.author.data.name) +
                             "\n                "
                         )
                       ]
@@ -37789,25 +37782,6 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
-                          field: "updated_at",
-                          label: _vm.trans("data.updated_at"),
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.updated_at) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
                           field: "id",
                           label: "ID",
                           width: "40",
@@ -37824,6 +37798,26 @@ var render = function() {
                         )
                       ]
                     )
+                  ]
+                }
+              },
+              {
+                key: "detail",
+                fn: function(props) {
+                  return [
+                    _c("div", { staticClass: "media-content" }, [
+                      _c("div", { staticClass: "content" }, [
+                        _c("p", [
+                          _c("strong", [
+                            _vm._v(
+                              _vm._s(props.row.name) +
+                                " " +
+                                _vm._s(props.row.name)
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
                   ]
                 }
               }
