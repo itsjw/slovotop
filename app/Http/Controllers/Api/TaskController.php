@@ -32,13 +32,22 @@ class TaskController extends Controller
             $task->where('name', 'like', '%' . $request->name . '%');
         }
         if (isset($request->project)) {
-            $task->where('email', 'like', '%' . $request->email . '%');
+            $project = $request->project;
+            $task->whereHas('project', function ($query) use ($project) {
+                $query->where('name', 'like', '%' . $project . '%');
+            });
         }
         if (isset($request->author)) {
-            $task->where('email', 'like', '%' . $request->email . '%');
+            $author = $request->author;
+            $task->whereHas('user', function ($query) use ($author) {
+                $query->where('name', 'like', '%' . $author . '%');
+            });
         }
-        if (isset($request->user)) {
-            $task->where('email', 'like', '%' . $request->email . '%');
+        if (isset($request->owner)) {
+            $owner = $request->owner;
+            $task->whereHas('user', function ($query) use ($owner) {
+                $query->where('name', 'like', '%' . $owner . '%');
+            });
         }
 
 

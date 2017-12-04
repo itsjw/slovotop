@@ -141,7 +141,7 @@
                 searchType: [
                     {name: this.trans('data.taskName'), type: 'name'},
                     {name: this.trans('data.projectName'), type: 'project'},
-                    {name: this.trans('data.taskUser'), type: 'user'},
+                    {name: this.trans('data.taskUser'), type: 'author'},
                     {name: this.trans('data.taskOwner'), type: 'owner'},
                 ],
                 searchId: null,
