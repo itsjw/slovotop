@@ -187,10 +187,38 @@ define({ "api": [
   },
   {
     "version": "0.2.0",
+    "group": "Setting",
+    "permission": [
+      {
+        "name": "auth,accessRoute:settings"
+      }
+    ],
+    "type": "post",
+    "url": "getGeneralSetting",
+    "title": "getGeneralSetting",
+    "name": "getGeneralSetting",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "data",
+            "description": "<p>[name:value,...]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/SettingController.php",
+    "groupTitle": "Setting"
+  },
+  {
+    "version": "0.2.0",
     "group": "Stage",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -238,7 +266,7 @@ define({ "api": [
     "group": "Stage",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -314,7 +342,7 @@ define({ "api": [
     "group": "Stage",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",

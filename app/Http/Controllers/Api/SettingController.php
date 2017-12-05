@@ -16,6 +16,13 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Setting
+     * @apiPermission auth,accessRoute:settings
+     * @api           {post} getGeneralSetting getGeneralSetting
+     * @apiName       getGeneralSetting
+     * @apiSuccess {Array} data [name:value,...]
+     *
      * @param Request $request
      *
      * @return General
