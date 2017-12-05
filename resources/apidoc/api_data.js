@@ -1,6 +1,84 @@
 define({ "api": [
   {
     "version": "0.2.0",
+    "group": "Access",
+    "permission": [
+      {
+        "name": "auth,accessRoute:roles"
+      }
+    ],
+    "type": "post",
+    "url": "saveAccessMenu",
+    "title": "saveAccessMenu",
+    "name": "saveAccessMenu",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Required",
+            "optional": false,
+            "field": "menu",
+            "description": "<p>menu ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Required",
+            "optional": false,
+            "field": "role",
+            "description": "<p>role</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Required",
+            "optional": false,
+            "field": "access",
+            "description": "<p>access</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{menu:1,role:2,access:3}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>errors{name:'error xxx',...}</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/AccessController.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.2.0",
     "group": "Doc",
     "permission": [
       {

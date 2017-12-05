@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\AccessMenuSaveValidation;
 use App\Http\Requests\StageAccessSaveValidation;
 use App\Http\Requests\TaskFiledAccessSaveValidation;
 use App\Models\Menu;
@@ -32,11 +33,11 @@ class AccessController extends Controller
      * @apiSuccess {String} success trans('data.notifyOK')
      * @apiError {Array} errors errors{name:'error xxx',...}
      *
-     * @param Request $request
+     * @param AccessMenuSaveValidation $request
      *
      * @return array
      */
-    public function saveAccessMenu(Request $request)
+    public function saveAccessMenu(AccessMenuSaveValidation $request)
     {
         $menu = Menu::find($request->menu)->roles()->where('role_id', $request->role);
 
