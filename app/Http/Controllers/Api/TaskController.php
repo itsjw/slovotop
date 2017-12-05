@@ -131,7 +131,7 @@ class TaskController extends Controller
             return TaskStage::where('priority', '<', $stage)->orderBy('priority', 'desc')->first()->id;
         }
 
-        return TaskStage::min('priority')->id;
+        return TaskStage::orderBy('priority', 'desc')->first()->id;
     }
 
     /**
