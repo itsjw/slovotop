@@ -84,6 +84,16 @@ class ProjectController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Project
+     * @apiPermission auth,accessRoute:projects
+     * @api           {post} deleteProject deleteProject(s)
+     * @apiName       deleteProject
+     * @apiParam {Array} items project's ID [1,2,3...]
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array

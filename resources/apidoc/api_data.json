@@ -8,6 +8,54 @@
       }
     ],
     "type": "post",
+    "url": "deleteProject",
+    "title": "deleteProject(s)",
+    "name": "deleteProject",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "items",
+            "description": "<p>project's ID [1,2,3...]</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{items:{1,2,3}}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/ProjectController.php",
+    "groupTitle": "Project"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Project",
+    "permission": [
+      {
+        "name": "auth,accessRoute:projects"
+      }
+    ],
+    "type": "post",
     "url": "getProjects",
     "title": "getProject(s)",
     "name": "getProjects",
