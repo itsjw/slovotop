@@ -59,6 +59,21 @@ class DocController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Doc
+     * @apiPermission auth,accessRoute:docs
+     * @api           {post} saveDoc saveDoc
+     * @apiName       saveDoc
+     * @apiParam {Integer} id ID
+     * @apiParam {String{Required}} name name
+     * @apiParam {Array{Required}} roles roles[1,2,3..]
+     * @apiParam {Integer{Required}} user user
+     * @apiParam {String{Required}} body body
+     * @apiParamExample {json} Request-Example:
+     * {id:2,name:'xxx',roles{1,2,4},body:'test'}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param DocSaveValidation $request
      *
      * @return array

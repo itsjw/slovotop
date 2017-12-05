@@ -52,6 +52,7 @@ class RoleController extends Controller
      * @apiPermission auth,accessRoute:roles
      * @api           {post} saveRole saveRole
      * @apiName       saveRole
+     * @apiParam {Integer} id ID
      * @apiParam {String{Required}} name name
      * @apiParamExample {json} Request-Example:
      * {name:'xxx'}

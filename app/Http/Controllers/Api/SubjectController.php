@@ -72,6 +72,7 @@ class SubjectController extends Controller
      * @apiPermission auth,accessRoute:subjects
      * @api           {post} saveSubject saveSubject
      * @apiName       saveSubject
+     * @apiParam {Integer} id ID
      * @apiParam {String{Required}} name name
      * @apiParam {String{Required,Integer,Not_in:0,Min:0}} price price
      * @apiParamExample {json} Request-Example:

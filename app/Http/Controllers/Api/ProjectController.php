@@ -60,6 +60,7 @@ class ProjectController extends Controller
      * @apiPermission auth,accessRoute:projects
      * @api           {post} saveProject saveProject
      * @apiName       saveProject
+     * @apiParam {Integer} id ID
      * @apiParam {String{Required}} name name
      * @apiParam {Integer{Required,not Admin}} user_id user_id
      * @apiParamExample {json} Request-Example:

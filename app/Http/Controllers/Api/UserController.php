@@ -103,6 +103,7 @@ class UserController extends Controller
      * @apiPermission auth,accessRoute
      * @api           {post} saveUser saveUser
      * @apiName       saveUser
+     * @apiParam {Integer} id ID
      * @apiParam {String{Required}} name name
      * @apiParam {String{Required,Unique}} email email
      * @apiParam {Integer} up_price up_price

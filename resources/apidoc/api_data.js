@@ -98,6 +98,99 @@ define({ "api": [
   },
   {
     "version": "0.2.0",
+    "group": "Doc",
+    "permission": [
+      {
+        "name": "auth,accessRoute:docs"
+      }
+    ],
+    "type": "post",
+    "url": "saveDoc",
+    "title": "saveDoc",
+    "name": "saveDoc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "size": "Required",
+            "optional": false,
+            "field": "roles",
+            "description": "<p>roles[1,2,3..]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "size": "Required",
+            "optional": false,
+            "field": "user",
+            "description": "<p>user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "size": "Required",
+            "optional": false,
+            "field": "body",
+            "description": "<p>body</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{id:2,name:'xxx',roles{1,2,4},body:'test'}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>errors{name:'error xxx',...}</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/DocController.php",
+    "groupTitle": "Doc"
+  },
+  {
+    "version": "0.2.0",
     "group": "Menu",
     "permission": [
       {
@@ -320,6 +413,13 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "String",
             "size": "Required",
             "optional": false,
@@ -512,6 +612,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
@@ -789,6 +896,13 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "String",
             "size": "Required",
             "optional": false,
@@ -1031,6 +1145,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
@@ -1384,6 +1505,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",

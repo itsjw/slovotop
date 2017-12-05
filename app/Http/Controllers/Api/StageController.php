@@ -60,6 +60,7 @@ class StageController extends Controller
      * @apiPermission auth,accessRoute:settings
      * @api           {post} saveStage saveStage
      * @apiName       saveStage
+     * @apiParam {Integer} id ID
      * @apiParam {String{Required}} name name
      * @apiParam {Integer{Required,Unique,Integer,Min:0}} priority priority
      * @apiParam {Integer{Integer,Min:0}} price price
