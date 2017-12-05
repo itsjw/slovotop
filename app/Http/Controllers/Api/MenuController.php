@@ -20,7 +20,7 @@ class MenuController extends Controller
      * @apiPermission auth
      * @api           {post} getMenus getMenus(s)
      * @apiName       getMenus
-     * @apiParam {Integer} id ID if need getMenu
+     * @apiParam {Integer} id ID if need one
      * @apiParam {Integer} role role
      * @apiParamExample {json} Request-Example:
      * {id: 1,role:'2}

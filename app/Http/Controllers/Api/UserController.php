@@ -23,7 +23,7 @@ class UserController extends Controller
      * @apiPermission auth,accessRoute:users
      * @api           {post} getUsers getUser(s)
      * @apiName       getUser
-     * @apiParam {Integer} id ID if need getUser
+     * @apiParam {Integer} id ID if need one
      * @apiParam {String} name Search name
      * @apiParam {String} email Search email
      * @apiParamExample {json} Request-Example:

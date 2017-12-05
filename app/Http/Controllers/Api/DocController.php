@@ -17,6 +17,23 @@ use App\Http\Resources\Docs\Doc as DocResource;
 class DocController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Doc
+     * @apiPermission auth,accessRoute:docs
+     * @api           {post} getDocs getDoc(s)
+     * @apiName       getDocs
+     * @apiParam {Integer} id ID if need one
+     * @apiParam {String} name Search name
+     * @apiParamExample {json} Request-Example:
+     * {id: 1,name:'xxx'}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {String} body body
+     * @apiSuccess {Object} user user{id,name}
+     * @apiSuccess {Object} roles roles
+     * @apiSuccess {Datetime} created_at created_at format('d-m-Y H:m:s')
+     * @apiSuccess {Datetime} updated_at updated_at format('d-m-Y H:m:s')
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -25,13 +42,14 @@ class DocController extends Controller
     {
         $doc = Doc::query();
 
-        if (isset($request->id)) {
-            $doc->where('id', $request->id);
-        }
         if (!\Auth::user()->isAdmin()) {
             $doc->whereHas('roles', function ($request) {
                 $request->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
             });
+        }
+
+        if (isset($request->id)) {
+            $doc->where('id', $request->id);
         }
         if (isset($request->name)) {
             $doc->where('name', 'like', '%' . $request->name . '%');

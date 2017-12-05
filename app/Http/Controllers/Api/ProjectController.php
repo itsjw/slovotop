@@ -21,7 +21,7 @@ class ProjectController extends Controller
      * @apiPermission auth,accessRoute:projects
      * @api           {post} getProjects getProject(s)
      * @apiName       getProjects
-     * @apiParam {Integer} id ID if need getProject
+     * @apiParam {Integer} id ID if need one
      * @apiParam {String} name Search name
      * @apiParamExample {json} Request-Example:
      * {id: 1,name:'xxx'}
@@ -40,11 +40,12 @@ class ProjectController extends Controller
     {
         $project = Project::query();
 
-        if (isset($request->id)) {
-            $project->where('id', $request->id);
-        }
         if (!\Auth::user()->isAdmin()) {
             $project->where('user_id', \Auth::id());
+        }
+
+        if (isset($request->id)) {
+            $project->where('id', $request->id);
         }
         if (isset($request->name)) {
             $project->where('name', 'like', '%' . $request->name . '%');
