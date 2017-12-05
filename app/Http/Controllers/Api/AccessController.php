@@ -85,6 +85,19 @@ class AccessController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Access
+     * @apiPermission auth,accessRoute:settings
+     * @api           {post} saveTaskFieldAccess saveTaskFieldAccess
+     * @apiName       saveTaskFieldAccess
+     * @apiParam {String{Required}} field  field
+     * @apiParam {Integer{Required}} stage stage
+     * @apiParam {Mixed{Required}} access access
+     * @apiParamExample {json} Request-Example:
+     * {field:'xxx',stage:2,access:3}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param TaskFiledAccessSaveValidation $request
      *
      * @return array
