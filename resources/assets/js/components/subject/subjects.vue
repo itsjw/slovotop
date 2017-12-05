@@ -65,7 +65,7 @@
                     :paginated='tablePaginated'
                     :per-page=20
                     :checked-rows.sync="selectSubject"
-                    checkable>
+                    :checkable="accessMenu == 2">
 
                 <template slot-scope="props">
                     <b-table-column field="name" :label="trans('data.subjectName')" sortable>

@@ -32944,7 +32944,7 @@ var render = function() {
               paginated: _vm.tablePaginated,
               "per-page": 20,
               "checked-rows": _vm.selectSubject,
-              checkable: ""
+              checkable: _vm.accessMenu == 2
             },
             on: {
               "update:checkedRows": function($event) {

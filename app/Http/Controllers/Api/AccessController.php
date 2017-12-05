@@ -104,7 +104,7 @@ class AccessController extends Controller
      */
     public function saveTaskFieldAccess(TaskFiledAccessSaveValidation $request)
     {
-        $stage = StageTaskAccess::firstOrNew(['field' => $request->field]);
+        $stage = StageTaskAccess::firstOrNew(['field' => $request->field, 'stage_id' => $request->stage]);
 
         $stage->stage_id = $request->stage;
         $stage->field = $request->field;
