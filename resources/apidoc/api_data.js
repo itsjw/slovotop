@@ -392,7 +392,7 @@ define({ "api": [
     "group": "Subject",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -441,6 +441,41 @@ define({ "api": [
     "permission": [
       {
         "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "getSubjectList",
+    "title": "getSubjectList",
+    "name": "getSubjectList",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/SubjectController.php",
+    "groupTitle": "Subject"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Subject",
+    "permission": [
+      {
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -523,7 +558,7 @@ define({ "api": [
     "group": "Subject",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
