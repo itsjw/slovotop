@@ -33946,6 +33946,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     message: response.data.success,
                     type: 'is-success'
                 });
+            }).catch(function (error) {
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
             });
         }
     }
