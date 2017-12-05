@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use App\Models\StageTaskAccess;
+use App\Models\Task;
 use App\Models\TaskStage;
 use App\Models\User;
 use App\Http\Resources\Users\User as UserResourse;
@@ -16,18 +17,18 @@ class TestController extends Controller
 
     public function index()
     {
-        $stage = 'name';
 
-        $t = StageTaskAccess::where('stage_id', 1)->select('field', 'access')->get();
+        $stage = TaskStage::whereHas('roles', function ($query) {
+            $query->whereIn('role_id', \Auth::user()->getRoles());
+        });
 
-        foreach ($t as $item) {
-            if($item->field == 'name'){
-                echo $item->access;
-            }
-        }
+        $task = Task::whereHas('stage', function ($query) {
+            $query->whereHas('roles', function ($q) {
+                $q->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
+            });
+        });
 
-        dd($t->where('field','name')->first()->access);
-
+        dump($task->get());
     }
 
 }

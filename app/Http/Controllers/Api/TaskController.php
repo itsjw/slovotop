@@ -27,9 +27,14 @@ class TaskController extends Controller
     {
         $task = Task::query();
 
-        if (isset($request->id)) {
-            $task->where('id', $request->id);
+        if (!\Auth::user()->isAdmin()) {
+            $task->whereHas('stage', function ($query) {
+                $query->whereHas('roles', function ($q) {
+                    $q->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
+                });
+            });
         }
+
         if (isset($request->name)) {
             $task->where('name', 'like', '%' . $request->name . '%');
         }
@@ -63,6 +68,14 @@ class TaskController extends Controller
     public function getTask(Request $request)
     {
         $task = Task::find($request->id);
+
+        if (!\Auth::user()->isAdmin()) {
+            $task->whereHas('stage', function ($query) {
+                $query->whereHas('roles', function ($q) {
+                    $q->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
+                });
+            });
+        }
 
         return new TaskResource($task);
     }
