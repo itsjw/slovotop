@@ -19,7 +19,7 @@ class RoleController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Role
-     * @apiPermission auth
+     * @apiPermission auth,accessRoute:roles
      * @api           {post} getRoles getRole(s)
      * @apiName       getRoles
      * @apiParam {Integer} id ID if need one
@@ -49,7 +49,7 @@ class RoleController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Role
-     * @apiPermission auth
+     * @apiPermission auth,accessRoute:roles
      * @api           {post} saveRole saveRole
      * @apiName       saveRole
      * @apiParam {String{Required}} name name
@@ -75,7 +75,7 @@ class RoleController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Role
-     * @apiPermission auth
+     * @apiPermission auth,accessRoute:roles
      * @api           {post} deleteRole deleteRole(s)
      * @apiName       deleteRole
      * @apiParam {Array} items subject's ID [1,2,3...]

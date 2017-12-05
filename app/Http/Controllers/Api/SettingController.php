@@ -37,6 +37,17 @@ class SettingController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Setting
+     * @apiPermission auth,accessRoute:settings
+     * @api           {post} saveGeneralSetting saveGeneralSetting
+     * @apiName       saveGeneralSetting
+     * @apiParam {Array} generals [name:value]
+     * @apiParamExample {json} Request-Example:
+     * {generals {name:100,...}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param GeneralSettingSaveValidation $request
      *
      * @return array|void

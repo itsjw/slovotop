@@ -19,7 +19,7 @@ class StageController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Stage
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:settings
      * @api           {post} getStages getStage(s)
      * @apiName       getStages
      * @apiParam {Integer} id ID if need one
@@ -57,7 +57,7 @@ class StageController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Stage
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:settings
      * @api           {post} saveStage saveStage
      * @apiName       saveStage
      * @apiParam {String{Required}} name name
@@ -88,7 +88,7 @@ class StageController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Stage
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:settings
      * @api           {post} deleteStage deleteStage(s)
      * @apiName       deleteStage
      * @apiParam {Array} items subject's ID [1,2,3...]

@@ -4,7 +4,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute:roles"
       }
     ],
     "type": "post",
@@ -52,7 +52,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute:roles"
       }
     ],
     "type": "post",
@@ -128,7 +128,7 @@
     "group": "Role",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,accessRoute:roles"
       }
     ],
     "type": "post",
@@ -215,10 +215,71 @@
   },
   {
     "version": "0.2.0",
+    "group": "Setting",
+    "permission": [
+      {
+        "name": "auth,accessRoute:settings"
+      }
+    ],
+    "type": "post",
+    "url": "saveGeneralSetting",
+    "title": "saveGeneralSetting",
+    "name": "saveGeneralSetting",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "generals",
+            "description": "<p>[name:value]</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{generals {name:100,...}}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>errors{name:'error xxx',...}</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/SettingController.php",
+    "groupTitle": "Setting"
+  },
+  {
+    "version": "0.2.0",
     "group": "Stage",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:settings"
       }
     ],
     "type": "post",
@@ -266,7 +327,7 @@
     "group": "Stage",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:settings"
       }
     ],
     "type": "post",
@@ -342,7 +403,7 @@
     "group": "Stage",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:settings"
       }
     ],
     "type": "post",
@@ -420,7 +481,7 @@
     "group": "Subject",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:subjects"
       }
     ],
     "type": "post",
@@ -503,7 +564,7 @@
     "group": "Subject",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:subjects"
       }
     ],
     "type": "post",
@@ -586,7 +647,7 @@
     "group": "Subject",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:subjects"
       }
     ],
     "type": "post",
@@ -656,7 +717,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:users"
       }
     ],
     "type": "post",
@@ -704,7 +765,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:users"
       }
     ],
     "type": "post",
@@ -752,7 +813,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:users"
       }
     ],
     "type": "post",
@@ -939,7 +1000,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute"
+        "name": "auth,accessRoute:users"
       }
     ],
     "type": "post",

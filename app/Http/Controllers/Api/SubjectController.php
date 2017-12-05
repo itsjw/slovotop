@@ -19,7 +19,7 @@ class SubjectController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Subject
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:subjects
      * @api           {post} getSubjects getSubject(s)
      * @apiName       getSubjects
      * @apiParam {Integer} id ID if need one
@@ -69,7 +69,7 @@ class SubjectController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Subject
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:subjects
      * @api           {post} saveSubject saveSubject
      * @apiName       saveSubject
      * @apiParam {String{Required}} name name
@@ -98,7 +98,7 @@ class SubjectController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Subject
-     * @apiPermission auth,accessRoute
+     * @apiPermission auth,accessRoute:subjects
      * @api           {post} deleteSubject deleteSubject(s)
      * @apiName       deleteSubject
      * @apiParam {Array} items subject's ID [1,2,3...]
