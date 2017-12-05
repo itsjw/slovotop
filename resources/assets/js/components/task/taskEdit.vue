@@ -290,13 +290,16 @@
 
         mounted() {
 
-            if (this.task.textBody.access == 2) {
-                this.editor = new Jodit(document.getElementById('editor'), {
-                    buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
-                        'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
-                        'hr', 'eraser', 'fullsize', 'copyformat']
-                });
-            }
+            this.$watch('task.textBody.access', function () {
+                if (this.task.textBody.access == 2) {
+                    new Jodit(document.getElementById('editor'), {
+                        buttons: ['source', '|', 'bold', 'italic', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush',
+                            'paragraph', '|', 'image', 'video', 'table', 'link', '|', 'align', '|', 'undo', 'redo', '|',
+                            'hr', 'eraser', 'fullsize', 'copyformat']
+                    });
+                }
+            });
+
 
             if (this.task_id > 0) {
                 this.getTask();
