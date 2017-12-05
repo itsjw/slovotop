@@ -3,13 +3,22 @@
         <div class="field is-grouped">
             <button class="button is-primary control" type="button"
                     :disabled="isRefresh"
-                    @click="saveTask()">
+                    @click="saveTask(0)">
                 <b-icon
                         pack="fa"
                         :icon="isRefresh ? 'refresh' : 'check'"
                         :custom-class="isRefresh ? 'fa-spin' : ''">
                 </b-icon>
                 <span>{{ trans('data.save') }}</span>
+            </button>
+            <button class="button is-success control" type="button"
+                    :disabled="isRefresh"
+                    @click="saveTask(1)">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-right">
+                </b-icon>
+                <span>{{ trans('data.taskNext') }}</span>
             </button>
             <button class="button is-link control" type="button"
                     :disabled="isRefresh">
@@ -20,7 +29,8 @@
                 <span>{{ trans('data.taskGet') }}</span>
             </button>
             <button class="button is-warning control" type="button"
-                    :disabled="isRefresh">
+                    :disabled="isRefresh"
+                    @click="saveTask(2)">
                 <b-icon
                         pack="fa"
                         icon="arrow-left">
@@ -238,13 +248,22 @@
         <div class="field is-grouped ui-mt-5">
             <button class="button is-primary control" type="button"
                     :disabled="isRefresh"
-                    @click="saveTask()">
+                    @click="saveTask(0)">
                 <b-icon
                         pack="fa"
                         :icon="isRefresh ? 'refresh' : 'check'"
                         :custom-class="isRefresh ? 'fa-spin' : ''">
                 </b-icon>
                 <span>{{ trans('data.save') }}</span>
+            </button>
+            <button class="button is-success control" type="button"
+                    :disabled="isRefresh"
+                    @click="saveTask(1)">
+                <b-icon
+                        pack="fa"
+                        icon="arrow-right">
+                </b-icon>
+                <span>{{ trans('data.taskNext') }}</span>
             </button>
             <button class="button is-link control" type="button"
                     :disabled="isRefresh">
@@ -255,7 +274,8 @@
                 <span>{{ trans('data.taskGet') }}</span>
             </button>
             <button class="button is-warning control" type="button"
-                    :disabled="isRefresh">
+                    :disabled="isRefresh"
+                    @click="saveTask(2)">
                 <b-icon
                         pack="fa"
                         icon="arrow-left">
@@ -377,6 +397,7 @@
                         access: 2
                     }
                 },
+                stageDirection: 0,
                 //
                 isRefresh: false,
                 isLoading: false,
@@ -435,7 +456,8 @@
             /**
              * save task
              */
-            saveTask() {
+            saveTask(direction) {
+                this.stageDirection = direction;
                 this.isRefresh = true,
                     Api.post('v1', 'saveTask', this.getTaskData(this.task))
                         .then(response => {
@@ -465,7 +487,7 @@
             getTaskData(task) {
 
                 return {
-                    id: this.task_id ||0,
+                    id: this.task_id || 0,
                     user_id: this.userID,
                     author: task.author.data.id || '',
                     dateEnd: task.dateEnd.data || '',
@@ -487,7 +509,7 @@
                     words: task.words.data || '',
                     status: task.status || 1,
                     stage: task.stage || 0,
-                    stageDirection: 1,
+                    stageDirection: this.stageDirection,
                 }
             }
 

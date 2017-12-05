@@ -39,7 +39,7 @@ class Task extends Resource
             'status'      => $this->status_id,
             'stage'       => $this->stage_id,
             'editor'      => [
-                'data'   => count(new ProjectLittle($this->editor)) > 1 ? new ProjectLittle($this->editor) : ['id' => null],
+                'data'   => new ProjectLittle($this->editor),
                 'access' => $stageTask->where('field', 'editor_id')->first()->access ?? 0,
             ],
             'author'      => [

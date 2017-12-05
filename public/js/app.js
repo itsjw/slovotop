@@ -38311,6 +38311,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38421,6 +38441,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     access: 2
                 }
             },
+            stageDirection: 0,
             //
             isRefresh: false,
             isLoading: false,
@@ -38488,9 +38509,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /**
          * save task
          */
-        saveTask: function saveTask() {
+        saveTask: function saveTask(direction) {
             var _this5 = this;
 
+            this.stageDirection = direction;
             this.isRefresh = true, Api.post('v1', 'saveTask', this.getTaskData(this.task)).then(function (response) {
                 _this5.$toast.open({
                     message: response.data.success,
@@ -38540,7 +38562,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 words: task.words.data || '',
                 status: task.status || 1,
                 stage: task.stage || 0,
-                stageDirection: 1
+                stageDirection: this.stageDirection
             };
         }
     }
@@ -38565,7 +38587,7 @@ var render = function() {
             attrs: { type: "button", disabled: _vm.isRefresh },
             on: {
               click: function($event) {
-                _vm.saveTask()
+                _vm.saveTask(0)
               }
             }
           },
@@ -38579,6 +38601,25 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button is-success control",
+            attrs: { type: "button", disabled: _vm.isRefresh },
+            on: {
+              click: function($event) {
+                _vm.saveTask(1)
+              }
+            }
+          },
+          [
+            _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
           ],
           1
         ),
@@ -38601,7 +38642,12 @@ var render = function() {
           "button",
           {
             staticClass: "button is-warning control",
-            attrs: { type: "button", disabled: _vm.isRefresh }
+            attrs: { type: "button", disabled: _vm.isRefresh },
+            on: {
+              click: function($event) {
+                _vm.saveTask(2)
+              }
+            }
           },
           [
             _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
@@ -39265,7 +39311,7 @@ var render = function() {
             attrs: { type: "button", disabled: _vm.isRefresh },
             on: {
               click: function($event) {
-                _vm.saveTask()
+                _vm.saveTask(0)
               }
             }
           },
@@ -39279,6 +39325,25 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button is-success control",
+            attrs: { type: "button", disabled: _vm.isRefresh },
+            on: {
+              click: function($event) {
+                _vm.saveTask(1)
+              }
+            }
+          },
+          [
+            _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
           ],
           1
         ),
@@ -39301,7 +39366,12 @@ var render = function() {
           "button",
           {
             staticClass: "button is-warning control",
-            attrs: { type: "button", disabled: _vm.isRefresh }
+            attrs: { type: "button", disabled: _vm.isRefresh },
+            on: {
+              click: function($event) {
+                _vm.saveTask(2)
+              }
+            }
           },
           [
             _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),

@@ -111,6 +111,7 @@ return [
     'taskState'       => 'Статус задачи',
     'taskStage'       => 'Этап задачи',
     'taskGet'         => 'Сдать задачу',
+    'taskNext'        => 'Следующий этап',
     'taskReturn'      => 'Вернуть на доработку',
 
     // Subjects
