@@ -109,6 +109,7 @@ return [
     'taskTextMinMax'  => 'Объем текста',
     'taskTextUnique'  => 'Уникальность текста',
     'taskState'       => 'Статус задачи',
+    'taskStage'       => 'Этап задачи',
     'taskGet'         => 'Сдать задачу',
     'taskReturn'      => 'Вернуть на доработку',
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Resources\Task;
 
 use App\Http\Resources\Projects\ProjectLittle;
+use App\Http\Resources\Stages\StageLittle;
 use App\Http\Resources\Subjects\SubjectLittle;
 use App\Http\Resources\Users\UserLittle;
 use Illuminate\Http\Resources\Json\Resource;
@@ -30,7 +31,7 @@ class TaskList extends Resource
             'name'       => $this->name,
             'project'    => new ProjectLittle($this->editor),
             'status'     => $this->status_id,
-            'stage'      => $this->stage_id,
+            'stage'      => new StageLittle($this->stage),
             'editor'     => new UserLittle($this->user),
             'author'     => new UserLittle($this->author),
             'subject'    => new SubjectLittle($this->subject),

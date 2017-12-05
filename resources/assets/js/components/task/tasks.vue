@@ -91,6 +91,10 @@
                         {{ props.row.created_at }}
                     </b-table-column>
 
+                    <b-table-column field="dateEnd" :label="trans('data.taskDateEnd')" sortable centered>
+                        {{ props.row.dateEnd }}
+                    </b-table-column>
+
                     <b-table-column field="id" label="ID" width="40" numeric sortable centered>
                         {{ props.row.id }}
                     </b-table-column>
@@ -104,8 +108,8 @@
                                 <small>{{ props.row.name }}</small>
                             </p>
                             <p>
-                                <strong>{{ trans('data.taskDateEnd') }} :</strong>
-                                <small>{{ props.row.dateEnd }}</small>
+                                <strong>{{ trans('data.taskStage') }} :</strong>
+                                <small>{{ props.row.stage.name }}</small>
                             </p>
                             <p>
                                 <strong>{{ trans('data.taskEditor') }} :</strong>

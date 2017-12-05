@@ -37405,6 +37405,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37809,6 +37813,25 @@ var render = function() {
                       "b-table-column",
                       {
                         attrs: {
+                          field: "dateEnd",
+                          label: _vm.trans("data.taskDateEnd"),
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.dateEnd) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
                           field: "id",
                           label: "ID",
                           width: "40",
@@ -37844,10 +37867,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _c("strong", [
-                            _vm._v(_vm._s(_vm.trans("data.taskDateEnd")) + " :")
+                            _vm._v(_vm._s(_vm.trans("data.taskStage")) + " :")
                           ]),
                           _vm._v(" "),
-                          _c("small", [_vm._v(_vm._s(props.row.dateEnd))])
+                          _c("small", [_vm._v(_vm._s(props.row.stage.name))])
                         ]),
                         _vm._v(" "),
                         _c("p", [
