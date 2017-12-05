@@ -54,6 +54,18 @@ class ProjectController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Project
+     * @apiPermission auth,accessRoute:projects
+     * @api           {post} saveProject saveProject
+     * @apiName       saveProject
+     * @apiParam {String{Required}} name name
+     * @apiParam {Integer{Required,not Admin}} user_id user_id
+     * @apiParamExample {json} Request-Example:
+     * {name:'xxx',user_id:2}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param ProjectSaveValidation $request
      *
      * @return array
