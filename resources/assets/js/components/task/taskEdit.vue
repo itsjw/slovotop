@@ -33,19 +33,22 @@
         <div class="columns" v-if="!isLoading">
             <div class="column is-9">
                 <b-field :label="trans('data.taskName')"
-                         v-if="task.name.access >= 1">
+                         v-if="task.name.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input v-model="task.name.data"
                              :disabled="task.name.access == 1"></b-input>
                 </b-field>
 
                 <b-field :label="trans('data.taskTitle')"
-                         v-if="task.title.access >= 1">
+                         v-if="task.title.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input v-model="task.title.data"
                              :disabled="task.title.access == 1"></b-input>
                 </b-field>
 
                 <b-field :label="trans('data.taskDesc')"
-                         v-if="task.desc.access >= 1">
+                         v-if="task.desc.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="textarea" minlength="10" maxlength="100"
                              v-model="task.desc.data"
                              :disabled="task.desc.access == 1"></b-input>
@@ -54,7 +57,8 @@
                 <div class="columns">
                     <div class="column is-6">
                         <b-field :label="trans('data.taskWords')"
-                                 v-if="task.words.access >= 1">
+                                 v-if="task.words.access >= 1"
+                                 :type="task.name.access == 1 ? 'is-warning' : ''">
                             <b-input type="textarea" minlength="10" maxlength="100"
                                      v-model="task.words.data"
                                      :disabled="task.words.access == 1"></b-input>
@@ -62,7 +66,8 @@
                     </div>
                     <div class="column is-6">
                         <b-field :label="trans('data.taskMoreData')"
-                                 v-if="task.moreData.access >= 1">
+                                 v-if="task.moreData.access >= 1"
+                                 :type="task.name.access == 1 ? 'is-warning' : ''">
                             <b-input type="textarea" minlength="10" maxlength="100"
                                      v-model="task.moreData.data"
                                      :disabled="task.moreData.access == 1"></b-input>
@@ -71,7 +76,8 @@
                 </div>
 
                 <b-field :label="trans('data.taskTask')"
-                         v-if="task.task.access >= 1">
+                         v-if="task.task.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="textarea" minlength="10" maxlength="100"
                              v-model="task.task.data"
                              :disabled="task.task.access == 1"></b-input>
@@ -80,7 +86,9 @@
                 <div class="columns">
                     <div class="column is-12">
                         <b-field :label="trans('data.taskTextBody')"
-                                 v-if="task.textBody.access >= 1"></b-field>
+                                 v-if="task.textBody.access >= 1"
+                                 :type="task.name.access == 1 ? 'is-warning' : ''">
+                        </b-field>
                         <div id="editor" v-if="task.textBody.access == 2"></div>
                         <div v-if="task.textBody.access == 1"
                              v-html="task.textBody.data">
@@ -89,14 +97,16 @@
                 </div>
 
                 <b-field :label="trans('data.taskTextPreview')"
-                         v-if="task.textPreview.access >= 1">
+                         v-if="task.textPreview.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="textarea" minlength="10" maxlength="100"
                              v-model="task.textPreview.data"
                              :disabled="task.textPreview.access == 1"></b-input>
                 </b-field>
 
                 <b-field :label="trans('data.taskTextUrl')"
-                         v-if="task.textUrl.access >= 1">
+                         v-if="task.textUrl.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input v-model="task.textUrl.data"
                              :disabled="task.textUrl.access == 1"></b-input>
                 </b-field>
@@ -110,7 +120,8 @@
 
             <div class="column is-3">
                 <b-field :label="trans('data.taskDateEnd')"
-                         v-if="task.dateEnd.access >= 1">
+                         v-if="task.dateEnd.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="date"
                              icon-pack="fa"
                              icon="calendar"
@@ -119,7 +130,8 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskProject')"
-                         v-if="task.project.access >= 1">
+                         v-if="task.project.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-select :placeholder="trans('data.taskProject')"
                               icon-pack="fa"
                               icon="th-list"
@@ -135,7 +147,8 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskEditor')"
-                         v-if="task.editor.access >= 1">
+                         v-if="task.editor.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-select :placeholder="trans('data.taskEditor')"
                               icon-pack="fa"
                               icon="users"
@@ -151,7 +164,8 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskAuthor')"
-                         v-if="task.author.access >= 1">
+                         v-if="task.author.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-select :placeholder="trans('data.taskAuthor')"
                               icon-pack="fa"
                               icon="users"
@@ -167,7 +181,8 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskSubject')"
-                         v-if="task.subject.access >= 1">
+                         v-if="task.subject.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-select :placeholder="trans('data.taskSubject')"
                               icon-pack="fa"
                               icon="align-justify"
@@ -183,7 +198,8 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskTextMinMax')"
-                         v-if="task.textMin.access >= 1 || task.textMax.access >= 1">
+                         v-if="task.textMin.access >= 1 || task.textMax.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <div class="columns">
                         <div class="column is-6">
                             <b-input placeholder="min" type="number" min="0"
@@ -201,14 +217,16 @@
                 </b-field>
 
                 <b-field :label="trans('data.taskTextUnique')"
-                         v-if="task.textUnique.access >= 1">
+                         v-if="task.textUnique.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="number" min="0" max="100"
                              v-model="task.textUnique.data"
                              :disabled="task.textUnique.access == 1"></b-input>
                 </b-field>
 
                 <b-field :label="trans('data.taskPrice')"
-                         v-if="task.price.access >= 1">
+                         v-if="task.price.access >= 1"
+                         :type="task.name.access == 1 ? 'is-warning' : ''">
                     <b-input type="number" min="0"
                              v-model="task.price.data"
                              :disabled="task.price.access == 1"></b-input>

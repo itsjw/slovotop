@@ -38285,6 +38285,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38590,7 +38608,12 @@ var render = function() {
                 _vm.task.name.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskName") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskName"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: { disabled: _vm.task.name.access == 1 },
@@ -38610,7 +38633,12 @@ var render = function() {
                 _vm.task.title.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTitle") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTitle"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: { disabled: _vm.task.title.access == 1 },
@@ -38630,7 +38658,12 @@ var render = function() {
                 _vm.task.desc.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskDesc") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskDesc"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
@@ -38660,7 +38693,13 @@ var render = function() {
                       _vm.task.words.access >= 1
                         ? _c(
                             "b-field",
-                            { attrs: { label: _vm.trans("data.taskWords") } },
+                            {
+                              attrs: {
+                                label: _vm.trans("data.taskWords"),
+                                type:
+                                  _vm.task.name.access == 1 ? "is-warning" : ""
+                              }
+                            },
                             [
                               _c("b-input", {
                                 attrs: {
@@ -38693,7 +38732,11 @@ var render = function() {
                         ? _c(
                             "b-field",
                             {
-                              attrs: { label: _vm.trans("data.taskMoreData") }
+                              attrs: {
+                                label: _vm.trans("data.taskMoreData"),
+                                type:
+                                  _vm.task.name.access == 1 ? "is-warning" : ""
+                              }
                             },
                             [
                               _c("b-input", {
@@ -38723,7 +38766,12 @@ var render = function() {
                 _vm.task.task.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTask") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTask"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
@@ -38752,7 +38800,11 @@ var render = function() {
                     [
                       _vm.task.textBody.access >= 1
                         ? _c("b-field", {
-                            attrs: { label: _vm.trans("data.taskTextBody") }
+                            attrs: {
+                              label: _vm.trans("data.taskTextBody"),
+                              type:
+                                _vm.task.name.access == 1 ? "is-warning" : ""
+                            }
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -38775,7 +38827,12 @@ var render = function() {
                 _vm.task.textPreview.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTextPreview") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTextPreview"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
@@ -38800,7 +38857,12 @@ var render = function() {
                 _vm.task.textUrl.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTextUrl") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTextUrl"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: { disabled: _vm.task.textUrl.access == 1 },
@@ -38840,7 +38902,12 @@ var render = function() {
                 _vm.task.dateEnd.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskDateEnd") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskDateEnd"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
@@ -38865,7 +38932,12 @@ var render = function() {
                 _vm.task.project.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskProject") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskProject"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c(
                           "b-select",
@@ -38906,7 +38978,12 @@ var render = function() {
                 _vm.task.editor.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskEditor") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskEditor"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c(
                           "b-select",
@@ -38947,7 +39024,12 @@ var render = function() {
                 _vm.task.author.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskAuthor") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskAuthor"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c(
                           "b-select",
@@ -38988,7 +39070,12 @@ var render = function() {
                 _vm.task.subject.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskSubject") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskSubject"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c(
                           "b-select",
@@ -39029,7 +39116,12 @@ var render = function() {
                 _vm.task.textMin.access >= 1 || _vm.task.textMax.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTextMinMax") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTextMinMax"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("div", { staticClass: "columns" }, [
                           _c(
@@ -39089,7 +39181,12 @@ var render = function() {
                 _vm.task.textUnique.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskTextUnique") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskTextUnique"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
@@ -39114,7 +39211,12 @@ var render = function() {
                 _vm.task.price.access >= 1
                   ? _c(
                       "b-field",
-                      { attrs: { label: _vm.trans("data.taskPrice") } },
+                      {
+                        attrs: {
+                          label: _vm.trans("data.taskPrice"),
+                          type: _vm.task.name.access == 1 ? "is-warning" : ""
+                        }
+                      },
                       [
                         _c("b-input", {
                           attrs: {
