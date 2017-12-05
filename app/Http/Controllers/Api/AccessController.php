@@ -116,6 +116,19 @@ class AccessController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Access
+     * @apiPermission auth,accessRoute:roles
+     * @api           {post} saveStageRoleAccess saveStageRoleAccess
+     * @apiName       saveStageRoleAccess
+     * @apiParam {Integer{Required}} role  role
+     * @apiParam {Integer{Required}} stage stage
+     * @apiParam {Mixed{Required}} access access
+     * @apiParamExample {json} Request-Example:
+     * {role:2,stage:2,access:3}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param StageAccessSaveValidation $request
      *
      * @return array
