@@ -26,7 +26,7 @@ class AccessMenuSaveValidation extends FormRequest
         return [
             'menu'   => 'required|integer',
             'role'   => 'required|integer',
-            'access' => 'required|integer',
+            'access' => 'required',
         ];
     }
 }

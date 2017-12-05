@@ -27,7 +27,7 @@ class AccessController extends Controller
      * @apiName       saveAccessMenu
      * @apiParam {Integer{Required}} menu  menu ID
      * @apiParam {Integer{Required}} role role
-     * @apiParam {Integer{Required}} access access
+     * @apiParam {Mixed{Required}} access access
      * @apiParamExample {json} Request-Example:
      * {menu:1,role:2,access:3}
      * @apiSuccess {String} success trans('data.notifyOK')

@@ -32,7 +32,7 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "Integer",
+            "type": "Mixed",
             "size": "Required",
             "optional": false,
             "field": "access",
