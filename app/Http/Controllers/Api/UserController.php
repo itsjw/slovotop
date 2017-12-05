@@ -20,14 +20,12 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth
+     * @apiPermission auth,access
      * @api           {post} getUsers getUser(s)
      * @apiName       getUser
      * @apiParam {Integer} id ID if need getUser
      * @apiParam {String} name Search name
      * @apiParam {String} email Search email
-     * @apiParam {String} editor get all editors
-     * @apiParam {String} author get all authors
      * @apiParamExample {json} Request-Example:
      * {id: 1,name:'xxx',email:'xxx'}
      * @apiSuccess {Integer} id ID
@@ -58,23 +56,23 @@ class UserController extends Controller
         if (isset($request->email)) {
             $users->where('email', 'like', '%' . $request->email . '%');
         }
-        if (isset($request->editor)) {
-            $users->whereHas('roles', function ($query) {
-                $query->where('role_id', \DB::table('settings')
-                    ->where('name', 'editor')->first()->value);
-            });
-        }
-        if (isset($request->author)) {
-            $users->whereHas('roles', function ($query) {
-                $query->where('role_id', \DB::table('settings')
-                    ->where('name', 'author')->first()->value);
-            });
-        }
 
         return UserResourse::collection($users->get());
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      User
+     * @apiPermission auth
+     * @api           {post} getUserList getUserList
+     * @apiName       getUserList
+     * @apiParam {String} editor get all editors
+     * @apiParam {String} author get all authors
+     * @apiParamExample {json} Request-Example:
+     * {editor:'xxx',author:'xxx'}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -102,7 +100,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth
+     * @apiPermission auth,access
      * @api           {post} saveUser saveUser
      * @apiName       saveUser
      * @apiParam {String{Required}} name name
@@ -150,7 +148,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth
+     * @apiPermission auth,access
      * @api           {post} deleteUser deleteUser(s)
      * @apiName       deleteUser
      * @apiParam {Array} items users's ID [1,2,3...]
@@ -181,7 +179,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth
+     * @apiPermission auth,access
      * @api           {post} approveUser approveUser(s)
      * @apiName       approveUser
      * @apiParam {Array} items users's ID [1,2,3...]

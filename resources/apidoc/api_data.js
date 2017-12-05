@@ -593,7 +593,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,access"
       }
     ],
     "type": "post",
@@ -641,7 +641,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,access"
       }
     ],
     "type": "post",
@@ -689,7 +689,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth"
+        "name": "auth,access"
       }
     ],
     "type": "post",
@@ -719,20 +719,6 @@ define({ "api": [
             "optional": false,
             "field": "email",
             "description": "<p>Search email</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "editor",
-            "description": "<p>get all editors</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "author",
-            "description": "<p>get all authors</p>"
           }
         ]
       },
@@ -829,6 +815,68 @@ define({ "api": [
     "permission": [
       {
         "name": "auth"
+      }
+    ],
+    "type": "post",
+    "url": "getUserList",
+    "title": "getUserList",
+    "name": "getUserList",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "editor",
+            "description": "<p>get all editors</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "author",
+            "description": "<p>get all authors</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{editor:'xxx',author:'xxx'}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/UserController.php",
+    "groupTitle": "User"
+  },
+  {
+    "version": "0.2.0",
+    "group": "User",
+    "permission": [
+      {
+        "name": "auth,access"
       }
     ],
     "type": "post",
