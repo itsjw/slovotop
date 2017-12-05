@@ -125,13 +125,13 @@ class TaskController extends Controller
     private function getStage($stage, $stageDirection)
     {
         if ($stageDirection == 1 && $stage) {
-            return TaskStage::where('priority', '>', $stage)->orderBy('priority', 'asc')->first();
+            return TaskStage::where('priority', '>', $stage)->orderBy('priority', 'asc')->first()->id;
         }
         if ($stageDirection == 0 && $stage) {
-            return TaskStage::where('priority', '<', $stage)->orderBy('priority', 'desc')->first();
+            return TaskStage::where('priority', '<', $stage)->orderBy('priority', 'desc')->first()->id;
         }
 
-        return TaskStage::min('priority');
+        return TaskStage::min('priority')->id;
     }
 
     /**
