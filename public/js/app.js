@@ -38383,15 +38383,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     access: 2
                 },
                 editor: {
-                    data: null,
+                    data: {
+                        id: null
+                    },
                     access: 2
                 },
                 author: {
-                    data: null,
+                    data: {
+                        id: null
+                    },
                     access: 2
                 },
                 subject: {
-                    data: null,
+                    data: {
+                        id: null
+                    },
                     access: 2
                 },
                 textMin: {
@@ -38512,16 +38518,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
-                user_id: 2, //this.userID,
-                author: task.author.data || '',
+                id: this.task_id || 0,
+                user_id: this.userID,
+                author: task.author.data.id || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',
-                editor: task.editor.data || '',
+                editor: task.editor.data.id || '',
                 moreData: task.moreData.data || '',
                 name: task.name.data || '',
                 price: task.price.data || '',
                 project: task.project.data.id || '',
-                subject: task.subject.data || '',
+                subject: task.subject.data.id || '',
                 task: task.task.data || '',
                 textBody: _.escape(task.textBody.data || ''),
                 textMax: task.textMax.data || '',
@@ -39003,11 +39010,11 @@ var render = function() {
                               disabled: _vm.task.editor.access == 1
                             },
                             model: {
-                              value: _vm.task.editor.data,
+                              value: _vm.task.editor.data.id,
                               callback: function($$v) {
-                                _vm.$set(_vm.task.editor, "data", $$v)
+                                _vm.$set(_vm.task.editor.data, "id", $$v)
                               },
-                              expression: "task.editor.data"
+                              expression: "task.editor.data.id"
                             }
                           },
                           _vm._l(_vm.editor, function(val, key) {
@@ -39049,11 +39056,11 @@ var render = function() {
                               disabled: _vm.task.author.access == 1
                             },
                             model: {
-                              value: _vm.task.author.data,
+                              value: _vm.task.author.data.id,
                               callback: function($$v) {
-                                _vm.$set(_vm.task.author, "data", $$v)
+                                _vm.$set(_vm.task.author.data, "id", $$v)
                               },
-                              expression: "task.author.data"
+                              expression: "task.author.data.id"
                             }
                           },
                           _vm._l(_vm.author, function(val, key) {
@@ -39095,11 +39102,11 @@ var render = function() {
                               disabled: _vm.task.subject.access == 1
                             },
                             model: {
-                              value: _vm.task.subject.data,
+                              value: _vm.task.subject.data.id,
                               callback: function($$v) {
-                                _vm.$set(_vm.task.subject, "data", $$v)
+                                _vm.$set(_vm.task.subject.data, "id", $$v)
                               },
-                              expression: "task.subject.data"
+                              expression: "task.subject.data.id"
                             }
                           },
                           _vm._l(_vm.subjects, function(val, key) {

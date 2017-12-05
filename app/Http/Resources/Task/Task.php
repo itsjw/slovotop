@@ -39,11 +39,11 @@ class Task extends Resource
             'status'      => $this->status_id,
             'stage'       => $this->stage_id,
             'editor'      => [
-                'date'   => new ProjectLittle($this->user),
+                'data'   => count(new ProjectLittle($this->editor)) > 1 ? new ProjectLittle($this->editor) : ['id' => null],
                 'access' => $stageTask->where('field', 'editor_id')->first()->access ?? 0,
             ],
             'author'      => [
-                'data'   => new ProjectLittle($this->author),
+                'data'   => count(new ProjectLittle($this->author)) > 1 ? new ProjectLittle($this->author) : ['id' => null],
                 'access' => $stageTask->where('field', 'author_id')->first()->access ?? 0,
             ],
             'subject'     => [
@@ -51,7 +51,7 @@ class Task extends Resource
                 'access' => $stageTask->where('field', 'subject_id')->first()->access ?? 0,
             ],
             'dateEnd'     => [
-                'data'   => $this->date_end->format('d-m-Y'),
+                'data'   => $this->date_end->format('Y-d-m'),
                 'access' => $stageTask->where('field', 'date_end')->first()->access ?? 0,
             ],
             'price'       => [

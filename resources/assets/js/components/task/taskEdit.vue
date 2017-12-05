@@ -152,7 +152,7 @@
                     <b-select :placeholder="trans('data.taskEditor')"
                               icon-pack="fa"
                               icon="users"
-                              v-model="task.editor.data"
+                              v-model="task.editor.data.id"
                               :disabled="task.editor.access == 1">
                         <option
                                 v-for="(val,key) in editor"
@@ -169,7 +169,7 @@
                     <b-select :placeholder="trans('data.taskAuthor')"
                               icon-pack="fa"
                               icon="users"
-                              v-model="task.author.data"
+                              v-model="task.author.data.id"
                               :disabled="task.author.access == 1">
                         <option
                                 v-for="(val,key) in author"
@@ -186,7 +186,7 @@
                     <b-select :placeholder="trans('data.taskSubject')"
                               icon-pack="fa"
                               icon="align-justify"
-                              v-model="task.subject.data"
+                              v-model="task.subject.data.id"
                               :disabled="task.subject.access == 1">
                         <option
                                 v-for="(val,key) in subjects"
@@ -339,15 +339,21 @@
                         access: 2
                     },
                     editor: {
-                        data: null,
+                        data: {
+                            id: null
+                        },
                         access: 2
                     },
                     author: {
-                        data: null,
+                        data: {
+                            id: null
+                        },
                         access: 2
                     },
                     subject: {
-                        data: null,
+                        data: {
+                            id: null
+                        },
                         access: 2
                     },
                     textMin: {
@@ -459,16 +465,17 @@
             getTaskData(task) {
 
                 return {
-                    user_id: 2, //this.userID,
-                    author: task.author.data || '',
+                    id: this.task_id ||0,
+                    user_id: this.userID,
+                    author: task.author.data.id || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',
-                    editor: task.editor.data || '',
+                    editor: task.editor.data.id || '',
                     moreData: task.moreData.data || '',
                     name: task.name.data || '',
                     price: task.price.data || '',
                     project: task.project.data.id || '',
-                    subject: task.subject.data || '',
+                    subject: task.subject.data.id || '',
                     task: task.task.data || '',
                     textBody: _.escape(task.textBody.data || ''),
                     textMax: task.textMax.data || '',
