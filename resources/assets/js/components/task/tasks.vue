@@ -80,7 +80,7 @@
                     </b-table-column>
 
                     <b-table-column field="author.name" :label="trans('data.taskUser')" sortable centered>
-                        {{ props.row.author.name }}
+                        {{ props.row.author ? props.row.author.name : '' }}
                     </b-table-column>
 
                     <b-table-column field="owner.name" :label="trans('data.taskOwner')" sortable centered>
@@ -113,7 +113,7 @@
                             </p>
                             <p>
                                 <strong>{{ trans('data.taskEditor') }} :</strong>
-                                <small>{{ props.row.editor.name }}</small>
+                                <small>{{ props.row.editor ? props.row.editor.name : ''}}</small>
                             </p>
                             <p>
                                 <strong>{{ trans('data.taskSubject') }} :</strong>

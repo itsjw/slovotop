@@ -37765,7 +37765,9 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                    " +
-                            _vm._s(props.row.author.name) +
+                            _vm._s(
+                              props.row.author ? props.row.author.name : ""
+                            ) +
                             "\n                "
                         )
                       ]
@@ -37878,7 +37880,13 @@ var render = function() {
                             _vm._v(_vm._s(_vm.trans("data.taskEditor")) + " :")
                           ]),
                           _vm._v(" "),
-                          _c("small", [_vm._v(_vm._s(props.row.editor.name))])
+                          _c("small", [
+                            _vm._v(
+                              _vm._s(
+                                props.row.editor ? props.row.editor.name : ""
+                              )
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("p", [
@@ -38504,7 +38512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         getTaskData: function getTaskData(task) {
 
             return {
-                user_id: this.userID,
+                user_id: 2, //this.userID,
                 author: task.author.data || '',
                 dateEnd: task.dateEnd.data || '',
                 desc: task.desc.data || '',
@@ -38512,7 +38520,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 moreData: task.moreData.data || '',
                 name: task.name.data || '',
                 price: task.price.data || '',
-                project: task.project.data || '',
+                project: task.project.data.id || '',
                 subject: task.subject.data || '',
                 task: task.task.data || '',
                 textBody: _.escape(task.textBody.data || ''),

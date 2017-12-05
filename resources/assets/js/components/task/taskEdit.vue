@@ -459,7 +459,7 @@
             getTaskData(task) {
 
                 return {
-                    user_id: this.userID,
+                    user_id: 2, //this.userID,
                     author: task.author.data || '',
                     dateEnd: task.dateEnd.data || '',
                     desc: task.desc.data || '',
@@ -467,7 +467,7 @@
                     moreData: task.moreData.data || '',
                     name: task.name.data || '',
                     price: task.price.data || '',
-                    project: task.project.data || '',
+                    project: task.project.data.id || '',
                     subject: task.subject.data || '',
                     task: task.task.data || '',
                     textBody: _.escape(task.textBody.data || ''),

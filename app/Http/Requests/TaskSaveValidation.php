@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\TaskStage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Class TaskSaveValidation
@@ -30,21 +32,21 @@ class TaskSaveValidation extends FormRequest
     public function rules()
     {
         return [
-            'name'            => 'required',
+            'name'    => 'required',
             'user_id' => [
                 'required',
                 Rule::unique('user_roles')->where(function ($query) {
                     return $query->where('role_id', 1);
                 }),],
             //'author'      => 'required',
-            'dateEnd'         => 'required',
+            'dateEnd' => 'required',
             //'desc'        => 'required',
             //'editor'      => 'required',
             //'moreData'    => 'required',
             //'price'       => 'required',
-            'project'         => 'required',
-            'subject'         => 'required',
-            'task'            => 'required|min:10',
+            'project' => 'required',
+            'subject' => 'required',
+            'task'    => 'required|min:10',
             //'textBody'    => 'required',
             //'textMax'     => 'required',
             //'textMin'     => 'required',
@@ -52,7 +54,7 @@ class TaskSaveValidation extends FormRequest
             //'textUnique'  => 'required',
             //'textUrl'     => 'required',
             //'title'       => 'required',
-            'words'           => 'required|min:10',
+            'words'   => 'required|min:10',
         ];
     }
 
