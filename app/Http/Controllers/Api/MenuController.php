@@ -15,6 +15,19 @@ use App\Http\Controllers\Controller;
 class MenuController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Menu
+     * @apiPermission auth
+     * @api           {post} getMenus getMenus(s)
+     * @apiName       getMenus
+     * @apiParam {Integer} id ID if need getMenu
+     * @apiParam {Integer} role role
+     * @apiParamExample {json} Request-Example:
+     * {id: 1,role:'2}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {Object} roles roles{access}
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
