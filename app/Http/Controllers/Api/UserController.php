@@ -152,7 +152,7 @@ class UserController extends Controller
      * @apiPermission auth,accessRoute
      * @api           {post} deleteUser deleteUser(s)
      * @apiName       deleteUser
-     * @apiParam {Array} items users's ID [1,2,3...]
+     * @apiParam {Array} items items[1,2,3...] (ID's)
      * @apiParamExample {json} Request-Example:
      * {items:{1,2,3}}
      * @apiSuccess {String} success trans('data.notifyOK')

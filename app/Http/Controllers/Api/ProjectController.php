@@ -91,7 +91,7 @@ class ProjectController extends Controller
      * @apiPermission auth,accessRoute:projects
      * @api           {post} deleteProject deleteProject(s)
      * @apiName       deleteProject
-     * @apiParam {Array} items project's ID [1,2,3...]
+     * @apiParam {Array} items items[1,2,3...] (ID's)
      * @apiParamExample {json} Request-Example:
      * {items:{1,2,3}}
      * @apiSuccess {String} success trans('data.notifyOK')

@@ -97,6 +97,16 @@ class DocController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Doc
+     * @apiPermission auth,accessRoute:docs
+     * @api           {post} deleteDoc deleteDoc(s)
+     * @apiName       deleteDoc
+     * @apiParam {Array} items items[1,2,3...] (ID's)
+     * @apiParamExample {json} Request-Example:
+     * {items:{1,2,3}}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     *
      * @param Request $request
      *
      * @return array

@@ -92,7 +92,7 @@ class StageController extends Controller
      * @apiPermission auth,accessRoute:settings
      * @api           {post} deleteStage deleteStage(s)
      * @apiName       deleteStage
-     * @apiParam {Array} items subject's ID [1,2,3...]
+     * @apiParam {Array} items items[1,2,3...] (ID's)
      * @apiParamExample {json} Request-Example:
      * {items:{1,2,3}}
      * @apiSuccess {String} success trans('data.notifyOK')

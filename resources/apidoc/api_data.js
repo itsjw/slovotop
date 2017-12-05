@@ -8,6 +8,54 @@ define({ "api": [
       }
     ],
     "type": "post",
+    "url": "deleteDoc",
+    "title": "deleteDoc(s)",
+    "name": "deleteDoc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "items",
+            "description": "<p>items[1,2,3...] (ID's)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{items:{1,2,3}}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>trans('data.notifyOK')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/DocController.php",
+    "groupTitle": "Doc"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Doc",
+    "permission": [
+      {
+        "name": "auth,accessRoute:docs"
+      }
+    ],
+    "type": "post",
     "url": "getDocs",
     "title": "getDoc(s)",
     "name": "getDocs",
@@ -278,7 +326,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "items",
-            "description": "<p>project's ID [1,2,3...]</p>"
+            "description": "<p>items[1,2,3...] (ID's)</p>"
           }
         ]
       },
@@ -493,7 +541,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "items",
-            "description": "<p>subject's ID [1,2,3...]</p>"
+            "description": "<p>items[1,2,3...] (ID's)</p>"
           }
         ]
       },
@@ -775,7 +823,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "items",
-            "description": "<p>subject's ID [1,2,3...]</p>"
+            "description": "<p>items[1,2,3...] (ID's)</p>"
           }
         ]
       },
@@ -984,7 +1032,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "items",
-            "description": "<p>subject's ID [1,2,3...]</p>"
+            "description": "<p>items[1,2,3...] (ID's)</p>"
           }
         ]
       },
@@ -1275,7 +1323,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "items",
-            "description": "<p>users's ID [1,2,3...]</p>"
+            "description": "<p>items[1,2,3...] (ID's)</p>"
           }
         ]
       },
