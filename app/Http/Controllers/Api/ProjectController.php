@@ -16,6 +16,22 @@ use App\Http\Controllers\Controller;
 class ProjectController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Project
+     * @apiPermission auth,accessRoute:projects
+     * @api           {post} getProjects getProject(s)
+     * @apiName       getProjects
+     * @apiParam {Integer} id ID if need getProject
+     * @apiParam {String} name Search name
+     * @apiParamExample {json} Request-Example:
+     * {id: 1,name:'xxx'}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     * @apiSuccess {String} site site
+     * @apiSuccess {Object} user user{id,name}
+     * @apiSuccess {Datetime} created_at created_at format('d-m-Y H:m:s')
+     * @apiSuccess {Datetime} updated_at updated_at format('d-m-Y H:m:s')
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection

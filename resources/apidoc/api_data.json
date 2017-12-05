@@ -1,6 +1,96 @@
 [
   {
     "version": "0.2.0",
+    "group": "Project",
+    "permission": [
+      {
+        "name": "auth,accessRoute:projects"
+      }
+    ],
+    "type": "post",
+    "url": "getProjects",
+    "title": "getProject(s)",
+    "name": "getProjects",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID if need getProject</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Search name</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{id: 1,name:'xxx'}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "site",
+            "description": "<p>site</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>user{id,name}</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "created_at",
+            "description": "<p>created_at format('d-m-Y H:m:s')</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Datetime",
+            "optional": false,
+            "field": "updated_at",
+            "description": "<p>updated_at format('d-m-Y H:m:s')</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/ProjectController.php",
+    "groupTitle": "Project"
+  },
+  {
+    "version": "0.2.0",
     "group": "Role",
     "permission": [
       {
@@ -717,7 +807,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute:users"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -765,7 +855,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute:users"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -1000,7 +1090,7 @@
     "group": "User",
     "permission": [
       {
-        "name": "auth,accessRoute:users"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",

@@ -100,7 +100,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth,accessRoute:users
+     * @apiPermission auth,accessRoute
      * @api           {post} saveUser saveUser
      * @apiName       saveUser
      * @apiParam {String{Required}} name name
@@ -148,7 +148,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth,accessRoute:users
+     * @apiPermission auth,accessRoute
      * @api           {post} deleteUser deleteUser(s)
      * @apiName       deleteUser
      * @apiParam {Array} items users's ID [1,2,3...]
@@ -179,7 +179,7 @@ class UserController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      User
-     * @apiPermission auth,accessRoute:users
+     * @apiPermission auth,accessRoute
      * @api           {post} approveUser approveUser(s)
      * @apiName       approveUser
      * @apiParam {Array} items users's ID [1,2,3...]
