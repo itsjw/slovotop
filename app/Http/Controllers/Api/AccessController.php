@@ -19,6 +19,19 @@ use App\Http\Controllers\Controller;
 class AccessController extends Controller
 {
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Access
+     * @apiPermission auth,accessRoute:roles
+     * @api           {post} saveAccessMenu saveAccessMenu
+     * @apiName       saveAccessMenu
+     * @apiParam {Integer{Required}} menu  menu ID
+     * @apiParam {Integer{Required}} role role
+     * @apiParam {Integer{Required}} access access
+     * @apiParamExample {json} Request-Example:
+     * {menu:1,role:2,access:3}
+     * @apiSuccess {String} success trans('data.notifyOK')
+     * @apiError {Array} errors errors{name:'error xxx',...}
+     *
      * @param Request $request
      *
      * @return array
