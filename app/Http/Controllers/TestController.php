@@ -18,17 +18,15 @@ class TestController extends Controller
     public function index()
     {
 
-        $stage = TaskStage::whereHas('roles', function ($query) {
-            $query->whereIn('role_id', \Auth::user()->getRoles());
-        });
+        $task = Task::query();
 
-        $task = Task::whereHas('stage', function ($query) {
+        $task->whereHas('stage', function ($query) {
             $query->whereHas('roles', function ($q) {
                 $q->whereIn('role_id', \Auth::user()->getRoles())->where('access', '>', 0);
             });
         });
 
-        dump($task->get());
+        dump($task->find(3));
     }
 
 }

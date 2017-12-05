@@ -67,7 +67,7 @@ class TaskController extends Controller
      */
     public function getTask(Request $request)
     {
-        $task = Task::find($request->id);
+        $task = Task::query();
 
         if (!\Auth::user()->isAdmin()) {
             $task->whereHas('stage', function ($query) {
@@ -77,7 +77,7 @@ class TaskController extends Controller
             });
         }
 
-        return new TaskResource($task);
+        return new TaskResource($task->find($request->id));
     }
 
     /**
