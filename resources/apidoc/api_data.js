@@ -593,7 +593,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth,access"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -641,7 +641,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth,access"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -689,7 +689,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth,access"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
@@ -876,7 +876,7 @@ define({ "api": [
     "group": "User",
     "permission": [
       {
-        "name": "auth,access"
+        "name": "auth,accessRoute"
       }
     ],
     "type": "post",
