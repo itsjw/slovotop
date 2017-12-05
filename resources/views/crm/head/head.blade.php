@@ -6,7 +6,7 @@
     </div>
     <div class="navbar-end">
         <div class="navbar-item">
-            <a href="http://slovo.zz/logout" class="button is-info">
+            <a href="{{ route('logout') }}" class="button is-info">
                 <span class="icon">
                     <i class="fa fa-sign-out"></i>
                 </span>
