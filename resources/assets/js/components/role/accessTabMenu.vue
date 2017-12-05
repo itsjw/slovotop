@@ -89,6 +89,13 @@
                             message: response.data.success,
                             type: 'is-success'
                         });
+                    })
+                    .catch(error => {
+                        this.$toast.open({
+                            duration: 5000,
+                            message: Api.errorSerializer(error.response.data.errors),
+                            type: 'is-danger'
+                        });
                     });
             },
         }

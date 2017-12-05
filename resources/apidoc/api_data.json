@@ -4,6 +4,54 @@
     "group": "Access",
     "permission": [
       {
+        "name": "auth,accessRoute:settings"
+      }
+    ],
+    "type": "post",
+    "url": "getTaskField",
+    "title": "getTaskField",
+    "name": "getTaskField",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "stage",
+            "description": "<p>stage</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{stage: 1}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "array",
+            "description": "<p>[[name:'xxx',lang: 'xxx',access: 1],[...]]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "/home/www/slovo.zz/app/Http/Controllers/Api/AccessController.php",
+    "groupTitle": "Access"
+  },
+  {
+    "version": "0.2.0",
+    "group": "Access",
+    "permission": [
+      {
         "name": "auth,accessRoute:roles"
       }
     ],

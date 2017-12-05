@@ -52,6 +52,16 @@ class AccessController extends Controller
     }
 
     /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Access
+     * @apiPermission auth,accessRoute:settings
+     * @api           {post} getTaskField getTaskField
+     * @apiName       getTaskField
+     * @apiParam {Integer} stage stage
+     * @apiParamExample {json} Request-Example:
+     * {stage: 1}
+     * @apiSuccess {Array} array [[name:'xxx',lang: 'xxx',access: 1],[...]]
+     *
      * @param Request $request
      *
      * @return array
