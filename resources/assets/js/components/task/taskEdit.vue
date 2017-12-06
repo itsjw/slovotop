@@ -123,7 +123,6 @@
 
                 <div class="columns" v-if="task.id">
                     <div class="column is-12">
-                        <b-field :label="trans('data.commentsTitle')"></b-field>
 
                         <task-comments :task="task.id" :owner="task.owner.id"></task-comments>
 

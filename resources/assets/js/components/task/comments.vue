@@ -1,5 +1,14 @@
 <template>
     <section>
+        <b-field :label="trans('data.commentsTitle')">
+            <button class="button is-primary" @click="getComments()">
+                <b-icon
+                        pack="fa"
+                        icon="refresh"
+                        :custom-class="isRefresh ? 'fa-spin' : ''">
+                </b-icon>
+            </button>
+        </b-field>
         <div class="comment-wrap" id="comment-wrap">
 
             <div v-for="(val,key) in comments" :class="val.user.id == owner ? 'comment-left' : 'comment-right'">

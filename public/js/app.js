@@ -38354,7 +38354,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 Vue.component('taskComments', __webpack_require__(119));
 
@@ -38975,10 +38974,6 @@ var render = function() {
                         "div",
                         { staticClass: "column is-12" },
                         [
-                          _c("b-field", {
-                            attrs: { label: _vm.trans("data.commentsTitle") }
-                          }),
-                          _vm._v(" "),
                           _c("task-comments", {
                             attrs: {
                               task: _vm.task.id,
@@ -40724,7 +40719,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -40735,6 +40730,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40867,6 +40871,30 @@ var render = function() {
   return _c(
     "section",
     [
+      _c("b-field", { attrs: { label: _vm.trans("data.commentsTitle") } }, [
+        _c(
+          "button",
+          {
+            staticClass: "button is-primary",
+            on: {
+              click: function($event) {
+                _vm.getComments()
+              }
+            }
+          },
+          [
+            _c("b-icon", {
+              attrs: {
+                pack: "fa",
+                icon: "refresh",
+                "custom-class": _vm.isRefresh ? "fa-spin" : ""
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "comment-wrap", attrs: { id: "comment-wrap" } },
