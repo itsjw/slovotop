@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 
+use App\Http\Resources\Projects\ProjectLittle;
 use App\Models\Setting;
 use App\Models\StageTaskAccess;
 use App\Models\Task;
@@ -17,11 +18,10 @@ class TestController extends Controller
 
     public function index()
     {
+        $task = Task::query()->find(2);
 
-        $task = TaskStage::orderBy('id', 'priority')->first();
+        dd($task->author ? new ProjectLittle($task->author) : ['id' => 0]);
 
 
-        dump($task->id);
     }
-
 }
