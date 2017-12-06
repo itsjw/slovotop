@@ -40780,6 +40780,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (this.task > 0) {
             this.getComments();
         }
+
+        this.$watch('comments', function () {
+            var el = document.getElementById('comment-wrap');
+            el.scrollTop = el.scrollHeight;
+        });
     },
 
 

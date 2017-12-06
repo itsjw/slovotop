@@ -43,6 +43,11 @@
             if (this.task > 0) {
                 this.getComments();
             }
+
+            this.$watch('comments', function () {
+                let el = document.getElementById('comment-wrap');
+                el.scrollTop = el.scrollHeight;
+            });
         },
 
         props: {
