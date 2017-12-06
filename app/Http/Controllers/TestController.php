@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Resources\Projects\ProjectLittle;
+use App\Models\Comment;
 use App\Models\Setting;
 use App\Models\StageTaskAccess;
 use App\Models\Task;
@@ -18,8 +19,9 @@ class TestController extends Controller
 
     public function index()
     {
-        foreach ([1, 2] as $value) {
-            echo  $value.',';
-        }
+
+        $task = Task::with('comments.user')->find(1);
+
+        return \App\Http\Resources\Comments\Comment::collection($task->comments);
     }
 }

@@ -124,6 +124,9 @@
                 <div class="columns">
                     <div class="column is-12">
                         <b-field :label="trans('data.commentsTitle')"></b-field>
+
+                        <task-comments></task-comments>
+
                     </div>
                 </div>
             </div>
@@ -286,6 +289,8 @@
     </section>
 </template>
 <script>
+    Vue.component('taskComments', require('./comments'));
+
     export default {
 
         mounted() {

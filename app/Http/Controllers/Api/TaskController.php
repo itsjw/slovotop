@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskCommentSaveValidation;
 use App\Http\Requests\TaskSaveValidation;
+use App\Http\Resources\Comments\Comment;
 use App\Http\Resources\Task\TaskList;
 use App\Models\Task;
 use App\Http\Resources\Task\Task as TaskResource;
@@ -120,7 +122,7 @@ class TaskController extends Controller
      * @param $stage
      * @param $stageDirection
      *
-     * @return mixed TODO !!! change stage
+     * @return mixed
      */
     private function getStage($stage, $stageDirection)
     {
@@ -147,6 +149,33 @@ class TaskController extends Controller
         foreach ($request->items as $item) {
             Task::find($item['id'])->delete();
         }
+
+        return ['success' => trans('data.notifyOK')];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function getTaskComments(Request $request)
+    {
+        $task = Task::with('comments.user')->find($request->id);
+
+        return Comment::collection($task->comments);
+    }
+
+    /**
+     * @param TaskCommentSaveValidation $request
+     *
+     * @return array
+     */
+    public function saveTaskComment(TaskCommentSaveValidation $request)
+    {
+        $comment = new Comment(['body' => $request->body, 'user_id' => $request->user]);
+
+        $task = Task::find($request->id);
+        $task->comments()->save($comment);
 
         return ['success' => trans('data.notifyOK')];
     }
