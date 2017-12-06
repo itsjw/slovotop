@@ -38446,7 +38446,8 @@ Vue.component('taskComments', __webpack_require__(119));
                 dateEnd: {
                     data: null,
                     access: 2
-                }
+                },
+                owner: {}
             },
             stageDirection: 0,
             //
@@ -38956,7 +38957,9 @@ var render = function() {
                         attrs: { label: _vm.trans("data.commentsTitle") }
                       }),
                       _vm._v(" "),
-                      _c("task-comments")
+                      _c("task-comments", {
+                        attrs: { task: _vm.task.id, owner: _vm.task.owner.id }
+                      })
                     ],
                     1
                   )
@@ -40695,7 +40698,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -40716,26 +40719,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     name: "comments",
 
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        if (this.task > 0) {
+            this.getComments();
+        }
+    },
 
 
     props: {
-        comments: {}
+        task: {
+            default: 0
+        },
+        owner: {}
     },
 
     data: function data() {
         return {
-            comment: [{ id: 1, body: 'Test Comm', User: { name: 'Vaso' } }]
+            comments: []
         };
     },
 
 
-    methods: {}
+    methods: {
+        getComments: function getComments() {
+            var _this = this;
+
+            Api.post('v1', 'getTaskComments', { id: this.task }).then(function (response) {
+                _this.comments = response.data.data;
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -40746,7 +40776,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [_vm._v("\n    Hello\n")])
+  return _c("section", [
+    _c(
+      "div",
+      { staticClass: "comment-wrap" },
+      _vm._l(_vm.comments, function(val, key) {
+        return _c(
+          "div",
+          {
+            class: val.user.id == _vm.owner ? "comment-left" : "comment-right"
+          },
+          [
+            _c("p", [
+              _c("strong", [_vm._v(_vm._s(val.user.name))]),
+              _vm._v(" "),
+              _c("small", [_vm._v(_vm._s(val.body))])
+            ])
+          ]
+        )
+      })
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -125,7 +125,7 @@
                     <div class="column is-12">
                         <b-field :label="trans('data.commentsTitle')"></b-field>
 
-                        <task-comments></task-comments>
+                        <task-comments :task="task.id" :owner="task.owner.id"></task-comments>
 
                     </div>
                 </div>
@@ -403,7 +403,8 @@
                     dateEnd: {
                         data: null,
                         access: 2
-                    }
+                    },
+                    owner:{}
                 },
                 stageDirection: 0,
                 //

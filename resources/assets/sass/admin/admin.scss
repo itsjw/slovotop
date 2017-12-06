@@ -117,3 +117,83 @@ $distance: (
 .bg {
   @include Background;
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// comments
+.comment-wrap {
+  max-height: 500px;
+  width: 100%;
+  overflow: auto;
+  background: $white;
+  padding: 50px;
+
+  .comment-left {
+    width: 50%;
+    padding: 10px 20px;
+    position: relative;
+    background: $primary;
+    margin-bottom: 15px;
+    webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    border-radius: 3px;
+
+    strong {
+      display: block;
+      text-align: left;
+    }
+  }
+  .comment-left:before {
+    right: 100%;
+    top: 10%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 10px;
+    border-right-color: $primary;
+  }
+  .comment-right {
+    width: 50%;
+    margin-left: 50%;
+    padding: 10px 20px;
+    position: relative;
+    background: $warning;
+    margin-bottom: 15px;
+    webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    border-radius: 3px;
+
+    strong {
+      display: block;
+      text-align: right;
+    }
+  }
+  .comment-right:before {
+    left: 100%;
+    top: 10%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 10px;
+    border-left-color: $warning;
+  }
+}

@@ -1,6 +1,18 @@
 <template>
     <section>
-        Hello
+        <div class="comment-wrap">
+
+            <div v-for="(val,key) in comments" :class="val.user.id == owner ? 'comment-left' : 'comment-right'">
+                <p>
+                    <strong>{{ val.user.name }}</strong>
+                    <small>{{ val.body }}</small>
+                </p>
+            </div>
+
+        </div>
+
+
+
     </section>
 </template>
 
@@ -14,20 +26,31 @@
         name: "comments",
 
         mounted() {
+            if (this.task > 0) {
+                this.getComments();
+            }
         },
 
         props: {
-            comments: {}
+            task: {
+                default: 0
+            },
+            owner: {}
         },
 
         data() {
             return {
-                comment: [
-                    {id:1,body:'Test Comm',User: {name: 'Vaso'}}
-                ]
+                comments: []
             }
         },
 
-        methods: {}
+        methods: {
+            getComments() {
+                Api.post('v1', 'getTaskComments', {id: this.task})
+                    .then(response => {
+                        this.comments = response.data.data;
+                    })
+            }
+        }
     }
 </script>

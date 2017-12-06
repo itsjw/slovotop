@@ -17220,3 +17220,100 @@ html {
   background: #ff3860;
 }
 
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.comment-wrap {
+  max-height: 500px;
+  width: 100%;
+  overflow: auto;
+  background: white;
+  padding: 50px;
+}
+
+.comment-wrap .comment-left {
+  width: 50%;
+  padding: 10px 20px;
+  position: relative;
+  background: #00d1b2;
+  margin-bottom: 15px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  border-radius: 3px;
+}
+
+.comment-wrap .comment-left strong {
+  display: block;
+  text-align: left;
+}
+
+.comment-wrap .comment-left:before {
+  right: 100%;
+  top: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 10px;
+  border-right-color: #00d1b2;
+}
+
+.comment-wrap .comment-right {
+  width: 50%;
+  margin-left: 50%;
+  padding: 10px 20px;
+  position: relative;
+  background: #ffdd57;
+  margin-bottom: 15px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  border-radius: 3px;
+}
+
+.comment-wrap .comment-right strong {
+  display: block;
+  text-align: right;
+}
+
+.comment-wrap .comment-right:before {
+  left: 100%;
+  top: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 10px;
+  border-left-color: #ffdd57;
+}
+
