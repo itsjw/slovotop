@@ -73,4 +73,12 @@ class Task extends Model
     {
         return $this->hasOne(TaskSubject::class, 'id', 'subject_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
