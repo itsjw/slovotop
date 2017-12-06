@@ -18,6 +18,8 @@ class CreateTaskStatusesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $this->seedSate();
     }
 
     /**
@@ -28,5 +30,16 @@ class CreateTaskStatusesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('task_statuses');
+    }
+
+    private function seedSate()
+    {
+        $status = ['В работе', 'Завершена'];
+
+        foreach ($status as $value) {
+            $state = new \App\Models\TaskStatus();
+            $state->name = $value;
+            $state->save();
+        }
     }
 }

@@ -18,10 +18,8 @@ class TestController extends Controller
 
     public function index()
     {
-        $task = Task::query()->find(2);
-
-        dd($task->author ? new ProjectLittle($task->author) : ['id' => 0]);
-
-
+        foreach ([1, 2] as $value) {
+            echo  $value.',';
+        }
     }
 }
