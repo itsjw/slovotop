@@ -40844,7 +40844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         /**
          * get data comment fo save
          * @param comment
-         * @returns {{task: {default: number}|props.task|{default}|number, boby: *|string|ReadableStream|HTMLElement|Array|string, user: computed.userID}}
+         * @returns {{task: {default: number}|props.task|{default}|number, comment: *|string|ReadableStream|HTMLElement|Array|string, user: computed.userID}}
          */
         getDataComment: function getDataComment(comment) {
             return {
