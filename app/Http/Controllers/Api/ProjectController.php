@@ -40,9 +40,9 @@ class ProjectController extends Controller
     {
         $project = Project::query();
 
-        if (!\Auth::user()->isAdmin()) {
+        /*if (!\Auth::user()->isAdmin()) {
             $project->where('user_id', \Auth::id());
-        }
+        }*/
 
         if (isset($request->id)) {
             $project->where('id', $request->id);
