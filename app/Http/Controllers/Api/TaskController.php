@@ -6,8 +6,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskCommentSaveValidation;
 use App\Http\Requests\TaskSaveValidation;
-use App\Http\Resources\Comments\Comment;
+use App\Http\Resources\Comments\Comment as CommentResource;
 use App\Http\Resources\Task\TaskList;
+use App\Models\Comment;
 use App\Models\Task;
 use App\Http\Resources\Task\Task as TaskResource;
 use App\Models\TaskStage;
@@ -162,7 +163,7 @@ class TaskController extends Controller
     {
         $task = Task::with('comments.user')->find($request->id);
 
-        return Comment::collection($task->comments);
+        return CommentResource::collection($task->comments);
     }
 
     /**
@@ -172,9 +173,9 @@ class TaskController extends Controller
      */
     public function saveTaskComment(TaskCommentSaveValidation $request)
     {
-        $comment = new Comment(['body' => $request->body, 'user_id' => $request->user]);
+        $comment = new Comment(['body' => $request->comment, 'user_id' => $request->user]);
 
-        $task = Task::find($request->id);
+        $task = Task::find($request->task);
         $task->comments()->save($comment);
 
         return ['success' => trans('data.notifyOK')];

@@ -121,7 +121,7 @@
                              :disabled="task.textUrl.access == 1"></b-input>
                 </b-field>
 
-                <div class="columns">
+                <div class="columns" v-if="task.id">
                     <div class="column is-12">
                         <b-field :label="trans('data.commentsTitle')"></b-field>
 
@@ -404,7 +404,7 @@
                         data: null,
                         access: 2
                     },
-                    owner:{}
+                    owner: {}
                 },
                 stageDirection: 0,
                 //

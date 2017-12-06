@@ -38948,22 +38948,27 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "columns" }, [
-                  _c(
-                    "div",
-                    { staticClass: "column is-12" },
-                    [
-                      _c("b-field", {
-                        attrs: { label: _vm.trans("data.commentsTitle") }
-                      }),
-                      _vm._v(" "),
-                      _c("task-comments", {
-                        attrs: { task: _vm.task.id, owner: _vm.task.owner.id }
-                      })
-                    ],
-                    1
-                  )
-                ])
+                _vm.task.id
+                  ? _c("div", { staticClass: "columns" }, [
+                      _c(
+                        "div",
+                        { staticClass: "column is-12" },
+                        [
+                          _c("b-field", {
+                            attrs: { label: _vm.trans("data.commentsTitle") }
+                          }),
+                          _vm._v(" "),
+                          _c("task-comments", {
+                            attrs: {
+                              task: _vm.task.id,
+                              owner: _vm.task.owner.id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             ),
@@ -40698,7 +40703,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -40709,6 +40714,20 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40752,18 +40771,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            comments: []
+            isRefresh: false,
+            comments: [],
+            comment: {}
         };
     },
 
 
     methods: {
+        /**
+         * get all comments
+         */
         getComments: function getComments() {
             var _this = this;
 
+            this.comment.body = '';
+            this.isRefresh = true;
             Api.post('v1', 'getTaskComments', { id: this.task }).then(function (response) {
                 _this.comments = response.data.data;
+                _this.isRefresh = false;
             });
+        },
+
+
+        /**
+         * save comment
+         */
+        saveComment: function saveComment() {
+            var _this2 = this;
+
+            this.isRefresh = true;
+            Api.post('v1', 'saveTaskComment', this.getDataComment(this.comment)).then(function (response) {
+                _this2.getComments();
+                _this2.isRefresh = false;
+            }).catch(function (error) {
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: Api.errorSerializer(error.response.data.errors),
+                    type: 'is-danger'
+                });
+                _this2.isRefresh = false;
+            });
+        },
+
+
+        /**
+         * get data comment fo save
+         * @param comment
+         * @returns {{task: {default: number}|props.task|{default}|number, boby: *|string|ReadableStream|HTMLElement|Array|string, user: computed.userID}}
+         */
+        getDataComment: function getDataComment(comment) {
+            return {
+                task: this.task || 0,
+                comment: comment.body || '',
+                user: this.userID
+            };
         }
     }
 });
@@ -40776,27 +40838,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c(
-      "div",
-      { staticClass: "comment-wrap" },
-      _vm._l(_vm.comments, function(val, key) {
-        return _c(
-          "div",
-          {
-            class: val.user.id == _vm.owner ? "comment-left" : "comment-right"
-          },
-          [
-            _c("p", [
-              _c("strong", [_vm._v(_vm._s(val.user.name))]),
-              _vm._v(" "),
-              _c("small", [_vm._v(_vm._s(val.body))])
-            ])
-          ]
-        )
-      })
-    )
-  ])
+  return _c(
+    "section",
+    [
+      _c(
+        "div",
+        { staticClass: "comment-wrap", attrs: { id: "comment-wrap" } },
+        _vm._l(_vm.comments, function(val, key) {
+          return _c(
+            "div",
+            {
+              class: val.user.id == _vm.owner ? "comment-left" : "comment-right"
+            },
+            [
+              _c("p", [
+                _c("strong", [_vm._v(_vm._s(val.user.name))]),
+                _vm._v(" "),
+                _c("small", [_vm._v(_vm._s(val.body))])
+              ])
+            ]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "b-field",
+        { attrs: { label: _vm.trans("data.commentsText") } },
+        [
+          _c("b-input", {
+            attrs: {
+              type: "textarea",
+              minlength: "2",
+              maxlength: "100",
+              disabled: _vm.isRefresh
+            },
+            model: {
+              value: _vm.comment.body,
+              callback: function($$v) {
+                _vm.$set(_vm.comment, "body", $$v)
+              },
+              expression: "comment.body"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button is-info control",
+          attrs: { type: "button", disabled: _vm.isRefresh },
+          on: {
+            click: function($event) {
+              _vm.saveComment()
+            }
+          }
+        },
+        [
+          _c("b-icon", {
+            attrs: {
+              pack: "fa",
+              icon: _vm.isRefresh ? "refresh" : "check",
+              "custom-class": _vm.isRefresh ? "fa-spin" : ""
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.trans("data.commentsAdd")))])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

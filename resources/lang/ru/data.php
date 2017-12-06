@@ -126,5 +126,7 @@ return [
     'stageAccessTask' => 'Доступ к задаче',
 
     // Comments
-    'commentsTitle'   => 'Коментарии',
+    'commentsTitle'   => 'Комментарии',
+    'commentsAdd'     => 'Добавить комментарий',
+    'commentsText'    => 'Текст комментария',
 ];

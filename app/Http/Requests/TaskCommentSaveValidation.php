@@ -29,9 +29,9 @@ class TaskCommentSaveValidation extends FormRequest
     public function rules()
     {
         return [
-            'task' => 'required|integer|not_in:0',
-            'body' => 'required',
-            'user' => 'required|integer|not_in:0',
+            'task'    => 'required|integer|not_in:0',
+            'comment' => 'required',
+            'user'    => 'required|integer|not_in:0',
         ];
     }
 }
