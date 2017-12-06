@@ -1,6 +1,6 @@
 <template>
 
-    <form @submit.prevent.once="saveProject()">
+    <form>
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">
@@ -42,7 +42,15 @@
 
             <footer class="modal-card-foot">
                 <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
-                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
+                <button class="button is-primary" type="button" @click.prevent="saveProject()"
+                        :disabled="isDisabled">
+                    <b-icon
+                            pack="fa"
+                            :icon="isDisabled ? 'refresh' : 'check'"
+                            :custom-class="isDisabled ? 'fa-spin' : ''">
+                    </b-icon>
+                    <span>{{ trans('data.save') }}</span>
+                </button>
             </footer>
         </div>
     </form>
@@ -67,7 +75,8 @@
                 project: {
                     user: {}
                 },
-                users: []
+                users: [],
+                isDisabled: false
             }
         },
 
@@ -98,6 +107,7 @@
              * save project
              */
             saveProject() {
+                this.isDisabled = true;
                 Api.post('v1', 'saveProject', this.getProjectData(this.project))
                     .then(response => {
                         this.$toast.open({
@@ -106,6 +116,7 @@
                         });
                         this.$parent.close();
                         this.$root.$emit('getProjects');
+                        this.isDisabled = false;
                     })
                     .catch(error => {
                         this.$toast.open({
@@ -113,6 +124,7 @@
                             message: Api.errorSerializer(error.response.data.errors),
                             type: 'is-danger'
                         });
+                        this.isDisabled = false;
                     })
             },
 
