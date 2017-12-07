@@ -45468,13 +45468,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        console.log(this.$q.platform);
-
         this.getSubjects();
 
         this.$root.$on('getSubjects', this.getSubjects);
@@ -45955,6 +45962,29 @@ var render = function() {
             )
           ])
         : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "q-toolbar",
+        { attrs: { color: "teal-1" } },
+        [
+          _c("q-input", {
+            attrs: {
+              "float-label": _vm.trans("data.search"),
+              clearable: "",
+              color: "deep-purple"
+            },
+            on: { change: _vm.search },
+            model: {
+              value: _vm.searchText,
+              callback: function($$v) {
+                _vm.searchText = $$v
+              },
+              expression: "searchText"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "section",
@@ -54127,7 +54157,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {},
 
     data: function data() {
-        return {};
+        return {
+            select: ''
+        };
     },
 
 
@@ -54158,15 +54190,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "q-btn",
-    { attrs: { loader: "" }, on: { click: _vm.simulateProgress } },
+    "q-field",
+    {
+      attrs: {
+        count: "",
+        icon: "account_box",
+        helper: "Some helper here",
+        "label-width": 3
+      }
+    },
     [
-      _vm._v("\n    Button Label\n    "),
-      _vm._v(" "),
-      _c("span", { attrs: { slot: "loading" }, slot: "loading" }, [
-        _vm._v("Loading...")
-      ])
-    ]
+      _c("q-chips-input", {
+        attrs: { "float-label": "Float Label" },
+        model: {
+          value: _vm.select,
+          callback: function($$v) {
+            _vm.select = $$v
+          },
+          expression: "select"
+        }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []

@@ -1,12 +1,12 @@
 <template>
-    <q-btn loader @click="simulateProgress">
-        Button Label
-        <!--
-          Notice slot="loading". This is optional.
-          If missing, the default theme spinner will be used.
-        -->
-        <span slot="loading">Loading...</span>
-    </q-btn>
+    <q-field
+            count
+            icon="account_box"
+            helper="Some helper here"
+            :label-width="3"
+    >
+        <q-chips-input float-label="Float Label" v-model="select" />
+    </q-field>
 </template>
 
 <style scoped>
@@ -24,7 +24,9 @@
         props: {},
 
         data() {
-            return {}
+            return {
+                select: ''
+            }
         },
 
         methods: {

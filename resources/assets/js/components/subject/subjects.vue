@@ -19,6 +19,15 @@
                 </q-btn>
             </div>
         </q-toolbar>
+        <q-toolbar color="teal-1">
+
+            <q-input v-model="searchText"
+                     :float-label="trans('data.search')"
+                     clearable
+                     color="deep-purple"
+                     @change="search"/>
+
+        </q-toolbar>
 
         <section class="ui-mt-2">
             <b-field grouped group-multiline>
@@ -102,8 +111,6 @@
     export default {
 
         mounted() {
-            console.log(this.$q.platform);
-
             this.getSubjects();
 
             this.$root.$on('getSubjects', this.getSubjects);
