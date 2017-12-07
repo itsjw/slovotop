@@ -5,13 +5,11 @@
 @endsection()
 
 @section('HeadTitle')
-    <div class="ui-fnt bold size-5 ui-color col-green">
-        @lang('data.titleReports')
-    </div>
+    @lang('data.titleReports')
 @endsection()
 
 @section('content')
 
-
+    <admin-report></admin-report>
 
 @endsection()

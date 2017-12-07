@@ -22,6 +22,13 @@ Vue.use(Buefy, {
         'Октябрь', 'Ноябрь', 'Декабрь']
 });
 
+// Quasar
+import Quasar, * as All from 'quasar-framework';
+Vue.use(Quasar, {
+    components: All,
+    directives: All
+});
+
 // query builder
 import Query from './query/query';
 

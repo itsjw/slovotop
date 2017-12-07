@@ -1,5 +1,10 @@
 @import "mixin";
 
+// Quasar
+a {
+  color: inherit !important;
+}
+
 [v-cloak]::before {
   content: " ";
   display: block;

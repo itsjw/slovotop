@@ -15,27 +15,17 @@
 <body>
 <div id="app">
 
-    <div class="admin-wrap">
+    <q-layout ref="layout" view="HHH Lpr FFF">
 
-        <div class="admin-left">
+        @include('crm.head.head')
+
+        <div slot="left" color="blue-grey-14">
             @include('crm.menu.menu')
         </div>
 
-        <div class="admin-content-wrap">
-            <div class="admin-head">
-                @include('crm.head.head')
-            </div>
-            <div class="admin-content">
-                <div class="section">
-                    @yield('content')
-                </div>
-            </div>
-            <div class="admin-footer">
-                @include('crm.footer.footer')
-            </div>
-        </div>
+        @yield('content')
 
-    </div>
+    </q-layout>
 
 </div>
 
@@ -43,10 +33,10 @@
 
 <script>
     window.trans = <?php
-    $lang_files = File::files(resource_path().'/lang/'.App::getLocale());
+    $lang_files = File::files(resource_path() . '/lang/' . App::getLocale());
     $trans = [];
     foreach ($lang_files as $f) {
-        $filename         = pathinfo($f)['filename'];
+        $filename = pathinfo($f)['filename'];
         $trans[$filename] = trans($filename);
     }
     echo json_encode($trans);
