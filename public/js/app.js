@@ -45472,11 +45472,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -45500,8 +45495,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tableLoading: false,
             tablePaginated: true,
             // search
-            searchType: [{ name: this.trans('data.subjectName'), type: 'name' }],
-            searchId: null,
+            searchType: [{ label: this.trans('data.subjectName'), type: 'name', value: 0 }],
+            searchId: 0,
             searchText: ''
         };
     },
@@ -45895,7 +45890,7 @@ var render = function() {
                   [
                     _c("q-icon", {
                       class: _vm.tableLoading ? "fa-spin" : "",
-                      attrs: { name: "fa-refresh" }
+                      attrs: { name: "refresh" }
                     })
                   ],
                   1
@@ -45904,7 +45899,11 @@ var render = function() {
                 _c(
                   "q-btn",
                   {
-                    attrs: { flat: "", "no-caps": "", icon: "fa-plus-circle" },
+                    attrs: {
+                      flat: "",
+                      "no-caps": "",
+                      icon: "add_circle_outline"
+                    },
                     on: {
                       click: function($event) {
                         _vm.addSubject()
@@ -45923,7 +45922,7 @@ var render = function() {
                 _c(
                   "q-btn",
                   {
-                    attrs: { flat: "", "no-caps": "", icon: "fa-pencil" },
+                    attrs: { flat: "", "no-caps": "", icon: "mode_edit" },
                     on: {
                       click: function($event) {
                         _vm.editSubject()
@@ -45942,7 +45941,7 @@ var render = function() {
                 _c(
                   "q-btn",
                   {
-                    attrs: { flat: "", "no-caps": "", icon: "fa-trash" },
+                    attrs: { flat: "", "no-caps": "", icon: "delete" },
                     on: {
                       click: function($event) {
                         _vm.confirmDeleteSubject()
@@ -45963,58 +45962,45 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c(
-        "q-toolbar",
-        { attrs: { color: "teal-1" } },
-        [
-          _c("q-input", {
-            attrs: {
-              "float-label": _vm.trans("data.search"),
-              clearable: "",
-              color: "deep-purple"
-            },
-            on: { change: _vm.search },
-            model: {
-              value: _vm.searchText,
-              callback: function($$v) {
-                _vm.searchText = $$v
-              },
-              expression: "searchText"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "section",
-        { staticClass: "ui-mt-2" },
-        [
-          _c(
-            "b-field",
-            { attrs: { grouped: "", "group-multiline": "" } },
-            [
-              _c("b-input", {
-                attrs: {
-                  placeholder: _vm.trans("data.search"),
-                  type: "search",
-                  "icon-pack": "fa",
-                  icon: "search"
-                },
-                on: { input: _vm.search },
-                model: {
-                  value: _vm.searchText,
-                  callback: function($$v) {
-                    _vm.searchText = $$v
+      _c("q-toolbar", { attrs: { color: "green-1" } }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c(
+              "q-field",
+              { attrs: { icon: "search" } },
+              [
+                _c("q-input", {
+                  attrs: {
+                    "float-label": _vm.trans("data.search"),
+                    clearable: "",
+                    color: "deep-purple"
                   },
-                  expression: "searchText"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "b-select",
-                {
-                  attrs: { placeholder: _vm.trans("data.searchParam") },
+                  on: { change: _vm.search },
+                  model: {
+                    value: _vm.searchText,
+                    callback: function($$v) {
+                      _vm.searchText = $$v
+                    },
+                    expression: "searchText"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "q-field",
+              { staticClass: "ui-ml-2", attrs: { icon: "select_all" } },
+              [
+                _c("q-select", {
+                  attrs: {
+                    "float-label": _vm.trans("data.searchParam"),
+                    color: "deep-purple",
+                    radio: "",
+                    options: _vm.searchType
+                  },
                   model: {
                     value: _vm.searchId,
                     callback: function($$v) {
@@ -46022,53 +46008,41 @@ var render = function() {
                     },
                     expression: "searchId"
                   }
-                },
-                _vm._l(_vm.searchType, function(val, key) {
-                  return _c("option", { key: key, domProps: { value: key } }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(val.name) +
-                        "\n                "
-                    )
-                  ])
                 })
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "control is-flex" },
-                [
-                  _c(
-                    "b-switch",
-                    {
-                      attrs: {
-                        "true-value": false,
-                        "false-value": true,
-                        type: "is-info"
-                      },
-                      model: {
-                        value: _vm.tablePaginated,
-                        callback: function($$v) {
-                          _vm.tablePaginated = $$v
-                        },
-                        expression: "tablePaginated"
-                      }
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "q-field",
+              { staticClass: "ui-ml-2", attrs: { icon: "done_all" } },
+              [
+                _c("q-toggle", {
+                  attrs: { color: "deep-purple" },
+                  model: {
+                    value: _vm.tablePaginated,
+                    callback: function($$v) {
+                      _vm.tablePaginated = $$v
                     },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.trans("data.showAll")) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
+                    expression: "tablePaginated"
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-deep-purple" }, [
+                  _vm._v(_vm._s(_vm.trans("data.showAll")))
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "section",
+        { staticClass: "ui-mt-2" },
+        [
           _c(
             "b-table",
             {

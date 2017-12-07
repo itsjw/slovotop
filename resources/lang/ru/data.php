@@ -20,7 +20,7 @@ return [
     'hide'            => 'Видимость',
     'deleteAsk'       => 'Удалить ?',
     'search'          => 'Поиск',
-    'showAll'         => 'Показать всё',
+    'showAll'         => 'Пагинация',
     'searchParam'     => 'Параметр поиска',
     'searchNull'      => 'Данных нет',
 

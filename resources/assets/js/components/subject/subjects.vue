@@ -3,58 +3,53 @@
         <q-toolbar color="primary" v-if="accessMenu == 2">
             <div>
                 <q-btn flat @click="getSubjects()" no-caps>
-                    <q-icon name="fa-refresh" :class="tableLoading ? 'fa-spin' : ''"/>
+                    <q-icon name="refresh" :class="tableLoading ? 'fa-spin' : ''"/>
                 </q-btn>
 
-                <q-btn flat @click="addSubject()" no-caps icon="fa-plus-circle">
+                <q-btn flat @click="addSubject()" no-caps icon="add_circle_outline">
                     {{ trans('data.add') }}
                 </q-btn>
 
-                <q-btn flat @click="editSubject()" no-caps icon="fa-pencil">
+                <q-btn flat @click="editSubject()" no-caps icon="mode_edit">
                     {{ trans('data.edit') }}
                 </q-btn>
 
-                <q-btn flat @click="confirmDeleteSubject()" no-caps icon="fa-trash">
+                <q-btn flat @click="confirmDeleteSubject()" no-caps icon="delete">
                     {{ trans('data.delete') }}
                 </q-btn>
             </div>
         </q-toolbar>
-        <q-toolbar color="teal-1">
+        <q-toolbar color="green-1">
+            <div class="row">
 
-            <q-input v-model="searchText"
-                     :float-label="trans('data.search')"
-                     clearable
-                     color="deep-purple"
-                     @change="search"/>
+                <q-field icon="search">
+                    <q-input v-model="searchText"
+                             :float-label="trans('data.search')"
+                             clearable
+                             color="deep-purple"
+                             @change="search"/>
+                </q-field>
+                <q-field icon="select_all" class="ui-ml-2">
+                    <q-select
+                            v-model="searchId"
+                            :float-label="trans('data.searchParam')"
+                            color="deep-purple"
+                            radio
+                            :options="searchType"
+                    />
+                </q-field>
+                <q-field icon="done_all" class="ui-ml-2">
+                    <q-toggle v-model="tablePaginated"
+                              color="deep-purple"/>
+                    <span class="text-deep-purple">{{ trans('data.showAll') }}</span>
+                </q-field>
+
+            </div>
+
 
         </q-toolbar>
 
         <section class="ui-mt-2">
-            <b-field grouped group-multiline>
-                <b-input :placeholder="trans('data.search')"
-                         type="search"
-                         icon-pack="fa"
-                         icon="search"
-                         v-model="searchText"
-                         @input="search">
-                </b-input>
-                <b-select :placeholder="trans('data.searchParam')" v-model="searchId">
-                    <option
-                            v-for="(val,key) in searchType"
-                            :value="key"
-                            :key="key">
-                        {{ val.name }}
-                    </option>
-                </b-select>
-                <div class="control is-flex">
-                    <b-switch :true-value="false" :false-value="true"
-                              type="is-info"
-                              v-model="tablePaginated">
-                        {{ trans('data.showAll') }}
-                    </b-switch>
-                </div>
-            </b-field>
-
             <b-table
                     :data="subjects"
                     :hoverable=true
@@ -129,9 +124,9 @@
                 tablePaginated: true,
                 // search
                 searchType: [
-                    {name: this.trans('data.subjectName'), type: 'name'},
+                    {label: this.trans('data.subjectName'), type: 'name', value: 0},
                 ],
-                searchId: null,
+                searchId: 0,
                 searchText: ''
             }
         },
