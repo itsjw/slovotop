@@ -9,7 +9,7 @@
     </q-toolbar-title>
 
     <a href="{{ route('logout') }}">
-        <q-btn flat color="white" icon="fa-sign-out">
+        <q-btn flat color="white" no-caps icon="fa-sign-out">
             {{ \Auth::user()->name }}
         </q-btn>
     </a>

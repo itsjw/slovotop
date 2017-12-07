@@ -45468,22 +45468,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
+        console.log(this.$q.platform);
+
         this.getSubjects();
 
         this.$root.$on('getSubjects', this.getSubjects);
@@ -45876,351 +45867,339 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _vm.accessMenu == 2
-      ? _c("nav", { staticClass: "navbar is-primary" }, [
-          _c("div", { staticClass: "navbar-start" }, [
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.getSubjects()
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "icon" }, [
-                  _c("i", {
-                    staticClass: "fa fa-refresh",
-                    class: _vm.tableLoading ? "fa-spin" : ""
-                  })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.addSubject()
-                  }
-                }
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.add")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.editSubject()
-                  }
-                }
-              },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.edit")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.confirmDeleteSubject()
-                  }
-                }
-              },
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.delete")))])
-              ]
-            )
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "section",
-      { staticClass: "ui-mt-2" },
-      [
-        _c(
-          "b-field",
-          { attrs: { grouped: "", "group-multiline": "" } },
-          [
-            _c("b-input", {
-              attrs: {
-                placeholder: _vm.trans("data.search"),
-                type: "search",
-                "icon-pack": "fa",
-                icon: "search"
-              },
-              on: { input: _vm.search },
-              model: {
-                value: _vm.searchText,
-                callback: function($$v) {
-                  _vm.searchText = $$v
-                },
-                expression: "searchText"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "b-select",
-              {
-                attrs: { placeholder: _vm.trans("data.searchParam") },
-                model: {
-                  value: _vm.searchId,
-                  callback: function($$v) {
-                    _vm.searchId = $$v
-                  },
-                  expression: "searchId"
-                }
-              },
-              _vm._l(_vm.searchType, function(val, key) {
-                return _c("option", { key: key, domProps: { value: key } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(val.name) +
-                      "\n                "
-                  )
-                ])
-              })
-            ),
-            _vm._v(" "),
+  return _c(
+    "section",
+    [
+      _vm.accessMenu == 2
+        ? _c("q-toolbar", { attrs: { color: "primary" } }, [
             _c(
               "div",
-              { staticClass: "control is-flex" },
               [
                 _c(
-                  "b-switch",
+                  "q-btn",
                   {
-                    attrs: {
-                      "true-value": false,
-                      "false-value": true,
-                      type: "is-info"
-                    },
-                    model: {
-                      value: _vm.tablePaginated,
-                      callback: function($$v) {
-                        _vm.tablePaginated = $$v
-                      },
-                      expression: "tablePaginated"
+                    attrs: { flat: "", "no-caps": "" },
+                    on: {
+                      click: function($event) {
+                        _vm.getSubjects()
+                      }
+                    }
+                  },
+                  [
+                    _c("q-icon", {
+                      class: _vm.tableLoading ? "fa-spin" : "",
+                      attrs: { name: "fa-refresh" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "q-btn",
+                  {
+                    attrs: { flat: "", "no-caps": "", icon: "fa-plus-circle" },
+                    on: {
+                      click: function($event) {
+                        _vm.addSubject()
+                      }
                     }
                   },
                   [
                     _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.trans("data.showAll")) +
-                        "\n                "
+                      "\n                " +
+                        _vm._s(_vm.trans("data.add")) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "q-btn",
+                  {
+                    attrs: { flat: "", "no-caps": "", icon: "fa-pencil" },
+                    on: {
+                      click: function($event) {
+                        _vm.editSubject()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.trans("data.edit")) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "q-btn",
+                  {
+                    attrs: { flat: "", "no-caps": "", icon: "fa-trash" },
+                    on: {
+                      click: function($event) {
+                        _vm.confirmDeleteSubject()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.trans("data.delete")) +
+                        "\n            "
                     )
                   ]
                 )
               ],
               1
             )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "b-table",
-          {
-            attrs: {
-              data: _vm.subjects,
-              hoverable: true,
-              loading: _vm.tableLoading,
-              narrowed: true,
-              paginated: _vm.tablePaginated,
-              "per-page": 20,
-              "checked-rows": _vm.selectSubject,
-              checkable: _vm.accessMenu == 2
-            },
-            on: {
-              "update:checkedRows": function($event) {
-                _vm.selectSubject = $event
-              }
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(props) {
-                  return [
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "name",
-                          label: _vm.trans("data.subjectName"),
-                          sortable: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.name) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "price",
-                          label: _vm.trans("data.subjectPrice"),
-                          numeric: "",
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.price) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "created_at",
-                          label: _vm.trans("data.created_at"),
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.created_at) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "updated_at",
-                          label: _vm.trans("data.updated_at"),
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.updated_at) +
-                            "\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-table-column",
-                      {
-                        attrs: {
-                          field: "id",
-                          label: "ID",
-                          width: "40",
-                          numeric: "",
-                          sortable: "",
-                          centered: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(props.row.id) +
-                            "\n                "
-                        )
-                      ]
-                    )
-                  ]
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "section",
+        { staticClass: "ui-mt-2" },
+        [
+          _c(
+            "b-field",
+            { attrs: { grouped: "", "group-multiline": "" } },
+            [
+              _c("b-input", {
+                attrs: {
+                  placeholder: _vm.trans("data.search"),
+                  type: "search",
+                  "icon-pack": "fa",
+                  icon: "search"
+                },
+                on: { input: _vm.search },
+                model: {
+                  value: _vm.searchText,
+                  callback: function($$v) {
+                    _vm.searchText = $$v
+                  },
+                  expression: "searchText"
                 }
-              }
-            ])
-          },
-          [
-            _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
-              _c("section", { staticClass: "section" }, [
-                _c(
-                  "div",
-                  { staticClass: "content has-text-grey has-text-centered" },
-                  [
-                    _c(
-                      "p",
-                      [
-                        _c("b-icon", {
+              }),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  attrs: { placeholder: _vm.trans("data.searchParam") },
+                  model: {
+                    value: _vm.searchId,
+                    callback: function($$v) {
+                      _vm.searchId = $$v
+                    },
+                    expression: "searchId"
+                  }
+                },
+                _vm._l(_vm.searchType, function(val, key) {
+                  return _c("option", { key: key, domProps: { value: key } }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(val.name) +
+                        "\n                "
+                    )
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "control is-flex" },
+                [
+                  _c(
+                    "b-switch",
+                    {
+                      attrs: {
+                        "true-value": false,
+                        "false-value": true,
+                        type: "is-info"
+                      },
+                      model: {
+                        value: _vm.tablePaginated,
+                        callback: function($$v) {
+                          _vm.tablePaginated = $$v
+                        },
+                        expression: "tablePaginated"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.trans("data.showAll")) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-table",
+            {
+              attrs: {
+                data: _vm.subjects,
+                hoverable: true,
+                loading: _vm.tableLoading,
+                narrowed: true,
+                paginated: _vm.tablePaginated,
+                "per-page": 20,
+                "checked-rows": _vm.selectSubject,
+                checkable: _vm.accessMenu == 2
+              },
+              on: {
+                "update:checkedRows": function($event) {
+                  _vm.selectSubject = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "b-table-column",
+                        {
                           attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
+                            field: "name",
+                            label: _vm.trans("data.subjectName"),
+                            sortable: ""
                           }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
-                  ]
-                )
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.name) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "price",
+                            label: _vm.trans("data.subjectPrice"),
+                            numeric: "",
+                            sortable: "",
+                            centered: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.price) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "created_at",
+                            label: _vm.trans("data.created_at"),
+                            sortable: "",
+                            centered: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.created_at) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "updated_at",
+                            label: _vm.trans("data.updated_at"),
+                            sortable: "",
+                            centered: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.updated_at) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-table-column",
+                        {
+                          attrs: {
+                            field: "id",
+                            label: "ID",
+                            width: "40",
+                            numeric: "",
+                            sortable: "",
+                            centered: ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(props.row.id) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
               ])
-            ])
-          ],
-          2
-        )
-      ],
-      1
-    )
-  ])
+            },
+            [
+              _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+                _c("section", { staticClass: "section" }, [
+                  _c(
+                    "div",
+                    { staticClass: "content has-text-grey has-text-centered" },
+                    [
+                      _c(
+                        "p",
+                        [
+                          _c("b-icon", {
+                            attrs: {
+                              icon: "ban",
+                              "icon-pack": "fa",
+                              size: "is-large"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                    ]
+                  )
+                ])
+              ])
+            ],
+            2
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-align-justify" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-pencil" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-trash" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -54111,7 +54090,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54122,16 +54101,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -54162,7 +54131,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {}
+    methods: {
+        // notice parameter "done" (Function)
+        simulateProgress: function simulateProgress(event, done) {
+            // simulate a delay, like in
+            // waiting for an Ajax call
+            setTimeout(function () {
+                // delay is over, now we call
+                // done() function to inform button
+                // it must go to its initial state
+                done();
+                // DON't forget to call done() otherwise
+                // the button will keep on being in
+                // "loading" state
+            }, 3000);
+        }
+    }
 });
 
 /***/ }),
@@ -54174,32 +54158,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "q-list",
-    { attrs: { highlight: "" } },
+    "q-btn",
+    { attrs: { loader: "" }, on: { click: _vm.simulateProgress } },
     [
-      _c("q-list-header", [_vm._v("Recent chats")]),
+      _vm._v("\n    Button Label\n    "),
       _vm._v(" "),
-      _c("q-item"),
-      _vm._v(" "),
-      _c(
-        "q-item",
-        [
-          _c("q-item-side", [_c("q-item-tile", { attrs: { avatar: "" } })], 1),
-          _vm._v(" "),
-          _c("q-item-main", {
-            attrs: { label: "John Doe", sublabel: "Quasar enthusiast" }
-          }),
-          _vm._v(" "),
-          _c("q-item-side", { attrs: { right: "", icon: "chat_bubble" } })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("q-item-separator"),
-      _vm._v(" "),
-      _c("q-list-header", [_vm._v("Previous chats")])
-    ],
-    1
+      _c("span", { attrs: { slot: "loading" }, slot: "loading" }, [
+        _vm._v("Loading...")
+      ])
+    ]
   )
 }
 var staticRenderFns = []

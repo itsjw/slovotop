@@ -1,35 +1,24 @@
 <template>
     <section>
-        <nav class="navbar is-primary" v-if="accessMenu == 2">
-            <div class="navbar-start">
-                <a class="navbar-item" @click="getSubjects()">
-                    <span class="icon">
-                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
-                    </span>
-                </a>
+        <q-toolbar color="primary" v-if="accessMenu == 2">
+            <div>
+                <q-btn flat @click="getSubjects()" no-caps>
+                    <q-icon name="fa-refresh" :class="tableLoading ? 'fa-spin' : ''"/>
+                </q-btn>
 
-                <a class="navbar-item" @click="addSubject()">
-                    <span class="icon">
-                        <i class="fa fa-align-justify"></i>
-                    </span>
-                    <span>{{ trans('data.add') }}</span>
-                </a>
+                <q-btn flat @click="addSubject()" no-caps icon="fa-plus-circle">
+                    {{ trans('data.add') }}
+                </q-btn>
 
-                <a class="navbar-item" @click="editSubject()">
-                    <span class="icon">
-                        <i class="fa fa-pencil"></i>
-                    </span>
-                    <span>{{ trans('data.edit') }}</span>
-                </a>
+                <q-btn flat @click="editSubject()" no-caps icon="fa-pencil">
+                    {{ trans('data.edit') }}
+                </q-btn>
 
-                <a class="navbar-item" @click="confirmDeleteSubject()">
-                    <span class="icon">
-                        <i class="fa fa-trash"></i>
-                    </span>
-                    <span>{{ trans('data.delete') }}</span>
-                </a>
+                <q-btn flat @click="confirmDeleteSubject()" no-caps icon="fa-trash">
+                    {{ trans('data.delete') }}
+                </q-btn>
             </div>
-        </nav>
+        </q-toolbar>
 
         <section class="ui-mt-2">
             <b-field grouped group-multiline>
@@ -113,6 +102,8 @@
     export default {
 
         mounted() {
+            console.log(this.$q.platform);
+
             this.getSubjects();
 
             this.$root.$on('getSubjects', this.getSubjects);

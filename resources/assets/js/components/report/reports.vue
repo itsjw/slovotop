@@ -1,22 +1,12 @@
 <template>
-    <q-list highlight>
-        <q-list-header>Recent chats</q-list-header>
-        <q-item>
-
-        </q-item>
-        <q-item>
-            <q-item-side>
-                <q-item-tile avatar>
-
-                </q-item-tile>
-            </q-item-side>
-            <q-item-main label="John Doe" sublabel="Quasar enthusiast" />
-            <q-item-side right icon="chat_bubble" />
-        </q-item>
-        <q-item-separator />
-        <q-list-header>Previous chats</q-list-header>
-
-    </q-list>
+    <q-btn loader @click="simulateProgress">
+        Button Label
+        <!--
+          Notice slot="loading". This is optional.
+          If missing, the default theme spinner will be used.
+        -->
+        <span slot="loading">Loading...</span>
+    </q-btn>
 </template>
 
 <style scoped>
@@ -37,6 +27,21 @@
             return {}
         },
 
-        methods: {}
+        methods: {
+            // notice parameter "done" (Function)
+            simulateProgress (event, done) {
+                // simulate a delay, like in
+                // waiting for an Ajax call
+                setTimeout(() => {
+                    // delay is over, now we call
+                    // done() function to inform button
+                    // it must go to its initial state
+                    done()
+                    // DON't forget to call done() otherwise
+                    // the button will keep on being in
+                    // "loading" state
+                }, 3000)
+            }
+        }
     }
 </script>
