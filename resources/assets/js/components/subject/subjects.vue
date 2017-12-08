@@ -27,7 +27,9 @@
                              :float-label="trans('data.search')"
                              clearable
                              color="deep-purple"
-                             @change="search"/>
+                             @change="search">
+                        <q-spinner-mat :size="20" v-if="isLoading"/>
+                    </q-input>
                 </q-field>
                 <q-field icon="select_all" class="ui-ml-2">
                     <q-select
@@ -123,6 +125,7 @@
                     }
                 ],
                 // search
+                isLoading: false,
                 searchType: [
                     {label: this.trans('data.subjectName'), type: 'name', value: 0},
                 ],
@@ -134,7 +137,7 @@
         methods: {
 
             select(select, data) {
-                console.log(data);
+                this.selectSubject = data;
             },
 
             /**
@@ -143,6 +146,7 @@
             search: _.debounce(function () {
                 if (this.searchId != null) {
                     let params = {[this.searchType[this.searchId].type]: this.searchText};
+                    this.isLoading = true;
                     this.getSubjects(params);
                 }
             }, 500),
@@ -154,6 +158,7 @@
                 Api.post('v1', 'getSubjects', params)
                     .then(response => {
                         this.subjects = response.data.data;
+                        this.isLoading = false;
                         this.selectSubject = [];
                     })
             },

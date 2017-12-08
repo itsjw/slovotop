@@ -45424,6 +45424,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -45490,6 +45492,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 type: 'date'
             }],
             // search
+            isLoading: false,
             searchType: [{ label: this.trans('data.subjectName'), type: 'name', value: 0 }],
             searchId: 0,
             searchText: ''
@@ -45499,7 +45502,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     methods: {
         select: function select(_select, data) {
-            console.log(data);
+            this.selectSubject = data;
         },
 
 
@@ -45509,6 +45512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         search: _.debounce(function () {
             if (this.searchId != null) {
                 var params = _defineProperty({}, this.searchType[this.searchId].type, this.searchText);
+                this.isLoading = true;
                 this.getSubjects(params);
             }
         }, 500),
@@ -45523,6 +45527,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             Api.post('v1', 'getSubjects', params).then(function (response) {
                 _this.subjects = response.data.data;
+                _this.isLoading = false;
                 _this.selectSubject = [];
             });
         },
@@ -45963,21 +45968,30 @@ var render = function() {
               "q-field",
               { attrs: { icon: "search" } },
               [
-                _c("q-input", {
-                  attrs: {
-                    "float-label": _vm.trans("data.search"),
-                    clearable: "",
-                    color: "deep-purple"
-                  },
-                  on: { change: _vm.search },
-                  model: {
-                    value: _vm.searchText,
-                    callback: function($$v) {
-                      _vm.searchText = $$v
+                _c(
+                  "q-input",
+                  {
+                    attrs: {
+                      "float-label": _vm.trans("data.search"),
+                      clearable: "",
+                      color: "deep-purple"
                     },
-                    expression: "searchText"
-                  }
-                })
+                    on: { change: _vm.search },
+                    model: {
+                      value: _vm.searchText,
+                      callback: function($$v) {
+                        _vm.searchText = $$v
+                      },
+                      expression: "searchText"
+                    }
+                  },
+                  [
+                    _vm.isLoading
+                      ? _c("q-spinner-mat", { attrs: { size: 20 } })
+                      : _vm._e()
+                  ],
+                  1
+                )
               ],
               1
             ),
