@@ -45447,6 +45447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             subjects: [],
             // table
             config: {
+                title: 'Data Table',
                 rowHeight: '30px',
                 responsive: true,
                 pagination: {
@@ -45491,6 +45492,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 sort: true,
                 type: 'date'
             }],
+            refresh: false,
             // search
             isLoading: false,
             searchType: [{ label: this.trans('data.subjectName'), type: 'name', value: 0 }],
@@ -45524,10 +45526,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var _this = this;
 
             var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var done = arguments[1];
 
+            this.refresh = true;
             Api.post('v1', 'getSubjects', params).then(function (response) {
                 _this.subjects = response.data.data;
                 _this.isLoading = false;
+                done();
                 _this.selectSubject = [];
             });
         },
@@ -45882,14 +45887,17 @@ var render = function() {
                 _c(
                   "q-btn",
                   {
-                    attrs: { flat: "", "no-caps": "" },
-                    on: {
-                      click: function($event) {
-                        _vm.getSubjects()
-                      }
-                    }
+                    attrs: { flat: "", loader: "", "no-caps": "" },
+                    on: { click: _vm.getSubjects }
                   },
-                  [_c("q-icon", { attrs: { name: "refresh" } })],
+                  [
+                    _c("q-icon", { attrs: { name: "refresh" } }),
+                    _vm._v(" "),
+                    _c("q-spinner-facebook", {
+                      attrs: { slot: "loading", size: "20px" },
+                      slot: "loading"
+                    })
+                  ],
                   1
                 ),
                 _vm._v(" "),

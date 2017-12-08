@@ -2,8 +2,9 @@
     <section>
         <q-toolbar color="primary" v-if="accessMenu == 2">
             <div>
-                <q-btn flat @click="getSubjects()" no-caps>
+                <q-btn flat loader @click="getSubjects" no-caps>
                     <q-icon name="refresh"/>
+                    <q-spinner-facebook slot="loading" size="20px"/>
                 </q-btn>
 
                 <q-btn flat @click="addSubject()" no-caps icon="add_circle_outline">
@@ -49,7 +50,6 @@
                 :columns="columns"
                 @selection="select"
                 @refresh="getSubjects()">
-
         </q-data-table>
 
     </section>
@@ -75,6 +75,7 @@
                 subjects: [],
                 // table
                 config: {
+                    title: 'Data Table',
                     rowHeight: '30px',
                     responsive: true,
                     pagination: {
@@ -124,6 +125,7 @@
                         type: 'date'
                     }
                 ],
+                refresh: false,
                 // search
                 isLoading: false,
                 searchType: [
@@ -154,11 +156,13 @@
             /**
              * get all subjects
              */
-            getSubjects(params = null) {
+            getSubjects(params = null, done) {
+                this.refresh = true;
                 Api.post('v1', 'getSubjects', params)
                     .then(response => {
                         this.subjects = response.data.data;
                         this.isLoading = false;
+                        done();
                         this.selectSubject = [];
                     })
             },
