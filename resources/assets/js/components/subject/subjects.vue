@@ -3,7 +3,7 @@
         <q-toolbar color="primary" v-if="accessMenu == 2">
             <div>
                 <q-btn flat @click="getSubjects()" no-caps>
-                    <q-icon name="refresh" :class="tableLoading ? 'fa-spin' : ''"/>
+                    <q-icon name="refresh"/>
                 </q-btn>
 
                 <q-btn flat @click="addSubject()" no-caps icon="add_circle_outline">
@@ -19,9 +19,9 @@
                 </q-btn>
             </div>
         </q-toolbar>
+
         <q-toolbar color="green-1">
             <div class="row">
-
                 <q-field icon="search">
                     <q-input v-model="searchText"
                              :float-label="trans('data.search')"
@@ -38,66 +38,18 @@
                             :options="searchType"
                     />
                 </q-field>
-                <q-field icon="done_all" class="ui-ml-2">
-                    <q-toggle v-model="tablePaginated"
-                              color="deep-purple"/>
-                    <span class="text-deep-purple">{{ trans('data.showAll') }}</span>
-                </q-field>
-
             </div>
-
-
         </q-toolbar>
 
-        <section class="ui-mt-2">
-            <b-table
-                    :data="subjects"
-                    :hoverable=true
-                    :loading='tableLoading'
-                    :narrowed=true
-                    :paginated='tablePaginated'
-                    :per-page=20
-                    :checked-rows.sync="selectSubject"
-                    :checkable="accessMenu == 2">
+        <q-data-table
+                :data="subjects"
+                :config="config"
+                :columns="columns"
+                @selection="select"
+                @refresh="getSubjects()">
 
-                <template slot-scope="props">
-                    <b-table-column field="name" :label="trans('data.subjectName')" sortable>
-                        {{ props.row.name }}
-                    </b-table-column>
+        </q-data-table>
 
-                    <b-table-column field="price" :label="trans('data.subjectPrice')" numeric sortable centered>
-                        {{ props.row.price }}
-                    </b-table-column>
-
-                    <b-table-column field="created_at" :label="trans('data.created_at')" sortable centered>
-                        {{ props.row.created_at }}
-                    </b-table-column>
-
-                    <b-table-column field="updated_at" :label="trans('data.updated_at')" sortable centered>
-                        {{ props.row.updated_at }}
-                    </b-table-column>
-
-                    <b-table-column field="id" label="ID" width="40" numeric sortable centered>
-                        {{ props.row.id }}
-                    </b-table-column>
-                </template>
-
-                <template slot="empty">
-                    <section class="section">
-                        <div class="content has-text-grey has-text-centered">
-                            <p>
-                                <b-icon
-                                        icon="ban"
-                                        icon-pack="fa"
-                                        size="is-large">
-                                </b-icon>
-                            </p>
-                            <p>{{ trans('data.searchNull') }}</p>
-                        </div>
-                    </section>
-                </template>
-            </b-table>
-        </section>
     </section>
 </template>
 <script>
@@ -120,8 +72,56 @@
                 selectSubject: [],
                 subjects: [],
                 // table
-                tableLoading: false,
-                tablePaginated: true,
+                config: {
+                    rowHeight: '30px',
+                    responsive: true,
+                    pagination: {
+                        rowsPerPage: 15,
+                        options: [30, 50, 100]
+                    },
+                    selection: 'multiple',
+                    messages: {
+                        noData: '<i class="icon">warning</i>' + this.trans('data.searchNull'),
+                    },
+                    labels: {
+                        columns: 'Coluuuuumns',
+                        allCols: 'Eeeeeeeeevery Cols',
+                        rows: 'Rooows',
+                        selected: {
+                            singular: 'item selected.',
+                            plural: 'items selected.'
+                        },
+                        clear: 'clear',
+                        search: 'Search',
+                        all: 'All'
+                    }
+                },
+                columns: [
+                    {
+                        label: this.trans('data.subjectName'),
+                        field: 'name',
+                        sort: true,
+                        type: 'string',
+                    },
+                    {
+                        label: this.trans('data.subjectPrice'),
+                        field: 'price',
+                        sort: true,
+                        type: 'number'
+                    },
+                    {
+                        label: this.trans('data.created_at'),
+                        field: 'created_at',
+                        sort: true,
+                        type: 'date'
+                    },
+                    {
+                        label: this.trans('data.updated_at'),
+                        field: 'updated_at',
+                        sort: true,
+                        type: 'date'
+                    }
+                ],
                 // search
                 searchType: [
                     {label: this.trans('data.subjectName'), type: 'name', value: 0},
@@ -132,6 +132,10 @@
         },
 
         methods: {
+
+            select(select, data) {
+                console.log(data);
+            },
 
             /**
              * search
@@ -147,12 +151,10 @@
              * get all subjects
              */
             getSubjects(params = null) {
-                this.tableLoading = true;
                 Api.post('v1', 'getSubjects', params)
                     .then(response => {
                         this.subjects = response.data.data;
                         this.selectSubject = [];
-                        this.tableLoading = false;
                     })
             },
 

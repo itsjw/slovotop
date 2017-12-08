@@ -45424,54 +45424,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -45492,8 +45444,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             selectSubject: [],
             subjects: [],
             // table
-            tableLoading: false,
-            tablePaginated: true,
+            config: {
+                rowHeight: '30px',
+                responsive: true,
+                pagination: {
+                    rowsPerPage: 15,
+                    options: [30, 50, 100]
+                },
+                selection: 'multiple',
+                messages: {
+                    noData: '<i class="icon">warning</i>' + this.trans('data.searchNull')
+                },
+                labels: {
+                    columns: 'Coluuuuumns',
+                    allCols: 'Eeeeeeeeevery Cols',
+                    rows: 'Rooows',
+                    selected: {
+                        singular: 'item selected.',
+                        plural: 'items selected.'
+                    },
+                    clear: 'clear',
+                    search: 'Search',
+                    all: 'All'
+                }
+            },
+            columns: [{
+                label: this.trans('data.subjectName'),
+                field: 'name',
+                sort: true,
+                type: 'string'
+            }, {
+                label: this.trans('data.subjectPrice'),
+                field: 'price',
+                sort: true,
+                type: 'number'
+            }, {
+                label: this.trans('data.created_at'),
+                field: 'created_at',
+                sort: true,
+                type: 'date'
+            }, {
+                label: this.trans('data.updated_at'),
+                field: 'updated_at',
+                sort: true,
+                type: 'date'
+            }],
             // search
             searchType: [{ label: this.trans('data.subjectName'), type: 'name', value: 0 }],
             searchId: 0,
@@ -45503,6 +45498,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
     methods: {
+        select: function select(_select, data) {
+            console.log(data);
+        },
+
 
         /**
          * search
@@ -45522,11 +45521,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-            this.tableLoading = true;
             Api.post('v1', 'getSubjects', params).then(function (response) {
                 _this.subjects = response.data.data;
                 _this.selectSubject = [];
-                _this.tableLoading = false;
             });
         },
 
@@ -45887,12 +45884,7 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _c("q-icon", {
-                      class: _vm.tableLoading ? "fa-spin" : "",
-                      attrs: { name: "refresh" }
-                    })
-                  ],
+                  [_c("q-icon", { attrs: { name: "refresh" } })],
                   1
                 ),
                 _vm._v(" "),
@@ -46011,194 +46003,21 @@ var render = function() {
                 })
               ],
               1
-            ),
-            _vm._v(" "),
-            _c(
-              "q-field",
-              { staticClass: "ui-ml-2", attrs: { icon: "done_all" } },
-              [
-                _c("q-toggle", {
-                  attrs: { color: "deep-purple" },
-                  model: {
-                    value: _vm.tablePaginated,
-                    callback: function($$v) {
-                      _vm.tablePaginated = $$v
-                    },
-                    expression: "tablePaginated"
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "text-deep-purple" }, [
-                  _vm._v(_vm._s(_vm.trans("data.showAll")))
-                ])
-              ],
-              1
             )
           ],
           1
         )
       ]),
       _vm._v(" "),
-      _c(
-        "section",
-        { staticClass: "ui-mt-2" },
-        [
-          _c(
-            "b-table",
-            {
-              attrs: {
-                data: _vm.subjects,
-                hoverable: true,
-                loading: _vm.tableLoading,
-                narrowed: true,
-                paginated: _vm.tablePaginated,
-                "per-page": 20,
-                "checked-rows": _vm.selectSubject,
-                checkable: _vm.accessMenu == 2
-              },
-              on: {
-                "update:checkedRows": function($event) {
-                  _vm.selectSubject = $event
-                }
-              },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function(props) {
-                    return [
-                      _c(
-                        "b-table-column",
-                        {
-                          attrs: {
-                            field: "name",
-                            label: _vm.trans("data.subjectName"),
-                            sortable: ""
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(props.row.name) +
-                              "\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-table-column",
-                        {
-                          attrs: {
-                            field: "price",
-                            label: _vm.trans("data.subjectPrice"),
-                            numeric: "",
-                            sortable: "",
-                            centered: ""
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(props.row.price) +
-                              "\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-table-column",
-                        {
-                          attrs: {
-                            field: "created_at",
-                            label: _vm.trans("data.created_at"),
-                            sortable: "",
-                            centered: ""
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(props.row.created_at) +
-                              "\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-table-column",
-                        {
-                          attrs: {
-                            field: "updated_at",
-                            label: _vm.trans("data.updated_at"),
-                            sortable: "",
-                            centered: ""
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(props.row.updated_at) +
-                              "\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-table-column",
-                        {
-                          attrs: {
-                            field: "id",
-                            label: "ID",
-                            width: "40",
-                            numeric: "",
-                            sortable: "",
-                            centered: ""
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(props.row.id) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    ]
-                  }
-                }
-              ])
-            },
-            [
-              _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
-                _c("section", { staticClass: "section" }, [
-                  _c(
-                    "div",
-                    { staticClass: "content has-text-grey has-text-centered" },
-                    [
-                      _c(
-                        "p",
-                        [
-                          _c("b-icon", {
-                            attrs: {
-                              icon: "ban",
-                              "icon-pack": "fa",
-                              size: "is-large"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
-                    ]
-                  )
-                ])
-              ])
-            ],
-            2
-          )
-        ],
-        1
-      )
+      _c("q-data-table", {
+        attrs: { data: _vm.subjects, config: _vm.config, columns: _vm.columns },
+        on: {
+          selection: _vm.select,
+          refresh: function($event) {
+            _vm.getSubjects()
+          }
+        }
+      })
     ],
     1
   )
