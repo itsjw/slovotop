@@ -30416,8 +30416,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 Vue.component('settingStages', __webpack_require__(44));
 Vue.component('settingGeneral', __webpack_require__(56));
@@ -31876,9 +31874,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -31964,7 +31959,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-p-3 bg bg-wite" }, [
+  return _c("div", { staticClass: "ui-p-3" }, [
     _c("div", { staticClass: "columns" }, [
       _c("div", { staticClass: "column is-4" }, [
         _c("div", { staticClass: "card" }, [
@@ -31978,10 +31973,10 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "card-header-icon" }, [
-              _c("span", { staticClass: "icon" }, [
+              _c("span", { staticClass: "icon is-medium" }, [
                 _c("i", {
-                  staticClass: "fa fa-refresh",
-                  class: _vm.isRefresh ? "fa-spin" : "",
+                  staticClass: "mdi mdi-reload",
+                  class: _vm.isRefresh ? "mdi-reload mdi-spin" : "",
                   on: {
                     click: function($event) {
                       _vm.getGenerals()
@@ -32010,8 +32005,7 @@ var render = function() {
                         {
                           attrs: {
                             placeholder: _vm.trans("data.roleRoles"),
-                            icon: "users",
-                            "icon-pack": "fa"
+                            icon: "account"
                           },
                           model: {
                             value: _vm.generals.editor,
@@ -32060,8 +32054,7 @@ var render = function() {
                         {
                           attrs: {
                             placeholder: _vm.trans("data.roleRoles"),
-                            icon: "users",
-                            "icon-pack": "fa"
+                            icon: "account"
                           },
                           model: {
                             value: _vm.generals.author,
@@ -32112,9 +32105,8 @@ var render = function() {
                   [
                     _c("b-icon", {
                       attrs: {
-                        pack: "fa",
-                        icon: _vm.isRefresh ? "refresh" : "check",
-                        "custom-class": _vm.isRefresh ? "fa-spin" : ""
+                        icon: _vm.isRefresh ? "reload" : "check",
+                        "custom-class": _vm.isRefresh ? "mdi-spin" : ""
                       }
                     }),
                     _vm._v(" "),
@@ -32157,16 +32149,11 @@ var render = function() {
     [
       _c(
         "b-tabs",
-        { attrs: { type: "is-boxed" } },
         [
           _c(
             "b-tab-item",
             {
-              attrs: {
-                label: _vm.trans("data.setTaskMain"),
-                "icon-pack": "fa",
-                icon: "cogs"
-              }
+              attrs: { label: _vm.trans("data.setTaskMain"), icon: "settings" }
             },
             [_c("setting-general")],
             1
@@ -32177,8 +32164,7 @@ var render = function() {
             {
               attrs: {
                 label: _vm.trans("data.setTaskStage"),
-                "icon-pack": "fa",
-                icon: "tasks"
+                icon: "format-list-numbers"
               }
             },
             [_c("setting-stages")],

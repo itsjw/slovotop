@@ -5,6 +5,10 @@
 .is-size-7 {
   font-size: 0.75rem !important;
 }
+.mdi-spin{
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
 
 // Import Bulma and Buefy styles
 @import "bulma/bulma";

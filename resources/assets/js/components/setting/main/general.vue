@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-p-3 bg bg-wite">
+    <div class="ui-p-3">
         <div class="columns">
             <div class="column is-4">
                 <div class="card">
@@ -8,8 +8,8 @@
                             {{ trans('data.setGroupEdAth') }}
                         </p>
                         <a class="card-header-icon">
-                          <span class="icon">
-                            <i class="fa fa-refresh" :class="isRefresh ? 'fa-spin' : ''"
+                          <span class="icon is-medium">
+                            <i class="mdi mdi-reload" :class="isRefresh ? 'mdi-reload mdi-spin' : ''"
                                @click="getGenerals()"></i>
                           </span>
                         </a>
@@ -23,8 +23,7 @@
                                 <b-field>
                                     <b-select
                                             :placeholder="trans('data.roleRoles')"
-                                            icon="users"
-                                            icon-pack="fa"
+                                            icon="account"
                                             v-model="generals.editor">
                                         <option
                                                 v-for="(val,key) in roles"
@@ -44,8 +43,7 @@
                                 <b-field>
                                     <b-select
                                             :placeholder="trans('data.roleRoles')"
-                                            icon="users"
-                                            icon-pack="fa"
+                                            icon="account"
                                             v-model="generals.author">
                                         <option
                                                 v-for="(val,key) in roles"
@@ -63,9 +61,8 @@
                                 <button class="button is-primary" type="button" @click.prevent="saveSetting()"
                                         :disabled="isRefresh">
                                     <b-icon
-                                            pack="fa"
-                                            :icon="isRefresh ? 'refresh' : 'check'"
-                                            :custom-class="isRefresh ? 'fa-spin' : ''">
+                                            :icon="isRefresh ? 'reload' : 'check'"
+                                            :custom-class="isRefresh ? 'mdi-spin' : ''">
                                     </b-icon>
                                     <span>{{ trans('data.save') }}</span>
                                 </button>

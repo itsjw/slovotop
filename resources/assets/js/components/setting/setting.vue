@@ -1,16 +1,14 @@
 <template>
     <section>
 
-        <b-tabs type="is-boxed">
+        <b-tabs>
             <b-tab-item :label="trans('data.setTaskMain')"
-                        icon-pack="fa"
-                        icon="cogs">
+                        icon="settings">
                 <setting-general></setting-general>
             </b-tab-item>
 
             <b-tab-item :label="trans('data.setTaskStage')"
-                        icon-pack="fa"
-                        icon="tasks">
+                        icon="format-list-numbers">
                 <setting-stages></setting-stages>
             </b-tab-item>
         </b-tabs>
