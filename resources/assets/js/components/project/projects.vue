@@ -25,7 +25,7 @@
 
                 <a class="navbar-item" @click="confirmDeleteProject()">
                     <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-approval"></i>
+                        <i class="mdi mdi-18px mdi-delete"></i>
                     </span>
                     <span>{{ trans('data.delete') }}</span>
                 </a>

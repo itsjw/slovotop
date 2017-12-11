@@ -35546,7 +35546,7 @@ var render = function() {
                                 _vm._v(_vm._s(_vm.trans("data.userRole")))
                               ]),
                               _vm._v(" "),
-                              _c("b-icon", { attrs: { icon: "account-alert" } })
+                              _c("b-icon", { attrs: { icon: "menu-down" } })
                             ],
                             1
                           ),
@@ -37169,7 +37169,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon is-medium" }, [
-      _c("i", { staticClass: "mdi mdi-18px mdi-approval" })
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
     ])
   }
 ]
@@ -39900,7 +39900,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -39923,7 +39922,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tablePaginated: true,
             // search
             searchType: [{ name: this.trans('data.docsName'), type: 'name' }],
-            searchId: null,
+            searchId: 0,
             searchText: ''
         };
     },
@@ -40045,10 +40044,10 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "icon" }, [
+                _c("span", { staticClass: "icon is-medium" }, [
                   _c("i", {
-                    staticClass: "fa fa-refresh",
-                    class: _vm.tableLoading ? "fa-spin" : ""
+                    staticClass: "mdi mdi-18px mdi-reload",
+                    class: _vm.tableLoading ? "mdi-spin" : ""
                   })
                 ])
               ]
@@ -40120,8 +40119,7 @@ var render = function() {
               attrs: {
                 placeholder: _vm.trans("data.search"),
                 type: "search",
-                "icon-pack": "fa",
-                icon: "search"
+                icon: "magnify"
               },
               on: { input: _vm.search },
               model: {
@@ -40354,24 +40352,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-file-text" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-plus-circle" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-pencil" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-pencil" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-trash" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
     ])
   }
 ]
@@ -40438,7 +40436,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -40741,9 +40738,7 @@ var render = function() {
                                   _vm._v(_vm._s(_vm.trans("data.userRole")))
                                 ]),
                                 _vm._v(" "),
-                                _c("b-icon", {
-                                  attrs: { pack: "fa", icon: "angle-down" }
-                                })
+                                _c("b-icon", { attrs: { icon: "menu-down" } })
                               ],
                               1
                             ),
@@ -40848,9 +40843,8 @@ var render = function() {
                     [
                       _c("b-icon", {
                         attrs: {
-                          pack: "fa",
-                          icon: _vm.isDisabled ? "refresh" : "check",
-                          "custom-class": _vm.isDisabled ? "fa-spin" : ""
+                          icon: _vm.isDisabled ? "reload" : "check",
+                          "custom-class": _vm.isDisabled ? "mdi-spin" : ""
                         }
                       }),
                       _vm._v(" "),

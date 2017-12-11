@@ -51,7 +51,7 @@
                             <b-dropdown position="is-top-right">
                                 <button type="button" class="button is-link" slot="trigger">
                                     <span>{{ trans('data.userRole') }}</span>
-                                    <b-icon icon="account-alert"></b-icon>
+                                    <b-icon icon="menu-down"></b-icon>
                                 </button>
 
                                 <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">

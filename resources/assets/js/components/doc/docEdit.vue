@@ -21,7 +21,7 @@
                                 <b-dropdown>
                                     <button type="button" class="button is-link" slot="trigger">
                                         <span>{{ trans('data.userRole') }}</span>
-                                        <b-icon pack="fa" icon="angle-down"></b-icon>
+                                        <b-icon icon="menu-down"></b-icon>
                                     </button>
 
                                     <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">
@@ -53,9 +53,8 @@
                         <button class="button is-primary" type="button" @click.prevent="saveDoc()"
                                 :disabled="isDisabled">
                             <b-icon
-                                    pack="fa"
-                                    :icon="isDisabled ? 'refresh' : 'check'"
-                                    :custom-class="isDisabled ? 'fa-spin' : ''">
+                                    :icon="isDisabled ? 'reload' : 'check'"
+                                    :custom-class="isDisabled ? 'mdi-spin' : ''">
                             </b-icon>
                             <span>{{ trans('data.save') }}</span>
                         </button>
