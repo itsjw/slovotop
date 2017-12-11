@@ -20,8 +20,6 @@ class CreateTasksTable extends Migration
             $table->integer('project_id');
             $table->integer('status_id')->default(1);
             $table->integer('stage_id');
-            $table->integer('editor_id')->nullable();
-            $table->integer('author_id')->nullable();
             $table->integer('subject_id');
             $table->integer('price')->nullable();
             $table->string('title')->nullable();

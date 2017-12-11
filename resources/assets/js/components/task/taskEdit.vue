@@ -5,85 +5,102 @@
 
             <task-contorls @save="saveTask"></task-contorls>
 
-            <div class="columns">
-                <div class="column is-4">
-
-                    <b-field :label="trans('data.taskProject')"
-                             v-if="task.project.access >= 1"
-                             :type="task.name.access == 1 ? 'is-warning' : ''">
-                        <b-select :placeholder="trans('data.taskProject')"
-                                  icon-pack="fa"
-                                  icon="th-list"
-                                  v-model="task.project.data.id"
-                                  :disabled="task.project.access == 1">
-                            <option
-                                    v-for="(val,key) in projects"
-                                    :value="val.id"
-                                    :key="key">
-                                {{ val.name }}
-                            </option>
-                        </b-select>
-                    </b-field>
-
-                    <b-field :label="trans('data.taskSubject')"
-                             v-if="task.subject.access >= 1"
-                             :type="task.name.access == 1 ? 'is-warning' : ''">
-                        <b-select :placeholder="trans('data.taskSubject')"
-                                  icon-pack="fa"
-                                  icon="align-justify"
-                                  v-model="task.subject.data.id"
-                                  :disabled="task.subject.access == 1">
-                            <option
-                                    v-for="(val,key) in subjects"
-                                    :value="val.id"
-                                    :key="key">
-                                {{ val.name }}
-                            </option>
-                        </b-select>
-                    </b-field>
-
+            <b-collapse class="card" :open.sync="isOpenBlock">
+                <div slot="trigger" class="card-header">
+                    <p class="card-header-title">
+                        Component
+                    </p>
+                    <a class="card-header-icon">
+                        <b-icon :icon="isOpenBlock ?
+                        'menu-down' : 'menu-up'">
+                        </b-icon>
+                    </a>
                 </div>
-                <div class="column is-4"></div>
-                <div class="column is-4">
-
-                    <b-field :label="trans('data.taskTextMinMax')"
-                             v-if="task.textMin.access >= 1 || task.textMax.access >= 1"
-                             :type="task.name.access == 1 ? 'is-warning' : ''">
+                <div class="card-content">
+                    <div class="content">
                         <div class="columns">
-                            <div class="column is-6">
-                                <b-input placeholder="min" type="number" min="0"
-                                         v-model="task.textMin.data"
-                                         v-if="task.textMin.access >= 1"
-                                         :disabled="task.textMin.access == 1"></b-input>
+                            <div class="column is-3">
+
+                                <b-field :label="trans('data.taskProject')"
+                                         v-if="task.project.access >= 1"
+                                         :type="task.name.access == 1 ? 'is-warning' : ''">
+                                    <b-select :placeholder="trans('data.taskProject')"
+                                              icon-pack="fa"
+                                              icon="th-list"
+                                              v-model="task.project.data.id"
+                                              :disabled="task.project.access == 1">
+                                        <option
+                                                v-for="(val,key) in projects"
+                                                :value="val.id"
+                                                :key="key">
+                                            {{ val.name }}
+                                        </option>
+                                    </b-select>
+                                </b-field>
+
+                                <b-field :label="trans('data.taskSubject')"
+                                         v-if="task.subject.access >= 1"
+                                         :type="task.name.access == 1 ? 'is-warning' : ''">
+                                    <b-select :placeholder="trans('data.taskSubject')"
+                                              icon-pack="fa"
+                                              icon="align-justify"
+                                              v-model="task.subject.data.id"
+                                              :disabled="task.subject.access == 1">
+                                        <option
+                                                v-for="(val,key) in subjects"
+                                                :value="val.id"
+                                                :key="key">
+                                            {{ val.name }}
+                                        </option>
+                                    </b-select>
+                                </b-field>
                             </div>
-                            <div class="column is-6">
-                                <b-input placeholder="max" type="number" min="0"
-                                         v-model="task.textMax.data"
-                                         v-if="task.textMax.access >= 1"
-                                         :disabled="task.textMax.access == 1"></b-input>
+                            <div class="column is-2">
+
+                                <b-field :label="trans('data.taskPrice')"
+                                         v-if="task.price.access >= 1"
+                                         :type="task.name.access == 1 ? 'is-warning' : ''">
+                                    <b-input type="number" min="0"
+                                             v-model="task.price.data"
+                                             :disabled="task.price.access == 1"></b-input>
+                                </b-field>
+
+                                <b-field :label="trans('data.taskTextMinMax')"
+                                         v-if="task.textMin.access >= 1 || task.textMax.access >= 1"
+                                         :type="task.name.access == 1 ? 'is-warning' : ''">
+                                    <div class="columns">
+                                        <div class="column is-6">
+                                            <b-input placeholder="min" type="number" min="0"
+                                                     v-model="task.textMin.data"
+                                                     v-if="task.textMin.access >= 1"
+                                                     :disabled="task.textMin.access == 1"></b-input>
+                                        </div>
+                                        <div class="column is-6">
+                                            <b-input placeholder="max" type="number" min="0"
+                                                     v-model="task.textMax.data"
+                                                     v-if="task.textMax.access >= 1"
+                                                     :disabled="task.textMax.access == 1"></b-input>
+                                        </div>
+                                    </div>
+                                </b-field>
+
+                                <b-field :label="trans('data.taskTextUnique')"
+                                         v-if="task.textUnique.access >= 1"
+                                         :type="task.name.access == 1 ? 'is-warning' : ''">
+                                    <b-input type="number" min="0" max="100"
+                                             v-model="task.textUnique.data"
+                                             :disabled="task.textUnique.access == 1"></b-input>
+                                </b-field>
+
+                            </div>
+                            <div class="column is-7">
+
+
                             </div>
                         </div>
-                    </b-field>
-
-                    <b-field :label="trans('data.taskTextUnique')"
-                             v-if="task.textUnique.access >= 1"
-                             :type="task.name.access == 1 ? 'is-warning' : ''">
-                        <b-input type="number" min="0" max="100"
-                                 v-model="task.textUnique.data"
-                                 :disabled="task.textUnique.access == 1"></b-input>
-                    </b-field>
-
-                    <b-field :label="trans('data.taskPrice')"
-                             v-if="task.price.access >= 1"
-                             :type="task.name.access == 1 ? 'is-warning' : ''">
-                        <b-input type="number" min="0"
-                                 v-model="task.price.data"
-                                 :disabled="task.price.access == 1"></b-input>
-                    </b-field>
-
+                    </div>
                 </div>
-            </div>
-
+            </b-collapse>
 
             <b-field :label="trans('data.taskName')"
                      v-if="task.name.access >= 1"
@@ -294,6 +311,7 @@
                 //
                 isRefresh: false,
                 isLoading: false,
+                isOpenBlock: true,
                 projects: [],
                 editor: [],
                 author: [],
@@ -382,9 +400,7 @@
                 return {
                     id: this.task_id || 0,
                     user_id: this.userID,
-                    author: task.author.data.id || '',
                     desc: task.desc.data || '',
-                    editor: task.editor.data.id || '',
                     moreData: task.moreData.data || '',
                     name: task.name.data || '',
                     price: task.price.data || '',

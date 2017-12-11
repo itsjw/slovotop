@@ -1434,7 +1434,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(120);
+module.exports = __webpack_require__(125);
 
 
 /***/ }),
@@ -30339,7 +30339,7 @@ var Query = function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixin_Auth__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixin_Auth__ = __webpack_require__(124);
 /**
  * Admin panel components
  */
@@ -30351,8 +30351,8 @@ Vue.component('adminUsers', __webpack_require__(88));
 Vue.component('adminProjects', __webpack_require__(96));
 Vue.component('adminTasks', __webpack_require__(102));
 Vue.component('adminTaskEdit', __webpack_require__(105));
-Vue.component('adminDocs', __webpack_require__(113));
-Vue.component('adminDocEdit', __webpack_require__(116));
+Vue.component('adminDocs', __webpack_require__(118));
+Vue.component('adminDocEdit', __webpack_require__(121));
 
 // Mixins
 
@@ -38278,7 +38278,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(112)
+var __vue_template__ = __webpack_require__(117)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -38502,9 +38502,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.component('taskComments', __webpack_require__(107));
-Vue.component('taskContorls', __webpack_require__(129));
+Vue.component('taskContorls', __webpack_require__(112));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -38618,6 +38635,7 @@ Vue.component('taskContorls', __webpack_require__(129));
             //
             isRefresh: false,
             isLoading: false,
+            isOpenBlock: true,
             projects: [],
             editor: [],
             author: [],
@@ -38715,9 +38733,7 @@ Vue.component('taskContorls', __webpack_require__(129));
             return {
                 id: this.task_id || 0,
                 user_id: this.userID,
-                author: task.author.data.id || '',
                 desc: task.desc.data || '',
-                editor: task.editor.data.id || '',
                 moreData: task.moreData.data || '',
                 name: task.name.data || '',
                 price: task.price.data || '',
@@ -39090,6 +39106,267 @@ if (false) {
 /* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(115)
+/* template */
+var __vue_template__ = __webpack_require__(116)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4243b8a6"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/task/control.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4243b8a6", Component.options)
+  } else {
+    hotAPI.reload("data-v-4243b8a6", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(114);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("580310f1", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4243b8a6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./control.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4243b8a6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./control.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    name: "control",
+
+    mounted: function mounted() {},
+
+
+    props: {
+        isRefresh: true
+    },
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {}
+});
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field is-grouped" }, [
+    _c(
+      "button",
+      {
+        staticClass: "button is-primary control",
+        attrs: { type: "button", disabled: _vm.isRefresh },
+        on: {
+          click: function($event) {
+            _vm.$emit("close", 0)
+          }
+        }
+      },
+      [
+        _c("b-icon", {
+          attrs: {
+            pack: "fa",
+            icon: _vm.isRefresh ? "refresh" : "check",
+            "custom-class": _vm.isRefresh ? "fa-spin" : ""
+          }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "button is-success control",
+        attrs: { type: "button", disabled: _vm.isRefresh },
+        on: {
+          click: function($event) {
+            _vm.$emit("close", 1)
+          }
+        }
+      },
+      [
+        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "button is-link control",
+        attrs: { type: "button", disabled: _vm.isRefresh }
+      },
+      [
+        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "button is-warning control",
+        attrs: { type: "button", disabled: _vm.isRefresh },
+        on: {
+          click: function($event) {
+            _vm.$emit("close", 1)
+          }
+        }
+      },
+      [
+        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4243b8a6", module.exports)
+  }
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -39106,252 +39383,337 @@ var render = function() {
             [
               _c("task-contorls", { on: { save: _vm.saveTask } }),
               _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c(
-                  "div",
-                  { staticClass: "column is-4" },
-                  [
-                    _vm.task.project.access >= 1
-                      ? _c(
-                          "b-field",
-                          {
-                            attrs: {
-                              label: _vm.trans("data.taskProject"),
-                              type:
-                                _vm.task.name.access == 1 ? "is-warning" : ""
-                            }
-                          },
-                          [
-                            _c(
-                              "b-select",
-                              {
-                                attrs: {
-                                  placeholder: _vm.trans("data.taskProject"),
-                                  "icon-pack": "fa",
-                                  icon: "th-list",
-                                  disabled: _vm.task.project.access == 1
-                                },
-                                model: {
-                                  value: _vm.task.project.data.id,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.task.project.data, "id", $$v)
-                                  },
-                                  expression: "task.project.data.id"
-                                }
-                              },
-                              _vm._l(_vm.projects, function(val, key) {
-                                return _c(
-                                  "option",
-                                  { key: key, domProps: { value: val.id } },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(val.name) +
-                                        "\n                        "
-                                    )
-                                  ]
-                                )
-                              })
-                            )
-                          ],
-                          1
+              _c(
+                "b-collapse",
+                {
+                  staticClass: "card",
+                  attrs: { open: _vm.isOpenBlock },
+                  on: {
+                    "update:open": function($event) {
+                      _vm.isOpenBlock = $event
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card-header",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c("p", { staticClass: "card-header-title" }, [
+                        _vm._v(
+                          "\n                    Component\n                "
                         )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.task.subject.access >= 1
-                      ? _c(
-                          "b-field",
-                          {
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        { staticClass: "card-header-icon" },
+                        [
+                          _c("b-icon", {
                             attrs: {
-                              label: _vm.trans("data.taskSubject"),
-                              type:
-                                _vm.task.name.access == 1 ? "is-warning" : ""
+                              icon: _vm.isOpenBlock ? "menu-down" : "menu-up"
                             }
-                          },
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-content" }, [
+                    _c("div", { staticClass: "content" }, [
+                      _c("div", { staticClass: "columns" }, [
+                        _c(
+                          "div",
+                          { staticClass: "column is-3" },
                           [
-                            _c(
-                              "b-select",
-                              {
-                                attrs: {
-                                  placeholder: _vm.trans("data.taskSubject"),
-                                  "icon-pack": "fa",
-                                  icon: "align-justify",
-                                  disabled: _vm.task.subject.access == 1
-                                },
-                                model: {
-                                  value: _vm.task.subject.data.id,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.task.subject.data, "id", $$v)
+                            _vm.task.project.access >= 1
+                              ? _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: _vm.trans("data.taskProject"),
+                                      type:
+                                        _vm.task.name.access == 1
+                                          ? "is-warning"
+                                          : ""
+                                    }
                                   },
-                                  expression: "task.subject.data.id"
-                                }
-                              },
-                              _vm._l(_vm.subjects, function(val, key) {
-                                return _c(
-                                  "option",
-                                  { key: key, domProps: { value: val.id } },
                                   [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(val.name) +
-                                        "\n                        "
-                                    )
-                                  ]
-                                )
-                              })
-                            )
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-4" }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column is-4" },
-                  [
-                    _vm.task.textMin.access >= 1 || _vm.task.textMax.access >= 1
-                      ? _c(
-                          "b-field",
-                          {
-                            attrs: {
-                              label: _vm.trans("data.taskTextMinMax"),
-                              type:
-                                _vm.task.name.access == 1 ? "is-warning" : ""
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "columns" }, [
-                              _c(
-                                "div",
-                                { staticClass: "column is-6" },
-                                [
-                                  _vm.task.textMin.access >= 1
-                                    ? _c("b-input", {
+                                    _c(
+                                      "b-select",
+                                      {
                                         attrs: {
-                                          placeholder: "min",
-                                          type: "number",
-                                          min: "0",
-                                          disabled: _vm.task.textMin.access == 1
+                                          placeholder: _vm.trans(
+                                            "data.taskProject"
+                                          ),
+                                          "icon-pack": "fa",
+                                          icon: "th-list",
+                                          disabled: _vm.task.project.access == 1
                                         },
                                         model: {
-                                          value: _vm.task.textMin.data,
+                                          value: _vm.task.project.data.id,
                                           callback: function($$v) {
                                             _vm.$set(
-                                              _vm.task.textMin,
-                                              "data",
+                                              _vm.task.project.data,
+                                              "id",
                                               $$v
                                             )
                                           },
-                                          expression: "task.textMin.data"
+                                          expression: "task.project.data.id"
                                         }
+                                      },
+                                      _vm._l(_vm.projects, function(val, key) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: key,
+                                            domProps: { value: val.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        " +
+                                                _vm._s(val.name) +
+                                                "\n                                    "
+                                            )
+                                          ]
+                                        )
                                       })
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "column is-6" },
-                                [
-                                  _vm.task.textMax.access >= 1
-                                    ? _c("b-input", {
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.task.subject.access >= 1
+                              ? _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: _vm.trans("data.taskSubject"),
+                                      type:
+                                        _vm.task.name.access == 1
+                                          ? "is-warning"
+                                          : ""
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "b-select",
+                                      {
                                         attrs: {
-                                          placeholder: "max",
-                                          type: "number",
-                                          min: "0",
-                                          disabled: _vm.task.textMax.access == 1
+                                          placeholder: _vm.trans(
+                                            "data.taskSubject"
+                                          ),
+                                          "icon-pack": "fa",
+                                          icon: "align-justify",
+                                          disabled: _vm.task.subject.access == 1
                                         },
                                         model: {
-                                          value: _vm.task.textMax.data,
+                                          value: _vm.task.subject.data.id,
                                           callback: function($$v) {
                                             _vm.$set(
-                                              _vm.task.textMax,
-                                              "data",
+                                              _vm.task.subject.data,
+                                              "id",
                                               $$v
                                             )
                                           },
-                                          expression: "task.textMax.data"
+                                          expression: "task.subject.data.id"
                                         }
+                                      },
+                                      _vm._l(_vm.subjects, function(val, key) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: key,
+                                            domProps: { value: val.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        " +
+                                                _vm._s(val.name) +
+                                                "\n                                    "
+                                            )
+                                          ]
+                                        )
                                       })
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ])
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.task.textUnique.access >= 1
-                      ? _c(
-                          "b-field",
-                          {
-                            attrs: {
-                              label: _vm.trans("data.taskTextUnique"),
-                              type:
-                                _vm.task.name.access == 1 ? "is-warning" : ""
-                            }
-                          },
-                          [
-                            _c("b-input", {
-                              attrs: {
-                                type: "number",
-                                min: "0",
-                                max: "100",
-                                disabled: _vm.task.textUnique.access == 1
-                              },
-                              model: {
-                                value: _vm.task.textUnique.data,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.task.textUnique, "data", $$v)
-                                },
-                                expression: "task.textUnique.data"
-                              }
-                            })
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
                           ],
                           1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.task.price.access >= 1
-                      ? _c(
-                          "b-field",
-                          {
-                            attrs: {
-                              label: _vm.trans("data.taskPrice"),
-                              type:
-                                _vm.task.name.access == 1 ? "is-warning" : ""
-                            }
-                          },
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "column is-2" },
                           [
-                            _c("b-input", {
-                              attrs: {
-                                type: "number",
-                                min: "0",
-                                disabled: _vm.task.price.access == 1
-                              },
-                              model: {
-                                value: _vm.task.price.data,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.task.price, "data", $$v)
-                                },
-                                expression: "task.price.data"
-                              }
-                            })
+                            _vm.task.price.access >= 1
+                              ? _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: _vm.trans("data.taskPrice"),
+                                      type:
+                                        _vm.task.name.access == 1
+                                          ? "is-warning"
+                                          : ""
+                                    }
+                                  },
+                                  [
+                                    _c("b-input", {
+                                      attrs: {
+                                        type: "number",
+                                        min: "0",
+                                        disabled: _vm.task.price.access == 1
+                                      },
+                                      model: {
+                                        value: _vm.task.price.data,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.task.price, "data", $$v)
+                                        },
+                                        expression: "task.price.data"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.task.textMin.access >= 1 ||
+                            _vm.task.textMax.access >= 1
+                              ? _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: _vm.trans("data.taskTextMinMax"),
+                                      type:
+                                        _vm.task.name.access == 1
+                                          ? "is-warning"
+                                          : ""
+                                    }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "columns" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "column is-6" },
+                                        [
+                                          _vm.task.textMin.access >= 1
+                                            ? _c("b-input", {
+                                                attrs: {
+                                                  placeholder: "min",
+                                                  type: "number",
+                                                  min: "0",
+                                                  disabled:
+                                                    _vm.task.textMin.access == 1
+                                                },
+                                                model: {
+                                                  value: _vm.task.textMin.data,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.task.textMin,
+                                                      "data",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "task.textMin.data"
+                                                }
+                                              })
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "column is-6" },
+                                        [
+                                          _vm.task.textMax.access >= 1
+                                            ? _c("b-input", {
+                                                attrs: {
+                                                  placeholder: "max",
+                                                  type: "number",
+                                                  min: "0",
+                                                  disabled:
+                                                    _vm.task.textMax.access == 1
+                                                },
+                                                model: {
+                                                  value: _vm.task.textMax.data,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.task.textMax,
+                                                      "data",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "task.textMax.data"
+                                                }
+                                              })
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.task.textUnique.access >= 1
+                              ? _c(
+                                  "b-field",
+                                  {
+                                    attrs: {
+                                      label: _vm.trans("data.taskTextUnique"),
+                                      type:
+                                        _vm.task.name.access == 1
+                                          ? "is-warning"
+                                          : ""
+                                    }
+                                  },
+                                  [
+                                    _c("b-input", {
+                                      attrs: {
+                                        type: "number",
+                                        min: "0",
+                                        max: "100",
+                                        disabled:
+                                          _vm.task.textUnique.access == 1
+                                      },
+                                      model: {
+                                        value: _vm.task.textUnique.data,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.task.textUnique,
+                                            "data",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "task.textUnique.data"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
                           ],
                           1
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]),
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "column is-7" })
+                      ])
+                    ])
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _vm.task.name.access >= 1
                 ? _c(
@@ -39659,15 +40021,15 @@ if (false) {
 }
 
 /***/ }),
-/* 113 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(119)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(120)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -39707,7 +40069,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39947,7 +40309,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 
 /***/ }),
-/* 115 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -40308,15 +40670,15 @@ if (false) {
 }
 
 /***/ }),
-/* 116 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(117)
+var __vue_script__ = __webpack_require__(122)
 /* template */
-var __vue_template__ = __webpack_require__(118)
+var __vue_template__ = __webpack_require__(123)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -40356,7 +40718,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 117 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40593,7 +40955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 118 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -40785,7 +41147,7 @@ if (false) {
 }
 
 /***/ }),
-/* 119 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40829,279 +41191,10 @@ if (false) {
 });
 
 /***/ }),
-/* 120 */
+/* 125 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(130)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(132)
-/* template */
-var __vue_template__ = __webpack_require__(133)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-4243b8a6"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/task/control.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4243b8a6", Component.options)
-  } else {
-    hotAPI.reload("data-v-4243b8a6", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(131);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("580310f1", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4243b8a6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./control.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4243b8a6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./control.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 132 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    name: "control",
-
-    mounted: function mounted() {},
-
-
-    props: {
-        isRefresh: true
-    },
-
-    data: function data() {
-        return {};
-    },
-
-
-    methods: {}
-});
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "field is-grouped" }, [
-    _c(
-      "button",
-      {
-        staticClass: "button is-primary control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 0)
-          }
-        }
-      },
-      [
-        _c("b-icon", {
-          attrs: {
-            pack: "fa",
-            icon: _vm.isRefresh ? "refresh" : "check",
-            "custom-class": _vm.isRefresh ? "fa-spin" : ""
-          }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-success control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 1)
-          }
-        }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-link control",
-        attrs: { type: "button", disabled: _vm.isRefresh }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-warning control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 1)
-          }
-        }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4243b8a6", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
