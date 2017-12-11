@@ -11,7 +11,7 @@ export default class Query {
     }
 
     /**
-     * get raw query
+     * get post query
      * @param point
      * @param url
      * @param params
@@ -20,6 +20,16 @@ export default class Query {
     post(point, action, params) {
         return axios.post(this[point] + '/' + action, params)
     };
+
+    /**
+     * get raw post
+     * @param point
+     * @param params
+     * @returns {*|void}
+     */
+    postRaw(point, params) {
+        return axios.post(point, params);
+    }
 
     /**
      * serialize errors

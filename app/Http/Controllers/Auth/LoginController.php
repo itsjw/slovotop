@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\LastLogin;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
@@ -49,10 +50,10 @@ class LoginController extends Controller
             $last = LastLogin::updateOrCreate(['user_id' => Auth::id()]);
             $last->touch();
 
-            return redirect()->intended();
+            return route('crmHome');
         }
 
-        return redirect('login');
+        return new JsonResponse(['errors' => trans('data.loginError')], 422);
     }
 
     /**
