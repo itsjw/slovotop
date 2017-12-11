@@ -35,8 +35,7 @@
             <b-field grouped group-multiline>
                 <b-input :placeholder="trans('data.search')"
                          type="search"
-                         icon-pack="fa"
-                         icon="search"
+                         icon="magnify"
                          v-model="searchText"
                          @input="search">
                 </b-input>
@@ -176,7 +175,7 @@
                     {name: this.trans('data.taskUser'), type: 'author'},
                     {name: this.trans('data.taskOwner'), type: 'owner'},
                 ],
-                searchId: null,
+                searchId: 0,
                 searchText: ''
             }
         },

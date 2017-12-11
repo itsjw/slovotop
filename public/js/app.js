@@ -37691,7 +37691,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37714,7 +37713,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             index: '',
             // search
             searchType: [{ name: this.trans('data.taskName'), type: 'name' }, { name: this.trans('data.projectName'), type: 'project' }, { name: this.trans('data.taskUser'), type: 'author' }, { name: this.trans('data.taskOwner'), type: 'owner' }],
-            searchId: null,
+            searchId: 0,
             searchText: ''
         };
     },
@@ -37900,8 +37899,7 @@ var render = function() {
               attrs: {
                 placeholder: _vm.trans("data.search"),
                 type: "search",
-                "icon-pack": "fa",
-                icon: "search"
+                icon: "magnify"
               },
               on: { input: _vm.search },
               model: {
