@@ -80,6 +80,7 @@ class StageController extends Controller
         $stage->name = $request->name;
         $stage->priority = $request->priority;
         $stage->price = $request->price;
+        $stage->time = $request->time;
 
         $stage->save();
 

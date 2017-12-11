@@ -20,8 +20,10 @@ class TestController extends Controller
     public function index()
     {
 
-        $task = Task::with('comments.user')->find(1);
+        $time = 30*3600;
 
-        return \App\Http\Resources\Comments\Comment::collection($task->comments);
+        //$t = Carbon::createFromFormat('H:i:s', $time);
+
+        return gmdate('H:i:s', $time);
     }
 }

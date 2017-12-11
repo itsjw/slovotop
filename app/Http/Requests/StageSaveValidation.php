@@ -33,6 +33,7 @@ class StageSaveValidation extends FormRequest
                 Rule::unique('task_stages')->ignore($this['id']),
             ],
             'price'    => 'integer|min:0',
+            'time'     => 'required|integer|min:0',
         ];
     }
 }

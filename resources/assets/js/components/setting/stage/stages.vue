@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-p-3 bg bg-wite">
+    <section>
 
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
@@ -85,7 +85,7 @@
             </b-table>
         </section>
 
-    </div>
+    </section>
 </template>
 <script>
     import addStage from './addStage.vue';

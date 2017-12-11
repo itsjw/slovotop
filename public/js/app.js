@@ -30446,7 +30446,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -30490,6 +30490,8 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -30585,7 +30587,8 @@ var render = function() {
               attrs: {
                 type: "email",
                 icon: "email",
-                placeholder: _vm.trans("data.userEmail")
+                placeholder: _vm.trans("data.userEmail"),
+                required: ""
               },
               model: {
                 value: _vm.email,
@@ -30608,7 +30611,8 @@ var render = function() {
                 type: "password",
                 icon: "key",
                 placeholder: _vm.trans("data.userPassword"),
-                "password-reveal": ""
+                "password-reveal": "",
+                required: ""
               },
               model: {
                 value: _vm.password,
@@ -31151,6 +31155,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31205,7 +31218,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: stage.id || 0,
                 name: stage.name || '',
                 priority: stage.priority || 0,
-                price: stage.price || 0
+                price: stage.price || 0,
+                time: stage.time || 0
             };
         }
     }
@@ -31306,6 +31320,28 @@ var render = function() {
                       _vm.$set(_vm.stage, "price", $$v)
                     },
                     expression: "stage.price"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: _vm.trans("data.stageTime") } },
+              [
+                _c("b-input", {
+                  attrs: {
+                    type: "number",
+                    placeholder: _vm.trans("data.stageTime"),
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.stage.time,
+                    callback: function($$v) {
+                      _vm.$set(_vm.stage, "time", $$v)
+                    },
+                    expression: "stage.time"
                   }
                 })
               ],
@@ -31758,7 +31794,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui-p-3 bg bg-wite" }, [
+  return _c("section", [
     _vm.accessMenu == 2
       ? _c("nav", { staticClass: "navbar is-primary" }, [
           _c("div", { staticClass: "navbar-start" }, [

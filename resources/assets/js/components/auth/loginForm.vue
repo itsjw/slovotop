@@ -5,7 +5,8 @@
             <b-field :label="trans('data.userEmail')">
                 <b-input type="email" icon="email"
                          v-model="email"
-                         :placeholder="trans('data.userEmail')">
+                         :placeholder="trans('data.userEmail')"
+                         required>
                 </b-input>
             </b-field>
 
@@ -14,7 +15,8 @@
                 <b-input type="password" icon="key"
                          v-model="password"
                          :placeholder="trans('data.userPassword')"
-                         password-reveal>
+                         password-reveal
+                         required>
                 </b-input>
             </b-field>
 

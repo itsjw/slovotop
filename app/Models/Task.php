@@ -12,12 +12,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-
-    /**
-     * @var array
-     */
-    protected $dates = ['date_end'];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

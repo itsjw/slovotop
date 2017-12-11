@@ -17,7 +17,7 @@ class TaskStage extends Model
     /**
      * @var array
      */
-    protected $dateFormat = ['date_end'];
+    protected $dates = ['time'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

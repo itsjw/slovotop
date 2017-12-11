@@ -35,6 +35,15 @@
                             required>
                     </b-input>
                 </b-field>
+
+                <b-field :label="trans('data.stageTime')">
+                    <b-input
+                            type="number"
+                            v-model="stage.time"
+                            :placeholder="trans('data.stageTime')"
+                            required>
+                    </b-input>
+                </b-field>
             </section>
 
             <footer class="modal-card-foot">
@@ -97,7 +106,8 @@
                     id: stage.id || 0,
                     name: stage.name || '',
                     priority: stage.priority || 0,
-                    price: stage.price || 0
+                    price: stage.price || 0,
+                    time: stage.time || 0
                 };
             }
         }

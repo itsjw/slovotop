@@ -124,6 +124,7 @@ return [
     'stageName'       => 'Название этапа',
     'stagePrice'      => 'Стоимость этапа',
     'stagePriority'   => 'Приоритет',
+    'stageTime'       => 'Время на этап (час)',
     'stageAccessTask' => 'Доступ к задаче',
 
     // Comments
