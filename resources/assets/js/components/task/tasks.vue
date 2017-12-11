@@ -3,28 +3,28 @@
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getTasks()">
-                    <span class="icon">
-                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
                     </span>
                 </a>
 
                 <a class="navbar-item" @click="addTask()">
-                    <span class="icon">
-                        <i class="fa fa-tasks"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-plus-circle"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="editTask()">
-                    <span class="icon">
-                        <i class="fa fa-pencil"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-pencil"></i>
                     </span>
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="confirmDeleteTask()">
-                    <span class="icon">
-                        <i class="fa fa-trash"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-delete"></i>
                     </span>
                     <span>{{ trans('data.delete') }}</span>
                 </a>

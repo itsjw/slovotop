@@ -37522,10 +37522,10 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "icon" }, [
+                _c("span", { staticClass: "icon is-medium" }, [
                   _c("i", {
-                    staticClass: "fa fa-refresh",
-                    class: _vm.tableLoading ? "fa-spin" : ""
+                    staticClass: "mdi mdi-18px mdi-reload",
+                    class: _vm.tableLoading ? "mdi-spin" : ""
                   })
                 ])
               ]
@@ -37938,24 +37938,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-tasks" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-plus-circle" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-pencil" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-pencil" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-trash" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
     ])
   }
 ]
