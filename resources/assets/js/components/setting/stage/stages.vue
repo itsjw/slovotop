@@ -31,8 +31,8 @@
                 </a>
 
                 <a class="navbar-item" @click="accessStage()">
-                    <span class="icon">
-                        <i class="fa fa-shield"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-human"></i>
                     </span>
                     <span>{{ trans('data.stageAccessTask') }}</span>
                 </a>
