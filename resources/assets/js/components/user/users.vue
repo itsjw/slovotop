@@ -4,35 +4,35 @@
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getUsers()">
-                    <span class="icon">
-                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
                     </span>
                 </a>
 
                 <a class="navbar-item" @click="addUser()">
-                    <span class="icon">
-                        <i class="fa fa-user-plus"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-plus-circle"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="editUser()">
-                    <span class="icon">
-                        <i class="fa fa-pencil"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-pencil"></i>
                     </span>
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="approveUser()">
-                    <span class="icon">
-                        <i class="fa fa-thumbs-up"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-approval"></i>
                     </span>
                     <span>{{ trans('data.approve') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="confirmDeleteUser()">
-                    <span class="icon">
-                        <i class="fa fa-trash"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-delete"></i>
                     </span>
                     <span>{{ trans('data.delete') }}</span>
                 </a>
@@ -43,8 +43,7 @@
             <b-field grouped group-multiline>
                 <b-input :placeholder="trans('data.search')"
                          type="search"
-                         icon-pack="fa"
-                         icon="search"
+                         icon="magnify"
                          v-model="searchText"
                          @input="search">
                 </b-input>
@@ -157,7 +156,7 @@
                     {name: this.trans('data.userName'), type: 'name'},
                     {name: this.trans('data.userEmail'), type: 'email'},
                 ],
-                searchId: null,
+                searchId: 0,
                 searchText: ''
             }
         },

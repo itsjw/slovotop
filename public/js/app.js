@@ -34909,7 +34909,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -34932,7 +34931,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tablePaginated: true,
             // search
             searchType: [{ name: this.trans('data.userName'), type: 'name' }, { name: this.trans('data.userEmail'), type: 'email' }],
-            searchId: null,
+            searchId: 0,
             searchText: ''
         };
     },
@@ -35547,9 +35546,7 @@ var render = function() {
                                 _vm._v(_vm._s(_vm.trans("data.userRole")))
                               ]),
                               _vm._v(" "),
-                              _c("b-icon", {
-                                attrs: { pack: "fa", icon: "angle-up" }
-                              })
+                              _c("b-icon", { attrs: { icon: "account-alert" } })
                             ],
                             1
                           ),
@@ -35710,10 +35707,10 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "icon" }, [
+                _c("span", { staticClass: "icon is-medium" }, [
                   _c("i", {
-                    staticClass: "fa fa-refresh",
-                    class: _vm.tableLoading ? "fa-spin" : ""
+                    staticClass: "mdi mdi-18px mdi-reload",
+                    class: _vm.tableLoading ? "mdi-spin" : ""
                   })
                 ])
               ]
@@ -35802,8 +35799,7 @@ var render = function() {
               attrs: {
                 placeholder: _vm.trans("data.search"),
                 type: "search",
-                "icon-pack": "fa",
-                icon: "search"
+                icon: "magnify"
               },
               on: { input: _vm.search },
               model: {
@@ -36101,32 +36097,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-user-plus" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-plus-circle" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-pencil" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-pencil" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-thumbs-up" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-approval" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fa fa-trash" })
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
     ])
   }
 ]
