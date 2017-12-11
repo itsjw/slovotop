@@ -15,17 +15,11 @@
 <body>
 <div id="app">
 
-    <q-layout ref="layout" view="HHH Lpr FFF">
+    @include('crm.head.head')
 
-        @include('crm.head.head')
+    @include('crm.menu.menu')
 
-        <div slot="left" color="blue-grey-14">
-            @include('crm.menu.menu')
-        </div>
-
-        @yield('content')
-
-    </q-layout>
+    @yield('content')
 
 </div>
 
