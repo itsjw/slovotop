@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Model;
 class TaskStage extends Model
 {
     /**
+     * @var array
+     */
+    protected $dateFormat = ['date_end'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function roles()
