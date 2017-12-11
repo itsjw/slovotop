@@ -23,7 +23,6 @@ class CreateTasksTable extends Migration
             $table->integer('editor_id')->nullable();
             $table->integer('author_id')->nullable();
             $table->integer('subject_id');
-            $table->timestamp('date_end');
             $table->integer('price')->nullable();
             $table->string('title')->nullable();
             $table->text('desc')->nullable();
