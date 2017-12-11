@@ -1,7 +1,5 @@
 @import "mdicon/scss/materialdesignicons";
 //@import "icons/scss/font-awesome";
-// Import Bulma's core
-@import "~bulma/sass/utilities/_all";
 
 // change const
 .is-size-7 {
@@ -9,6 +7,6 @@
 }
 
 // Import Bulma and Buefy styles
-@import "~bulma";
+@import "bulma/bulma";
 @import "~buefy/src/scss/buefy";
 @import "admin/admin";

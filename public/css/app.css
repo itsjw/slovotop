@@ -8457,6 +8457,12 @@
   }
 }
 
+.is-size-7 {
+  font-size: 0.75rem !important;
+}
+
+/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
+
 @-webkit-keyframes spinAround {
   from {
     -webkit-transform: rotate(0deg);
@@ -8468,24 +8474,6 @@
             transform: rotate(359deg);
   }
 }
-
-@keyframes spinAround {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-
-.is-size-7 {
-  font-size: 0.75rem !important;
-}
-
-/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 
 @keyframes spinAround {
   from {
@@ -13971,19 +13959,19 @@ a.tag:hover {
 }
 
 .title.is-1 {
-  font-size: 18;
+  font-size: 18px;
 }
 
 .title.is-2 {
-  font-size: 24;
+  font-size: 24px;
 }
 
 .title.is-3 {
-  font-size: 36;
+  font-size: 36px;
 }
 
 .title.is-4 {
-  font-size: 48;
+  font-size: 48px;
 }
 
 .subtitle {
@@ -14003,19 +13991,19 @@ a.tag:hover {
 }
 
 .subtitle.is-1 {
-  font-size: 18;
+  font-size: 18px;
 }
 
 .subtitle.is-2 {
-  font-size: 24;
+  font-size: 24px;
 }
 
 .subtitle.is-3 {
-  font-size: 36;
+  font-size: 36px;
 }
 
 .subtitle.is-4 {
-  font-size: 48;
+  font-size: 48px;
 }
 
 .block:not(:last-child) {
@@ -22572,7 +22560,6 @@ html {
   -webkit-box-flex: 1;
       -ms-flex: auto;
           flex: auto;
-  background: whitesmoke;
 }
 
 .admin-wrap .admin-content-wrap .admin-content {
