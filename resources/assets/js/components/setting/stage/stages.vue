@@ -5,27 +5,27 @@
             <div class="navbar-start">
                 <a class="navbar-item" @click="getStages()">
                     <span class="icon">
-                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
+                        <i class="mdi mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
                     </span>
                 </a>
 
                 <a class="navbar-item" @click="addStage()">
-                    <span class="icon">
-                        <i class="fa fa-tasks"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-plus-circle"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="editStage()">
-                    <span class="icon">
-                        <i class="fa fa-pencil"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-pencil"></i>
                     </span>
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="confirmDeleteStage()">
-                    <span class="icon">
-                        <i class="fa fa-trash"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-delete"></i>
                     </span>
                     <span>{{ trans('data.delete') }}</span>
                 </a>
