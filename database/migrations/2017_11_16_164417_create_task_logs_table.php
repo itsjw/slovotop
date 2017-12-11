@@ -15,10 +15,11 @@ class CreateTaskLogsTable extends Migration
     {
         Schema::create('task_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('task_id');
+            $table->integer('task_id');
             $table->integer('stage_id');
-            $table->bigInteger('uer_id');
+            $table->integer('user_id');
             $table->integer('staus_id');
+            $table->timestamp('date_end');
             $table->timestamps();
         });
     }
