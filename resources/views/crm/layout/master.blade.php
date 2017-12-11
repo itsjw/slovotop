@@ -14,7 +14,6 @@
 </head>
 <body>
 <div id="app">
-
     <div class="admin-wrap">
 
         <div class="admin-left">
@@ -36,7 +35,6 @@
         </div>
 
     </div>
-
 </div>
 
 @yield('script')
