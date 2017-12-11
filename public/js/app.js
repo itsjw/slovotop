@@ -1478,7 +1478,6 @@ window.Vue = __webpack_require__(37);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a, {
-    defaultIconPack: 'fa',
     defaultTimeFormatter: 'HH:mm',
     defaultTimeParser: 'HH:mm',
     defaultDayNames: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],

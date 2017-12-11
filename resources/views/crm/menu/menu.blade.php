@@ -5,8 +5,8 @@
        class="admin-menu {{ explode('/',Request::getRequestUri())[2] === $menu->slug ? "active" : "" }} ">
 
         <div>
-            <span class="icon">
-            <i class="fa fa-lg {{ $menu->icon }}"></i>
+            <span class="icon is-medium">
+            <i class="mdi mdi-24px mdi-{{ $menu->icon }}"></i>
             </span>
         </div>
 
