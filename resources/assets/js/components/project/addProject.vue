@@ -29,7 +29,7 @@
                 <b-field :label="trans('data.projectUser')" v-if="isAdmin">
                     <b-select :placeholder="trans('data.projectUser')"
                               v-model="project.user.id"
-                              icon-pack="fa" icon="user" required>
+                              icon="account" required>
                         <option
                                 v-for="val in users"
                                 :value="val.id"
@@ -45,9 +45,8 @@
                 <button class="button is-primary" type="button" @click.prevent="saveProject()"
                         :disabled="isDisabled">
                     <b-icon
-                            pack="fa"
-                            :icon="isDisabled ? 'refresh' : 'check'"
-                            :custom-class="isDisabled ? 'fa-spin' : ''">
+                            :icon="isDisabled ? 'reload' : 'check'"
+                            :custom-class="isDisabled ? 'mdi-spin' : ''">
                     </b-icon>
                     <span>{{ trans('data.save') }}</span>
                 </button>
