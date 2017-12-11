@@ -12,14 +12,12 @@
 
                 <b-tabs type="is-boxed" class="ui-mt-3">
                     <b-tab-item :label="trans('data.titleMenu')"
-                                icon-pack="fa"
-                                icon="bars">
+                                icon="menu">
                         <access-tab-menu :role="role.id"></access-tab-menu>
                     </b-tab-item>
 
                     <b-tab-item :label="trans('data.roleStage')"
-                                icon-pack="fa"
-                                icon="tasks">
+                                icon="format-list-numbers">
                         <access-tab-stage :role="role.id"></access-tab-stage>
                     </b-tab-item>
                 </b-tabs>
