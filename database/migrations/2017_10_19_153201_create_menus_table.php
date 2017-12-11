@@ -49,47 +49,47 @@ class CreateMenusTable extends Migration
         Menu::create([
             'name'    => 'Главная',
             'slug'    => 'home',
-            'icon'    => 'fa-home',
+            'icon'    => 'home',
         ]);
         Menu::create([
             'name'    => 'Настройки',
             'slug'    => 'settings',
-            'icon'    => 'fa-cogs',
+            'icon'    => 'settings',
         ]);
         Menu::create([
             'name'    => 'Тематика',
             'slug'    => 'subjects',
-            'icon'    => 'fa-align-justify',
+            'icon'    => 'reorder-horizontal',
         ]);
         Menu::create([
             'name'    => 'Роли и права',
             'slug'    => 'roles',
-            'icon'    => 'fa-shield',
+            'icon'    => 'security',
         ]);
         Menu::create([
             'name'    => 'Пользователи',
             'slug'    => 'users',
-            'icon'    => 'fa-users',
+            'icon'    => 'account-multiple',
         ]);
         Menu::create([
             'name'    => 'Проекты',
             'slug'    => 'projects',
-            'icon'    => 'fa-th-list',
+            'icon'    => 'view-list',
         ]);
         Menu::create([
             'name'    => 'Задачи',
             'slug'    => 'tasks',
-            'icon'    => 'fa-tasks',
+            'icon'    => 'format-list-numbers',
         ]);
         Menu::create([
             'name'    => 'Документация',
             'slug'    => 'docs',
-            'icon'    => 'fa-file-text',
+            'icon'    => 'file-document',
         ]);
         Menu::create([
             'name'    => 'Отчеты',
             'slug'    => 'reports',
-            'icon'    => 'fa-bar-chart',
+            'icon'    => 'chart-areaspline',
         ]);
     }
 }
