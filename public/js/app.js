@@ -40802,13 +40802,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -40985,7 +40978,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("section", [
     _vm.accessMenu != 2
       ? _c("div", { staticClass: "content" }, [
           _c("h1", [_vm._v(_vm._s(_vm.doc.name))]),
@@ -40997,171 +40990,164 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.accessMenu == 2
-      ? _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column is-10 bg bg-wite" }, [
-            _c(
-              "form",
-              [
-                _c(
-                  "b-field",
-                  { attrs: { label: _vm.trans("data.docsName") } },
-                  [
-                    _c("b-input", {
-                      attrs: { type: "text" },
-                      model: {
-                        value: _vm.doc.name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.doc, "name", $$v)
-                        },
-                        expression: "doc.name"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("section", [
-                  _c("div", { staticClass: "columns ui-mt-2" }, [
-                    _c(
-                      "div",
-                      { staticClass: "column is-1" },
-                      [
-                        _c(
-                          "b-dropdown",
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "button is-link",
-                                attrs: { slot: "trigger", type: "button" },
-                                slot: "trigger"
-                              },
-                              [
-                                _c("span", [
-                                  _vm._v(_vm._s(_vm.trans("data.userRole")))
-                                ]),
-                                _vm._v(" "),
-                                _c("b-icon", { attrs: { icon: "menu-down" } })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _vm._l(_vm.roles, function(val, id) {
-                              return _c(
-                                "b-dropdown-item",
-                                {
-                                  key: val.id,
-                                  on: {
-                                    click: function($event) {
-                                      _vm.addRole(id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(val.name) +
-                                      "\n                                "
-                                  )
-                                ]
-                              )
-                            })
-                          ],
-                          2
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column" }, [
+      ? _c("div", { staticClass: "container" }, [
+          _c(
+            "form",
+            [
+              _c(
+                "b-field",
+                { attrs: { label: _vm.trans("data.docsName") } },
+                [
+                  _c("b-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.doc.name,
+                      callback: function($$v) {
+                        _vm.$set(_vm.doc, "name", $$v)
+                      },
+                      expression: "doc.name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("section", [
+                _c("div", { staticClass: "columns ui-mt-2" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column is-1" },
+                    [
                       _c(
-                        "div",
-                        {
-                          staticClass: "field is-grouped is-grouped-multiline"
-                        },
-                        _vm._l(_vm.doc.roles, function(item, k) {
-                          return _c("div", { staticClass: "control" }, [
-                            _c("div", { staticClass: "tags has-addons" }, [
-                              _c("a", { staticClass: "tag is-warning" }, [
-                                _vm._v(_vm._s(item.name))
+                        "b-dropdown",
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button is-link",
+                              attrs: { slot: "trigger", type: "button" },
+                              slot: "trigger"
+                            },
+                            [
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.trans("data.userRole")))
                               ]),
                               _vm._v(" "),
-                              _c("a", {
-                                staticClass: "tag is-delete",
+                              _c("b-icon", { attrs: { icon: "menu-down" } })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(val, id) {
+                            return _c(
+                              "b-dropdown-item",
+                              {
+                                key: val.id,
                                 on: {
                                   click: function($event) {
-                                    _vm.deleteRole(k)
+                                    _vm.addRole(id)
                                   }
                                 }
-                              })
-                            ])
-                          ])
-                        })
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(val.name) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
                       )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "b-field",
-                  {
-                    staticClass: "ui-mt-3",
-                    attrs: { label: _vm.trans("data.docsBody") }
-                  },
-                  [_c("textarea", { attrs: { id: "editor" } })]
-                ),
-                _vm._v(" "),
-                _c("footer", { staticClass: "modal-card-foot" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.cancelDoc()
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        _vm._s(_vm.trans("data.cancel")) +
-                          "\n                    "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button is-primary",
-                      attrs: { type: "button", disabled: _vm.isDisabled },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.saveDoc()
-                        }
-                      }
-                    },
-                    [
-                      _c("b-icon", {
-                        attrs: {
-                          icon: _vm.isDisabled ? "reload" : "check",
-                          "custom-class": _vm.isDisabled ? "mdi-spin" : ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "column" }, [
+                    _c(
+                      "div",
+                      { staticClass: "field is-grouped is-grouped-multiline" },
+                      _vm._l(_vm.doc.roles, function(item, k) {
+                        return _c("div", { staticClass: "control" }, [
+                          _c("div", { staticClass: "tags has-addons" }, [
+                            _c("a", { staticClass: "tag is-warning" }, [
+                              _vm._v(_vm._s(item.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("a", {
+                              staticClass: "tag is-delete",
+                              on: {
+                                click: function($event) {
+                                  _vm.deleteRole(k)
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      })
+                    )
+                  ])
                 ])
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column is-2" })
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-field",
+                {
+                  staticClass: "ui-mt-3",
+                  attrs: { label: _vm.trans("data.docsBody") }
+                },
+                [_c("textarea", { attrs: { id: "editor" } })]
+              ),
+              _vm._v(" "),
+              _c("footer", { staticClass: "modal-card-foot" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.cancelDoc()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(_vm.trans("data.cancel")) + "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-primary",
+                    attrs: { type: "button", disabled: _vm.isDisabled },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.saveDoc()
+                      }
+                    }
+                  },
+                  [
+                    _c("b-icon", {
+                      attrs: {
+                        icon: _vm.isDisabled ? "reload" : "check",
+                        "custom-class": _vm.isDisabled ? "mdi-spin" : ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
         ])
       : _vm._e()
   ])

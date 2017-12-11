@@ -1,72 +1,65 @@
 <template>
-    <div>
-
+    <section>
         <div class="content" v-if="accessMenu != 2">
             <h1>{{ doc.name }}</h1>
             <p v-html="converToHtml(doc.body)"></p>
         </div>
 
-        <div class="columns" v-if="accessMenu == 2">
-            <div class="column is-10 bg bg-wite">
+        <div class="container" v-if="accessMenu == 2">
+            <form>
+                <b-field :label="trans('data.docsName')">
+                    <b-input type="text" v-model="doc.name"></b-input>
+                </b-field>
 
-                <form>
-                    <b-field :label="trans('data.docsName')">
-                        <b-input type="text" v-model="doc.name"></b-input>
-                    </b-field>
+                <section>
 
-                    <section>
+                    <div class="columns ui-mt-2">
+                        <div class="column is-1">
+                            <b-dropdown>
+                                <button type="button" class="button is-link" slot="trigger">
+                                    <span>{{ trans('data.userRole') }}</span>
+                                    <b-icon icon="menu-down"></b-icon>
+                                </button>
 
-                        <div class="columns ui-mt-2">
-                            <div class="column is-1">
-                                <b-dropdown>
-                                    <button type="button" class="button is-link" slot="trigger">
-                                        <span>{{ trans('data.userRole') }}</span>
-                                        <b-icon icon="menu-down"></b-icon>
-                                    </button>
-
-                                    <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">
-                                        {{ val.name }}
-                                    </b-dropdown-item>
-                                </b-dropdown>
-                            </div>
-                            <div class="column">
-                                <div class="field is-grouped is-grouped-multiline">
-                                    <div class="control" v-for="(item,k) in doc.roles">
-                                        <div class="tags has-addons">
-                                            <a class="tag is-warning">{{ item.name }}</a>
-                                            <a class="tag is-delete" @click="deleteRole(k)"></a>
-                                        </div>
+                                <b-dropdown-item v-for="(val,id) in roles" :key=val.id @click="addRole(id)">
+                                    {{ val.name }}
+                                </b-dropdown-item>
+                            </b-dropdown>
+                        </div>
+                        <div class="column">
+                            <div class="field is-grouped is-grouped-multiline">
+                                <div class="control" v-for="(item,k) in doc.roles">
+                                    <div class="tags has-addons">
+                                        <a class="tag is-warning">{{ item.name }}</a>
+                                        <a class="tag is-delete" @click="deleteRole(k)"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    </section>
+                </section>
 
-                    <b-field :label="trans('data.docsBody')" class="ui-mt-3">
-                        <textarea id="editor"></textarea>
-                    </b-field>
+                <b-field :label="trans('data.docsBody')" class="ui-mt-3">
+                    <textarea id="editor"></textarea>
+                </b-field>
 
-                    <footer class="modal-card-foot">
-                        <button class="button" type="button" @click="cancelDoc()">{{ trans('data.cancel') }}
-                        </button>
-                        <button class="button is-primary" type="button" @click.prevent="saveDoc()"
-                                :disabled="isDisabled">
-                            <b-icon
-                                    :icon="isDisabled ? 'reload' : 'check'"
-                                    :custom-class="isDisabled ? 'mdi-spin' : ''">
-                            </b-icon>
-                            <span>{{ trans('data.save') }}</span>
-                        </button>
-                    </footer>
+                <footer class="modal-card-foot">
+                    <button class="button" type="button" @click="cancelDoc()">{{ trans('data.cancel') }}
+                    </button>
+                    <button class="button is-primary" type="button" @click.prevent="saveDoc()"
+                            :disabled="isDisabled">
+                        <b-icon
+                                :icon="isDisabled ? 'reload' : 'check'"
+                                :custom-class="isDisabled ? 'mdi-spin' : ''">
+                        </b-icon>
+                        <span>{{ trans('data.save') }}</span>
+                    </button>
+                </footer>
 
-                </form>
-
-            </div>
-            <div class="column is-2"></div>
-
+            </form>
         </div>
-    </div>
+    </section>
 </template>
 <script>
     export default {
