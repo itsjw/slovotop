@@ -1,17 +1,17 @@
-<q-toolbar slot="header" color="blue-grey-14">
-
-    <q-btn flat @click="$refs.layout.toggleLeft()">
-        <q-icon name="fa-bars"/>
-    </q-btn>
-
-    <q-toolbar-title>
-        @yield('HeadTitle')
-    </q-toolbar-title>
-
-    <a href="{{ route('logout') }}">
-        <q-btn flat color="white" no-caps icon="fa-sign-out">
-            {{ \Auth::user()->name }}
-        </q-btn>
-    </a>
-
-</q-toolbar>
+<nav class="navbar">
+    <div class="navbar-start">
+        <div class="navbar-item">
+            <h1 class="title is-5">@yield('HeadTitle')</h1>
+        </div>
+    </div>
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <a href="{{ route('logout') }}" class="button is-info">
+                <span class="icon">
+                    <i class="fa fa-sign-out"></i>
+                </span>
+                <span>{{ \Auth::user()->name }}</span>
+            </a>
+        </div>
+    </div>
+</nav>
