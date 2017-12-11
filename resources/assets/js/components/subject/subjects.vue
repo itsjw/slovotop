@@ -3,28 +3,28 @@
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getSubjects()">
-                    <span class="icon">
-                        <i class="fa fa-refresh" :class="tableLoading ? 'fa-spin' : ''"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
                     </span>
                 </a>
 
                 <a class="navbar-item" @click="addSubject()">
-                    <span class="icon">
-                        <i class="fa fa-align-justify"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-plus-circle"></i>
                     </span>
                     <span>{{ trans('data.add') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="editSubject()">
-                    <span class="icon">
-                        <i class="fa fa-pencil"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-pencil"></i>
                     </span>
                     <span>{{ trans('data.edit') }}</span>
                 </a>
 
                 <a class="navbar-item" @click="confirmDeleteSubject()">
-                    <span class="icon">
-                        <i class="fa fa-trash"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-delete"></i>
                     </span>
                     <span>{{ trans('data.delete') }}</span>
                 </a>
@@ -35,8 +35,7 @@
             <b-field grouped group-multiline>
                 <b-input :placeholder="trans('data.search')"
                          type="search"
-                         icon-pack="fa"
-                         icon="search"
+                         icon="magnify"
                          v-model="searchText"
                          @input="search">
                 </b-input>
@@ -133,7 +132,7 @@
                 searchType: [
                     {name: this.trans('data.subjectName'), type: 'name'},
                 ],
-                searchId: null,
+                searchId: 0,
                 searchText: ''
             }
         },

@@ -4,8 +4,8 @@
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getStages()">
-                    <span class="icon">
-                        <i class="mdi mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-18px mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
                     </span>
                 </a>
 
