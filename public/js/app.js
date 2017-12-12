@@ -30938,6 +30938,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -31975,6 +31979,26 @@ var render = function() {
                         _vm._v(
                           "\n                    " +
                             _vm._s(props.row.price) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-table-column",
+                      {
+                        attrs: {
+                          field: "time",
+                          label: _vm.trans("data.stageTime"),
+                          numeric: "",
+                          sortable: "",
+                          centered: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(props.row.time) +
                             "\n                "
                         )
                       ]

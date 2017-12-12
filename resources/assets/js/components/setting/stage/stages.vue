@@ -63,6 +63,10 @@
                         {{ props.row.price }}
                     </b-table-column>
 
+                    <b-table-column field="time" :label="trans('data.stageTime')" numeric sortable centered>
+                        {{ props.row.time }}
+                    </b-table-column>
+
                     <b-table-column field="id" label="ID" width="40" numeric sortable centered>
                         {{ props.row.id }}
                     </b-table-column>
