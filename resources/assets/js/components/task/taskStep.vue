@@ -67,7 +67,9 @@
         mounted() {
         },
 
-        props: {},
+        props: {
+            task: {}
+        },
 
         data() {
             return {

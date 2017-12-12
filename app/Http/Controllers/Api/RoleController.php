@@ -93,7 +93,7 @@ class RoleController extends Controller
     {
         foreach ($request->items as $key) {
             $role = Role::find($key['id']);
-            if (!$role->users()->count()) {
+            if ($role->id !== 1 && !$role->users()->count()) {
                 $role->delete();
             }
         }
