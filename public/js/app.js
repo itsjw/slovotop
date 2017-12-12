@@ -30553,15 +30553,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         login: function login() {
             var _this = this;
 
-            Api.postRaw('auth', { email: this.email, password: this.password, remember: this.remember }).then(function (response) {
-                window.location = response.data;
-            }).catch(function (error) {
-                _this.$toast.open({
-                    duration: 5000,
-                    message: Api.errorSerializer(error.response.data),
-                    type: 'is-danger'
+            if (this.$refs.form.checkValidity()) {
+                Api.postRaw('auth', { email: this.email, password: this.password, remember: this.remember }).then(function (response) {
+                    window.location = response.data;
+                }).catch(function (error) {
+                    _this.$toast.open({
+                        duration: 5000,
+                        message: Api.errorSerializer(error.response.data),
+                        type: 'is-danger'
+                    });
                 });
-            });
+            }
         }
     }
 });
@@ -30575,104 +30577,108 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "column is-4 is-offset-4" },
-      [
-        _c(
-          "b-field",
-          { attrs: { label: _vm.trans("data.userEmail") } },
-          [
-            _c("b-input", {
-              attrs: {
-                type: "email",
-                icon: "email",
-                placeholder: _vm.trans("data.userEmail"),
-                required: ""
-              },
-              model: {
-                value: _vm.email,
-                callback: function($$v) {
-                  _vm.email = $$v
+    _c("div", { staticClass: "column is-4 is-offset-4" }, [
+      _c(
+        "form",
+        { ref: "form" },
+        [
+          _c(
+            "b-field",
+            { attrs: { label: _vm.trans("data.userEmail") } },
+            [
+              _c("b-input", {
+                attrs: {
+                  type: "email",
+                  icon: "email",
+                  placeholder: _vm.trans("data.userEmail"),
+                  required: ""
                 },
-                expression: "email"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "b-field",
-          { attrs: { label: _vm.trans("data.userPassword") } },
-          [
-            _c("b-input", {
-              attrs: {
-                type: "password",
-                icon: "key",
-                placeholder: _vm.trans("data.userPassword"),
-                "password-reveal": "",
-                required: ""
-              },
-              model: {
-                value: _vm.password,
-                callback: function($$v) {
-                  _vm.password = $$v
-                },
-                expression: "password"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "field" },
-          [
-            _c(
-              "b-checkbox",
-              {
                 model: {
-                  value: _vm.remember,
+                  value: _vm.email,
                   callback: function($$v) {
-                    _vm.remember = $$v
+                    _vm.email = $$v
                   },
-                  expression: "remember"
+                  expression: "email"
                 }
-              },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.trans("data.userRemember")) +
-                    "\n            "
-                )
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "button is-primary",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                _vm.login()
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-field",
+            { attrs: { label: _vm.trans("data.userPassword") } },
+            [
+              _c("b-input", {
+                attrs: {
+                  type: "password",
+                  icon: "key",
+                  placeholder: _vm.trans("data.userPassword"),
+                  "password-reveal": "",
+                  required: ""
+                },
+                model: {
+                  value: _vm.password,
+                  callback: function($$v) {
+                    _vm.password = $$v
+                  },
+                  expression: "password"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _c(
+                "b-checkbox",
+                {
+                  model: {
+                    value: _vm.remember,
+                    callback: function($$v) {
+                      _vm.remember = $$v
+                    },
+                    expression: "remember"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("data.userRemember")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.login()
+                }
               }
-            }
-          },
-          [
-            _vm._v(
-              "\n            " + _vm._s(_vm.trans("data.login")) + "\n        "
-            )
-          ]
-        )
-      ],
-      1
-    )
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("data.login")) +
+                  "\n            "
+              )
+            ]
+          )
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []
