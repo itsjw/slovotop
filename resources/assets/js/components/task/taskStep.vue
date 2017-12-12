@@ -1,22 +1,22 @@
 <template>
     <section>
         <div class="block">
-            <b-tooltip label="Tooltip top">
+            <b-tooltip :label="trans('data.reload')">
                 <button class="button is-primary is-small">
                     <b-icon icon="reload"></b-icon>
                 </button>
             </b-tooltip>
-            <b-tooltip label="Tooltip top">
+            <b-tooltip :label="trans('data.taskAddUser')">
                 <button class="button is-success is-small">
                     <b-icon icon="plus-circle-outline"></b-icon>
                 </button>
             </b-tooltip>
-            <b-tooltip label="Tooltip top">
+            <b-tooltip :label="trans('data.taskEditUser')">
                 <button class="button is-link is-small">
                     <b-icon icon="pencil"></b-icon>
                 </button>
             </b-tooltip>
-            <b-tooltip label="Tooltip top">
+            <b-tooltip :label="trans('data.taskDelUser')">
                 <button class="button is-danger is-small">
                     <b-icon icon="delete"></b-icon>
                 </button>
@@ -31,10 +31,13 @@
                 checkable>
 
             <template slot-scope="props">
-                <b-table-column label="Step">
+                <b-table-column :label="trans('data.taskStage')">
                     {{ props.row.step }}
                 </b-table-column>
                 <b-table-column label="User">
+                    {{ props.row.user }}
+                </b-table-column>
+                <b-table-column :label="trans('data.taskState')">
                     {{ props.row.user }}
                 </b-table-column>
             </template>

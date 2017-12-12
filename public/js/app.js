@@ -39550,7 +39550,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39561,6 +39561,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -39645,7 +39648,7 @@ var render = function() {
         "div",
         { staticClass: "block" },
         [
-          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.reload") } }, [
             _c(
               "button",
               { staticClass: "button is-primary is-small" },
@@ -39654,7 +39657,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskAddUser") } }, [
             _c(
               "button",
               { staticClass: "button is-success is-small" },
@@ -39663,16 +39666,20 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
-            _c(
-              "button",
-              { staticClass: "button is-link is-small" },
-              [_c("b-icon", { attrs: { icon: "pencil" } })],
-              1
-            )
-          ]),
+          _c(
+            "b-tooltip",
+            { attrs: { label: _vm.trans("data.taskEditUser") } },
+            [
+              _c(
+                "button",
+                { staticClass: "button is-link is-small" },
+                [_c("b-icon", { attrs: { icon: "pencil" } })],
+                1
+              )
+            ]
+          ),
           _vm._v(" "),
-          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskDelUser") } }, [
             _c(
               "button",
               { staticClass: "button is-danger is-small" },
@@ -39702,13 +39709,17 @@ var render = function() {
             key: "default",
             fn: function(props) {
               return [
-                _c("b-table-column", { attrs: { label: "Step" } }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(props.row.step) +
-                      "\n            "
-                  )
-                ]),
+                _c(
+                  "b-table-column",
+                  { attrs: { label: _vm.trans("data.taskStage") } },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.step) +
+                        "\n            "
+                    )
+                  ]
+                ),
                 _vm._v(" "),
                 _c("b-table-column", { attrs: { label: "User" } }, [
                   _vm._v(
@@ -39716,7 +39727,19 @@ var render = function() {
                       _vm._s(props.row.user) +
                       "\n            "
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "b-table-column",
+                  { attrs: { label: _vm.trans("data.taskState") } },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.user) +
+                        "\n            "
+                    )
+                  ]
+                )
               ]
             }
           }

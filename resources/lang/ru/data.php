@@ -23,6 +23,7 @@ return [
     'showAll'         => 'Пагинация',
     'searchParam'     => 'Параметр поиска',
     'searchNull'      => 'Данных нет',
+    'reload'          => 'Обновить',
 
     // notify
     'notifyOK'        => 'Успешно',
@@ -115,6 +116,11 @@ return [
     'taskGet'         => 'Сдать задачу',
     'taskNext'        => 'Следующий этап',
     'taskReturn'      => 'Вернуть на доработку',
+
+    'taskAddUser'     => 'Добавить исполнителя',
+    'taskEditUser'    => 'Редактировать исполнителя',
+    'taskDelUser'     => 'Удалить исполнителя',
+
 
     // Subjects
     'subjectSubject'  => 'Тематика задач',
