@@ -8,7 +8,7 @@
             <b-collapse class="card" :open.sync="isOpenBlock">
                 <div slot="trigger" class="card-header">
                     <p class="card-header-title">
-                        Component
+                        {{ trans('data.taskBlockMain') }}
                     </p>
                     <a class="card-header-icon">
                         <b-icon :icon="isOpenBlock ?
@@ -102,7 +102,7 @@
                 </div>
             </b-collapse>
 
-            <b-field :label="trans('data.taskName')"
+            <b-field class="ui-mt-3" :label="trans('data.taskName')"
                      v-if="task.name.access >= 1"
                      :type="task.name.access == 1 ? 'is-warning' : ''">
                 <b-input v-model="task.name.data"

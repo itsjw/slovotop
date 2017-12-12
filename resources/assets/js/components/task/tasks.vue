@@ -3,9 +3,11 @@
         <nav class="navbar is-primary" v-if="accessMenu == 2">
             <div class="navbar-start">
                 <a class="navbar-item" @click="getTasks()">
-                    <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-reload" :class="tableLoading ? 'mdi-spin' : ''"></i>
-                    </span>
+                    <b-icon
+                            icon="reload"
+                            size="is-small"
+                            :custom-class="tableLoading ? 'mdi-spin' : ''">
+                    </b-icon>
                 </a>
 
                 <a class="navbar-item" @click="addTask()">

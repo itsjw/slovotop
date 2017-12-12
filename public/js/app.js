@@ -37759,6 +37759,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -37892,13 +37894,15 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "icon is-medium" }, [
-                  _c("i", {
-                    staticClass: "mdi mdi-18px mdi-reload",
-                    class: _vm.tableLoading ? "mdi-spin" : ""
-                  })
-                ])
-              ]
+                _c("b-icon", {
+                  attrs: {
+                    icon: "reload",
+                    size: "is-small",
+                    "custom-class": _vm.tableLoading ? "mdi-spin" : ""
+                  }
+                })
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -39257,7 +39261,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39268,6 +39272,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -39342,86 +39347,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "field is-grouped" }, [
-    _c(
-      "button",
-      {
-        staticClass: "button is-primary control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 0)
-          }
-        }
-      },
-      [
-        _c("b-icon", {
-          attrs: {
-            pack: "fa",
-            icon: _vm.isRefresh ? "refresh" : "check",
-            "custom-class": _vm.isRefresh ? "fa-spin" : ""
-          }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-success control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 1)
-          }
-        }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-link control",
-        attrs: { type: "button", disabled: _vm.isRefresh }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-right" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button is-warning control",
-        attrs: { type: "button", disabled: _vm.isRefresh },
-        on: {
-          click: function($event) {
-            _vm.$emit("close", 1)
-          }
-        }
-      },
-      [
-        _c("b-icon", { attrs: { pack: "fa", icon: "arrow-left" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
-      ],
-      1
-    )
+  return _c("section", [
+    _vm.accessMenu == 2
+      ? _c("nav", { staticClass: "navbar is-primary" }, [
+          _c("div", { staticClass: "navbar-start" }, [
+            _c(
+              "a",
+              { staticClass: "navbar-item" },
+              [_c("b-icon", { attrs: { icon: "reload", size: "is-small" } })],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.addTask()
+                  }
+                }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.editTask()
+                  }
+                }
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.confirmDeleteTask()
+                  }
+                }
+              },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-item",
+                on: {
+                  click: function($event) {
+                    _vm.confirmDeleteTask()
+                  }
+                }
+              },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
+              ]
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-plus-circle" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-pencil" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-medium" }, [
+      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -39473,7 +39515,9 @@ var render = function() {
                     [
                       _c("p", { staticClass: "card-header-title" }, [
                         _vm._v(
-                          "\n                    Component\n                "
+                          "\n                    " +
+                            _vm._s(_vm.trans("data.taskBlockMain")) +
+                            "\n                "
                         )
                       ]),
                       _vm._v(" "),
@@ -39787,6 +39831,7 @@ var render = function() {
                 ? _c(
                     "b-field",
                     {
+                      staticClass: "ui-mt-3",
                       attrs: {
                         label: _vm.trans("data.taskName"),
                         type: _vm.task.name.access == 1 ? "is-warning" : ""
