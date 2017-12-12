@@ -18,7 +18,7 @@ class CreateTaskStagesTable extends Migration
             $table->string('name');
             $table->integer('priority')->unique();
             $table->integer('price')->nullable();
-            $table->time('time');
+            $table->integer('time');
             $table->timestamps();
         });
     }

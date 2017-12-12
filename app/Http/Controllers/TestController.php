@@ -20,10 +20,10 @@ class TestController extends Controller
     public function index()
     {
 
-        $time = 30*3600;
+        $time = 1*60*60;
 
         //$t = Carbon::createFromFormat('H:i:s', $time);
 
-        return gmdate('H:i:s', $time);
+        return date('H:i:s', $time);
     }
 }
