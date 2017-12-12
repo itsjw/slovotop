@@ -16,18 +16,17 @@
                         </b-icon>
                     </a>
                 </div>
+
                 <div class="card-content">
                     <div class="content">
                         <div class="columns">
 
-                            <div class="column is-3">
-
+                            <div class="column is-2">
                                 <b-field :label="trans('data.taskProject')"
                                          v-if="task.project.access >= 1"
                                          :type="task.name.access == 1 ? 'is-warning' : ''">
                                     <b-select :placeholder="trans('data.taskProject')"
-                                              icon-pack="fa"
-                                              icon="th-list"
+                                              icon="view-list"
                                               v-model="task.project.data.id"
                                               :disabled="task.project.access == 1">
                                         <option
@@ -43,8 +42,7 @@
                                          v-if="task.subject.access >= 1"
                                          :type="task.name.access == 1 ? 'is-warning' : ''">
                                     <b-select :placeholder="trans('data.taskSubject')"
-                                              icon-pack="fa"
-                                              icon="align-justify"
+                                              icon="reorder-horizontal"
                                               v-model="task.subject.data.id"
                                               :disabled="task.subject.access == 1">
                                         <option
@@ -58,7 +56,6 @@
                             </div>
 
                             <div class="column is-2">
-
                                 <b-field :label="trans('data.taskPrice')"
                                          v-if="task.price.access >= 1"
                                          :type="task.name.access == 1 ? 'is-warning' : ''">
@@ -95,7 +92,8 @@
                                 </b-field>
 
                             </div>
-                            <div class="column is-7">
+
+                            <div class="column is-8">
 
                                 <task-step></task-step>
 

@@ -38592,8 +38592,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 Vue.component('taskComments', __webpack_require__(107));
 Vue.component('taskControl', __webpack_require__(112));
@@ -39552,7 +39550,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39563,6 +39561,23 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39626,14 +39641,48 @@ var render = function() {
   return _c(
     "section",
     [
-      _c("div", { staticClass: "block" }, [
-        _c(
-          "button",
-          { staticClass: "button is-dark is-small" },
-          [_c("b-icon", { attrs: { icon: "check" } })],
-          1
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+            _c(
+              "button",
+              { staticClass: "button is-primary is-small" },
+              [_c("b-icon", { attrs: { icon: "reload" } })],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+            _c(
+              "button",
+              { staticClass: "button is-success is-small" },
+              [_c("b-icon", { attrs: { icon: "plus-circle-outline" } })],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+            _c(
+              "button",
+              { staticClass: "button is-link is-small" },
+              [_c("b-icon", { attrs: { icon: "pencil" } })],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-tooltip", { attrs: { label: "Tooltip top" } }, [
+            _c(
+              "button",
+              { staticClass: "button is-danger is-small" },
+              [_c("b-icon", { attrs: { icon: "delete" } })],
+              1
+            )
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("b-table", {
         attrs: {
@@ -39755,7 +39804,7 @@ var render = function() {
                       _c("div", { staticClass: "columns" }, [
                         _c(
                           "div",
-                          { staticClass: "column is-3" },
+                          { staticClass: "column is-2" },
                           [
                             _vm.task.project.access >= 1
                               ? _c(
@@ -39777,8 +39826,7 @@ var render = function() {
                                           placeholder: _vm.trans(
                                             "data.taskProject"
                                           ),
-                                          "icon-pack": "fa",
-                                          icon: "th-list",
+                                          icon: "view-list",
                                           disabled: _vm.task.project.access == 1
                                         },
                                         model: {
@@ -39835,8 +39883,7 @@ var render = function() {
                                           placeholder: _vm.trans(
                                             "data.taskSubject"
                                           ),
-                                          "icon-pack": "fa",
-                                          icon: "align-justify",
+                                          icon: "reorder-horizontal",
                                           disabled: _vm.task.subject.access == 1
                                         },
                                         model: {
@@ -40036,7 +40083,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "column is-7" },
+                          { staticClass: "column is-8" },
                           [_c("task-step")],
                           1
                         )

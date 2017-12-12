@@ -1,9 +1,26 @@
 <template>
     <section>
         <div class="block">
-            <button class="button is-dark is-small">
-                <b-icon icon="check"></b-icon>
-            </button>
+            <b-tooltip label="Tooltip top">
+                <button class="button is-primary is-small">
+                    <b-icon icon="reload"></b-icon>
+                </button>
+            </b-tooltip>
+            <b-tooltip label="Tooltip top">
+                <button class="button is-success is-small">
+                    <b-icon icon="plus-circle-outline"></b-icon>
+                </button>
+            </b-tooltip>
+            <b-tooltip label="Tooltip top">
+                <button class="button is-link is-small">
+                    <b-icon icon="pencil"></b-icon>
+                </button>
+            </b-tooltip>
+            <b-tooltip label="Tooltip top">
+                <button class="button is-danger is-small">
+                    <b-icon icon="delete"></b-icon>
+                </button>
+            </b-tooltip>
         </div>
 
         <b-table
