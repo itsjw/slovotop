@@ -13,23 +13,8 @@ return [
             'access' => 0,
         ],
         [
-            'name'   => 'editor_id',
-            'lang'   => 'Редактор задачи',
-            'access' => 0,
-        ],
-        [
-            'name'   => 'author_id',
-            'lang'   => 'Автор задачи',
-            'access' => 0,
-        ],
-        [
             'name'   => 'subject_id',
             'lang'   => 'Тематика задачи',
-            'access' => 0,
-        ],
-        [
-            'name'   => 'date_end',
-            'lang'   => 'Дата исполнения задачи',
             'access' => 0,
         ],
         [

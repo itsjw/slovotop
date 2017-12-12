@@ -3,7 +3,7 @@
         <b-loading :active="isLoading"></b-loading>
         <div class="container" v-if="!isLoading">
 
-            <task-contorls @save="saveTask"></task-contorls>
+            <task-control @save="saveTask"></task-control>
 
             <b-collapse class="card" :open.sync="isOpenBlock">
                 <div slot="trigger" class="card-header">
@@ -19,6 +19,7 @@
                 <div class="card-content">
                     <div class="content">
                         <div class="columns">
+
                             <div class="column is-3">
 
                                 <b-field :label="trans('data.taskProject')"
@@ -55,6 +56,7 @@
                                     </b-select>
                                 </b-field>
                             </div>
+
                             <div class="column is-2">
 
                                 <b-field :label="trans('data.taskPrice')"
@@ -95,6 +97,7 @@
                             </div>
                             <div class="column is-7">
 
+                                <task-step></task-step>
 
                             </div>
                         </div>
@@ -194,7 +197,8 @@
 </template>
 <script>
     Vue.component('taskComments', require('./comments'));
-    Vue.component('taskContorls', require('./control'));
+    Vue.component('taskControl', require('./taskControl'));
+    Vue.component('taskStep', require('./taskStep'));
 
     export default {
 
@@ -266,18 +270,6 @@
                         access: 0
                     },
                     project: {
-                        data: {
-                            id: null
-                        },
-                        access: 2
-                    },
-                    editor: {
-                        data: {
-                            id: null
-                        },
-                        access: 2
-                    },
-                    author: {
                         data: {
                             id: null
                         },
