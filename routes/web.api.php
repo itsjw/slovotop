@@ -84,5 +84,4 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
     // menu
     $router->post('getMenus', 'MenuController@getMenus');
 
-
 });
