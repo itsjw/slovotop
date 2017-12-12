@@ -2,7 +2,7 @@
     <section>
         <nav class="navbar is-light">
             <div class="navbar-start">
-                <a class="navbar-item" @click="$emit('save',1)">
+                <a class="navbar-item" @click="$emit('get')">
                     <b-icon icon="reload"></b-icon>
                 </a>
                 <div class="navbar-item">

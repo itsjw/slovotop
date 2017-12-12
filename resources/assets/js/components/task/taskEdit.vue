@@ -3,7 +3,7 @@
         <b-loading :active="isLoading"></b-loading>
         <div class="container" v-if="!isLoading">
 
-            <task-control @save="saveTask"></task-control>
+            <task-control @save="saveTask" @get="getTask"></task-control>
 
             <b-collapse class="card" :open.sync="isOpenBlock">
                 <div slot="trigger" class="card-header">
@@ -312,12 +312,14 @@
              * get task by ID
              */
             getTask() {
-                this.isLoading = true;
-                Api.post('v1', 'getTask', {id: this.task_id})
-                    .then(response => {
-                        this.task = response.data.data;
-                        this.isLoading = false;
-                    })
+                if (this.task_id > 0) {
+                    this.isLoading = true;
+                    Api.post('v1', 'getTask', {id: this.task_id})
+                        .then(response => {
+                            this.task = response.data.data;
+                            this.isLoading = false;
+                        })
+                }
             },
 
             /**
@@ -374,7 +376,7 @@
 
                 return {
                     id: this.task_id || 0,
-                    user_id: 4, //this.userID,
+                    user_id: 4, //this.userID, //TODO
                     desc: task.desc.data || '',
                     moreData: task.moreData.data || '',
                     name: task.name.data || '',

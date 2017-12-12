@@ -38661,11 +38661,13 @@ Vue.component('taskStep', __webpack_require__(117));
         getTask: function getTask() {
             var _this = this;
 
-            this.isLoading = true;
-            Api.post('v1', 'getTask', { id: this.task_id }).then(function (response) {
-                _this.task = response.data.data;
-                _this.isLoading = false;
-            });
+            if (this.task_id > 0) {
+                this.isLoading = true;
+                Api.post('v1', 'getTask', { id: this.task_id }).then(function (response) {
+                    _this.task = response.data.data;
+                    _this.isLoading = false;
+                });
+            }
         },
 
 
@@ -38727,7 +38729,7 @@ Vue.component('taskStep', __webpack_require__(117));
 
             return {
                 id: this.task_id || 0,
-                user_id: 4, //this.userID,
+                user_id: 4, //this.userID, //TODO
                 desc: task.desc.data || '',
                 moreData: task.moreData.data || '',
                 name: task.name.data || '',
@@ -39434,7 +39436,9 @@ var render = function() {
             "div",
             { staticClass: "container" },
             [
-              _c("task-control", { on: { save: _vm.saveTask } }),
+              _c("task-control", {
+                on: { save: _vm.saveTask, get: _vm.getTask }
+              }),
               _vm._v(" "),
               _c(
                 "b-collapse",
@@ -41543,7 +41547,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "block" },
+        { staticClass: "block has-text-right" },
         [
           _c("b-tooltip", { attrs: { label: _vm.trans("data.reload") } }, [
             _c(
@@ -41709,7 +41713,7 @@ var render = function() {
             staticClass: "navbar-item",
             on: {
               click: function($event) {
-                _vm.$emit("save", 1)
+                _vm.$emit("get")
               }
             }
           },
