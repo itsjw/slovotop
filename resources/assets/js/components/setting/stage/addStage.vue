@@ -1,58 +1,60 @@
 <template>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">
+                {{ trans('data.stageName') }}
+            </p>
+        </header>
+        <section class="modal-card-body">
+            <b-field :label="trans('data.stageName')">
+                <b-input
+                        type="text"
+                        v-model="stage.name"
+                        :placeholder="trans('data.stageName')"
+                        required>
+                </b-input>
+            </b-field>
 
-    <form @submit.prevent.once="saveStage()">
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">
-                    {{ trans('data.stageName') }}
-                </p>
-            </header>
-            <section class="modal-card-body">
-                <b-field :label="trans('data.stageName')">
-                    <b-input
-                            type="text"
-                            v-model="stage.name"
-                            :placeholder="trans('data.stageName')"
-                            required>
-                    </b-input>
-                </b-field>
+            <b-field :label="trans('data.stagePriority')">
+                <b-input
+                        type="number"
+                        v-model="stage.priority"
+                        min="1"
+                        :placeholder="trans('data.stagePriority')"
+                        required>
+                </b-input>
+            </b-field>
 
-                <b-field :label="trans('data.stagePriority')">
-                    <b-input
-                            type="number"
-                            v-model="stage.priority"
-                            min="1"
-                            :placeholder="trans('data.stagePriority')"
-                            required>
-                    </b-input>
-                </b-field>
+            <b-field :label="trans('data.stagePrice')">
+                <b-input
+                        type="number"
+                        v-model="stage.price"
+                        :placeholder="trans('data.stagePrice')"
+                        required>
+                </b-input>
+            </b-field>
 
-                <b-field :label="trans('data.stagePrice')">
-                    <b-input
-                            type="number"
-                            v-model="stage.price"
-                            :placeholder="trans('data.stagePrice')"
-                            required>
-                    </b-input>
-                </b-field>
+            <b-field :label="trans('data.stageTime')">
+                <b-input
+                        type="number"
+                        v-model="stage.time"
+                        :placeholder="trans('data.stageTime')"
+                        required>
+                </b-input>
+            </b-field>
+        </section>
 
-                <b-field :label="trans('data.stageTime')">
-                    <b-input
-                            type="number"
-                            v-model="stage.time"
-                            :placeholder="trans('data.stageTime')"
-                            required>
-                    </b-input>
-                </b-field>
-            </section>
-
-            <footer class="modal-card-foot">
-                <button class="button" type="button" @click="$parent.close()">{{ trans('data.cancel') }}</button>
-                <button class="button is-primary" type="submit">{{ trans('data.save') }}</button>
-            </footer>
-        </div>
-    </form>
-
+        <footer class="modal-card-foot">
+            <button class="button" type="button" @click="$parent.close()">
+                {{ trans('data.cancel') }}
+            </button>
+            <button class="button is-primary" type="button"
+                    @click.prevent="saveStage()"
+                    :disabled="isDisabled">
+                {{ trans('data.save') }}
+            </button>
+        </footer>
+    </div>
 </template>
 <script>
     export default {
@@ -68,7 +70,8 @@
         data() {
             return {
                 stageProp: this.$parent.props || 0,
-                stage: {}
+                stage: {},
+                isDisabled: false
             }
         },
 
@@ -78,6 +81,7 @@
              * save stage
              */
             saveStage() {
+                this.isDisabled = true;
                 Api.post('v1', 'saveStage', this.getStageData(this.stage))
                     .then(response => {
                         this.$toast.open({
@@ -86,6 +90,7 @@
                         });
                         this.$parent.close();
                         this.$root.$emit('getStages');
+                        this.isDisabled = false;
                     })
                     .catch(error => {
                         this.$toast.open({
@@ -93,6 +98,7 @@
                             message: Api.errorSerializer(error.response.data.errors),
                             type: 'is-danger'
                         });
+                        this.isDisabled = false;
                     });
             },
 
