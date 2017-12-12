@@ -39420,21 +39420,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(118)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(120)
 /* template */
-var __vue_template__ = __webpack_require__(121)
+var __vue_template__ = __webpack_require__(142)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-5f4f06f8"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -39468,51 +39464,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(119);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("67147722", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5f4f06f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./taskStep.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5f4f06f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./taskStep.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 118 */,
+/* 119 */,
 /* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addTaskStep__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addTaskStep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addTaskStep__);
 //
 //
 //
@@ -39572,10 +39532,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -39594,163 +39552,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {}
+    methods: {
+        /**
+         * add/edit task step
+         */
+        addTaskStep: function addTaskStep() {
+            this.$modal.open({
+                parent: this,
+                component: __WEBPACK_IMPORTED_MODULE_0__addTaskStep___default.a,
+                hasModalCard: true
+            });
+        }
+    }
 });
 
 /***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "div",
-        { staticClass: "block" },
-        [
-          _c("b-tooltip", { attrs: { label: _vm.trans("data.reload") } }, [
-            _c(
-              "button",
-              { staticClass: "button is-primary is-small" },
-              [_c("b-icon", { attrs: { icon: "reload" } })],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskAddUser") } }, [
-            _c(
-              "button",
-              { staticClass: "button is-success is-small" },
-              [_c("b-icon", { attrs: { icon: "plus-circle-outline" } })],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-tooltip",
-            { attrs: { label: _vm.trans("data.taskEditUser") } },
-            [
-              _c(
-                "button",
-                { staticClass: "button is-link is-small" },
-                [_c("b-icon", { attrs: { icon: "pencil" } })],
-                1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskDelUser") } }, [
-            _c(
-              "button",
-              { staticClass: "button is-danger is-small" },
-              [_c("b-icon", { attrs: { icon: "delete" } })],
-              1
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-table",
-        {
-          attrs: {
-            data: _vm.taskSteps,
-            hoverable: true,
-            narrowed: true,
-            "checked-rows": _vm.testStepSelect,
-            checkable: ""
-          },
-          on: {
-            "update:checkedRows": function($event) {
-              _vm.testStepSelect = $event
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "default",
-              fn: function(props) {
-                return [
-                  _c(
-                    "b-table-column",
-                    { attrs: { label: _vm.trans("data.taskStage") } },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(props.row.step) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("b-table-column", { attrs: { label: "User" } }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(props.row.user) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "b-table-column",
-                    { attrs: { label: _vm.trans("data.taskState") } },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(props.row.user) +
-                          "\n            "
-                      )
-                    ]
-                  )
-                ]
-              }
-            }
-          ])
-        },
-        [
-          _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
-            _c("section", { staticClass: "section" }, [
-              _c(
-                "div",
-                { staticClass: "content has-text-grey has-text-centered" },
-                [
-                  _c(
-                    "p",
-                    [
-                      _c("b-icon", {
-                        attrs: { icon: "emoticon-sad", size: "is-large" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
-                ]
-              )
-            ])
-          ])
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5f4f06f8", module.exports)
-  }
-}
-
-/***/ }),
+/* 121 */,
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41581,6 +41398,375 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(140)
+/* template */
+var __vue_template__ = __webpack_require__(141)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/task/addTaskStep.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-87e39c0a", Component.options)
+  } else {
+    hotAPI.reload("data-v-87e39c0a", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    name: "add-task-step",
+
+    mounted: function mounted() {
+        this.getUsers();
+        this.getStages();
+    },
+
+
+    props: {},
+
+    data: function data() {
+        return {
+            stages: [],
+            users: []
+        };
+    },
+
+
+    methods: {
+        /**
+         * get users
+         */
+        getUsers: function getUsers() {
+            var _this = this;
+
+            Api.post('v1', 'getUserList').then(function (response) {
+                _this.users = response.data.data;
+            });
+        },
+
+
+        /**
+         * get all stages
+         */
+        getStages: function getStages() {
+            var _this2 = this;
+
+            Api.post('v1', 'getStageList').then(function (response) {
+                _this2.stages = response.data.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal-card" }, [
+    _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [
+        _vm._v(
+          "\n            " + _vm._s(_vm.trans("data.roleRoles")) + "\n        "
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "section",
+      { staticClass: "modal-card-body" },
+      [
+        _c(
+          "b-field",
+          { attrs: { label: _vm.trans("data.roleName") } },
+          [
+            _c("b-input", {
+              attrs: {
+                type: "text",
+                placeholder: _vm.trans("data.roleName"),
+                required: ""
+              },
+              model: {
+                value: _vm.role.name,
+                callback: function($$v) {
+                  _vm.$set(_vm.role, "name", $$v)
+                },
+                expression: "role.name"
+              }
+            })
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("footer", { staticClass: "modal-card-foot" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              _vm.$parent.close()
+            }
+          }
+        },
+        [_vm._v(_vm._s(_vm.trans("data.cancel")))]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "button is-primary", attrs: { type: "submit" } },
+        [_vm._v(_vm._s(_vm.trans("data.save")))]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-87e39c0a", module.exports)
+  }
+}
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.reload") } }, [
+            _c(
+              "button",
+              { staticClass: "button is-primary is-small" },
+              [_c("b-icon", { attrs: { icon: "reload" } })],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskAddUser") } }, [
+            _c(
+              "button",
+              {
+                staticClass: "button is-success is-small",
+                on: { click: _vm.addTaskStep }
+              },
+              [_c("b-icon", { attrs: { icon: "plus-circle-outline" } })],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-tooltip",
+            { attrs: { label: _vm.trans("data.taskEditUser") } },
+            [
+              _c(
+                "button",
+                { staticClass: "button is-link is-small" },
+                [_c("b-icon", { attrs: { icon: "pencil" } })],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("b-tooltip", { attrs: { label: _vm.trans("data.taskDelUser") } }, [
+            _c(
+              "button",
+              { staticClass: "button is-danger is-small" },
+              [_c("b-icon", { attrs: { icon: "delete" } })],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-table",
+        {
+          attrs: {
+            data: _vm.taskSteps,
+            hoverable: true,
+            narrowed: true,
+            "checked-rows": _vm.testStepSelect,
+            checkable: ""
+          },
+          on: {
+            "update:checkedRows": function($event) {
+              _vm.testStepSelect = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(props) {
+                return [
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.taskStage") } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.step) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("b-table-column", { attrs: { label: "User" } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.row.user) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.taskState") } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.user) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ])
+        },
+        [
+          _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+            _c("section", { staticClass: "section" }, [
+              _c(
+                "div",
+                { staticClass: "content has-text-grey has-text-centered" },
+                [
+                  _c(
+                    "p",
+                    [
+                      _c("b-icon", {
+                        attrs: { icon: "emoticon-sad", size: "is-large" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                ]
+              )
+            ])
+          ])
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5f4f06f8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

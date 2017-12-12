@@ -44,7 +44,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUsers(Request $request) :ResourceCollection
+    public function getUsers(Request $request): ResourceCollection
     {
         $users = User::query()->with('roles.role:id,name');
 
@@ -67,33 +67,20 @@ class UserController extends Controller
      * @apiPermission auth
      * @api           {post} getUserList getUserList
      * @apiName       getUserList
-     * @apiParam {String} editor get all editors
-     * @apiParam {String} author get all authors
      * @apiParamExample {json} Request-Example:
-     * {editor:'xxx',author:'xxx'}
+     * {}
      * @apiSuccess {Integer} id ID
      * @apiSuccess {String} name name
      *
-     * @param Request $request
-     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUserList(Request $request) :ResourceCollection
+    public function getUserList(): ResourceCollection
     {
-        $users = User::query()->with('roles.role:id,name');
+        $users = User::query();
 
-        if (isset($request->editor)) {
-            $users->whereHas('roles', function ($query) {
-                $query->where('role_id', \DB::table('settings')
-                    ->where('name', 'editor')->first()->value);
-            });
-        }
-        if (isset($request->author)) {
-            $users->whereHas('roles', function ($query) {
-                $query->where('role_id', \DB::table('settings')
-                    ->where('name', 'author')->first()->value);
-            });
-        }
+        $users->whereHas('roles', function ($query) {
+            $query->where('role_id', '<>', 1);
+        });
 
         return UserLittle::collection($users->get());
     }
@@ -120,7 +107,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function saveUser(UserSaveValidation $request) :array
+    public function saveUser(UserSaveValidation $request): array
     {
         $user = User::findOrNew($request->id);
 
@@ -162,7 +149,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function deleteUser(Request $request) :array
+    public function deleteUser(Request $request): array
     {
         foreach ($request->items as $item) {
 
@@ -193,7 +180,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function approveUser(Request $request) :array
+    public function approveUser(Request $request): array
     {
         foreach ($request->items as $item) {
 

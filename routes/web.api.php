@@ -21,6 +21,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
         $router->post('getGeneralSetting', 'SettingController@getGeneralSetting');
         $router->post('saveGeneralSetting', 'SettingController@saveGeneralSetting');
     });
+    $router->post('getStageList', 'StageController@getStageList');
 
     // user
     $router->group(['middleware' => 'accessRoute:users'], function (Router $router) {

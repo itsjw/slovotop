@@ -36,7 +36,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getRoles(Request $request) :ResourceCollection
+    public function getRoles(Request $request): ResourceCollection
     {
         $role = Role::query();
 
@@ -64,7 +64,7 @@ class RoleController extends Controller
      *
      * @return array
      */
-    public function saveRole(RoleSaveValidation $request) :array
+    public function saveRole(RoleSaveValidation $request): array
     {
         $role = Role::findOrNew($request->id);
 
@@ -89,7 +89,7 @@ class RoleController extends Controller
      *
      * @return array
      */
-    public function deleteRole(Request $request) :array
+    public function deleteRole(Request $request): array
     {
         foreach ($request->items as $key) {
             $role = Role::find($key['id']);

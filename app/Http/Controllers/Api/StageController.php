@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StageSaveValidation;
 use App\Http\Resources\Stages\Stage;
+use App\Http\Resources\Stages\StageLittle;
 use App\Models\TaskStage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,7 +38,7 @@ class StageController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getStages(Request $request) :ResourceCollection
+    public function getStages(Request $request): ResourceCollection
     {
         $stage = TaskStage::query();
 
@@ -59,6 +60,25 @@ class StageController extends Controller
     /**
      * @apiVersion    0.2.0
      * @apiGroup      Stage
+     * @apiPermission auth
+     * @api           {post} getStageList getStageList
+     * @apiName       getStageList
+     * @apiParam {Integer} id ID if need one
+     * @apiParamExample {json} Request-Example:
+     * {id: 1}
+     * @apiSuccess {Integer} id ID
+     * @apiSuccess {String} name name
+     *
+     * @return ResourceCollection
+     */
+    public function getStageList(): ResourceCollection
+    {
+        return StageLittle::collection(TaskStage::all());
+    }
+
+    /**
+     * @apiVersion    0.2.0
+     * @apiGroup      Stage
      * @apiPermission auth,accessRoute:settings
      * @api           {post} saveStage saveStage
      * @apiName       saveStage
@@ -75,7 +95,7 @@ class StageController extends Controller
      *
      * @return array
      */
-    public function saveStage(StageSaveValidation $request) :array
+    public function saveStage(StageSaveValidation $request): array
     {
         $stage = TaskStage::findOrNew($request->id);
 
@@ -104,7 +124,7 @@ class StageController extends Controller
      *
      * @return array
      */
-    public function deleteStage(Request $request) :array
+    public function deleteStage(Request $request): array
     {
         foreach ($request->items as $item) {
             $stage = TaskStage::find($item['id']);

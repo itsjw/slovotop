@@ -19,11 +19,12 @@ class TestController extends Controller
 
     public function index()
     {
+        $user = User::query();
 
-        $time = 1*60*60;
+        $user->whereHas('roles',function ($query){
+            $query->where('role_id','<>',1);
+        });
 
-        //$t = Carbon::createFromFormat('H:i:s', $time);
-
-        return date('H:i:s', $time);
+        dd($user->get());
     }
 }

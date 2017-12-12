@@ -7,7 +7,7 @@
                 </button>
             </b-tooltip>
             <b-tooltip :label="trans('data.taskAddUser')">
-                <button class="button is-success is-small">
+                <button class="button is-success is-small" @click="addTaskStep">
                     <b-icon icon="plus-circle-outline"></b-icon>
                 </button>
             </b-tooltip>
@@ -57,11 +57,9 @@
     </section>
 </template>
 
-<style scoped>
-
-</style>
-
 <script>
+    import addTaskStep from './addTaskStep';
+
     export default {
 
         name: "task-steps",
@@ -78,6 +76,17 @@
             }
         },
 
-        methods: {}
+        methods: {
+            /**
+             * add/edit task step
+             */
+            addTaskStep() {
+                this.$modal.open({
+                    parent: this,
+                    component: addTaskStep,
+                    hasModalCard: true
+                })
+            }
+        }
     }
 </script>
