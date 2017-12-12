@@ -8,6 +8,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Resources\Roles\Role as RoleResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class RoleController
@@ -35,7 +36,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getRoles(Request $request)
+    public function getRoles(Request $request) :ResourceCollection
     {
         $role = Role::query();
 
@@ -63,7 +64,7 @@ class RoleController extends Controller
      *
      * @return array
      */
-    public function saveRole(RoleSaveValidation $request)
+    public function saveRole(RoleSaveValidation $request) :array
     {
         $role = Role::findOrNew($request->id);
 
@@ -88,7 +89,7 @@ class RoleController extends Controller
      *
      * @return array
      */
-    public function deleteRole(Request $request)
+    public function deleteRole(Request $request) :array
     {
         foreach ($request->items as $key) {
             $role = Role::find($key['id']);

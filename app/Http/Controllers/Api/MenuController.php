@@ -7,6 +7,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Resources\Menus\Menu as MenuResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class MenuController
@@ -32,7 +33,7 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getMenus(Request $request)
+    public function getMenus(Request $request): ResourceCollection
     {
         $menu = Menu::query();
 

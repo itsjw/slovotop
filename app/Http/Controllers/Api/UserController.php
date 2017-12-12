@@ -10,6 +10,7 @@ use App\Http\Resources\Users\UserLittle;
 use App\Jobs\SendUserMailJob;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class UserController
@@ -43,7 +44,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUsers(Request $request)
+    public function getUsers(Request $request) :ResourceCollection
     {
         $users = User::query()->with('roles.role:id,name');
 
@@ -77,7 +78,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getUserList(Request $request)
+    public function getUserList(Request $request) :ResourceCollection
     {
         $users = User::query()->with('roles.role:id,name');
 
@@ -119,7 +120,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function saveUser(UserSaveValidation $request)
+    public function saveUser(UserSaveValidation $request) :array
     {
         $user = User::findOrNew($request->id);
 
@@ -161,7 +162,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function deleteUser(Request $request)
+    public function deleteUser(Request $request) :array
     {
         foreach ($request->items as $item) {
 
@@ -192,7 +193,7 @@ class UserController extends Controller
      *
      * @return array
      */
-    public function approveUser(Request $request)
+    public function approveUser(Request $request) :array
     {
         foreach ($request->items as $item) {
 
@@ -214,7 +215,7 @@ class UserController extends Controller
     {
         $rolls = array_unique($roles);
 
-        if (!in_array(1, $roles)) {
+        if (!\in_array(1, $roles, true)) {
             foreach ($rolls as $val) {
                 $array[]['role_id'] = $val;
             }

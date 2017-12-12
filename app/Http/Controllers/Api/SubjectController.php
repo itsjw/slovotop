@@ -9,6 +9,7 @@ use App\Http\Resources\Subjects\SubjectLittle;
 use App\Models\TaskSubject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class SubjectController
@@ -36,7 +37,7 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getSubjects(Request $request)
+    public function getSubjects(Request $request): ResourceCollection
     {
         $subject = TaskSubject::query();
 
@@ -61,7 +62,7 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getSubjectList()
+    public function getSubjectList(): ResourceCollection
     {
         return SubjectLittle::collection(TaskSubject::all());
     }
@@ -84,7 +85,7 @@ class SubjectController extends Controller
      *
      * @return array
      */
-    public function saveSubject(SubjectSaveValidation $request)
+    public function saveSubject(SubjectSaveValidation $request): array
     {
         $subject = TaskSubject::findOrNew($request->id);
 
@@ -111,7 +112,7 @@ class SubjectController extends Controller
      *
      * @return array
      */
-    public function deleteSubject(Request $request)
+    public function deleteSubject(Request $request): array
     {
         foreach ($request->items as $item) {
             TaskSubject::find($item['id'])->delete();

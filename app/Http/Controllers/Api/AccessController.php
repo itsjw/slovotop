@@ -37,7 +37,7 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function saveAccessMenu(AccessMenuSaveValidation $request)
+    public function saveAccessMenu(AccessMenuSaveValidation $request) :array
     {
         $menu = Menu::find($request->menu)->roles()->where('role_id', $request->role);
 
@@ -66,15 +66,16 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function getTaskField(Request $request)
+    public function getTaskField(Request $request) :array
     {
 
         $stage = StageTaskAccess::where('stage_id', $request->stage)->get();
         $fields = config('access.taskFiled');
 
         foreach ($fields as $value) {
+            /** @var array $stage */
             foreach ($stage as $key) {
-                if (in_array($key->field, $value, true)) {
+                if (\in_array($key->field, $value, true)) {
                     $value['access'] = $key->access;
                 }
             }
@@ -102,7 +103,7 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function saveTaskFieldAccess(TaskFiledAccessSaveValidation $request)
+    public function saveTaskFieldAccess(TaskFiledAccessSaveValidation $request) :array
     {
         $stage = StageTaskAccess::firstOrNew(['field' => $request->field, 'stage_id' => $request->stage]);
 
@@ -133,7 +134,7 @@ class AccessController extends Controller
      *
      * @return array
      */
-    public function saveStageRoleAccess(StageAccessSaveValidation $request)
+    public function saveStageRoleAccess(StageAccessSaveValidation $request) :array
     {
         $stage = TaskStage::find($request->stage)->roles()->where('role_id', $request->role);
 

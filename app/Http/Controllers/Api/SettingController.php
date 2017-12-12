@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralSettingSaveValidation;
 use App\Http\Resources\Settings\General;
 use App\Models\Setting;
-use Illuminate\Http\Request;
 
 /**
  * Class SettingController
@@ -23,11 +22,10 @@ class SettingController extends Controller
      * @apiName       getGeneralSetting
      * @apiSuccess {Array} data [name:value,...]
      *
-     * @param Request $request
      *
      * @return General
      */
-    public function getGeneralSetting(Request $request)
+    public function getGeneralSetting() :General
     {
         $setting = Setting::all()->mapWithKeys(function ($item) {
             return [$item['name'] => $item['value']];
@@ -50,9 +48,9 @@ class SettingController extends Controller
      *
      * @param GeneralSettingSaveValidation $request
      *
-     * @return array|void
+     * @return array
      */
-    public function saveGeneralSetting(GeneralSettingSaveValidation $request)
+    public function saveGeneralSetting(GeneralSettingSaveValidation $request) :array
     {
         foreach ($request->generals as $key => $val) {
             $setting = Setting::where('name', $key)->first();

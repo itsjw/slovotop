@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Http\Resources\Projects\Project as ProjectResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class ProjectController
@@ -36,7 +37,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getProjects(Request $request)
+    public function getProjects(Request $request) :ResourceCollection
     {
         $project = Project::query();
 
@@ -72,7 +73,7 @@ class ProjectController extends Controller
      *
      * @return array
      */
-    public function saveProject(ProjectSaveValidation $request)
+    public function saveProject(ProjectSaveValidation $request) :array
     {
         $project = Project::findOrNew($request->id);
 
@@ -100,7 +101,7 @@ class ProjectController extends Controller
      *
      * @return array
      */
-    public function deleteProject(Request $request)
+    public function deleteProject(Request $request) :array
     {
         foreach ($request->items as $item) {
             Project::find($item['id'])->delete();

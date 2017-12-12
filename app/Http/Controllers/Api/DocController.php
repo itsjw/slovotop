@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Docs\Doc as DocResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class DocController
@@ -38,7 +39,7 @@ class DocController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getDocs(Request $request)
+    public function getDocs(Request $request) :ResourceCollection
     {
         $doc = Doc::query();
 
@@ -74,11 +75,11 @@ class DocController extends Controller
      * @apiSuccess {String} success trans('data.notifyOK')
      * @apiError {Array} errors errors{name:'error xxx',...}
      *
-     * @param DocSaveValidation $request
+     * @param DocSaveValidation|mixed $request
      *
      * @return array
      */
-    public function saveDoc(DocSaveValidation $request)
+    public function saveDoc(DocSaveValidation $request) :array
     {
         $doc = Doc::findOrNew($request->id);
 
@@ -111,7 +112,7 @@ class DocController extends Controller
      *
      * @return array
      */
-    public function deleteDoc(Request $request)
+    public function deleteDoc(Request $request) :array
     {
         foreach ($request->items as $item) {
             $doc = Doc::findOrfail($item['id']);
