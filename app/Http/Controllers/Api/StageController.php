@@ -30,6 +30,7 @@ class StageController extends Controller
      * @apiSuccess {String} name name
      * @apiSuccess {Integer} priority priority
      * @apiSuccess {Integer} price price
+     * @apiSuccess {Integer} time time (hours)
      * @apiSuccess {Array} roles roles{access}
      *
      * @param Request $request

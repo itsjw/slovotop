@@ -1198,6 +1198,13 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "time",
+            "description": "<p>time (hours)</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Array",
             "optional": false,
             "field": "roles",
