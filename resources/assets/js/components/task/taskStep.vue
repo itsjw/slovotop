@@ -41,6 +41,18 @@
                     {{ props.row.user }}
                 </b-table-column>
             </template>
+
+            <template slot="empty">
+                <section class="section">
+                    <div class="content has-text-grey has-text-centered">
+                        <p>
+                            <b-icon icon="emoticon-sad" size="is-large">
+                            </b-icon>
+                        </p>
+                        <p>{{ trans('data.searchNull') }}</p>
+                    </div>
+                </section>
+            </template>
         </b-table>
     </section>
 </template>
@@ -61,7 +73,7 @@
 
         data() {
             return {
-                taskSteps: [{step: 'hello', user: 'Test'}],
+                taskSteps: [],
                 testStepSelect: []
             }
         },

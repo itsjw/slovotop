@@ -136,10 +136,7 @@
                     <section class="section">
                         <div class="content has-text-grey has-text-centered">
                             <p>
-                                <b-icon
-                                        icon="ban"
-                                        icon-pack="fa"
-                                        size="is-large">
+                                <b-icon icon="emoticon-sad" size="is-large">
                                 </b-icon>
                             </p>
                             <p>{{ trans('data.searchNull') }}</p>

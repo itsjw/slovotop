@@ -30937,9 +30937,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -32046,11 +32043,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -32616,9 +32609,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSubject_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addSubject_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -33416,11 +33406,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -33532,9 +33518,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addRole_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addRole_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessRole_vue__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessRole_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__accessRole_vue__);
-//
-//
-//
 //
 //
 //
@@ -35023,11 +35006,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -35147,9 +35126,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addUser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addUser__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -36440,11 +36416,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -36564,9 +36536,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addProject_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__addProject_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -37489,11 +37458,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -37603,9 +37568,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -38277,11 +38239,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
@@ -39544,7 +39502,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39555,6 +39513,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39618,7 +39588,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            taskSteps: [{ step: 'hello', user: 'Test' }],
+            taskSteps: [],
             testStepSelect: []
         };
     },
@@ -39685,60 +39655,87 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("b-table", {
-        attrs: {
-          data: _vm.taskSteps,
-          hoverable: true,
-          narrowed: true,
-          "checked-rows": _vm.testStepSelect,
-          checkable: ""
-        },
-        on: {
-          "update:checkedRows": function($event) {
-            _vm.testStepSelect = $event
-          }
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "default",
-            fn: function(props) {
-              return [
-                _c(
-                  "b-table-column",
-                  { attrs: { label: _vm.trans("data.taskStage") } },
-                  [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(props.row.step) +
-                        "\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("b-table-column", { attrs: { label: "User" } }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(props.row.user) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "b-table-column",
-                  { attrs: { label: _vm.trans("data.taskState") } },
-                  [
+      _c(
+        "b-table",
+        {
+          attrs: {
+            data: _vm.taskSteps,
+            hoverable: true,
+            narrowed: true,
+            "checked-rows": _vm.testStepSelect,
+            checkable: ""
+          },
+          on: {
+            "update:checkedRows": function($event) {
+              _vm.testStepSelect = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(props) {
+                return [
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.taskStage") } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.step) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("b-table-column", { attrs: { label: "User" } }, [
                     _vm._v(
                       "\n                " +
                         _vm._s(props.row.user) +
                         "\n            "
                     )
-                  ]
-                )
-              ]
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-table-column",
+                    { attrs: { label: _vm.trans("data.taskState") } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(props.row.user) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ]
+              }
             }
-          }
-        ])
-      })
+          ])
+        },
+        [
+          _c("template", { attrs: { slot: "empty" }, slot: "empty" }, [
+            _c("section", { staticClass: "section" }, [
+              _c(
+                "div",
+                { staticClass: "content has-text-grey has-text-centered" },
+                [
+                  _c(
+                    "p",
+                    [
+                      _c("b-icon", {
+                        attrs: { icon: "emoticon-sad", size: "is-large" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.trans("data.searchNull")))])
+                ]
+              )
+            ])
+          ])
+        ],
+        2
+      )
     ],
     1
   )
@@ -40580,9 +40577,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -41007,11 +41001,7 @@ var render = function() {
                       "p",
                       [
                         _c("b-icon", {
-                          attrs: {
-                            icon: "ban",
-                            "icon-pack": "fa",
-                            size: "is-large"
-                          }
+                          attrs: { icon: "emoticon-sad", size: "is-large" }
                         })
                       ],
                       1
