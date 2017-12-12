@@ -31,41 +31,17 @@ class Task extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function status()
-    {
-        return $this->hasOne(TaskStatus::class, 'id', 'status_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function stage()
-    {
-        return $this->hasOne(TaskStage::class, 'id', 'stage_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function editor()
-    {
-        return $this->hasOne(User::class, 'id', 'editor_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function author()
-    {
-        return $this->hasOne(User::class, 'id', 'author_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function subject()
     {
         return $this->hasOne(TaskSubject::class, 'id', 'subject_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function step()
+    {
+        return $this->hasOne(TaskStep::class, 'task_id', 'id');
     }
 
     /**

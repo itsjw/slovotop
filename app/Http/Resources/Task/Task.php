@@ -36,16 +36,6 @@ class Task extends Resource
                 'data'   => new ProjectLittle($this->project),
                 'access' => $stageTask->where('field', 'project_id')->first()->access ?? 0,
             ],
-            'status'      => $this->status_id,
-            'stage'       => $this->stage_id,
-            'editor'      => [
-                'data'   => $this->editor ? new ProjectLittle($this->editor) : ['id' => 0],
-                'access' => $stageTask->where('field', 'editor_id')->first()->access ?? 0,
-            ],
-            'author'      => [
-                'data'   => $this->author ? new ProjectLittle($this->author) : ['id' => 0],
-                'access' => $stageTask->where('field', 'author_id')->first()->access ?? 0,
-            ],
             'subject'     => [
                 'data'   => $this->subject,
                 'access' => $stageTask->where('field', 'subject_id')->first()->access ?? 0,

@@ -21,12 +21,4 @@ class TaskStage extends Model
     {
         return $this->morphToMany(Role::class, 'accessable');
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function task()
-    {
-        return $this->hasMany(StageTaskAccess::class, 'stage_id', 'id');
-    }
 }
