@@ -3,7 +3,7 @@
         <b-loading :active="isLoading"></b-loading>
         <div class="container" v-if="!isLoading">
 
-            <task-control @save="saveTask"></task-control>
+            <task-control @save="saveTask" ></task-control>
 
             <b-collapse class="card" :open.sync="isOpenBlock">
                 <div slot="trigger" class="card-header">
@@ -95,7 +95,7 @@
 
                             <div class="column is-8">
 
-                                <task-step></task-step>
+                                <task-step :task="task.id"></task-step>
 
                             </div>
                         </div>

@@ -12,12 +12,12 @@
                 </button>
             </b-tooltip>
             <b-tooltip :label="trans('data.taskEditUser')">
-                <button class="button is-link is-small">
+                <button class="button is-link is-small" @click="editTaskStep">
                     <b-icon icon="pencil"></b-icon>
                 </button>
             </b-tooltip>
             <b-tooltip :label="trans('data.taskDelUser')">
-                <button class="button is-danger is-small">
+                <button class="button is-danger is-small" @click="deleteTaskStep">
                     <b-icon icon="delete"></b-icon>
                 </button>
             </b-tooltip>
@@ -79,15 +79,58 @@
         },
 
         methods: {
+
+            /**
+             * get all steps
+             */
+            getTaskSteps() {
+
+            },
+
             /**
              * add/edit task step
              */
             addTaskStep() {
+                if (!this.task) {
+                    this.$toast.open({
+                        message: this.trans('data.noTaskID'),
+                        type: 'is-danger'
+                    });
+                    return false;
+                }
                 this.$modal.open({
                     parent: this,
                     component: addTaskStep,
                     hasModalCard: true
                 })
+            },
+
+            /**
+             * edit task step
+             * @returns {boolean}
+             */
+            editTaskStep() {
+                if (!this.task) {
+                    this.$toast.open({
+                        message: this.trans('data.noTaskID'),
+                        type: 'is-danger'
+                    });
+                    return false;
+                }
+            },
+
+            /**
+             * delete task step
+             * @returns {boolean}
+             */
+            deleteTaskStep() {
+                if (!this.task) {
+                    this.$toast.open({
+                        message: this.trans('data.noTaskID'),
+                        type: 'is-danger'
+                    });
+                    return false;
+                }
             }
         }
     }

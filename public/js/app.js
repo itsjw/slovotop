@@ -39555,15 +39555,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+
+        /**
+         * get all steps
+         */
+        getTaskSteps: function getTaskSteps() {},
+
+
         /**
          * add/edit task step
          */
         addTaskStep: function addTaskStep() {
+            if (!this.task) {
+                this.$toast.open({
+                    message: this.trans('data.noTaskID'),
+                    type: 'is-danger'
+                });
+                return false;
+            }
             this.$modal.open({
                 parent: this,
                 component: __WEBPACK_IMPORTED_MODULE_0__addTaskStep___default.a,
                 hasModalCard: true
             });
+        },
+
+
+        /**
+         * edit task step
+         * @returns {boolean}
+         */
+        editTaskStep: function editTaskStep() {
+            if (!this.task) {
+                this.$toast.open({
+                    message: this.trans('data.noTaskID'),
+                    type: 'is-danger'
+                });
+                return false;
+            }
+        },
+
+
+        /**
+         * delete task step
+         * @returns {boolean}
+         */
+        deleteTaskStep: function deleteTaskStep() {
+            if (!this.task) {
+                this.$toast.open({
+                    message: this.trans('data.noTaskID'),
+                    type: 'is-danger'
+                });
+                return false;
+            }
         }
     }
 });
@@ -39917,7 +39961,7 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "column is-8" },
-                          [_c("task-step")],
+                          [_c("task-step", { attrs: { task: _vm.task.id } })],
                           1
                         )
                       ])
@@ -41488,6 +41532,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -41504,7 +41567,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             stages: [],
-            users: []
+            users: [],
+            taskStep: {
+                user: {},
+                stage: {}
+            }
         };
     },
 
@@ -41547,7 +41614,7 @@ var render = function() {
     _c("header", { staticClass: "modal-card-head" }, [
       _c("p", { staticClass: "modal-card-title" }, [
         _vm._v(
-          "\n            " + _vm._s(_vm.trans("data.roleRoles")) + "\n        "
+          "\n            " + _vm._s(_vm.trans("data.taskUser")) + "\n        "
         )
       ])
     ]),
@@ -41558,22 +41625,68 @@ var render = function() {
       [
         _c(
           "b-field",
-          { attrs: { label: _vm.trans("data.roleName") } },
+          { attrs: { label: _vm.trans("data.stageName") } },
           [
-            _c("b-input", {
-              attrs: {
-                type: "text",
-                placeholder: _vm.trans("data.roleName"),
-                required: ""
-              },
-              model: {
-                value: _vm.role.name,
-                callback: function($$v) {
-                  _vm.$set(_vm.role, "name", $$v)
+            _c(
+              "b-select",
+              {
+                attrs: {
+                  placeholder: _vm.trans("data.stageName"),
+                  expanded: "",
+                  icon: "account"
                 },
-                expression: "role.name"
-              }
-            })
+                model: {
+                  value: _vm.taskStep.stage.id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.taskStep.stage, "id", $$v)
+                  },
+                  expression: "taskStep.stage.id"
+                }
+              },
+              _vm._l(_vm.stages, function(val, key) {
+                return _c("option", { key: key, domProps: { value: val.id } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
+              })
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "b-field",
+          { attrs: { label: _vm.trans("data.userUser") } },
+          [
+            _c(
+              "b-select",
+              {
+                attrs: {
+                  placeholder: _vm.trans("data.userUser"),
+                  expanded: "",
+                  icon: "account"
+                },
+                model: {
+                  value: _vm.taskStep.user.id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.taskStep.user, "id", $$v)
+                  },
+                  expression: "taskStep.user.id"
+                }
+              },
+              _vm._l(_vm.users, function(val, key) {
+                return _c("option", { key: key, domProps: { value: val.id } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(val.name) +
+                      "\n                "
+                  )
+                ])
+              })
+            )
           ],
           1
         )
@@ -41598,7 +41711,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "button is-primary", attrs: { type: "submit" } },
+        { staticClass: "button is-primary", attrs: { type: "button" } },
         [_vm._v(_vm._s(_vm.trans("data.save")))]
       )
     ])
@@ -41656,7 +41769,10 @@ var render = function() {
             [
               _c(
                 "button",
-                { staticClass: "button is-link is-small" },
+                {
+                  staticClass: "button is-link is-small",
+                  on: { click: _vm.editTaskStep }
+                },
                 [_c("b-icon", { attrs: { icon: "pencil" } })],
                 1
               )
@@ -41666,7 +41782,10 @@ var render = function() {
           _c("b-tooltip", { attrs: { label: _vm.trans("data.taskDelUser") } }, [
             _c(
               "button",
-              { staticClass: "button is-danger is-small" },
+              {
+                staticClass: "button is-danger is-small",
+                on: { click: _vm.deleteTaskStep }
+              },
               [_c("b-icon", { attrs: { icon: "delete" } })],
               1
             )
