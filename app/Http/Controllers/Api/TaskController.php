@@ -97,10 +97,7 @@ class TaskController extends Controller
         $task->project_id = $request->project;
         $task->status_id = $request->status;
         $task->stage_id = $this->getStage($request->stage, $request->stageDirection);
-        $task->editor_id = $request->editor;
-        $task->author_id = $request->author;
         $task->subject_id = $request->subject;
-        $task->date_end = Carbon::parse($request->dateEnd);
         $task->price = $request->price;
         $task->title = $request->title;
         $task->desc = $request->desc;
@@ -125,7 +122,7 @@ class TaskController extends Controller
      *
      * @return mixed
      */
-    private function getStage($stage, $stageDirection)
+    private function getStage($stage, $stageDirection)  //TODO
     {
         if ($stageDirection == 1 && $stage) {
             return TaskStage::where('priority', '>', $stage)->orderBy('priority', 'asc')->first()->id;

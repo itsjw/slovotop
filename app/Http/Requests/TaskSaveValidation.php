@@ -38,10 +38,7 @@ class TaskSaveValidation extends FormRequest
                 Rule::unique('user_roles')->where(function ($query) {
                     return $query->where('role_id', 1);
                 }),],
-            //'author'      => 'required',
-            'dateEnd' => 'required',
             //'desc'        => 'required',
-            //'editor'      => 'required',
             //'moreData'    => 'required',
             //'price'       => 'required',
             'project' => 'required',
