@@ -140,4 +140,7 @@ return [
     'commentsTitle'   => 'Комментарии',
     'commentsAdd'     => 'Добавить комментарий',
     'commentsText'    => 'Текст комментария',
+
+    // Reports
+    'reportStep'      => 'Этапы задач',
 ];

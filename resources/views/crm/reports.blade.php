@@ -10,6 +10,6 @@
 
 @section('content')
 
-
+    <admin-report></admin-report>
 
 @endsection()

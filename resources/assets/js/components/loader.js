@@ -11,6 +11,7 @@ Vue.component('adminTasks', require('./task/tasks.vue'));
 Vue.component('adminTaskEdit', require('./task/taskEdit.vue'));
 Vue.component('adminDocs', require('./doc/docs.vue'));
 Vue.component('adminDocEdit', require('./doc/docEdit.vue'));
+Vue.component('adminReport', require('./report/report'));
 
 // Mixins
 import Auth from '../mixin/Auth';
