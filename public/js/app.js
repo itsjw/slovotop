@@ -39102,21 +39102,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(113)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(115)
 /* template */
-var __vue_template__ = __webpack_require__(116)
+var __vue_template__ = __webpack_require__(143)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-1f64153e"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -39150,62 +39146,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(114);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("7f20b9d2", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f64153e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./taskControl.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f64153e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./taskControl.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 113 */,
+/* 114 */,
 /* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -39263,140 +39210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", [
-    _vm.accessMenu == 2
-      ? _c("nav", { staticClass: "navbar is-primary" }, [
-          _c("div", { staticClass: "navbar-start" }, [
-            _c(
-              "a",
-              { staticClass: "navbar-item" },
-              [_c("b-icon", { attrs: { icon: "reload", size: "is-small" } })],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.addTask()
-                  }
-                }
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.editTask()
-                  }
-                }
-              },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.confirmDeleteTask()
-                  }
-                }
-              },
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "navbar-item",
-                on: {
-                  click: function($event) {
-                    _vm.confirmDeleteTask()
-                  }
-                }
-              },
-              [
-                _vm._m(3),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
-              ]
-            )
-          ])
-        ])
-      : _vm._e()
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon is-medium" }, [
-      _c("i", { staticClass: "mdi mdi-18px mdi-plus-circle" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon is-medium" }, [
-      _c("i", { staticClass: "mdi mdi-18px mdi-pencil" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon is-medium" }, [
-      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon is-medium" }, [
-      _c("i", { staticClass: "mdi mdi-18px mdi-delete" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1f64153e", module.exports)
-  }
-}
-
-/***/ }),
+/* 116 */,
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41875,6 +41689,98 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5f4f06f8", module.exports)
+  }
+}
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("nav", { staticClass: "navbar is-light" }, [
+      _c("div", { staticClass: "navbar-start" }, [
+        _c(
+          "a",
+          { staticClass: "navbar-item" },
+          [_c("b-icon", { attrs: { icon: "reload" } })],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "navbar-item" }, [
+          _c(
+            "button",
+            { staticClass: "button is-link", attrs: { type: "button" } },
+            [
+              _c("b-icon", { attrs: { icon: "approval" } }),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.trans("data.taskGet")))])
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "navbar-end" }, [
+        _c("div", { staticClass: "navbar-item" }, [
+          _c("div", { staticClass: "field is-grouped" }, [
+            _c(
+              "button",
+              {
+                staticClass: "button is-primary control",
+                attrs: { type: "button" }
+              },
+              [
+                _c("b-icon", { attrs: { icon: "check" } }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.save")))])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-success control",
+                attrs: { type: "button" }
+              },
+              [
+                _c("b-icon", { attrs: { icon: "chevron-right" } }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskNext")))])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-warning control",
+                attrs: { type: "button" }
+              },
+              [
+                _c("b-icon", { attrs: { icon: "backburger" } }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.trans("data.taskReturn")))])
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f64153e", module.exports)
   }
 }
 

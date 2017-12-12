@@ -1,49 +1,38 @@
 <template>
     <section>
-        <nav class="navbar is-primary" v-if="accessMenu == 2">
+        <nav class="navbar is-light">
             <div class="navbar-start">
                 <a class="navbar-item">
-                    <b-icon
-                            icon="reload"
-                            size="is-small">
-                    </b-icon>
+                    <b-icon icon="reload"></b-icon>
                 </a>
-
-                <a class="navbar-item" @click="addTask()">
-                    <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-plus-circle"></i>
-                    </span>
-                    <span>{{ trans('data.save') }}</span>
-                </a>
-
-                <a class="navbar-item" @click="editTask()">
-                    <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-pencil"></i>
-                    </span>
-                    <span>{{ trans('data.taskNext') }}</span>
-                </a>
-
-                <a class="navbar-item" @click="confirmDeleteTask()">
-                    <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-delete"></i>
-                    </span>
-                    <span>{{ trans('data.taskGet') }}</span>
-                </a>
-
-                <a class="navbar-item" @click="confirmDeleteTask()">
-                    <span class="icon is-medium">
-                        <i class="mdi mdi-18px mdi-delete"></i>
-                    </span>
-                    <span>{{ trans('data.taskReturn') }}</span>
-                </a>
+                <div class="navbar-item">
+                    <button type="button" class="button is-link">
+                        <b-icon icon="approval"></b-icon>
+                        <span>{{ trans('data.taskGet') }}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped">
+                        <button type="button" class="button is-primary control">
+                            <b-icon icon="check"></b-icon>
+                            <span>{{ trans('data.save') }}</span>
+                        </button>
+                        <button type="button" class="button is-success control">
+                            <b-icon icon="chevron-right"></b-icon>
+                            <span>{{ trans('data.taskNext') }}</span>
+                        </button>
+                        <button type="button" class="button is-warning control">
+                            <b-icon icon="backburger"></b-icon>
+                            <span>{{ trans('data.taskReturn') }}</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </nav>
     </section>
 </template>
-
-<style scoped>
-
-</style>
 
 <script>
     export default {
