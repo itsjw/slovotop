@@ -1,6 +1,7 @@
 <template>
     <section>
         <div class="block has-text-right">
+
             <b-tooltip :label="trans('data.reload')">
                 <button class="button is-primary is-small">
                     <b-icon icon="reload"></b-icon>
