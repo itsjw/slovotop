@@ -1,5 +1,11 @@
 <template>
     <section>
+        <div class="block">
+            <button class="button is-dark is-small">
+                <b-icon icon="check"></b-icon>
+            </button>
+        </div>
+
         <b-table
                 :data="taskSteps"
                 :hoverable=true

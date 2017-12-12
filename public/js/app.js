@@ -39552,7 +39552,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39563,6 +39563,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39620,6 +39626,15 @@ var render = function() {
   return _c(
     "section",
     [
+      _c("div", { staticClass: "block" }, [
+        _c(
+          "button",
+          { staticClass: "button is-dark is-small" },
+          [_c("b-icon", { attrs: { icon: "check" } })],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c("b-table", {
         attrs: {
           data: _vm.taskSteps,

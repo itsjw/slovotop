@@ -34,7 +34,7 @@ class CreateTaskStatusesTable extends Migration
 
     private function seedSate()
     {
-        $status = ['В работе', 'Завершена'];
+        $status = ['Ожидает исполнителя', 'В работе', 'Завершена'];
 
         foreach ($status as $value) {
             $state = new \App\Models\TaskStatus();
