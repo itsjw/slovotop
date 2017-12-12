@@ -38575,6 +38575,8 @@ Vue.component('taskStep', __webpack_require__(117));
     data: function data() {
         return {
             task: {
+                id: '',
+                owner: {},
                 name: {
                     data: null,
                     access: 2
@@ -38638,8 +38640,7 @@ Vue.component('taskStep', __webpack_require__(117));
                 price: {
                     data: null,
                     access: 2
-                },
-                owner: {}
+                }
             },
             stageDirection: 0,
             //
@@ -38695,10 +38696,9 @@ Vue.component('taskStep', __webpack_require__(117));
         /**
          * save task
          */
-        saveTask: function saveTask(direction) {
+        saveTask: function saveTask(index) {
             var _this4 = this;
 
-            this.stageDirection = direction;
             this.isRefresh = true, Api.post('v1', 'saveTask', this.getTaskData(this.task)).then(function (response) {
                 _this4.$toast.open({
                     message: response.data.success,
@@ -38727,7 +38727,7 @@ Vue.component('taskStep', __webpack_require__(117));
 
             return {
                 id: this.task_id || 0,
-                user_id: this.userID,
+                user_id: 4, //this.userID,
                 desc: task.desc.data || '',
                 moreData: task.moreData.data || '',
                 name: task.name.data || '',
@@ -38745,7 +38745,7 @@ Vue.component('taskStep', __webpack_require__(117));
                 words: task.words.data || '',
                 status: task.status || 1,
                 stage: task.stage || 0,
-                stageDirection: this.stageDirection
+                stageDirection: 0
             };
         }
     }
@@ -41705,7 +41705,14 @@ var render = function() {
       _c("div", { staticClass: "navbar-start" }, [
         _c(
           "a",
-          { staticClass: "navbar-item" },
+          {
+            staticClass: "navbar-item",
+            on: {
+              click: function($event) {
+                _vm.$emit("save", 1)
+              }
+            }
+          },
           [_c("b-icon", { attrs: { icon: "reload" } })],
           1
         ),
@@ -41713,7 +41720,15 @@ var render = function() {
         _c("div", { staticClass: "navbar-item" }, [
           _c(
             "button",
-            { staticClass: "button is-link", attrs: { type: "button" } },
+            {
+              staticClass: "button is-link",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$emit("save", 2)
+                }
+              }
+            },
             [
               _c("b-icon", { attrs: { icon: "approval" } }),
               _vm._v(" "),
@@ -41731,7 +41746,12 @@ var render = function() {
               "button",
               {
                 staticClass: "button is-primary control",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("save", 3)
+                  }
+                }
               },
               [
                 _c("b-icon", { attrs: { icon: "check" } }),
@@ -41745,7 +41765,12 @@ var render = function() {
               "button",
               {
                 staticClass: "button is-success control",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("save", 4)
+                  }
+                }
               },
               [
                 _c("b-icon", { attrs: { icon: "chevron-right" } }),
@@ -41759,7 +41784,12 @@ var render = function() {
               "button",
               {
                 staticClass: "button is-warning control",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.$emit("save", 5)
+                  }
+                }
               },
               [
                 _c("b-icon", { attrs: { icon: "backburger" } }),

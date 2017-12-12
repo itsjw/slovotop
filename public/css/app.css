@@ -22908,7 +22908,7 @@ html {
 .comment-wrap {
   max-height: 500px;
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
   background: white;
   padding: 50px;
 }

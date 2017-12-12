@@ -3,7 +3,7 @@
         <b-loading :active="isLoading"></b-loading>
         <div class="container" v-if="!isLoading">
 
-            <task-control @save="saveTask" ></task-control>
+            <task-control @save="saveTask"></task-control>
 
             <b-collapse class="card" :open.sync="isOpenBlock">
                 <div slot="trigger" class="card-header">
@@ -229,6 +229,8 @@
         data() {
             return {
                 task: {
+                    id: '',
+                    owner: {},
                     name: {
                         data: null,
                         access: 2
@@ -292,8 +294,7 @@
                     price: {
                         data: null,
                         access: 2
-                    },
-                    owner: {}
+                    }
                 },
                 stageDirection: 0,
                 //
@@ -342,8 +343,7 @@
             /**
              * save task
              */
-            saveTask(direction) {
-                this.stageDirection = direction;
+            saveTask(index) {
                 this.isRefresh = true,
                     Api.post('v1', 'saveTask', this.getTaskData(this.task))
                         .then(response => {
@@ -374,7 +374,7 @@
 
                 return {
                     id: this.task_id || 0,
-                    user_id: this.userID,
+                    user_id: 4, //this.userID,
                     desc: task.desc.data || '',
                     moreData: task.moreData.data || '',
                     name: task.name.data || '',
@@ -392,7 +392,7 @@
                     words: task.words.data || '',
                     status: task.status || 1,
                     stage: task.stage || 0,
-                    stageDirection: this.stageDirection,
+                    stageDirection: 0,
                 }
             }
 

@@ -40,10 +40,6 @@ class Task extends Resource
                 'data'   => $this->subject,
                 'access' => $stageTask->where('field', 'subject_id')->first()->access ?? 0,
             ],
-            'dateEnd'     => [
-                'data'   => $this->date_end->format('Y-d-m'),
-                'access' => $stageTask->where('field', 'date_end')->first()->access ?? 0,
-            ],
             'price'       => [
                 'data'   => $this->price,
                 'access' => $stageTask->where('field', 'price')->first()->access ?? 0,

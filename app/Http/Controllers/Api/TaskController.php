@@ -145,7 +145,9 @@ class TaskController extends Controller
     public function deleteTask(Request $request)
     {
         foreach ($request->items as $item) {
-            Task::find($item['id'])->delete();
+            $task = Task::find($item['id']);
+            $task->comments()->delete();
+            $task->delete();
         }
 
         return ['success' => trans('data.notifyOK')];

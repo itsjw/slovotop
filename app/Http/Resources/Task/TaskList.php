@@ -35,7 +35,6 @@ class TaskList extends Resource
             'editor'     => new UserLittle($this->editor),
             'author'     => new UserLittle($this->author),
             'subject'    => new SubjectLittle($this->subject),
-            'dateEnd'    => $this->date_end->format('d-m-Y'),
             'price'      => $this->price,
             'task'       => $this->task,
             'created_at' => $this->created_at->format('d-m-Y H:m:s'),
