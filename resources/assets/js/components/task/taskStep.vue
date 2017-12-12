@@ -65,6 +65,7 @@
         name: "task-steps",
 
         mounted() {
+            this.getTaskSteps();
         },
 
         props: {
@@ -84,7 +85,10 @@
              * get all steps
              */
             getTaskSteps() {
-
+                Api.post('v1', 'getSteps', {task: this.task})
+                    .then(response => {
+                        this.taskSteps = response.data.data;
+                    })
             },
 
             /**

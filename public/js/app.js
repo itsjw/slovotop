@@ -38347,8 +38347,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -38565,8 +38563,6 @@ Vue.component('taskStep', __webpack_require__(117));
         }
 
         this.getProject();
-        this.getUser('editor');
-        this.getUser('author');
         this.getSubject();
     },
 
@@ -38651,8 +38647,6 @@ Vue.component('taskStep', __webpack_require__(117));
             isLoading: false,
             isOpenBlock: true,
             projects: [],
-            editor: [],
-            author: [],
             subjects: []
         };
     },
@@ -38675,26 +38669,13 @@ Vue.component('taskStep', __webpack_require__(117));
 
 
         /**
-         * get users
-         * @param role
-         */
-        getUser: function getUser(param) {
-            var _this2 = this;
-
-            Api.post('v1', 'getUserList', _defineProperty({}, param, param)).then(function (response) {
-                _this2[param] = response.data.data;
-            });
-        },
-
-
-        /**
          * get projects
          */
         getProject: function getProject() {
-            var _this3 = this;
+            var _this2 = this;
 
             Api.post('v1', 'getProjects').then(function (response) {
-                _this3.projects = response.data.data;
+                _this2.projects = response.data.data;
             });
         },
 
@@ -38703,10 +38684,10 @@ Vue.component('taskStep', __webpack_require__(117));
          * get subjects
          */
         getSubject: function getSubject() {
-            var _this4 = this;
+            var _this3 = this;
 
             Api.post('v1', 'getSubjectList').then(function (response) {
-                _this4.subjects = response.data.data;
+                _this3.subjects = response.data.data;
             });
         },
 
@@ -38715,24 +38696,24 @@ Vue.component('taskStep', __webpack_require__(117));
          * save task
          */
         saveTask: function saveTask(direction) {
-            var _this5 = this;
+            var _this4 = this;
 
             this.stageDirection = direction;
             this.isRefresh = true, Api.post('v1', 'saveTask', this.getTaskData(this.task)).then(function (response) {
-                _this5.$toast.open({
+                _this4.$toast.open({
                     message: response.data.success,
                     type: 'is-success'
                 });
                 history.pushState(null, null, response.data.id);
-                _this5.task.id = response.data.id;
-                _this5.isRefresh = false;
+                _this4.task.id = response.data.id;
+                _this4.isRefresh = false;
             }).catch(function (error) {
-                _this5.$toast.open({
+                _this4.$toast.open({
                     duration: 5000,
                     message: Api.errorSerializer(error.response.data.errors),
                     type: 'is-danger'
                 });
-                _this5.isRefresh = false;
+                _this4.isRefresh = false;
             });
         },
 
@@ -39539,7 +39520,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     name: "task-steps",
 
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.getTaskSteps();
+    },
 
 
     props: {
@@ -39559,7 +39542,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         /**
          * get all steps
          */
-        getTaskSteps: function getTaskSteps() {},
+        getTaskSteps: function getTaskSteps() {
+            var _this = this;
+
+            Api.post('v1', 'getSteps', { task: this.task }).then(function (response) {
+                _this.taskSteps = response.data.data;
+            });
+        },
 
 
         /**

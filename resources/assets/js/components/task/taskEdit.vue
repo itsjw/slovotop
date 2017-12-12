@@ -218,8 +218,6 @@
             }
 
             this.getProject();
-            this.getUser('editor');
-            this.getUser('author');
             this.getSubject();
         },
 
@@ -303,8 +301,6 @@
                 isLoading: false,
                 isOpenBlock: true,
                 projects: [],
-                editor: [],
-                author: [],
                 subjects: []
             }
         },
@@ -320,17 +316,6 @@
                     .then(response => {
                         this.task = response.data.data;
                         this.isLoading = false;
-                    })
-            },
-
-            /**
-             * get users
-             * @param role
-             */
-            getUser(param) {
-                Api.post('v1', 'getUserList', {[param]: param})
-                    .then(response => {
-                        this[param] = response.data.data;
                     })
             },
 
