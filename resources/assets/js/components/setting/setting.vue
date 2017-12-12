@@ -1,15 +1,14 @@
 <template>
     <section>
 
-        <b-tabs>
+        <b-tabs @change="change">
             <b-tab-item :label="trans('data.setTaskMain')"
                         icon="settings">
-                <setting-general></setting-general>
             </b-tab-item>
 
             <b-tab-item :label="trans('data.setTaskStage')"
                         icon="format-list-numbers">
-                <setting-stages></setting-stages>
+                <setting-stages v-if="tabActive == 1"></setting-stages>
             </b-tab-item>
         </b-tabs>
 
@@ -28,20 +27,18 @@
 
         data() {
             return {
-                tabs: ['active', ''],
+                tabActive: 0
             }
         },
 
         methods: {
             /**
-             * select tabs
-             * @param key
+             * show active tab
+             * @param index
              */
-            selectTab(key) {
-                this.tabs = ['', ''];
-                this.tabs.splice(key, 0, 'active');
-            },
-
+            change(index) {
+                this.tabActive = index;
+            }
         }
     }
 </script>

@@ -30761,7 +30761,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 Vue.component('settingStages', __webpack_require__(50));
 Vue.component('settingGeneral', __webpack_require__(61));
@@ -30774,19 +30773,18 @@ Vue.component('settingGeneral', __webpack_require__(61));
 
     data: function data() {
         return {
-            tabs: ['active', '']
+            tabActive: 0
         };
     },
 
 
     methods: {
         /**
-         * select tabs
-         * @param key
+         * show active tab
+         * @param index
          */
-        selectTab: function selectTab(key) {
-            this.tabs = ['', ''];
-            this.tabs.splice(key, 0, 'active');
+        change: function change(index) {
+            this.tabActive = index;
         }
     }
 });
@@ -32526,15 +32524,11 @@ var render = function() {
     [
       _c(
         "b-tabs",
+        { on: { change: _vm.change } },
         [
-          _c(
-            "b-tab-item",
-            {
-              attrs: { label: _vm.trans("data.setTaskMain"), icon: "settings" }
-            },
-            [_c("setting-general")],
-            1
-          ),
+          _c("b-tab-item", {
+            attrs: { label: _vm.trans("data.setTaskMain"), icon: "settings" }
+          }),
           _vm._v(" "),
           _c(
             "b-tab-item",
@@ -32544,7 +32538,7 @@ var render = function() {
                 icon: "format-list-numbers"
               }
             },
-            [_c("setting-stages")],
+            [_vm.tabActive == 1 ? _c("setting-stages") : _vm._e()],
             1
           )
         ],
