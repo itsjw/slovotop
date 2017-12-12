@@ -8,6 +8,7 @@ use App\Http\Resources\Stages\Stage;
 use App\Models\TaskStage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class StageController
@@ -35,7 +36,7 @@ class StageController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getStages(Request $request)
+    public function getStages(Request $request) :ResourceCollection
     {
         $stage = TaskStage::query();
 
@@ -73,7 +74,7 @@ class StageController extends Controller
      *
      * @return array
      */
-    public function saveStage(StageSaveValidation $request)
+    public function saveStage(StageSaveValidation $request) :array
     {
         $stage = TaskStage::findOrNew($request->id);
 
@@ -102,7 +103,7 @@ class StageController extends Controller
      *
      * @return array
      */
-    public function deleteStage(Request $request)
+    public function deleteStage(Request $request) :array
     {
         foreach ($request->items as $item) {
             $stage = TaskStage::find($item['id']);
