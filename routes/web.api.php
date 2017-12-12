@@ -67,6 +67,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['auth']
         $router->post('saveTaskComment', 'TaskController@saveTaskComment');
 
         $router->post('getSteps', 'StepController@getSteps');
+        $router->post('saveStep', 'StepController@saveStep');
     });
 
     // doc
